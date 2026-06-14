@@ -1,0 +1,24373 @@
+
+/**
+ * Client
+**/
+
+import * as runtime from './runtime/library.js';
+import $Types = runtime.Types // general types
+import $Public = runtime.Types.Public
+import $Utils = runtime.Types.Utils
+import $Extensions = runtime.Types.Extensions
+import $Result = runtime.Types.Result
+
+export type PrismaPromise<T> = $Public.PrismaPromise<T>
+
+
+/**
+ * Model User
+ * 
+ */
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model UserProfile
+ * 
+ */
+export type UserProfile = $Result.DefaultSelection<Prisma.$UserProfilePayload>
+/**
+ * Model Food
+ * 
+ */
+export type Food = $Result.DefaultSelection<Prisma.$FoodPayload>
+/**
+ * Model Meal
+ * 
+ */
+export type Meal = $Result.DefaultSelection<Prisma.$MealPayload>
+/**
+ * Model MealItem
+ * 
+ */
+export type MealItem = $Result.DefaultSelection<Prisma.$MealItemPayload>
+/**
+ * Model WaterLog
+ * 
+ */
+export type WaterLog = $Result.DefaultSelection<Prisma.$WaterLogPayload>
+/**
+ * Model SupplementLog
+ * 
+ */
+export type SupplementLog = $Result.DefaultSelection<Prisma.$SupplementLogPayload>
+/**
+ * Model ExerciseLog
+ * 
+ */
+export type ExerciseLog = $Result.DefaultSelection<Prisma.$ExerciseLogPayload>
+/**
+ * Model MealScan
+ * 
+ */
+export type MealScan = $Result.DefaultSelection<Prisma.$MealScanPayload>
+/**
+ * Model Conversation
+ * 
+ */
+export type Conversation = $Result.DefaultSelection<Prisma.$ConversationPayload>
+/**
+ * Model ConversationMessage
+ * 
+ */
+export type ConversationMessage = $Result.DefaultSelection<Prisma.$ConversationMessagePayload>
+/**
+ * Model ConversationFeedback
+ * 
+ */
+export type ConversationFeedback = $Result.DefaultSelection<Prisma.$ConversationFeedbackPayload>
+/**
+ * Model TravelSession
+ * 
+ */
+export type TravelSession = $Result.DefaultSelection<Prisma.$TravelSessionPayload>
+/**
+ * Model CacheEntry
+ * 
+ */
+export type CacheEntry = $Result.DefaultSelection<Prisma.$CacheEntryPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const FoodSource: {
+  SYSTEM: 'SYSTEM',
+  USER_CREATED: 'USER_CREATED',
+  AI_GENERATED: 'AI_GENERATED',
+  ADMIN_VERIFIED: 'ADMIN_VERIFIED',
+  EXTERNAL_IMPORT: 'EXTERNAL_IMPORT'
+};
+
+export type FoodSource = (typeof FoodSource)[keyof typeof FoodSource]
+
+}
+
+export type FoodSource = $Enums.FoodSource
+
+export const FoodSource: typeof $Enums.FoodSource
+
+/**
+ * ##  Prisma Client ʲˢ
+ *
+ * Type-safe database client for TypeScript & Node.js
+ * @example
+ * ```
+ * const prisma = new PrismaClient()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
+ * ```
+ *
+ *
+ * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ */
+export class PrismaClient<
+  ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
+  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
+
+    /**
+   * ##  Prisma Client ʲˢ
+   *
+   * Type-safe database client for TypeScript & Node.js
+   * @example
+   * ```
+   * const prisma = new PrismaClient()
+   * // Fetch zero or more Users
+   * const users = await prisma.user.findMany()
+   * ```
+   *
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+   */
+
+  constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
+  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
+
+  /**
+   * Connect with the database
+   */
+  $connect(): $Utils.JsPromise<void>;
+
+  /**
+   * Disconnect from the database
+   */
+  $disconnect(): $Utils.JsPromise<void>;
+
+/**
+   * Executes a prepared raw query and returns the number of affected rows.
+   * @example
+   * ```
+   * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
+
+  /**
+   * Executes a raw query and returns the number of affected rows.
+   * Susceptible to SQL injections, see documentation.
+   * @example
+   * ```
+   * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
+
+  /**
+   * Performs a prepared raw query and returns the `SELECT` data.
+   * @example
+   * ```
+   * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
+
+  /**
+   * Performs a raw query and returns the `SELECT` data.
+   * Susceptible to SQL injections, see documentation.
+   * @example
+   * ```
+   * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
+
+
+  /**
+   * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
+   * @example
+   * ```
+   * const [george, bob, alice] = await prisma.$transaction([
+   *   prisma.user.create({ data: { name: 'George' } }),
+   *   prisma.user.create({ data: { name: 'Bob' } }),
+   *   prisma.user.create({ data: { name: 'Alice' } }),
+   * ])
+   * ```
+   * 
+   * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
+   */
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+
+  $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
+
+
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
+    extArgs: ExtArgs
+  }>>
+
+      /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userProfile`: Exposes CRUD operations for the **UserProfile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserProfiles
+    * const userProfiles = await prisma.userProfile.findMany()
+    * ```
+    */
+  get userProfile(): Prisma.UserProfileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.food`: Exposes CRUD operations for the **Food** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Foods
+    * const foods = await prisma.food.findMany()
+    * ```
+    */
+  get food(): Prisma.FoodDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.meal`: Exposes CRUD operations for the **Meal** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Meals
+    * const meals = await prisma.meal.findMany()
+    * ```
+    */
+  get meal(): Prisma.MealDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mealItem`: Exposes CRUD operations for the **MealItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MealItems
+    * const mealItems = await prisma.mealItem.findMany()
+    * ```
+    */
+  get mealItem(): Prisma.MealItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.waterLog`: Exposes CRUD operations for the **WaterLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WaterLogs
+    * const waterLogs = await prisma.waterLog.findMany()
+    * ```
+    */
+  get waterLog(): Prisma.WaterLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.supplementLog`: Exposes CRUD operations for the **SupplementLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SupplementLogs
+    * const supplementLogs = await prisma.supplementLog.findMany()
+    * ```
+    */
+  get supplementLog(): Prisma.SupplementLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.exerciseLog`: Exposes CRUD operations for the **ExerciseLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ExerciseLogs
+    * const exerciseLogs = await prisma.exerciseLog.findMany()
+    * ```
+    */
+  get exerciseLog(): Prisma.ExerciseLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mealScan`: Exposes CRUD operations for the **MealScan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MealScans
+    * const mealScans = await prisma.mealScan.findMany()
+    * ```
+    */
+  get mealScan(): Prisma.MealScanDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.conversation`: Exposes CRUD operations for the **Conversation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Conversations
+    * const conversations = await prisma.conversation.findMany()
+    * ```
+    */
+  get conversation(): Prisma.ConversationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.conversationMessage`: Exposes CRUD operations for the **ConversationMessage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ConversationMessages
+    * const conversationMessages = await prisma.conversationMessage.findMany()
+    * ```
+    */
+  get conversationMessage(): Prisma.ConversationMessageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.conversationFeedback`: Exposes CRUD operations for the **ConversationFeedback** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ConversationFeedbacks
+    * const conversationFeedbacks = await prisma.conversationFeedback.findMany()
+    * ```
+    */
+  get conversationFeedback(): Prisma.ConversationFeedbackDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.travelSession`: Exposes CRUD operations for the **TravelSession** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TravelSessions
+    * const travelSessions = await prisma.travelSession.findMany()
+    * ```
+    */
+  get travelSession(): Prisma.TravelSessionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.cacheEntry`: Exposes CRUD operations for the **CacheEntry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CacheEntries
+    * const cacheEntries = await prisma.cacheEntry.findMany()
+    * ```
+    */
+  get cacheEntry(): Prisma.CacheEntryDelegate<ExtArgs, ClientOptions>;
+}
+
+export namespace Prisma {
+  export import DMMF = runtime.DMMF
+
+  export type PrismaPromise<T> = $Public.PrismaPromise<T>
+
+  /**
+   * Validator
+   */
+  export import validator = runtime.Public.validator
+
+  /**
+   * Prisma Errors
+   */
+  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
+  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
+  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
+  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
+  export import PrismaClientValidationError = runtime.PrismaClientValidationError
+
+  /**
+   * Re-export of sql-template-tag
+   */
+  export import sql = runtime.sqltag
+  export import empty = runtime.empty
+  export import join = runtime.join
+  export import raw = runtime.raw
+  export import Sql = runtime.Sql
+
+
+
+  /**
+   * Decimal.js
+   */
+  export import Decimal = runtime.Decimal
+
+  export type DecimalJsLike = runtime.DecimalJsLike
+
+  /**
+   * Metrics
+   */
+  export type Metrics = runtime.Metrics
+  export type Metric<T> = runtime.Metric<T>
+  export type MetricHistogram = runtime.MetricHistogram
+  export type MetricHistogramBucket = runtime.MetricHistogramBucket
+
+  /**
+  * Extensions
+  */
+  export import Extension = $Extensions.UserArgs
+  export import getExtensionContext = runtime.Extensions.getExtensionContext
+  export import Args = $Public.Args
+  export import Payload = $Public.Payload
+  export import Result = $Public.Result
+  export import Exact = $Public.Exact
+
+  /**
+   * Prisma Client JS version: 6.19.3
+   * Query Engine version: c2990dca591cba766e3b7ef5d9e8a84796e47ab7
+   */
+  export type PrismaVersion = {
+    client: string
+  }
+
+  export const prismaVersion: PrismaVersion
+
+  /**
+   * Utility Types
+   */
+
+
+  export import Bytes = runtime.Bytes
+  export import JsonObject = runtime.JsonObject
+  export import JsonArray = runtime.JsonArray
+  export import JsonValue = runtime.JsonValue
+  export import InputJsonObject = runtime.InputJsonObject
+  export import InputJsonArray = runtime.InputJsonArray
+  export import InputJsonValue = runtime.InputJsonValue
+
+  /**
+   * Types of the values used to represent different kinds of `null` values when working with JSON fields.
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  namespace NullTypes {
+    /**
+    * Type of `Prisma.DbNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class DbNull {
+      private DbNull: never
+      private constructor()
+    }
+
+    /**
+    * Type of `Prisma.JsonNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class JsonNull {
+      private JsonNull: never
+      private constructor()
+    }
+
+    /**
+    * Type of `Prisma.AnyNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class AnyNull {
+      private AnyNull: never
+      private constructor()
+    }
+  }
+
+  /**
+   * Helper for filtering JSON entries that have `null` on the database (empty on the db)
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const DbNull: NullTypes.DbNull
+
+  /**
+   * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const JsonNull: NullTypes.JsonNull
+
+  /**
+   * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const AnyNull: NullTypes.AnyNull
+
+  type SelectAndInclude = {
+    select: any
+    include: any
+  }
+
+  type SelectAndOmit = {
+    select: any
+    omit: any
+  }
+
+  /**
+   * Get the type of the value, that the Promise holds.
+   */
+  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
+
+  /**
+   * Get the return type of a function which returns a Promise.
+   */
+  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
+
+  /**
+   * From T, pick a set of properties whose keys are in the union K
+   */
+  type Prisma__Pick<T, K extends keyof T> = {
+      [P in K]: T[P];
+  };
+
+
+  export type Enumerable<T> = T | Array<T>;
+
+  export type RequiredKeys<T> = {
+    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
+  }[keyof T]
+
+  export type TruthyKeys<T> = keyof {
+    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K
+  }
+
+  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>
+
+  /**
+   * Subset
+   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection
+   */
+  export type Subset<T, U> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never;
+  };
+
+  /**
+   * SelectSubset
+   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection.
+   * Additionally, it validates, if both select and include are present. If the case, it errors.
+   */
+  export type SelectSubset<T, U> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    (T extends SelectAndInclude
+      ? 'Please either choose `select` or `include`.'
+      : T extends SelectAndOmit
+        ? 'Please either choose `select` or `omit`.'
+        : {})
+
+  /**
+   * Subset + Intersection
+   * @desc From `T` pick properties that exist in `U` and intersect `K`
+   */
+  export type SubsetIntersection<T, U, K> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    K
+
+  type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+
+  /**
+   * XOR is needed to have a real mutually exclusive union type
+   * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
+   */
+  type XOR<T, U> =
+    T extends object ?
+    U extends object ?
+      (Without<T, U> & U) | (Without<U, T> & T)
+    : U : T
+
+
+  /**
+   * Is T a Record?
+   */
+  type IsObject<T extends any> = T extends Array<any>
+  ? False
+  : T extends Date
+  ? False
+  : T extends Uint8Array
+  ? False
+  : T extends BigInt
+  ? False
+  : T extends object
+  ? True
+  : False
+
+
+  /**
+   * If it's T[], return T
+   */
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
+
+  /**
+   * From ts-toolbelt
+   */
+
+  type __Either<O extends object, K extends Key> = Omit<O, K> &
+    {
+      // Merge all but K
+      [P in K]: Prisma__Pick<O, P & keyof O> // With K possibilities
+    }[K]
+
+  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>
+
+  type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
+
+  type _Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean
+  > = {
+    1: EitherStrict<O, K>
+    0: EitherLoose<O, K>
+  }[strict]
+
+  type Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean = 1
+  > = O extends unknown ? _Either<O, K, strict> : never
+
+  export type Union = any
+
+  type PatchUndefined<O extends object, O1 extends object> = {
+    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K]
+  } & {}
+
+  /** Helper Types for "Merge" **/
+  export type IntersectOf<U extends Union> = (
+    U extends unknown ? (k: U) => void : never
+  ) extends (k: infer I) => void
+    ? I
+    : never
+
+  export type Overwrite<O extends object, O1 extends object> = {
+      [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
+  } & {};
+
+  type _Merge<U extends object> = IntersectOf<Overwrite<U, {
+      [K in keyof U]-?: At<U, K>;
+  }>>;
+
+  type Key = string | number | symbol;
+  type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
+  type AtStrict<O extends object, K extends Key> = O[K & keyof O];
+  type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
+  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
+      1: AtStrict<O, K>;
+      0: AtLoose<O, K>;
+  }[strict];
+
+  export type ComputeRaw<A extends any> = A extends Function ? A : {
+    [K in keyof A]: A[K];
+  } & {};
+
+  export type OptionalFlat<O> = {
+    [K in keyof O]?: O[K];
+  } & {};
+
+  type _Record<K extends keyof any, T> = {
+    [P in K]: T;
+  };
+
+  // cause typescript not to expand types and preserve names
+  type NoExpand<T> = T extends unknown ? T : never;
+
+  // this type assumes the passed object is entirely optional
+  type AtLeast<O extends object, K extends string> = NoExpand<
+    O extends unknown
+    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+      | {[P in keyof O as P extends K ? P : never]-?: O[P]} & O
+    : never>;
+
+  type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
+
+  export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
+  /** End Helper Types for "Merge" **/
+
+  export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>;
+
+  /**
+  A [[Boolean]]
+  */
+  export type Boolean = True | False
+
+  // /**
+  // 1
+  // */
+  export type True = 1
+
+  /**
+  0
+  */
+  export type False = 0
+
+  export type Not<B extends Boolean> = {
+    0: 1
+    1: 0
+  }[B]
+
+  export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
+    ? 0 // anything `never` is false
+    : A1 extends A2
+    ? 1
+    : 0
+
+  export type Has<U extends Union, U1 extends Union> = Not<
+    Extends<Exclude<U1, U>, U1>
+  >
+
+  export type Or<B1 extends Boolean, B2 extends Boolean> = {
+    0: {
+      0: 0
+      1: 1
+    }
+    1: {
+      0: 1
+      1: 1
+    }
+  }[B1][B2]
+
+  export type Keys<U extends Union> = U extends unknown ? keyof U : never
+
+  type Cast<A, B> = A extends B ? A : B;
+
+  export const type: unique symbol;
+
+
+
+  /**
+   * Used by group by
+   */
+
+  export type GetScalarType<T, O> = O extends object ? {
+    [P in keyof T]: P extends keyof O
+      ? O[P]
+      : never
+  } : never
+
+  type FieldPaths<
+    T,
+    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>
+  > = IsObject<T> extends True ? U : T
+
+  type GetHavingFields<T> = {
+    [K in keyof T]: Or<
+      Or<Extends<'OR', K>, Extends<'AND', K>>,
+      Extends<'NOT', K>
+    > extends True
+      ? // infer is only needed to not hit TS limit
+        // based on the brilliant idea of Pierre-Antoine Mills
+        // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
+        T[K] extends infer TK
+        ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
+        : never
+      : {} extends FieldPaths<T[K]>
+      ? never
+      : K
+  }[keyof T]
+
+  /**
+   * Convert tuple to union
+   */
+  type _TupleToUnion<T> = T extends (infer E)[] ? E : never
+  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>
+  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T
+
+  /**
+   * Like `Pick`, but additionally can also accept an array of keys
+   */
+  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
+
+  /**
+   * Exclude all keys with underscores
+   */
+  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
+
+
+  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
+
+  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
+
+
+  export const ModelName: {
+    User: 'User',
+    UserProfile: 'UserProfile',
+    Food: 'Food',
+    Meal: 'Meal',
+    MealItem: 'MealItem',
+    WaterLog: 'WaterLog',
+    SupplementLog: 'SupplementLog',
+    ExerciseLog: 'ExerciseLog',
+    MealScan: 'MealScan',
+    Conversation: 'Conversation',
+    ConversationMessage: 'ConversationMessage',
+    ConversationFeedback: 'ConversationFeedback',
+    TravelSession: 'TravelSession',
+    CacheEntry: 'CacheEntry'
+  };
+
+  export type ModelName = (typeof ModelName)[keyof typeof ModelName]
+
+
+  export type Datasources = {
+    db?: Datasource
+  }
+
+  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
+  }
+
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
+    globalOmitOptions: {
+      omit: GlobalOmitOptions
+    }
+    meta: {
+      modelProps: "user" | "userProfile" | "food" | "meal" | "mealItem" | "waterLog" | "supplementLog" | "exerciseLog" | "mealScan" | "conversation" | "conversationMessage" | "conversationFeedback" | "travelSession" | "cacheEntry"
+      txIsolationLevel: Prisma.TransactionIsolationLevel
+    }
+    model: {
+      User: {
+        payload: Prisma.$UserPayload<ExtArgs>
+        fields: Prisma.UserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findFirst: {
+            args: Prisma.UserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findMany: {
+            args: Prisma.UserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          create: {
+            args: Prisma.UserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          createMany: {
+            args: Prisma.UserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          delete: {
+            args: Prisma.UserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          update: {
+            args: Prisma.UserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          aggregate: {
+            args: Prisma.UserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUser>
+          }
+          groupBy: {
+            args: Prisma.UserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserCountArgs<ExtArgs>
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserProfile: {
+        payload: Prisma.$UserProfilePayload<ExtArgs>
+        fields: Prisma.UserProfileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserProfileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserProfileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          findFirst: {
+            args: Prisma.UserProfileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserProfileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          findMany: {
+            args: Prisma.UserProfileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>[]
+          }
+          create: {
+            args: Prisma.UserProfileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          createMany: {
+            args: Prisma.UserProfileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserProfileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>[]
+          }
+          delete: {
+            args: Prisma.UserProfileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          update: {
+            args: Prisma.UserProfileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          deleteMany: {
+            args: Prisma.UserProfileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserProfileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserProfileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>[]
+          }
+          upsert: {
+            args: Prisma.UserProfileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          aggregate: {
+            args: Prisma.UserProfileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserProfile>
+          }
+          groupBy: {
+            args: Prisma.UserProfileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserProfileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserProfileCountArgs<ExtArgs>
+            result: $Utils.Optional<UserProfileCountAggregateOutputType> | number
+          }
+        }
+      }
+      Food: {
+        payload: Prisma.$FoodPayload<ExtArgs>
+        fields: Prisma.FoodFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FoodFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FoodFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload>
+          }
+          findFirst: {
+            args: Prisma.FoodFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FoodFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload>
+          }
+          findMany: {
+            args: Prisma.FoodFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload>[]
+          }
+          create: {
+            args: Prisma.FoodCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload>
+          }
+          createMany: {
+            args: Prisma.FoodCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FoodCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload>[]
+          }
+          delete: {
+            args: Prisma.FoodDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload>
+          }
+          update: {
+            args: Prisma.FoodUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload>
+          }
+          deleteMany: {
+            args: Prisma.FoodDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FoodUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FoodUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload>[]
+          }
+          upsert: {
+            args: Prisma.FoodUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FoodPayload>
+          }
+          aggregate: {
+            args: Prisma.FoodAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFood>
+          }
+          groupBy: {
+            args: Prisma.FoodGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FoodGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FoodCountArgs<ExtArgs>
+            result: $Utils.Optional<FoodCountAggregateOutputType> | number
+          }
+        }
+      }
+      Meal: {
+        payload: Prisma.$MealPayload<ExtArgs>
+        fields: Prisma.MealFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MealFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MealFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload>
+          }
+          findFirst: {
+            args: Prisma.MealFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MealFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload>
+          }
+          findMany: {
+            args: Prisma.MealFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload>[]
+          }
+          create: {
+            args: Prisma.MealCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload>
+          }
+          createMany: {
+            args: Prisma.MealCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MealCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload>[]
+          }
+          delete: {
+            args: Prisma.MealDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload>
+          }
+          update: {
+            args: Prisma.MealUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload>
+          }
+          deleteMany: {
+            args: Prisma.MealDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MealUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MealUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload>[]
+          }
+          upsert: {
+            args: Prisma.MealUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealPayload>
+          }
+          aggregate: {
+            args: Prisma.MealAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMeal>
+          }
+          groupBy: {
+            args: Prisma.MealGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MealGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MealCountArgs<ExtArgs>
+            result: $Utils.Optional<MealCountAggregateOutputType> | number
+          }
+        }
+      }
+      MealItem: {
+        payload: Prisma.$MealItemPayload<ExtArgs>
+        fields: Prisma.MealItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MealItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MealItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload>
+          }
+          findFirst: {
+            args: Prisma.MealItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MealItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload>
+          }
+          findMany: {
+            args: Prisma.MealItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload>[]
+          }
+          create: {
+            args: Prisma.MealItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload>
+          }
+          createMany: {
+            args: Prisma.MealItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MealItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload>[]
+          }
+          delete: {
+            args: Prisma.MealItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload>
+          }
+          update: {
+            args: Prisma.MealItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.MealItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MealItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MealItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.MealItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealItemPayload>
+          }
+          aggregate: {
+            args: Prisma.MealItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMealItem>
+          }
+          groupBy: {
+            args: Prisma.MealItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MealItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MealItemCountArgs<ExtArgs>
+            result: $Utils.Optional<MealItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      WaterLog: {
+        payload: Prisma.$WaterLogPayload<ExtArgs>
+        fields: Prisma.WaterLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WaterLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WaterLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          findFirst: {
+            args: Prisma.WaterLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WaterLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          findMany: {
+            args: Prisma.WaterLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>[]
+          }
+          create: {
+            args: Prisma.WaterLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          createMany: {
+            args: Prisma.WaterLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WaterLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>[]
+          }
+          delete: {
+            args: Prisma.WaterLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          update: {
+            args: Prisma.WaterLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.WaterLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WaterLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WaterLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.WaterLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          aggregate: {
+            args: Prisma.WaterLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWaterLog>
+          }
+          groupBy: {
+            args: Prisma.WaterLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WaterLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WaterLogCountArgs<ExtArgs>
+            result: $Utils.Optional<WaterLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      SupplementLog: {
+        payload: Prisma.$SupplementLogPayload<ExtArgs>
+        fields: Prisma.SupplementLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SupplementLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SupplementLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload>
+          }
+          findFirst: {
+            args: Prisma.SupplementLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SupplementLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload>
+          }
+          findMany: {
+            args: Prisma.SupplementLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload>[]
+          }
+          create: {
+            args: Prisma.SupplementLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload>
+          }
+          createMany: {
+            args: Prisma.SupplementLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SupplementLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload>[]
+          }
+          delete: {
+            args: Prisma.SupplementLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload>
+          }
+          update: {
+            args: Prisma.SupplementLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.SupplementLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SupplementLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SupplementLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.SupplementLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SupplementLogPayload>
+          }
+          aggregate: {
+            args: Prisma.SupplementLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSupplementLog>
+          }
+          groupBy: {
+            args: Prisma.SupplementLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SupplementLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SupplementLogCountArgs<ExtArgs>
+            result: $Utils.Optional<SupplementLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      ExerciseLog: {
+        payload: Prisma.$ExerciseLogPayload<ExtArgs>
+        fields: Prisma.ExerciseLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ExerciseLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ExerciseLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload>
+          }
+          findFirst: {
+            args: Prisma.ExerciseLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ExerciseLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload>
+          }
+          findMany: {
+            args: Prisma.ExerciseLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload>[]
+          }
+          create: {
+            args: Prisma.ExerciseLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload>
+          }
+          createMany: {
+            args: Prisma.ExerciseLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ExerciseLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload>[]
+          }
+          delete: {
+            args: Prisma.ExerciseLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload>
+          }
+          update: {
+            args: Prisma.ExerciseLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.ExerciseLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ExerciseLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ExerciseLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.ExerciseLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExerciseLogPayload>
+          }
+          aggregate: {
+            args: Prisma.ExerciseLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateExerciseLog>
+          }
+          groupBy: {
+            args: Prisma.ExerciseLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ExerciseLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ExerciseLogCountArgs<ExtArgs>
+            result: $Utils.Optional<ExerciseLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      MealScan: {
+        payload: Prisma.$MealScanPayload<ExtArgs>
+        fields: Prisma.MealScanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MealScanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MealScanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload>
+          }
+          findFirst: {
+            args: Prisma.MealScanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MealScanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload>
+          }
+          findMany: {
+            args: Prisma.MealScanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload>[]
+          }
+          create: {
+            args: Prisma.MealScanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload>
+          }
+          createMany: {
+            args: Prisma.MealScanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MealScanCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload>[]
+          }
+          delete: {
+            args: Prisma.MealScanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload>
+          }
+          update: {
+            args: Prisma.MealScanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload>
+          }
+          deleteMany: {
+            args: Prisma.MealScanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MealScanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MealScanUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload>[]
+          }
+          upsert: {
+            args: Prisma.MealScanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MealScanPayload>
+          }
+          aggregate: {
+            args: Prisma.MealScanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMealScan>
+          }
+          groupBy: {
+            args: Prisma.MealScanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MealScanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MealScanCountArgs<ExtArgs>
+            result: $Utils.Optional<MealScanCountAggregateOutputType> | number
+          }
+        }
+      }
+      Conversation: {
+        payload: Prisma.$ConversationPayload<ExtArgs>
+        fields: Prisma.ConversationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ConversationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ConversationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload>
+          }
+          findFirst: {
+            args: Prisma.ConversationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ConversationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload>
+          }
+          findMany: {
+            args: Prisma.ConversationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload>[]
+          }
+          create: {
+            args: Prisma.ConversationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload>
+          }
+          createMany: {
+            args: Prisma.ConversationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ConversationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload>[]
+          }
+          delete: {
+            args: Prisma.ConversationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload>
+          }
+          update: {
+            args: Prisma.ConversationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload>
+          }
+          deleteMany: {
+            args: Prisma.ConversationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ConversationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ConversationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload>[]
+          }
+          upsert: {
+            args: Prisma.ConversationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationPayload>
+          }
+          aggregate: {
+            args: Prisma.ConversationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateConversation>
+          }
+          groupBy: {
+            args: Prisma.ConversationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ConversationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ConversationCountArgs<ExtArgs>
+            result: $Utils.Optional<ConversationCountAggregateOutputType> | number
+          }
+        }
+      }
+      ConversationMessage: {
+        payload: Prisma.$ConversationMessagePayload<ExtArgs>
+        fields: Prisma.ConversationMessageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ConversationMessageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ConversationMessageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload>
+          }
+          findFirst: {
+            args: Prisma.ConversationMessageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ConversationMessageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload>
+          }
+          findMany: {
+            args: Prisma.ConversationMessageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload>[]
+          }
+          create: {
+            args: Prisma.ConversationMessageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload>
+          }
+          createMany: {
+            args: Prisma.ConversationMessageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ConversationMessageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload>[]
+          }
+          delete: {
+            args: Prisma.ConversationMessageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload>
+          }
+          update: {
+            args: Prisma.ConversationMessageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload>
+          }
+          deleteMany: {
+            args: Prisma.ConversationMessageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ConversationMessageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ConversationMessageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload>[]
+          }
+          upsert: {
+            args: Prisma.ConversationMessageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationMessagePayload>
+          }
+          aggregate: {
+            args: Prisma.ConversationMessageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateConversationMessage>
+          }
+          groupBy: {
+            args: Prisma.ConversationMessageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ConversationMessageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ConversationMessageCountArgs<ExtArgs>
+            result: $Utils.Optional<ConversationMessageCountAggregateOutputType> | number
+          }
+        }
+      }
+      ConversationFeedback: {
+        payload: Prisma.$ConversationFeedbackPayload<ExtArgs>
+        fields: Prisma.ConversationFeedbackFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ConversationFeedbackFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ConversationFeedbackFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload>
+          }
+          findFirst: {
+            args: Prisma.ConversationFeedbackFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ConversationFeedbackFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload>
+          }
+          findMany: {
+            args: Prisma.ConversationFeedbackFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload>[]
+          }
+          create: {
+            args: Prisma.ConversationFeedbackCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload>
+          }
+          createMany: {
+            args: Prisma.ConversationFeedbackCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ConversationFeedbackCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload>[]
+          }
+          delete: {
+            args: Prisma.ConversationFeedbackDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload>
+          }
+          update: {
+            args: Prisma.ConversationFeedbackUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload>
+          }
+          deleteMany: {
+            args: Prisma.ConversationFeedbackDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ConversationFeedbackUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ConversationFeedbackUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload>[]
+          }
+          upsert: {
+            args: Prisma.ConversationFeedbackUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationFeedbackPayload>
+          }
+          aggregate: {
+            args: Prisma.ConversationFeedbackAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateConversationFeedback>
+          }
+          groupBy: {
+            args: Prisma.ConversationFeedbackGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ConversationFeedbackGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ConversationFeedbackCountArgs<ExtArgs>
+            result: $Utils.Optional<ConversationFeedbackCountAggregateOutputType> | number
+          }
+        }
+      }
+      TravelSession: {
+        payload: Prisma.$TravelSessionPayload<ExtArgs>
+        fields: Prisma.TravelSessionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TravelSessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TravelSessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload>
+          }
+          findFirst: {
+            args: Prisma.TravelSessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TravelSessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload>
+          }
+          findMany: {
+            args: Prisma.TravelSessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload>[]
+          }
+          create: {
+            args: Prisma.TravelSessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload>
+          }
+          createMany: {
+            args: Prisma.TravelSessionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TravelSessionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload>[]
+          }
+          delete: {
+            args: Prisma.TravelSessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload>
+          }
+          update: {
+            args: Prisma.TravelSessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload>
+          }
+          deleteMany: {
+            args: Prisma.TravelSessionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TravelSessionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TravelSessionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload>[]
+          }
+          upsert: {
+            args: Prisma.TravelSessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TravelSessionPayload>
+          }
+          aggregate: {
+            args: Prisma.TravelSessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTravelSession>
+          }
+          groupBy: {
+            args: Prisma.TravelSessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TravelSessionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TravelSessionCountArgs<ExtArgs>
+            result: $Utils.Optional<TravelSessionCountAggregateOutputType> | number
+          }
+        }
+      }
+      CacheEntry: {
+        payload: Prisma.$CacheEntryPayload<ExtArgs>
+        fields: Prisma.CacheEntryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CacheEntryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CacheEntryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload>
+          }
+          findFirst: {
+            args: Prisma.CacheEntryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CacheEntryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload>
+          }
+          findMany: {
+            args: Prisma.CacheEntryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload>[]
+          }
+          create: {
+            args: Prisma.CacheEntryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload>
+          }
+          createMany: {
+            args: Prisma.CacheEntryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CacheEntryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload>[]
+          }
+          delete: {
+            args: Prisma.CacheEntryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload>
+          }
+          update: {
+            args: Prisma.CacheEntryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload>
+          }
+          deleteMany: {
+            args: Prisma.CacheEntryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CacheEntryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CacheEntryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload>[]
+          }
+          upsert: {
+            args: Prisma.CacheEntryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CacheEntryPayload>
+          }
+          aggregate: {
+            args: Prisma.CacheEntryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCacheEntry>
+          }
+          groupBy: {
+            args: Prisma.CacheEntryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CacheEntryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CacheEntryCountArgs<ExtArgs>
+            result: $Utils.Optional<CacheEntryCountAggregateOutputType> | number
+          }
+        }
+      }
+    }
+  } & {
+    other: {
+      payload: any
+      operations: {
+        $executeRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
+        $executeRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+        $queryRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
+        $queryRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+      }
+    }
+  }
+  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
+  export type DefaultPrismaClient = PrismaClient
+  export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
+  export interface PrismaClientOptions {
+    /**
+     * Overwrites the datasource url from your schema.prisma file
+     */
+    datasources?: Datasources
+    /**
+     * Overwrites the datasource url from your schema.prisma file
+     */
+    datasourceUrl?: string
+    /**
+     * @default "colorless"
+     */
+    errorFormat?: ErrorFormat
+    /**
+     * @example
+     * ```
+     * // Shorthand for `emit: 'stdout'`
+     * log: ['query', 'info', 'warn', 'error']
+     * 
+     * // Emit as events only
+     * log: [
+     *   { emit: 'event', level: 'query' },
+     *   { emit: 'event', level: 'info' },
+     *   { emit: 'event', level: 'warn' }
+     *   { emit: 'event', level: 'error' }
+     * ]
+     * 
+     * / Emit as events and log to stdout
+     * og: [
+     *  { emit: 'stdout', level: 'query' },
+     *  { emit: 'stdout', level: 'info' },
+     *  { emit: 'stdout', level: 'warn' }
+     *  { emit: 'stdout', level: 'error' }
+     * 
+     * ```
+     * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
+     */
+    log?: (LogLevel | LogDefinition)[]
+    /**
+     * The default values for transactionOptions
+     * maxWait ?= 2000
+     * timeout ?= 5000
+     */
+    transactionOptions?: {
+      maxWait?: number
+      timeout?: number
+      isolationLevel?: Prisma.TransactionIsolationLevel
+    }
+    /**
+     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
+     */
+    adapter?: runtime.SqlDriverAdapterFactory | null
+    /**
+     * Global configuration for omitting model fields by default.
+     * 
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   omit: {
+     *     user: {
+     *       password: true
+     *     }
+     *   }
+     * })
+     * ```
+     */
+    omit?: Prisma.GlobalOmitConfig
+  }
+  export type GlobalOmitConfig = {
+    user?: UserOmit
+    userProfile?: UserProfileOmit
+    food?: FoodOmit
+    meal?: MealOmit
+    mealItem?: MealItemOmit
+    waterLog?: WaterLogOmit
+    supplementLog?: SupplementLogOmit
+    exerciseLog?: ExerciseLogOmit
+    mealScan?: MealScanOmit
+    conversation?: ConversationOmit
+    conversationMessage?: ConversationMessageOmit
+    conversationFeedback?: ConversationFeedbackOmit
+    travelSession?: TravelSessionOmit
+    cacheEntry?: CacheEntryOmit
+  }
+
+  /* Types for Logging */
+  export type LogLevel = 'info' | 'query' | 'warn' | 'error'
+  export type LogDefinition = {
+    level: LogLevel
+    emit: 'stdout' | 'event'
+  }
+
+  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
+
+  export type GetLogType<T> = CheckIsLogLevel<
+    T extends LogDefinition ? T['level'] : T
+  >;
+
+  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
+    ? GetLogType<T[number]>
+    : never;
+
+  export type QueryEvent = {
+    timestamp: Date
+    query: string
+    params: string
+    duration: number
+    target: string
+  }
+
+  export type LogEvent = {
+    timestamp: Date
+    message: string
+    target: string
+  }
+  /* End Types for Logging */
+
+
+  export type PrismaAction =
+    | 'findUnique'
+    | 'findUniqueOrThrow'
+    | 'findMany'
+    | 'findFirst'
+    | 'findFirstOrThrow'
+    | 'create'
+    | 'createMany'
+    | 'createManyAndReturn'
+    | 'update'
+    | 'updateMany'
+    | 'updateManyAndReturn'
+    | 'upsert'
+    | 'delete'
+    | 'deleteMany'
+    | 'executeRaw'
+    | 'queryRaw'
+    | 'aggregate'
+    | 'count'
+    | 'runCommandRaw'
+    | 'findRaw'
+    | 'groupBy'
+
+  // tested in getLogLevel.test.ts
+  export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
+
+  /**
+   * `PrismaClient` proxy available in interactive transactions.
+   */
+  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
+
+  export type Datasource = {
+    url?: string
+  }
+
+  /**
+   * Count Types
+   */
+
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    meals: number
+    waterLogs: number
+    supplementLogs: number
+    exerciseLogs: number
+    mealScans: number
+    conversations: number
+    travelSessions: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    meals?: boolean | UserCountOutputTypeCountMealsArgs
+    waterLogs?: boolean | UserCountOutputTypeCountWaterLogsArgs
+    supplementLogs?: boolean | UserCountOutputTypeCountSupplementLogsArgs
+    exerciseLogs?: boolean | UserCountOutputTypeCountExerciseLogsArgs
+    mealScans?: boolean | UserCountOutputTypeCountMealScansArgs
+    conversations?: boolean | UserCountOutputTypeCountConversationsArgs
+    travelSessions?: boolean | UserCountOutputTypeCountTravelSessionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMealsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MealWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountWaterLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WaterLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSupplementLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SupplementLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountExerciseLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExerciseLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMealScansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MealScanWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountConversationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConversationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTravelSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TravelSessionWhereInput
+  }
+
+
+  /**
+   * Count Type FoodCountOutputType
+   */
+
+  export type FoodCountOutputType = {
+    mealItems: number
+  }
+
+  export type FoodCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mealItems?: boolean | FoodCountOutputTypeCountMealItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FoodCountOutputType without action
+   */
+  export type FoodCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FoodCountOutputType
+     */
+    select?: FoodCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FoodCountOutputType without action
+   */
+  export type FoodCountOutputTypeCountMealItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MealItemWhereInput
+  }
+
+
+  /**
+   * Count Type MealCountOutputType
+   */
+
+  export type MealCountOutputType = {
+    items: number
+  }
+
+  export type MealCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    items?: boolean | MealCountOutputTypeCountItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MealCountOutputType without action
+   */
+  export type MealCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealCountOutputType
+     */
+    select?: MealCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MealCountOutputType without action
+   */
+  export type MealCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MealItemWhereInput
+  }
+
+
+  /**
+   * Count Type ConversationCountOutputType
+   */
+
+  export type ConversationCountOutputType = {
+    messages: number
+  }
+
+  export type ConversationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    messages?: boolean | ConversationCountOutputTypeCountMessagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ConversationCountOutputType without action
+   */
+  export type ConversationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationCountOutputType
+     */
+    select?: ConversationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ConversationCountOutputType without action
+   */
+  export type ConversationCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConversationMessageWhereInput
+  }
+
+
+  /**
+   * Models
+   */
+
+  /**
+   * Model User
+   */
+
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserMinAggregateOutputType = {
+    id: string | null
+    email: string | null
+    passwordHash: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserMaxAggregateOutputType = {
+    id: string | null
+    email: string | null
+    passwordHash: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserCountAggregateOutputType = {
+    id: number
+    email: number
+    passwordHash: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserMinAggregateInputType = {
+    id?: true
+    email?: true
+    passwordHash?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserMaxAggregateInputType = {
+    id?: true
+    email?: true
+    passwordHash?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserCountAggregateInputType = {
+    id?: true
+    email?: true
+    passwordHash?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which User to aggregate.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Users
+    **/
+    _count?: true | UserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
+  }
+
+
+
+
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: UserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserCountAggregateInputType | true
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type UserGroupByOutputType = {
+    id: string
+    email: string
+    passwordHash: string
+    createdAt: Date
+    updatedAt: Date
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    passwordHash?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    profile?: boolean | User$profileArgs<ExtArgs>
+    meals?: boolean | User$mealsArgs<ExtArgs>
+    waterLogs?: boolean | User$waterLogsArgs<ExtArgs>
+    supplementLogs?: boolean | User$supplementLogsArgs<ExtArgs>
+    exerciseLogs?: boolean | User$exerciseLogsArgs<ExtArgs>
+    mealScans?: boolean | User$mealScansArgs<ExtArgs>
+    conversations?: boolean | User$conversationsArgs<ExtArgs>
+    travelSessions?: boolean | User$travelSessionsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    passwordHash?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    passwordHash?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectScalar = {
+    id?: boolean
+    email?: boolean
+    passwordHash?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "passwordHash" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profile?: boolean | User$profileArgs<ExtArgs>
+    meals?: boolean | User$mealsArgs<ExtArgs>
+    waterLogs?: boolean | User$waterLogsArgs<ExtArgs>
+    supplementLogs?: boolean | User$supplementLogsArgs<ExtArgs>
+    exerciseLogs?: boolean | User$exerciseLogsArgs<ExtArgs>
+    mealScans?: boolean | User$mealScansArgs<ExtArgs>
+    conversations?: boolean | User$conversationsArgs<ExtArgs>
+    travelSessions?: boolean | User$travelSessionsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "User"
+    objects: {
+      profile: Prisma.$UserProfilePayload<ExtArgs> | null
+      meals: Prisma.$MealPayload<ExtArgs>[]
+      waterLogs: Prisma.$WaterLogPayload<ExtArgs>[]
+      supplementLogs: Prisma.$SupplementLogPayload<ExtArgs>[]
+      exerciseLogs: Prisma.$ExerciseLogPayload<ExtArgs>[]
+      mealScans: Prisma.$MealScanPayload<ExtArgs>[]
+      conversations: Prisma.$ConversationPayload<ExtArgs>[]
+      travelSessions: Prisma.$TravelSessionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      email: string
+      passwordHash: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["user"]>
+    composites: {}
+  }
+
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
+
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserCountAggregateInputType | true
+    }
+
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
+    /**
+     * Find zero or one User that matches the filter.
+     * @param {UserFindUniqueArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one User that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Users
+     * const users = await prisma.user.findMany()
+     * 
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a User.
+     * @param {UserCreateArgs} args - Arguments to create a User.
+     * @example
+     * // Create one User
+     * const User = await prisma.user.create({
+     *   data: {
+     *     // ... data to create a User
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Users.
+     * @param {UserCreateManyArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Users and returns the data saved in the database.
+     * @param {UserCreateManyAndReturnArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Users and only return the `id`
+     * const userWithIdOnly = await prisma.user.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a User.
+     * @param {UserDeleteArgs} args - Arguments to delete one User.
+     * @example
+     * // Delete one User
+     * const User = await prisma.user.delete({
+     *   where: {
+     *     // ... filter to delete one User
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one User.
+     * @param {UserUpdateArgs} args - Arguments to update one User.
+     * @example
+     * // Update one User
+     * const user = await prisma.user.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Users.
+     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
+     * @example
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users and returns the data updated in the database.
+     * @param {UserUpdateManyAndReturnArgs} args - Arguments to update many Users.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Users and only return the `id`
+     * const userWithIdOnly = await prisma.user.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one User.
+     * @param {UserUpsertArgs} args - Arguments to update or create a User.
+     * @example
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
+     *   create: {
+     *     // ... data to create a User
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the User we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCountArgs} args - Arguments to filter Users to count.
+     * @example
+     * // Count the number of Users
+     * const count = await prisma.user.count({
+     *   where: {
+     *     // ... the filter for the Users we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserCountArgs>(
+      args?: Subset<T, UserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+
+    /**
+     * Group by User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserGroupByArgs['orderBy'] }
+        : { orderBy?: UserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the User model
+   */
+  readonly fields: UserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for User.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    profile<T extends User$profileArgs<ExtArgs> = {}>(args?: Subset<T, User$profileArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    meals<T extends User$mealsArgs<ExtArgs> = {}>(args?: Subset<T, User$mealsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    waterLogs<T extends User$waterLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$waterLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    supplementLogs<T extends User$supplementLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$supplementLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    exerciseLogs<T extends User$exerciseLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$exerciseLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mealScans<T extends User$mealScansArgs<ExtArgs> = {}>(args?: Subset<T, User$mealScansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    conversations<T extends User$conversationsArgs<ExtArgs> = {}>(args?: Subset<T, User$conversationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    travelSessions<T extends User$travelSessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$travelSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the User model
+   */
+  interface UserFieldRefs {
+    readonly id: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
+    readonly passwordHash: FieldRef<"User", 'String'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * User findUnique
+   */
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User findUniqueOrThrow
+   */
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User findFirst
+   */
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User findFirstOrThrow
+   */
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User findMany
+   */
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which Users to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User create
+   */
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to create a User.
+     */
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
+  }
+
+  /**
+   * User createMany
+   */
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Users.
+     */
+    data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * User createManyAndReturn
+   */
+  export type UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * The data used to create many Users.
+     */
+    data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * User update
+   */
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to update a User.
+     */
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    /**
+     * Choose, which User to update.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User updateMany
+   */
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * User updateManyAndReturn
+   */
+  export type UserUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * User upsert
+   */
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The filter to search for the User to update in case it exists.
+     */
+    where: UserWhereUniqueInput
+    /**
+     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
+     */
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>
+    /**
+     * In case the User was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+  }
+
+  /**
+   * User delete
+   */
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter which User to delete.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User deleteMany
+   */
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Users to delete
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * User.profile
+   */
+  export type User$profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    where?: UserProfileWhereInput
+  }
+
+  /**
+   * User.meals
+   */
+  export type User$mealsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    where?: MealWhereInput
+    orderBy?: MealOrderByWithRelationInput | MealOrderByWithRelationInput[]
+    cursor?: MealWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MealScalarFieldEnum | MealScalarFieldEnum[]
+  }
+
+  /**
+   * User.waterLogs
+   */
+  export type User$waterLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    where?: WaterLogWhereInput
+    orderBy?: WaterLogOrderByWithRelationInput | WaterLogOrderByWithRelationInput[]
+    cursor?: WaterLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WaterLogScalarFieldEnum | WaterLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.supplementLogs
+   */
+  export type User$supplementLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+    where?: SupplementLogWhereInput
+    orderBy?: SupplementLogOrderByWithRelationInput | SupplementLogOrderByWithRelationInput[]
+    cursor?: SupplementLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SupplementLogScalarFieldEnum | SupplementLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.exerciseLogs
+   */
+  export type User$exerciseLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+    where?: ExerciseLogWhereInput
+    orderBy?: ExerciseLogOrderByWithRelationInput | ExerciseLogOrderByWithRelationInput[]
+    cursor?: ExerciseLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExerciseLogScalarFieldEnum | ExerciseLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.mealScans
+   */
+  export type User$mealScansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    where?: MealScanWhereInput
+    orderBy?: MealScanOrderByWithRelationInput | MealScanOrderByWithRelationInput[]
+    cursor?: MealScanWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MealScanScalarFieldEnum | MealScanScalarFieldEnum[]
+  }
+
+  /**
+   * User.conversations
+   */
+  export type User$conversationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+    where?: ConversationWhereInput
+    orderBy?: ConversationOrderByWithRelationInput | ConversationOrderByWithRelationInput[]
+    cursor?: ConversationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ConversationScalarFieldEnum | ConversationScalarFieldEnum[]
+  }
+
+  /**
+   * User.travelSessions
+   */
+  export type User$travelSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+    where?: TravelSessionWhereInput
+    orderBy?: TravelSessionOrderByWithRelationInput | TravelSessionOrderByWithRelationInput[]
+    cursor?: TravelSessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TravelSessionScalarFieldEnum | TravelSessionScalarFieldEnum[]
+  }
+
+  /**
+   * User without action
+   */
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserProfile
+   */
+
+  export type AggregateUserProfile = {
+    _count: UserProfileCountAggregateOutputType | null
+    _avg: UserProfileAvgAggregateOutputType | null
+    _sum: UserProfileSumAggregateOutputType | null
+    _min: UserProfileMinAggregateOutputType | null
+    _max: UserProfileMaxAggregateOutputType | null
+  }
+
+  export type UserProfileAvgAggregateOutputType = {
+    age: number | null
+    weight: number | null
+    height: number | null
+  }
+
+  export type UserProfileSumAggregateOutputType = {
+    age: number | null
+    weight: number | null
+    height: number | null
+  }
+
+  export type UserProfileMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    fullName: string | null
+    age: number | null
+    gender: string | null
+    weight: number | null
+    height: number | null
+    activityLevel: string | null
+    goal: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserProfileMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    fullName: string | null
+    age: number | null
+    gender: string | null
+    weight: number | null
+    height: number | null
+    activityLevel: string | null
+    goal: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserProfileCountAggregateOutputType = {
+    id: number
+    userId: number
+    fullName: number
+    age: number
+    gender: number
+    weight: number
+    height: number
+    activityLevel: number
+    goal: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserProfileAvgAggregateInputType = {
+    age?: true
+    weight?: true
+    height?: true
+  }
+
+  export type UserProfileSumAggregateInputType = {
+    age?: true
+    weight?: true
+    height?: true
+  }
+
+  export type UserProfileMinAggregateInputType = {
+    id?: true
+    userId?: true
+    fullName?: true
+    age?: true
+    gender?: true
+    weight?: true
+    height?: true
+    activityLevel?: true
+    goal?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserProfileMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    fullName?: true
+    age?: true
+    gender?: true
+    weight?: true
+    height?: true
+    activityLevel?: true
+    goal?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserProfileCountAggregateInputType = {
+    id?: true
+    userId?: true
+    fullName?: true
+    age?: true
+    gender?: true
+    weight?: true
+    height?: true
+    activityLevel?: true
+    goal?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserProfile to aggregate.
+     */
+    where?: UserProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProfiles to fetch.
+     */
+    orderBy?: UserProfileOrderByWithRelationInput | UserProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserProfiles
+    **/
+    _count?: true | UserProfileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserProfileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserProfileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserProfileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserProfileMaxAggregateInputType
+  }
+
+  export type GetUserProfileAggregateType<T extends UserProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserProfile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserProfile[P]>
+      : GetScalarType<T[P], AggregateUserProfile[P]>
+  }
+
+
+
+
+  export type UserProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserProfileWhereInput
+    orderBy?: UserProfileOrderByWithAggregationInput | UserProfileOrderByWithAggregationInput[]
+    by: UserProfileScalarFieldEnum[] | UserProfileScalarFieldEnum
+    having?: UserProfileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserProfileCountAggregateInputType | true
+    _avg?: UserProfileAvgAggregateInputType
+    _sum?: UserProfileSumAggregateInputType
+    _min?: UserProfileMinAggregateInputType
+    _max?: UserProfileMaxAggregateInputType
+  }
+
+  export type UserProfileGroupByOutputType = {
+    id: string
+    userId: string
+    fullName: string
+    age: number
+    gender: string
+    weight: number
+    height: number
+    activityLevel: string
+    goal: string
+    createdAt: Date
+    updatedAt: Date
+    _count: UserProfileCountAggregateOutputType | null
+    _avg: UserProfileAvgAggregateOutputType | null
+    _sum: UserProfileSumAggregateOutputType | null
+    _min: UserProfileMinAggregateOutputType | null
+    _max: UserProfileMaxAggregateOutputType | null
+  }
+
+  type GetUserProfileGroupByPayload<T extends UserProfileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserProfileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserProfileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], UserProfileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    fullName?: boolean
+    age?: boolean
+    gender?: boolean
+    weight?: boolean
+    height?: boolean
+    activityLevel?: boolean
+    goal?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userProfile"]>
+
+  export type UserProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    fullName?: boolean
+    age?: boolean
+    gender?: boolean
+    weight?: boolean
+    height?: boolean
+    activityLevel?: boolean
+    goal?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userProfile"]>
+
+  export type UserProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    fullName?: boolean
+    age?: boolean
+    gender?: boolean
+    weight?: boolean
+    height?: boolean
+    activityLevel?: boolean
+    goal?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userProfile"]>
+
+  export type UserProfileSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    fullName?: boolean
+    age?: boolean
+    gender?: boolean
+    weight?: boolean
+    height?: boolean
+    activityLevel?: boolean
+    goal?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "fullName" | "age" | "gender" | "weight" | "height" | "activityLevel" | "goal" | "createdAt" | "updatedAt", ExtArgs["result"]["userProfile"]>
+  export type UserProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserProfile"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      fullName: string
+      age: number
+      gender: string
+      weight: number
+      height: number
+      activityLevel: string
+      goal: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["userProfile"]>
+    composites: {}
+  }
+
+  type UserProfileGetPayload<S extends boolean | null | undefined | UserProfileDefaultArgs> = $Result.GetResult<Prisma.$UserProfilePayload, S>
+
+  type UserProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserProfileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserProfileCountAggregateInputType | true
+    }
+
+  export interface UserProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserProfile'], meta: { name: 'UserProfile' } }
+    /**
+     * Find zero or one UserProfile that matches the filter.
+     * @param {UserProfileFindUniqueArgs} args - Arguments to find a UserProfile
+     * @example
+     * // Get one UserProfile
+     * const userProfile = await prisma.userProfile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserProfileFindUniqueArgs>(args: SelectSubset<T, UserProfileFindUniqueArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserProfile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserProfileFindUniqueOrThrowArgs} args - Arguments to find a UserProfile
+     * @example
+     * // Get one UserProfile
+     * const userProfile = await prisma.userProfile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, UserProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserProfile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileFindFirstArgs} args - Arguments to find a UserProfile
+     * @example
+     * // Get one UserProfile
+     * const userProfile = await prisma.userProfile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserProfileFindFirstArgs>(args?: SelectSubset<T, UserProfileFindFirstArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserProfile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileFindFirstOrThrowArgs} args - Arguments to find a UserProfile
+     * @example
+     * // Get one UserProfile
+     * const userProfile = await prisma.userProfile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, UserProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserProfiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserProfiles
+     * const userProfiles = await prisma.userProfile.findMany()
+     * 
+     * // Get first 10 UserProfiles
+     * const userProfiles = await prisma.userProfile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userProfileWithIdOnly = await prisma.userProfile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserProfileFindManyArgs>(args?: SelectSubset<T, UserProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserProfile.
+     * @param {UserProfileCreateArgs} args - Arguments to create a UserProfile.
+     * @example
+     * // Create one UserProfile
+     * const UserProfile = await prisma.userProfile.create({
+     *   data: {
+     *     // ... data to create a UserProfile
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserProfileCreateArgs>(args: SelectSubset<T, UserProfileCreateArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserProfiles.
+     * @param {UserProfileCreateManyArgs} args - Arguments to create many UserProfiles.
+     * @example
+     * // Create many UserProfiles
+     * const userProfile = await prisma.userProfile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserProfileCreateManyArgs>(args?: SelectSubset<T, UserProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserProfiles and returns the data saved in the database.
+     * @param {UserProfileCreateManyAndReturnArgs} args - Arguments to create many UserProfiles.
+     * @example
+     * // Create many UserProfiles
+     * const userProfile = await prisma.userProfile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserProfiles and only return the `id`
+     * const userProfileWithIdOnly = await prisma.userProfile.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserProfileCreateManyAndReturnArgs>(args?: SelectSubset<T, UserProfileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserProfile.
+     * @param {UserProfileDeleteArgs} args - Arguments to delete one UserProfile.
+     * @example
+     * // Delete one UserProfile
+     * const UserProfile = await prisma.userProfile.delete({
+     *   where: {
+     *     // ... filter to delete one UserProfile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserProfileDeleteArgs>(args: SelectSubset<T, UserProfileDeleteArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserProfile.
+     * @param {UserProfileUpdateArgs} args - Arguments to update one UserProfile.
+     * @example
+     * // Update one UserProfile
+     * const userProfile = await prisma.userProfile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserProfileUpdateArgs>(args: SelectSubset<T, UserProfileUpdateArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserProfiles.
+     * @param {UserProfileDeleteManyArgs} args - Arguments to filter UserProfiles to delete.
+     * @example
+     * // Delete a few UserProfiles
+     * const { count } = await prisma.userProfile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserProfileDeleteManyArgs>(args?: SelectSubset<T, UserProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserProfiles
+     * const userProfile = await prisma.userProfile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserProfileUpdateManyArgs>(args: SelectSubset<T, UserProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserProfiles and returns the data updated in the database.
+     * @param {UserProfileUpdateManyAndReturnArgs} args - Arguments to update many UserProfiles.
+     * @example
+     * // Update many UserProfiles
+     * const userProfile = await prisma.userProfile.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserProfiles and only return the `id`
+     * const userProfileWithIdOnly = await prisma.userProfile.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserProfileUpdateManyAndReturnArgs>(args: SelectSubset<T, UserProfileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserProfile.
+     * @param {UserProfileUpsertArgs} args - Arguments to update or create a UserProfile.
+     * @example
+     * // Update or create a UserProfile
+     * const userProfile = await prisma.userProfile.upsert({
+     *   create: {
+     *     // ... data to create a UserProfile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserProfile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserProfileUpsertArgs>(args: SelectSubset<T, UserProfileUpsertArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileCountArgs} args - Arguments to filter UserProfiles to count.
+     * @example
+     * // Count the number of UserProfiles
+     * const count = await prisma.userProfile.count({
+     *   where: {
+     *     // ... the filter for the UserProfiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserProfileCountArgs>(
+      args?: Subset<T, UserProfileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserProfileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserProfileAggregateArgs>(args: Subset<T, UserProfileAggregateArgs>): Prisma.PrismaPromise<GetUserProfileAggregateType<T>>
+
+    /**
+     * Group by UserProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserProfileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserProfileGroupByArgs['orderBy'] }
+        : { orderBy?: UserProfileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserProfile model
+   */
+  readonly fields: UserProfileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserProfile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserProfile model
+   */
+  interface UserProfileFieldRefs {
+    readonly id: FieldRef<"UserProfile", 'String'>
+    readonly userId: FieldRef<"UserProfile", 'String'>
+    readonly fullName: FieldRef<"UserProfile", 'String'>
+    readonly age: FieldRef<"UserProfile", 'Int'>
+    readonly gender: FieldRef<"UserProfile", 'String'>
+    readonly weight: FieldRef<"UserProfile", 'Float'>
+    readonly height: FieldRef<"UserProfile", 'Float'>
+    readonly activityLevel: FieldRef<"UserProfile", 'String'>
+    readonly goal: FieldRef<"UserProfile", 'String'>
+    readonly createdAt: FieldRef<"UserProfile", 'DateTime'>
+    readonly updatedAt: FieldRef<"UserProfile", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserProfile findUnique
+   */
+  export type UserProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProfile to fetch.
+     */
+    where: UserProfileWhereUniqueInput
+  }
+
+  /**
+   * UserProfile findUniqueOrThrow
+   */
+  export type UserProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProfile to fetch.
+     */
+    where: UserProfileWhereUniqueInput
+  }
+
+  /**
+   * UserProfile findFirst
+   */
+  export type UserProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProfile to fetch.
+     */
+    where?: UserProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProfiles to fetch.
+     */
+    orderBy?: UserProfileOrderByWithRelationInput | UserProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserProfiles.
+     */
+    cursor?: UserProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserProfiles.
+     */
+    distinct?: UserProfileScalarFieldEnum | UserProfileScalarFieldEnum[]
+  }
+
+  /**
+   * UserProfile findFirstOrThrow
+   */
+  export type UserProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProfile to fetch.
+     */
+    where?: UserProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProfiles to fetch.
+     */
+    orderBy?: UserProfileOrderByWithRelationInput | UserProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserProfiles.
+     */
+    cursor?: UserProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserProfiles.
+     */
+    distinct?: UserProfileScalarFieldEnum | UserProfileScalarFieldEnum[]
+  }
+
+  /**
+   * UserProfile findMany
+   */
+  export type UserProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProfiles to fetch.
+     */
+    where?: UserProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProfiles to fetch.
+     */
+    orderBy?: UserProfileOrderByWithRelationInput | UserProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserProfiles.
+     */
+    cursor?: UserProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProfiles.
+     */
+    skip?: number
+    distinct?: UserProfileScalarFieldEnum | UserProfileScalarFieldEnum[]
+  }
+
+  /**
+   * UserProfile create
+   */
+  export type UserProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserProfile.
+     */
+    data: XOR<UserProfileCreateInput, UserProfileUncheckedCreateInput>
+  }
+
+  /**
+   * UserProfile createMany
+   */
+  export type UserProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserProfiles.
+     */
+    data: UserProfileCreateManyInput | UserProfileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserProfile createManyAndReturn
+   */
+  export type UserProfileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserProfiles.
+     */
+    data: UserProfileCreateManyInput | UserProfileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserProfile update
+   */
+  export type UserProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserProfile.
+     */
+    data: XOR<UserProfileUpdateInput, UserProfileUncheckedUpdateInput>
+    /**
+     * Choose, which UserProfile to update.
+     */
+    where: UserProfileWhereUniqueInput
+  }
+
+  /**
+   * UserProfile updateMany
+   */
+  export type UserProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserProfiles.
+     */
+    data: XOR<UserProfileUpdateManyMutationInput, UserProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which UserProfiles to update
+     */
+    where?: UserProfileWhereInput
+    /**
+     * Limit how many UserProfiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserProfile updateManyAndReturn
+   */
+  export type UserProfileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * The data used to update UserProfiles.
+     */
+    data: XOR<UserProfileUpdateManyMutationInput, UserProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which UserProfiles to update
+     */
+    where?: UserProfileWhereInput
+    /**
+     * Limit how many UserProfiles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserProfile upsert
+   */
+  export type UserProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserProfile to update in case it exists.
+     */
+    where: UserProfileWhereUniqueInput
+    /**
+     * In case the UserProfile found by the `where` argument doesn't exist, create a new UserProfile with this data.
+     */
+    create: XOR<UserProfileCreateInput, UserProfileUncheckedCreateInput>
+    /**
+     * In case the UserProfile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserProfileUpdateInput, UserProfileUncheckedUpdateInput>
+  }
+
+  /**
+   * UserProfile delete
+   */
+  export type UserProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter which UserProfile to delete.
+     */
+    where: UserProfileWhereUniqueInput
+  }
+
+  /**
+   * UserProfile deleteMany
+   */
+  export type UserProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserProfiles to delete
+     */
+    where?: UserProfileWhereInput
+    /**
+     * Limit how many UserProfiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserProfile without action
+   */
+  export type UserProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Food
+   */
+
+  export type AggregateFood = {
+    _count: FoodCountAggregateOutputType | null
+    _avg: FoodAvgAggregateOutputType | null
+    _sum: FoodSumAggregateOutputType | null
+    _min: FoodMinAggregateOutputType | null
+    _max: FoodMaxAggregateOutputType | null
+  }
+
+  export type FoodAvgAggregateOutputType = {
+    calories: number | null
+    protein: number | null
+    carbohydrates: number | null
+    fats: number | null
+    fiber: number | null
+    sugar: number | null
+    servingSize: number | null
+  }
+
+  export type FoodSumAggregateOutputType = {
+    calories: number | null
+    protein: number | null
+    carbohydrates: number | null
+    fats: number | null
+    fiber: number | null
+    sugar: number | null
+    servingSize: number | null
+  }
+
+  export type FoodMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    calories: number | null
+    protein: number | null
+    carbohydrates: number | null
+    fats: number | null
+    fiber: number | null
+    sugar: number | null
+    defaultUnit: string | null
+    servingSize: number | null
+    source: $Enums.FoodSource | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FoodMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    calories: number | null
+    protein: number | null
+    carbohydrates: number | null
+    fats: number | null
+    fiber: number | null
+    sugar: number | null
+    defaultUnit: string | null
+    servingSize: number | null
+    source: $Enums.FoodSource | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FoodCountAggregateOutputType = {
+    id: number
+    name: number
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    defaultUnit: number
+    servingSize: number
+    source: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FoodAvgAggregateInputType = {
+    calories?: true
+    protein?: true
+    carbohydrates?: true
+    fats?: true
+    fiber?: true
+    sugar?: true
+    servingSize?: true
+  }
+
+  export type FoodSumAggregateInputType = {
+    calories?: true
+    protein?: true
+    carbohydrates?: true
+    fats?: true
+    fiber?: true
+    sugar?: true
+    servingSize?: true
+  }
+
+  export type FoodMinAggregateInputType = {
+    id?: true
+    name?: true
+    calories?: true
+    protein?: true
+    carbohydrates?: true
+    fats?: true
+    fiber?: true
+    sugar?: true
+    defaultUnit?: true
+    servingSize?: true
+    source?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FoodMaxAggregateInputType = {
+    id?: true
+    name?: true
+    calories?: true
+    protein?: true
+    carbohydrates?: true
+    fats?: true
+    fiber?: true
+    sugar?: true
+    defaultUnit?: true
+    servingSize?: true
+    source?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FoodCountAggregateInputType = {
+    id?: true
+    name?: true
+    calories?: true
+    protein?: true
+    carbohydrates?: true
+    fats?: true
+    fiber?: true
+    sugar?: true
+    defaultUnit?: true
+    servingSize?: true
+    source?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FoodAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Food to aggregate.
+     */
+    where?: FoodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Foods to fetch.
+     */
+    orderBy?: FoodOrderByWithRelationInput | FoodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FoodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Foods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Foods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Foods
+    **/
+    _count?: true | FoodCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FoodAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FoodSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FoodMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FoodMaxAggregateInputType
+  }
+
+  export type GetFoodAggregateType<T extends FoodAggregateArgs> = {
+        [P in keyof T & keyof AggregateFood]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFood[P]>
+      : GetScalarType<T[P], AggregateFood[P]>
+  }
+
+
+
+
+  export type FoodGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FoodWhereInput
+    orderBy?: FoodOrderByWithAggregationInput | FoodOrderByWithAggregationInput[]
+    by: FoodScalarFieldEnum[] | FoodScalarFieldEnum
+    having?: FoodScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FoodCountAggregateInputType | true
+    _avg?: FoodAvgAggregateInputType
+    _sum?: FoodSumAggregateInputType
+    _min?: FoodMinAggregateInputType
+    _max?: FoodMaxAggregateInputType
+  }
+
+  export type FoodGroupByOutputType = {
+    id: string
+    name: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    defaultUnit: string
+    servingSize: number
+    source: $Enums.FoodSource
+    createdAt: Date
+    updatedAt: Date
+    _count: FoodCountAggregateOutputType | null
+    _avg: FoodAvgAggregateOutputType | null
+    _sum: FoodSumAggregateOutputType | null
+    _min: FoodMinAggregateOutputType | null
+    _max: FoodMaxAggregateOutputType | null
+  }
+
+  type GetFoodGroupByPayload<T extends FoodGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FoodGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FoodGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FoodGroupByOutputType[P]>
+            : GetScalarType<T[P], FoodGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FoodSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    calories?: boolean
+    protein?: boolean
+    carbohydrates?: boolean
+    fats?: boolean
+    fiber?: boolean
+    sugar?: boolean
+    defaultUnit?: boolean
+    servingSize?: boolean
+    source?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    mealItems?: boolean | Food$mealItemsArgs<ExtArgs>
+    _count?: boolean | FoodCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["food"]>
+
+  export type FoodSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    calories?: boolean
+    protein?: boolean
+    carbohydrates?: boolean
+    fats?: boolean
+    fiber?: boolean
+    sugar?: boolean
+    defaultUnit?: boolean
+    servingSize?: boolean
+    source?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["food"]>
+
+  export type FoodSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    calories?: boolean
+    protein?: boolean
+    carbohydrates?: boolean
+    fats?: boolean
+    fiber?: boolean
+    sugar?: boolean
+    defaultUnit?: boolean
+    servingSize?: boolean
+    source?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["food"]>
+
+  export type FoodSelectScalar = {
+    id?: boolean
+    name?: boolean
+    calories?: boolean
+    protein?: boolean
+    carbohydrates?: boolean
+    fats?: boolean
+    fiber?: boolean
+    sugar?: boolean
+    defaultUnit?: boolean
+    servingSize?: boolean
+    source?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FoodOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "calories" | "protein" | "carbohydrates" | "fats" | "fiber" | "sugar" | "defaultUnit" | "servingSize" | "source" | "createdAt" | "updatedAt", ExtArgs["result"]["food"]>
+  export type FoodInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mealItems?: boolean | Food$mealItemsArgs<ExtArgs>
+    _count?: boolean | FoodCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FoodIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type FoodIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $FoodPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Food"
+    objects: {
+      mealItems: Prisma.$MealItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      calories: number
+      protein: number
+      carbohydrates: number
+      fats: number
+      fiber: number
+      sugar: number
+      defaultUnit: string
+      servingSize: number
+      source: $Enums.FoodSource
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["food"]>
+    composites: {}
+  }
+
+  type FoodGetPayload<S extends boolean | null | undefined | FoodDefaultArgs> = $Result.GetResult<Prisma.$FoodPayload, S>
+
+  type FoodCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FoodFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FoodCountAggregateInputType | true
+    }
+
+  export interface FoodDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Food'], meta: { name: 'Food' } }
+    /**
+     * Find zero or one Food that matches the filter.
+     * @param {FoodFindUniqueArgs} args - Arguments to find a Food
+     * @example
+     * // Get one Food
+     * const food = await prisma.food.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FoodFindUniqueArgs>(args: SelectSubset<T, FoodFindUniqueArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Food that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FoodFindUniqueOrThrowArgs} args - Arguments to find a Food
+     * @example
+     * // Get one Food
+     * const food = await prisma.food.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FoodFindUniqueOrThrowArgs>(args: SelectSubset<T, FoodFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Food that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FoodFindFirstArgs} args - Arguments to find a Food
+     * @example
+     * // Get one Food
+     * const food = await prisma.food.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FoodFindFirstArgs>(args?: SelectSubset<T, FoodFindFirstArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Food that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FoodFindFirstOrThrowArgs} args - Arguments to find a Food
+     * @example
+     * // Get one Food
+     * const food = await prisma.food.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FoodFindFirstOrThrowArgs>(args?: SelectSubset<T, FoodFindFirstOrThrowArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Foods that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FoodFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Foods
+     * const foods = await prisma.food.findMany()
+     * 
+     * // Get first 10 Foods
+     * const foods = await prisma.food.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const foodWithIdOnly = await prisma.food.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FoodFindManyArgs>(args?: SelectSubset<T, FoodFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Food.
+     * @param {FoodCreateArgs} args - Arguments to create a Food.
+     * @example
+     * // Create one Food
+     * const Food = await prisma.food.create({
+     *   data: {
+     *     // ... data to create a Food
+     *   }
+     * })
+     * 
+     */
+    create<T extends FoodCreateArgs>(args: SelectSubset<T, FoodCreateArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Foods.
+     * @param {FoodCreateManyArgs} args - Arguments to create many Foods.
+     * @example
+     * // Create many Foods
+     * const food = await prisma.food.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FoodCreateManyArgs>(args?: SelectSubset<T, FoodCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Foods and returns the data saved in the database.
+     * @param {FoodCreateManyAndReturnArgs} args - Arguments to create many Foods.
+     * @example
+     * // Create many Foods
+     * const food = await prisma.food.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Foods and only return the `id`
+     * const foodWithIdOnly = await prisma.food.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FoodCreateManyAndReturnArgs>(args?: SelectSubset<T, FoodCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Food.
+     * @param {FoodDeleteArgs} args - Arguments to delete one Food.
+     * @example
+     * // Delete one Food
+     * const Food = await prisma.food.delete({
+     *   where: {
+     *     // ... filter to delete one Food
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FoodDeleteArgs>(args: SelectSubset<T, FoodDeleteArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Food.
+     * @param {FoodUpdateArgs} args - Arguments to update one Food.
+     * @example
+     * // Update one Food
+     * const food = await prisma.food.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FoodUpdateArgs>(args: SelectSubset<T, FoodUpdateArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Foods.
+     * @param {FoodDeleteManyArgs} args - Arguments to filter Foods to delete.
+     * @example
+     * // Delete a few Foods
+     * const { count } = await prisma.food.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FoodDeleteManyArgs>(args?: SelectSubset<T, FoodDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Foods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FoodUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Foods
+     * const food = await prisma.food.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FoodUpdateManyArgs>(args: SelectSubset<T, FoodUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Foods and returns the data updated in the database.
+     * @param {FoodUpdateManyAndReturnArgs} args - Arguments to update many Foods.
+     * @example
+     * // Update many Foods
+     * const food = await prisma.food.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Foods and only return the `id`
+     * const foodWithIdOnly = await prisma.food.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FoodUpdateManyAndReturnArgs>(args: SelectSubset<T, FoodUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Food.
+     * @param {FoodUpsertArgs} args - Arguments to update or create a Food.
+     * @example
+     * // Update or create a Food
+     * const food = await prisma.food.upsert({
+     *   create: {
+     *     // ... data to create a Food
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Food we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FoodUpsertArgs>(args: SelectSubset<T, FoodUpsertArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Foods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FoodCountArgs} args - Arguments to filter Foods to count.
+     * @example
+     * // Count the number of Foods
+     * const count = await prisma.food.count({
+     *   where: {
+     *     // ... the filter for the Foods we want to count
+     *   }
+     * })
+    **/
+    count<T extends FoodCountArgs>(
+      args?: Subset<T, FoodCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FoodCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Food.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FoodAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FoodAggregateArgs>(args: Subset<T, FoodAggregateArgs>): Prisma.PrismaPromise<GetFoodAggregateType<T>>
+
+    /**
+     * Group by Food.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FoodGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FoodGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FoodGroupByArgs['orderBy'] }
+        : { orderBy?: FoodGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FoodGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFoodGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Food model
+   */
+  readonly fields: FoodFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Food.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FoodClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    mealItems<T extends Food$mealItemsArgs<ExtArgs> = {}>(args?: Subset<T, Food$mealItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Food model
+   */
+  interface FoodFieldRefs {
+    readonly id: FieldRef<"Food", 'String'>
+    readonly name: FieldRef<"Food", 'String'>
+    readonly calories: FieldRef<"Food", 'Float'>
+    readonly protein: FieldRef<"Food", 'Float'>
+    readonly carbohydrates: FieldRef<"Food", 'Float'>
+    readonly fats: FieldRef<"Food", 'Float'>
+    readonly fiber: FieldRef<"Food", 'Float'>
+    readonly sugar: FieldRef<"Food", 'Float'>
+    readonly defaultUnit: FieldRef<"Food", 'String'>
+    readonly servingSize: FieldRef<"Food", 'Float'>
+    readonly source: FieldRef<"Food", 'FoodSource'>
+    readonly createdAt: FieldRef<"Food", 'DateTime'>
+    readonly updatedAt: FieldRef<"Food", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Food findUnique
+   */
+  export type FoodFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    /**
+     * Filter, which Food to fetch.
+     */
+    where: FoodWhereUniqueInput
+  }
+
+  /**
+   * Food findUniqueOrThrow
+   */
+  export type FoodFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    /**
+     * Filter, which Food to fetch.
+     */
+    where: FoodWhereUniqueInput
+  }
+
+  /**
+   * Food findFirst
+   */
+  export type FoodFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    /**
+     * Filter, which Food to fetch.
+     */
+    where?: FoodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Foods to fetch.
+     */
+    orderBy?: FoodOrderByWithRelationInput | FoodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Foods.
+     */
+    cursor?: FoodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Foods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Foods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Foods.
+     */
+    distinct?: FoodScalarFieldEnum | FoodScalarFieldEnum[]
+  }
+
+  /**
+   * Food findFirstOrThrow
+   */
+  export type FoodFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    /**
+     * Filter, which Food to fetch.
+     */
+    where?: FoodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Foods to fetch.
+     */
+    orderBy?: FoodOrderByWithRelationInput | FoodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Foods.
+     */
+    cursor?: FoodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Foods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Foods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Foods.
+     */
+    distinct?: FoodScalarFieldEnum | FoodScalarFieldEnum[]
+  }
+
+  /**
+   * Food findMany
+   */
+  export type FoodFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    /**
+     * Filter, which Foods to fetch.
+     */
+    where?: FoodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Foods to fetch.
+     */
+    orderBy?: FoodOrderByWithRelationInput | FoodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Foods.
+     */
+    cursor?: FoodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Foods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Foods.
+     */
+    skip?: number
+    distinct?: FoodScalarFieldEnum | FoodScalarFieldEnum[]
+  }
+
+  /**
+   * Food create
+   */
+  export type FoodCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Food.
+     */
+    data: XOR<FoodCreateInput, FoodUncheckedCreateInput>
+  }
+
+  /**
+   * Food createMany
+   */
+  export type FoodCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Foods.
+     */
+    data: FoodCreateManyInput | FoodCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Food createManyAndReturn
+   */
+  export type FoodCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * The data used to create many Foods.
+     */
+    data: FoodCreateManyInput | FoodCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Food update
+   */
+  export type FoodUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Food.
+     */
+    data: XOR<FoodUpdateInput, FoodUncheckedUpdateInput>
+    /**
+     * Choose, which Food to update.
+     */
+    where: FoodWhereUniqueInput
+  }
+
+  /**
+   * Food updateMany
+   */
+  export type FoodUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Foods.
+     */
+    data: XOR<FoodUpdateManyMutationInput, FoodUncheckedUpdateManyInput>
+    /**
+     * Filter which Foods to update
+     */
+    where?: FoodWhereInput
+    /**
+     * Limit how many Foods to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Food updateManyAndReturn
+   */
+  export type FoodUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * The data used to update Foods.
+     */
+    data: XOR<FoodUpdateManyMutationInput, FoodUncheckedUpdateManyInput>
+    /**
+     * Filter which Foods to update
+     */
+    where?: FoodWhereInput
+    /**
+     * Limit how many Foods to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Food upsert
+   */
+  export type FoodUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Food to update in case it exists.
+     */
+    where: FoodWhereUniqueInput
+    /**
+     * In case the Food found by the `where` argument doesn't exist, create a new Food with this data.
+     */
+    create: XOR<FoodCreateInput, FoodUncheckedCreateInput>
+    /**
+     * In case the Food was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FoodUpdateInput, FoodUncheckedUpdateInput>
+  }
+
+  /**
+   * Food delete
+   */
+  export type FoodDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    /**
+     * Filter which Food to delete.
+     */
+    where: FoodWhereUniqueInput
+  }
+
+  /**
+   * Food deleteMany
+   */
+  export type FoodDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Foods to delete
+     */
+    where?: FoodWhereInput
+    /**
+     * Limit how many Foods to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Food.mealItems
+   */
+  export type Food$mealItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    where?: MealItemWhereInput
+    orderBy?: MealItemOrderByWithRelationInput | MealItemOrderByWithRelationInput[]
+    cursor?: MealItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MealItemScalarFieldEnum | MealItemScalarFieldEnum[]
+  }
+
+  /**
+   * Food without action
+   */
+  export type FoodDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Meal
+   */
+
+  export type AggregateMeal = {
+    _count: MealCountAggregateOutputType | null
+    _min: MealMinAggregateOutputType | null
+    _max: MealMaxAggregateOutputType | null
+  }
+
+  export type MealMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    mealType: string | null
+    source: string | null
+    createdAt: Date | null
+  }
+
+  export type MealMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    mealType: string | null
+    source: string | null
+    createdAt: Date | null
+  }
+
+  export type MealCountAggregateOutputType = {
+    id: number
+    userId: number
+    mealType: number
+    source: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type MealMinAggregateInputType = {
+    id?: true
+    userId?: true
+    mealType?: true
+    source?: true
+    createdAt?: true
+  }
+
+  export type MealMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    mealType?: true
+    source?: true
+    createdAt?: true
+  }
+
+  export type MealCountAggregateInputType = {
+    id?: true
+    userId?: true
+    mealType?: true
+    source?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type MealAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Meal to aggregate.
+     */
+    where?: MealWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Meals to fetch.
+     */
+    orderBy?: MealOrderByWithRelationInput | MealOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MealWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Meals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Meals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Meals
+    **/
+    _count?: true | MealCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MealMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MealMaxAggregateInputType
+  }
+
+  export type GetMealAggregateType<T extends MealAggregateArgs> = {
+        [P in keyof T & keyof AggregateMeal]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMeal[P]>
+      : GetScalarType<T[P], AggregateMeal[P]>
+  }
+
+
+
+
+  export type MealGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MealWhereInput
+    orderBy?: MealOrderByWithAggregationInput | MealOrderByWithAggregationInput[]
+    by: MealScalarFieldEnum[] | MealScalarFieldEnum
+    having?: MealScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MealCountAggregateInputType | true
+    _min?: MealMinAggregateInputType
+    _max?: MealMaxAggregateInputType
+  }
+
+  export type MealGroupByOutputType = {
+    id: string
+    userId: string
+    mealType: string
+    source: string
+    createdAt: Date
+    _count: MealCountAggregateOutputType | null
+    _min: MealMinAggregateOutputType | null
+    _max: MealMaxAggregateOutputType | null
+  }
+
+  type GetMealGroupByPayload<T extends MealGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MealGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MealGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MealGroupByOutputType[P]>
+            : GetScalarType<T[P], MealGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MealSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    mealType?: boolean
+    source?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    items?: boolean | Meal$itemsArgs<ExtArgs>
+    mealScan?: boolean | Meal$mealScanArgs<ExtArgs>
+    _count?: boolean | MealCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meal"]>
+
+  export type MealSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    mealType?: boolean
+    source?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meal"]>
+
+  export type MealSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    mealType?: boolean
+    source?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meal"]>
+
+  export type MealSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    mealType?: boolean
+    source?: boolean
+    createdAt?: boolean
+  }
+
+  export type MealOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "mealType" | "source" | "createdAt", ExtArgs["result"]["meal"]>
+  export type MealInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    items?: boolean | Meal$itemsArgs<ExtArgs>
+    mealScan?: boolean | Meal$mealScanArgs<ExtArgs>
+    _count?: boolean | MealCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MealIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MealIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $MealPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Meal"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      items: Prisma.$MealItemPayload<ExtArgs>[]
+      mealScan: Prisma.$MealScanPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      mealType: string
+      source: string
+      createdAt: Date
+    }, ExtArgs["result"]["meal"]>
+    composites: {}
+  }
+
+  type MealGetPayload<S extends boolean | null | undefined | MealDefaultArgs> = $Result.GetResult<Prisma.$MealPayload, S>
+
+  type MealCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MealFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MealCountAggregateInputType | true
+    }
+
+  export interface MealDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Meal'], meta: { name: 'Meal' } }
+    /**
+     * Find zero or one Meal that matches the filter.
+     * @param {MealFindUniqueArgs} args - Arguments to find a Meal
+     * @example
+     * // Get one Meal
+     * const meal = await prisma.meal.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MealFindUniqueArgs>(args: SelectSubset<T, MealFindUniqueArgs<ExtArgs>>): Prisma__MealClient<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Meal that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MealFindUniqueOrThrowArgs} args - Arguments to find a Meal
+     * @example
+     * // Get one Meal
+     * const meal = await prisma.meal.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MealFindUniqueOrThrowArgs>(args: SelectSubset<T, MealFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MealClient<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Meal that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealFindFirstArgs} args - Arguments to find a Meal
+     * @example
+     * // Get one Meal
+     * const meal = await prisma.meal.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MealFindFirstArgs>(args?: SelectSubset<T, MealFindFirstArgs<ExtArgs>>): Prisma__MealClient<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Meal that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealFindFirstOrThrowArgs} args - Arguments to find a Meal
+     * @example
+     * // Get one Meal
+     * const meal = await prisma.meal.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MealFindFirstOrThrowArgs>(args?: SelectSubset<T, MealFindFirstOrThrowArgs<ExtArgs>>): Prisma__MealClient<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Meals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Meals
+     * const meals = await prisma.meal.findMany()
+     * 
+     * // Get first 10 Meals
+     * const meals = await prisma.meal.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mealWithIdOnly = await prisma.meal.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MealFindManyArgs>(args?: SelectSubset<T, MealFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Meal.
+     * @param {MealCreateArgs} args - Arguments to create a Meal.
+     * @example
+     * // Create one Meal
+     * const Meal = await prisma.meal.create({
+     *   data: {
+     *     // ... data to create a Meal
+     *   }
+     * })
+     * 
+     */
+    create<T extends MealCreateArgs>(args: SelectSubset<T, MealCreateArgs<ExtArgs>>): Prisma__MealClient<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Meals.
+     * @param {MealCreateManyArgs} args - Arguments to create many Meals.
+     * @example
+     * // Create many Meals
+     * const meal = await prisma.meal.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MealCreateManyArgs>(args?: SelectSubset<T, MealCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Meals and returns the data saved in the database.
+     * @param {MealCreateManyAndReturnArgs} args - Arguments to create many Meals.
+     * @example
+     * // Create many Meals
+     * const meal = await prisma.meal.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Meals and only return the `id`
+     * const mealWithIdOnly = await prisma.meal.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MealCreateManyAndReturnArgs>(args?: SelectSubset<T, MealCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Meal.
+     * @param {MealDeleteArgs} args - Arguments to delete one Meal.
+     * @example
+     * // Delete one Meal
+     * const Meal = await prisma.meal.delete({
+     *   where: {
+     *     // ... filter to delete one Meal
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MealDeleteArgs>(args: SelectSubset<T, MealDeleteArgs<ExtArgs>>): Prisma__MealClient<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Meal.
+     * @param {MealUpdateArgs} args - Arguments to update one Meal.
+     * @example
+     * // Update one Meal
+     * const meal = await prisma.meal.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MealUpdateArgs>(args: SelectSubset<T, MealUpdateArgs<ExtArgs>>): Prisma__MealClient<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Meals.
+     * @param {MealDeleteManyArgs} args - Arguments to filter Meals to delete.
+     * @example
+     * // Delete a few Meals
+     * const { count } = await prisma.meal.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MealDeleteManyArgs>(args?: SelectSubset<T, MealDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Meals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Meals
+     * const meal = await prisma.meal.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MealUpdateManyArgs>(args: SelectSubset<T, MealUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Meals and returns the data updated in the database.
+     * @param {MealUpdateManyAndReturnArgs} args - Arguments to update many Meals.
+     * @example
+     * // Update many Meals
+     * const meal = await prisma.meal.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Meals and only return the `id`
+     * const mealWithIdOnly = await prisma.meal.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MealUpdateManyAndReturnArgs>(args: SelectSubset<T, MealUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Meal.
+     * @param {MealUpsertArgs} args - Arguments to update or create a Meal.
+     * @example
+     * // Update or create a Meal
+     * const meal = await prisma.meal.upsert({
+     *   create: {
+     *     // ... data to create a Meal
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Meal we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MealUpsertArgs>(args: SelectSubset<T, MealUpsertArgs<ExtArgs>>): Prisma__MealClient<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Meals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealCountArgs} args - Arguments to filter Meals to count.
+     * @example
+     * // Count the number of Meals
+     * const count = await prisma.meal.count({
+     *   where: {
+     *     // ... the filter for the Meals we want to count
+     *   }
+     * })
+    **/
+    count<T extends MealCountArgs>(
+      args?: Subset<T, MealCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MealCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Meal.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MealAggregateArgs>(args: Subset<T, MealAggregateArgs>): Prisma.PrismaPromise<GetMealAggregateType<T>>
+
+    /**
+     * Group by Meal.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MealGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MealGroupByArgs['orderBy'] }
+        : { orderBy?: MealGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MealGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMealGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Meal model
+   */
+  readonly fields: MealFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Meal.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MealClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    items<T extends Meal$itemsArgs<ExtArgs> = {}>(args?: Subset<T, Meal$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mealScan<T extends Meal$mealScanArgs<ExtArgs> = {}>(args?: Subset<T, Meal$mealScanArgs<ExtArgs>>): Prisma__MealScanClient<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Meal model
+   */
+  interface MealFieldRefs {
+    readonly id: FieldRef<"Meal", 'String'>
+    readonly userId: FieldRef<"Meal", 'String'>
+    readonly mealType: FieldRef<"Meal", 'String'>
+    readonly source: FieldRef<"Meal", 'String'>
+    readonly createdAt: FieldRef<"Meal", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Meal findUnique
+   */
+  export type MealFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    /**
+     * Filter, which Meal to fetch.
+     */
+    where: MealWhereUniqueInput
+  }
+
+  /**
+   * Meal findUniqueOrThrow
+   */
+  export type MealFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    /**
+     * Filter, which Meal to fetch.
+     */
+    where: MealWhereUniqueInput
+  }
+
+  /**
+   * Meal findFirst
+   */
+  export type MealFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    /**
+     * Filter, which Meal to fetch.
+     */
+    where?: MealWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Meals to fetch.
+     */
+    orderBy?: MealOrderByWithRelationInput | MealOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Meals.
+     */
+    cursor?: MealWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Meals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Meals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Meals.
+     */
+    distinct?: MealScalarFieldEnum | MealScalarFieldEnum[]
+  }
+
+  /**
+   * Meal findFirstOrThrow
+   */
+  export type MealFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    /**
+     * Filter, which Meal to fetch.
+     */
+    where?: MealWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Meals to fetch.
+     */
+    orderBy?: MealOrderByWithRelationInput | MealOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Meals.
+     */
+    cursor?: MealWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Meals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Meals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Meals.
+     */
+    distinct?: MealScalarFieldEnum | MealScalarFieldEnum[]
+  }
+
+  /**
+   * Meal findMany
+   */
+  export type MealFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    /**
+     * Filter, which Meals to fetch.
+     */
+    where?: MealWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Meals to fetch.
+     */
+    orderBy?: MealOrderByWithRelationInput | MealOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Meals.
+     */
+    cursor?: MealWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Meals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Meals.
+     */
+    skip?: number
+    distinct?: MealScalarFieldEnum | MealScalarFieldEnum[]
+  }
+
+  /**
+   * Meal create
+   */
+  export type MealCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Meal.
+     */
+    data: XOR<MealCreateInput, MealUncheckedCreateInput>
+  }
+
+  /**
+   * Meal createMany
+   */
+  export type MealCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Meals.
+     */
+    data: MealCreateManyInput | MealCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Meal createManyAndReturn
+   */
+  export type MealCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * The data used to create many Meals.
+     */
+    data: MealCreateManyInput | MealCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Meal update
+   */
+  export type MealUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Meal.
+     */
+    data: XOR<MealUpdateInput, MealUncheckedUpdateInput>
+    /**
+     * Choose, which Meal to update.
+     */
+    where: MealWhereUniqueInput
+  }
+
+  /**
+   * Meal updateMany
+   */
+  export type MealUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Meals.
+     */
+    data: XOR<MealUpdateManyMutationInput, MealUncheckedUpdateManyInput>
+    /**
+     * Filter which Meals to update
+     */
+    where?: MealWhereInput
+    /**
+     * Limit how many Meals to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Meal updateManyAndReturn
+   */
+  export type MealUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * The data used to update Meals.
+     */
+    data: XOR<MealUpdateManyMutationInput, MealUncheckedUpdateManyInput>
+    /**
+     * Filter which Meals to update
+     */
+    where?: MealWhereInput
+    /**
+     * Limit how many Meals to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Meal upsert
+   */
+  export type MealUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Meal to update in case it exists.
+     */
+    where: MealWhereUniqueInput
+    /**
+     * In case the Meal found by the `where` argument doesn't exist, create a new Meal with this data.
+     */
+    create: XOR<MealCreateInput, MealUncheckedCreateInput>
+    /**
+     * In case the Meal was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MealUpdateInput, MealUncheckedUpdateInput>
+  }
+
+  /**
+   * Meal delete
+   */
+  export type MealDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    /**
+     * Filter which Meal to delete.
+     */
+    where: MealWhereUniqueInput
+  }
+
+  /**
+   * Meal deleteMany
+   */
+  export type MealDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Meals to delete
+     */
+    where?: MealWhereInput
+    /**
+     * Limit how many Meals to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Meal.items
+   */
+  export type Meal$itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    where?: MealItemWhereInput
+    orderBy?: MealItemOrderByWithRelationInput | MealItemOrderByWithRelationInput[]
+    cursor?: MealItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MealItemScalarFieldEnum | MealItemScalarFieldEnum[]
+  }
+
+  /**
+   * Meal.mealScan
+   */
+  export type Meal$mealScanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    where?: MealScanWhereInput
+  }
+
+  /**
+   * Meal without action
+   */
+  export type MealDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MealItem
+   */
+
+  export type AggregateMealItem = {
+    _count: MealItemCountAggregateOutputType | null
+    _avg: MealItemAvgAggregateOutputType | null
+    _sum: MealItemSumAggregateOutputType | null
+    _min: MealItemMinAggregateOutputType | null
+    _max: MealItemMaxAggregateOutputType | null
+  }
+
+  export type MealItemAvgAggregateOutputType = {
+    quantity: number | null
+    calories: number | null
+    protein: number | null
+    carbohydrates: number | null
+    fats: number | null
+    fiber: number | null
+    sugar: number | null
+  }
+
+  export type MealItemSumAggregateOutputType = {
+    quantity: number | null
+    calories: number | null
+    protein: number | null
+    carbohydrates: number | null
+    fats: number | null
+    fiber: number | null
+    sugar: number | null
+  }
+
+  export type MealItemMinAggregateOutputType = {
+    id: string | null
+    mealId: string | null
+    foodId: string | null
+    foodName: string | null
+    quantity: number | null
+    unit: string | null
+    calories: number | null
+    protein: number | null
+    carbohydrates: number | null
+    fats: number | null
+    fiber: number | null
+    sugar: number | null
+  }
+
+  export type MealItemMaxAggregateOutputType = {
+    id: string | null
+    mealId: string | null
+    foodId: string | null
+    foodName: string | null
+    quantity: number | null
+    unit: string | null
+    calories: number | null
+    protein: number | null
+    carbohydrates: number | null
+    fats: number | null
+    fiber: number | null
+    sugar: number | null
+  }
+
+  export type MealItemCountAggregateOutputType = {
+    id: number
+    mealId: number
+    foodId: number
+    foodName: number
+    quantity: number
+    unit: number
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    _all: number
+  }
+
+
+  export type MealItemAvgAggregateInputType = {
+    quantity?: true
+    calories?: true
+    protein?: true
+    carbohydrates?: true
+    fats?: true
+    fiber?: true
+    sugar?: true
+  }
+
+  export type MealItemSumAggregateInputType = {
+    quantity?: true
+    calories?: true
+    protein?: true
+    carbohydrates?: true
+    fats?: true
+    fiber?: true
+    sugar?: true
+  }
+
+  export type MealItemMinAggregateInputType = {
+    id?: true
+    mealId?: true
+    foodId?: true
+    foodName?: true
+    quantity?: true
+    unit?: true
+    calories?: true
+    protein?: true
+    carbohydrates?: true
+    fats?: true
+    fiber?: true
+    sugar?: true
+  }
+
+  export type MealItemMaxAggregateInputType = {
+    id?: true
+    mealId?: true
+    foodId?: true
+    foodName?: true
+    quantity?: true
+    unit?: true
+    calories?: true
+    protein?: true
+    carbohydrates?: true
+    fats?: true
+    fiber?: true
+    sugar?: true
+  }
+
+  export type MealItemCountAggregateInputType = {
+    id?: true
+    mealId?: true
+    foodId?: true
+    foodName?: true
+    quantity?: true
+    unit?: true
+    calories?: true
+    protein?: true
+    carbohydrates?: true
+    fats?: true
+    fiber?: true
+    sugar?: true
+    _all?: true
+  }
+
+  export type MealItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MealItem to aggregate.
+     */
+    where?: MealItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MealItems to fetch.
+     */
+    orderBy?: MealItemOrderByWithRelationInput | MealItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MealItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MealItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MealItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MealItems
+    **/
+    _count?: true | MealItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MealItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MealItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MealItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MealItemMaxAggregateInputType
+  }
+
+  export type GetMealItemAggregateType<T extends MealItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateMealItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMealItem[P]>
+      : GetScalarType<T[P], AggregateMealItem[P]>
+  }
+
+
+
+
+  export type MealItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MealItemWhereInput
+    orderBy?: MealItemOrderByWithAggregationInput | MealItemOrderByWithAggregationInput[]
+    by: MealItemScalarFieldEnum[] | MealItemScalarFieldEnum
+    having?: MealItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MealItemCountAggregateInputType | true
+    _avg?: MealItemAvgAggregateInputType
+    _sum?: MealItemSumAggregateInputType
+    _min?: MealItemMinAggregateInputType
+    _max?: MealItemMaxAggregateInputType
+  }
+
+  export type MealItemGroupByOutputType = {
+    id: string
+    mealId: string
+    foodId: string | null
+    foodName: string
+    quantity: number
+    unit: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    _count: MealItemCountAggregateOutputType | null
+    _avg: MealItemAvgAggregateOutputType | null
+    _sum: MealItemSumAggregateOutputType | null
+    _min: MealItemMinAggregateOutputType | null
+    _max: MealItemMaxAggregateOutputType | null
+  }
+
+  type GetMealItemGroupByPayload<T extends MealItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MealItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MealItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MealItemGroupByOutputType[P]>
+            : GetScalarType<T[P], MealItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MealItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mealId?: boolean
+    foodId?: boolean
+    foodName?: boolean
+    quantity?: boolean
+    unit?: boolean
+    calories?: boolean
+    protein?: boolean
+    carbohydrates?: boolean
+    fats?: boolean
+    fiber?: boolean
+    sugar?: boolean
+    meal?: boolean | MealDefaultArgs<ExtArgs>
+    food?: boolean | MealItem$foodArgs<ExtArgs>
+  }, ExtArgs["result"]["mealItem"]>
+
+  export type MealItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mealId?: boolean
+    foodId?: boolean
+    foodName?: boolean
+    quantity?: boolean
+    unit?: boolean
+    calories?: boolean
+    protein?: boolean
+    carbohydrates?: boolean
+    fats?: boolean
+    fiber?: boolean
+    sugar?: boolean
+    meal?: boolean | MealDefaultArgs<ExtArgs>
+    food?: boolean | MealItem$foodArgs<ExtArgs>
+  }, ExtArgs["result"]["mealItem"]>
+
+  export type MealItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mealId?: boolean
+    foodId?: boolean
+    foodName?: boolean
+    quantity?: boolean
+    unit?: boolean
+    calories?: boolean
+    protein?: boolean
+    carbohydrates?: boolean
+    fats?: boolean
+    fiber?: boolean
+    sugar?: boolean
+    meal?: boolean | MealDefaultArgs<ExtArgs>
+    food?: boolean | MealItem$foodArgs<ExtArgs>
+  }, ExtArgs["result"]["mealItem"]>
+
+  export type MealItemSelectScalar = {
+    id?: boolean
+    mealId?: boolean
+    foodId?: boolean
+    foodName?: boolean
+    quantity?: boolean
+    unit?: boolean
+    calories?: boolean
+    protein?: boolean
+    carbohydrates?: boolean
+    fats?: boolean
+    fiber?: boolean
+    sugar?: boolean
+  }
+
+  export type MealItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mealId" | "foodId" | "foodName" | "quantity" | "unit" | "calories" | "protein" | "carbohydrates" | "fats" | "fiber" | "sugar", ExtArgs["result"]["mealItem"]>
+  export type MealItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    meal?: boolean | MealDefaultArgs<ExtArgs>
+    food?: boolean | MealItem$foodArgs<ExtArgs>
+  }
+  export type MealItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    meal?: boolean | MealDefaultArgs<ExtArgs>
+    food?: boolean | MealItem$foodArgs<ExtArgs>
+  }
+  export type MealItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    meal?: boolean | MealDefaultArgs<ExtArgs>
+    food?: boolean | MealItem$foodArgs<ExtArgs>
+  }
+
+  export type $MealItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MealItem"
+    objects: {
+      meal: Prisma.$MealPayload<ExtArgs>
+      food: Prisma.$FoodPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      mealId: string
+      foodId: string | null
+      foodName: string
+      quantity: number
+      unit: string
+      calories: number
+      protein: number
+      carbohydrates: number
+      fats: number
+      fiber: number
+      sugar: number
+    }, ExtArgs["result"]["mealItem"]>
+    composites: {}
+  }
+
+  type MealItemGetPayload<S extends boolean | null | undefined | MealItemDefaultArgs> = $Result.GetResult<Prisma.$MealItemPayload, S>
+
+  type MealItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MealItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MealItemCountAggregateInputType | true
+    }
+
+  export interface MealItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MealItem'], meta: { name: 'MealItem' } }
+    /**
+     * Find zero or one MealItem that matches the filter.
+     * @param {MealItemFindUniqueArgs} args - Arguments to find a MealItem
+     * @example
+     * // Get one MealItem
+     * const mealItem = await prisma.mealItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MealItemFindUniqueArgs>(args: SelectSubset<T, MealItemFindUniqueArgs<ExtArgs>>): Prisma__MealItemClient<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MealItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MealItemFindUniqueOrThrowArgs} args - Arguments to find a MealItem
+     * @example
+     * // Get one MealItem
+     * const mealItem = await prisma.mealItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MealItemFindUniqueOrThrowArgs>(args: SelectSubset<T, MealItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MealItemClient<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MealItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealItemFindFirstArgs} args - Arguments to find a MealItem
+     * @example
+     * // Get one MealItem
+     * const mealItem = await prisma.mealItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MealItemFindFirstArgs>(args?: SelectSubset<T, MealItemFindFirstArgs<ExtArgs>>): Prisma__MealItemClient<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MealItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealItemFindFirstOrThrowArgs} args - Arguments to find a MealItem
+     * @example
+     * // Get one MealItem
+     * const mealItem = await prisma.mealItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MealItemFindFirstOrThrowArgs>(args?: SelectSubset<T, MealItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__MealItemClient<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MealItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MealItems
+     * const mealItems = await prisma.mealItem.findMany()
+     * 
+     * // Get first 10 MealItems
+     * const mealItems = await prisma.mealItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mealItemWithIdOnly = await prisma.mealItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MealItemFindManyArgs>(args?: SelectSubset<T, MealItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MealItem.
+     * @param {MealItemCreateArgs} args - Arguments to create a MealItem.
+     * @example
+     * // Create one MealItem
+     * const MealItem = await prisma.mealItem.create({
+     *   data: {
+     *     // ... data to create a MealItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends MealItemCreateArgs>(args: SelectSubset<T, MealItemCreateArgs<ExtArgs>>): Prisma__MealItemClient<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MealItems.
+     * @param {MealItemCreateManyArgs} args - Arguments to create many MealItems.
+     * @example
+     * // Create many MealItems
+     * const mealItem = await prisma.mealItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MealItemCreateManyArgs>(args?: SelectSubset<T, MealItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MealItems and returns the data saved in the database.
+     * @param {MealItemCreateManyAndReturnArgs} args - Arguments to create many MealItems.
+     * @example
+     * // Create many MealItems
+     * const mealItem = await prisma.mealItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MealItems and only return the `id`
+     * const mealItemWithIdOnly = await prisma.mealItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MealItemCreateManyAndReturnArgs>(args?: SelectSubset<T, MealItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MealItem.
+     * @param {MealItemDeleteArgs} args - Arguments to delete one MealItem.
+     * @example
+     * // Delete one MealItem
+     * const MealItem = await prisma.mealItem.delete({
+     *   where: {
+     *     // ... filter to delete one MealItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MealItemDeleteArgs>(args: SelectSubset<T, MealItemDeleteArgs<ExtArgs>>): Prisma__MealItemClient<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MealItem.
+     * @param {MealItemUpdateArgs} args - Arguments to update one MealItem.
+     * @example
+     * // Update one MealItem
+     * const mealItem = await prisma.mealItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MealItemUpdateArgs>(args: SelectSubset<T, MealItemUpdateArgs<ExtArgs>>): Prisma__MealItemClient<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MealItems.
+     * @param {MealItemDeleteManyArgs} args - Arguments to filter MealItems to delete.
+     * @example
+     * // Delete a few MealItems
+     * const { count } = await prisma.mealItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MealItemDeleteManyArgs>(args?: SelectSubset<T, MealItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MealItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MealItems
+     * const mealItem = await prisma.mealItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MealItemUpdateManyArgs>(args: SelectSubset<T, MealItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MealItems and returns the data updated in the database.
+     * @param {MealItemUpdateManyAndReturnArgs} args - Arguments to update many MealItems.
+     * @example
+     * // Update many MealItems
+     * const mealItem = await prisma.mealItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MealItems and only return the `id`
+     * const mealItemWithIdOnly = await prisma.mealItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MealItemUpdateManyAndReturnArgs>(args: SelectSubset<T, MealItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MealItem.
+     * @param {MealItemUpsertArgs} args - Arguments to update or create a MealItem.
+     * @example
+     * // Update or create a MealItem
+     * const mealItem = await prisma.mealItem.upsert({
+     *   create: {
+     *     // ... data to create a MealItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MealItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MealItemUpsertArgs>(args: SelectSubset<T, MealItemUpsertArgs<ExtArgs>>): Prisma__MealItemClient<$Result.GetResult<Prisma.$MealItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MealItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealItemCountArgs} args - Arguments to filter MealItems to count.
+     * @example
+     * // Count the number of MealItems
+     * const count = await prisma.mealItem.count({
+     *   where: {
+     *     // ... the filter for the MealItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends MealItemCountArgs>(
+      args?: Subset<T, MealItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MealItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MealItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MealItemAggregateArgs>(args: Subset<T, MealItemAggregateArgs>): Prisma.PrismaPromise<GetMealItemAggregateType<T>>
+
+    /**
+     * Group by MealItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MealItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MealItemGroupByArgs['orderBy'] }
+        : { orderBy?: MealItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MealItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMealItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MealItem model
+   */
+  readonly fields: MealItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MealItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MealItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    meal<T extends MealDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MealDefaultArgs<ExtArgs>>): Prisma__MealClient<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    food<T extends MealItem$foodArgs<ExtArgs> = {}>(args?: Subset<T, MealItem$foodArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MealItem model
+   */
+  interface MealItemFieldRefs {
+    readonly id: FieldRef<"MealItem", 'String'>
+    readonly mealId: FieldRef<"MealItem", 'String'>
+    readonly foodId: FieldRef<"MealItem", 'String'>
+    readonly foodName: FieldRef<"MealItem", 'String'>
+    readonly quantity: FieldRef<"MealItem", 'Float'>
+    readonly unit: FieldRef<"MealItem", 'String'>
+    readonly calories: FieldRef<"MealItem", 'Float'>
+    readonly protein: FieldRef<"MealItem", 'Float'>
+    readonly carbohydrates: FieldRef<"MealItem", 'Float'>
+    readonly fats: FieldRef<"MealItem", 'Float'>
+    readonly fiber: FieldRef<"MealItem", 'Float'>
+    readonly sugar: FieldRef<"MealItem", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MealItem findUnique
+   */
+  export type MealItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    /**
+     * Filter, which MealItem to fetch.
+     */
+    where: MealItemWhereUniqueInput
+  }
+
+  /**
+   * MealItem findUniqueOrThrow
+   */
+  export type MealItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    /**
+     * Filter, which MealItem to fetch.
+     */
+    where: MealItemWhereUniqueInput
+  }
+
+  /**
+   * MealItem findFirst
+   */
+  export type MealItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    /**
+     * Filter, which MealItem to fetch.
+     */
+    where?: MealItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MealItems to fetch.
+     */
+    orderBy?: MealItemOrderByWithRelationInput | MealItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MealItems.
+     */
+    cursor?: MealItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MealItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MealItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MealItems.
+     */
+    distinct?: MealItemScalarFieldEnum | MealItemScalarFieldEnum[]
+  }
+
+  /**
+   * MealItem findFirstOrThrow
+   */
+  export type MealItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    /**
+     * Filter, which MealItem to fetch.
+     */
+    where?: MealItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MealItems to fetch.
+     */
+    orderBy?: MealItemOrderByWithRelationInput | MealItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MealItems.
+     */
+    cursor?: MealItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MealItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MealItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MealItems.
+     */
+    distinct?: MealItemScalarFieldEnum | MealItemScalarFieldEnum[]
+  }
+
+  /**
+   * MealItem findMany
+   */
+  export type MealItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    /**
+     * Filter, which MealItems to fetch.
+     */
+    where?: MealItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MealItems to fetch.
+     */
+    orderBy?: MealItemOrderByWithRelationInput | MealItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MealItems.
+     */
+    cursor?: MealItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MealItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MealItems.
+     */
+    skip?: number
+    distinct?: MealItemScalarFieldEnum | MealItemScalarFieldEnum[]
+  }
+
+  /**
+   * MealItem create
+   */
+  export type MealItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MealItem.
+     */
+    data: XOR<MealItemCreateInput, MealItemUncheckedCreateInput>
+  }
+
+  /**
+   * MealItem createMany
+   */
+  export type MealItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MealItems.
+     */
+    data: MealItemCreateManyInput | MealItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MealItem createManyAndReturn
+   */
+  export type MealItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many MealItems.
+     */
+    data: MealItemCreateManyInput | MealItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MealItem update
+   */
+  export type MealItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MealItem.
+     */
+    data: XOR<MealItemUpdateInput, MealItemUncheckedUpdateInput>
+    /**
+     * Choose, which MealItem to update.
+     */
+    where: MealItemWhereUniqueInput
+  }
+
+  /**
+   * MealItem updateMany
+   */
+  export type MealItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MealItems.
+     */
+    data: XOR<MealItemUpdateManyMutationInput, MealItemUncheckedUpdateManyInput>
+    /**
+     * Filter which MealItems to update
+     */
+    where?: MealItemWhereInput
+    /**
+     * Limit how many MealItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MealItem updateManyAndReturn
+   */
+  export type MealItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * The data used to update MealItems.
+     */
+    data: XOR<MealItemUpdateManyMutationInput, MealItemUncheckedUpdateManyInput>
+    /**
+     * Filter which MealItems to update
+     */
+    where?: MealItemWhereInput
+    /**
+     * Limit how many MealItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MealItem upsert
+   */
+  export type MealItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MealItem to update in case it exists.
+     */
+    where: MealItemWhereUniqueInput
+    /**
+     * In case the MealItem found by the `where` argument doesn't exist, create a new MealItem with this data.
+     */
+    create: XOR<MealItemCreateInput, MealItemUncheckedCreateInput>
+    /**
+     * In case the MealItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MealItemUpdateInput, MealItemUncheckedUpdateInput>
+  }
+
+  /**
+   * MealItem delete
+   */
+  export type MealItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+    /**
+     * Filter which MealItem to delete.
+     */
+    where: MealItemWhereUniqueInput
+  }
+
+  /**
+   * MealItem deleteMany
+   */
+  export type MealItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MealItems to delete
+     */
+    where?: MealItemWhereInput
+    /**
+     * Limit how many MealItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MealItem.food
+   */
+  export type MealItem$foodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    where?: FoodWhereInput
+  }
+
+  /**
+   * MealItem without action
+   */
+  export type MealItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealItem
+     */
+    select?: MealItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealItem
+     */
+    omit?: MealItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model WaterLog
+   */
+
+  export type AggregateWaterLog = {
+    _count: WaterLogCountAggregateOutputType | null
+    _avg: WaterLogAvgAggregateOutputType | null
+    _sum: WaterLogSumAggregateOutputType | null
+    _min: WaterLogMinAggregateOutputType | null
+    _max: WaterLogMaxAggregateOutputType | null
+  }
+
+  export type WaterLogAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type WaterLogSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type WaterLogMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    amount: number | null
+    unit: string | null
+    createdAt: Date | null
+  }
+
+  export type WaterLogMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    amount: number | null
+    unit: string | null
+    createdAt: Date | null
+  }
+
+  export type WaterLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    amount: number
+    unit: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type WaterLogAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type WaterLogSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type WaterLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    amount?: true
+    unit?: true
+    createdAt?: true
+  }
+
+  export type WaterLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    amount?: true
+    unit?: true
+    createdAt?: true
+  }
+
+  export type WaterLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    amount?: true
+    unit?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type WaterLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WaterLog to aggregate.
+     */
+    where?: WaterLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaterLogs to fetch.
+     */
+    orderBy?: WaterLogOrderByWithRelationInput | WaterLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WaterLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaterLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaterLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WaterLogs
+    **/
+    _count?: true | WaterLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: WaterLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: WaterLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WaterLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WaterLogMaxAggregateInputType
+  }
+
+  export type GetWaterLogAggregateType<T extends WaterLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateWaterLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWaterLog[P]>
+      : GetScalarType<T[P], AggregateWaterLog[P]>
+  }
+
+
+
+
+  export type WaterLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WaterLogWhereInput
+    orderBy?: WaterLogOrderByWithAggregationInput | WaterLogOrderByWithAggregationInput[]
+    by: WaterLogScalarFieldEnum[] | WaterLogScalarFieldEnum
+    having?: WaterLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WaterLogCountAggregateInputType | true
+    _avg?: WaterLogAvgAggregateInputType
+    _sum?: WaterLogSumAggregateInputType
+    _min?: WaterLogMinAggregateInputType
+    _max?: WaterLogMaxAggregateInputType
+  }
+
+  export type WaterLogGroupByOutputType = {
+    id: string
+    userId: string
+    amount: number
+    unit: string
+    createdAt: Date
+    _count: WaterLogCountAggregateOutputType | null
+    _avg: WaterLogAvgAggregateOutputType | null
+    _sum: WaterLogSumAggregateOutputType | null
+    _min: WaterLogMinAggregateOutputType | null
+    _max: WaterLogMaxAggregateOutputType | null
+  }
+
+  type GetWaterLogGroupByPayload<T extends WaterLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WaterLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WaterLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WaterLogGroupByOutputType[P]>
+            : GetScalarType<T[P], WaterLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WaterLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    amount?: boolean
+    unit?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["waterLog"]>
+
+  export type WaterLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    amount?: boolean
+    unit?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["waterLog"]>
+
+  export type WaterLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    amount?: boolean
+    unit?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["waterLog"]>
+
+  export type WaterLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    amount?: boolean
+    unit?: boolean
+    createdAt?: boolean
+  }
+
+  export type WaterLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "amount" | "unit" | "createdAt", ExtArgs["result"]["waterLog"]>
+  export type WaterLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type WaterLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type WaterLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $WaterLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WaterLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      amount: number
+      unit: string
+      createdAt: Date
+    }, ExtArgs["result"]["waterLog"]>
+    composites: {}
+  }
+
+  type WaterLogGetPayload<S extends boolean | null | undefined | WaterLogDefaultArgs> = $Result.GetResult<Prisma.$WaterLogPayload, S>
+
+  type WaterLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WaterLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WaterLogCountAggregateInputType | true
+    }
+
+  export interface WaterLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WaterLog'], meta: { name: 'WaterLog' } }
+    /**
+     * Find zero or one WaterLog that matches the filter.
+     * @param {WaterLogFindUniqueArgs} args - Arguments to find a WaterLog
+     * @example
+     * // Get one WaterLog
+     * const waterLog = await prisma.waterLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WaterLogFindUniqueArgs>(args: SelectSubset<T, WaterLogFindUniqueArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WaterLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WaterLogFindUniqueOrThrowArgs} args - Arguments to find a WaterLog
+     * @example
+     * // Get one WaterLog
+     * const waterLog = await prisma.waterLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WaterLogFindUniqueOrThrowArgs>(args: SelectSubset<T, WaterLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WaterLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogFindFirstArgs} args - Arguments to find a WaterLog
+     * @example
+     * // Get one WaterLog
+     * const waterLog = await prisma.waterLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WaterLogFindFirstArgs>(args?: SelectSubset<T, WaterLogFindFirstArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WaterLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogFindFirstOrThrowArgs} args - Arguments to find a WaterLog
+     * @example
+     * // Get one WaterLog
+     * const waterLog = await prisma.waterLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WaterLogFindFirstOrThrowArgs>(args?: SelectSubset<T, WaterLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WaterLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WaterLogs
+     * const waterLogs = await prisma.waterLog.findMany()
+     * 
+     * // Get first 10 WaterLogs
+     * const waterLogs = await prisma.waterLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const waterLogWithIdOnly = await prisma.waterLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WaterLogFindManyArgs>(args?: SelectSubset<T, WaterLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WaterLog.
+     * @param {WaterLogCreateArgs} args - Arguments to create a WaterLog.
+     * @example
+     * // Create one WaterLog
+     * const WaterLog = await prisma.waterLog.create({
+     *   data: {
+     *     // ... data to create a WaterLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends WaterLogCreateArgs>(args: SelectSubset<T, WaterLogCreateArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WaterLogs.
+     * @param {WaterLogCreateManyArgs} args - Arguments to create many WaterLogs.
+     * @example
+     * // Create many WaterLogs
+     * const waterLog = await prisma.waterLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WaterLogCreateManyArgs>(args?: SelectSubset<T, WaterLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WaterLogs and returns the data saved in the database.
+     * @param {WaterLogCreateManyAndReturnArgs} args - Arguments to create many WaterLogs.
+     * @example
+     * // Create many WaterLogs
+     * const waterLog = await prisma.waterLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WaterLogs and only return the `id`
+     * const waterLogWithIdOnly = await prisma.waterLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WaterLogCreateManyAndReturnArgs>(args?: SelectSubset<T, WaterLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WaterLog.
+     * @param {WaterLogDeleteArgs} args - Arguments to delete one WaterLog.
+     * @example
+     * // Delete one WaterLog
+     * const WaterLog = await prisma.waterLog.delete({
+     *   where: {
+     *     // ... filter to delete one WaterLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WaterLogDeleteArgs>(args: SelectSubset<T, WaterLogDeleteArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WaterLog.
+     * @param {WaterLogUpdateArgs} args - Arguments to update one WaterLog.
+     * @example
+     * // Update one WaterLog
+     * const waterLog = await prisma.waterLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WaterLogUpdateArgs>(args: SelectSubset<T, WaterLogUpdateArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WaterLogs.
+     * @param {WaterLogDeleteManyArgs} args - Arguments to filter WaterLogs to delete.
+     * @example
+     * // Delete a few WaterLogs
+     * const { count } = await prisma.waterLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WaterLogDeleteManyArgs>(args?: SelectSubset<T, WaterLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WaterLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WaterLogs
+     * const waterLog = await prisma.waterLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WaterLogUpdateManyArgs>(args: SelectSubset<T, WaterLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WaterLogs and returns the data updated in the database.
+     * @param {WaterLogUpdateManyAndReturnArgs} args - Arguments to update many WaterLogs.
+     * @example
+     * // Update many WaterLogs
+     * const waterLog = await prisma.waterLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WaterLogs and only return the `id`
+     * const waterLogWithIdOnly = await prisma.waterLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WaterLogUpdateManyAndReturnArgs>(args: SelectSubset<T, WaterLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WaterLog.
+     * @param {WaterLogUpsertArgs} args - Arguments to update or create a WaterLog.
+     * @example
+     * // Update or create a WaterLog
+     * const waterLog = await prisma.waterLog.upsert({
+     *   create: {
+     *     // ... data to create a WaterLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WaterLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WaterLogUpsertArgs>(args: SelectSubset<T, WaterLogUpsertArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WaterLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogCountArgs} args - Arguments to filter WaterLogs to count.
+     * @example
+     * // Count the number of WaterLogs
+     * const count = await prisma.waterLog.count({
+     *   where: {
+     *     // ... the filter for the WaterLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends WaterLogCountArgs>(
+      args?: Subset<T, WaterLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WaterLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WaterLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WaterLogAggregateArgs>(args: Subset<T, WaterLogAggregateArgs>): Prisma.PrismaPromise<GetWaterLogAggregateType<T>>
+
+    /**
+     * Group by WaterLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WaterLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WaterLogGroupByArgs['orderBy'] }
+        : { orderBy?: WaterLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WaterLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWaterLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WaterLog model
+   */
+  readonly fields: WaterLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WaterLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WaterLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WaterLog model
+   */
+  interface WaterLogFieldRefs {
+    readonly id: FieldRef<"WaterLog", 'String'>
+    readonly userId: FieldRef<"WaterLog", 'String'>
+    readonly amount: FieldRef<"WaterLog", 'Float'>
+    readonly unit: FieldRef<"WaterLog", 'String'>
+    readonly createdAt: FieldRef<"WaterLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WaterLog findUnique
+   */
+  export type WaterLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WaterLog to fetch.
+     */
+    where: WaterLogWhereUniqueInput
+  }
+
+  /**
+   * WaterLog findUniqueOrThrow
+   */
+  export type WaterLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WaterLog to fetch.
+     */
+    where: WaterLogWhereUniqueInput
+  }
+
+  /**
+   * WaterLog findFirst
+   */
+  export type WaterLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WaterLog to fetch.
+     */
+    where?: WaterLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaterLogs to fetch.
+     */
+    orderBy?: WaterLogOrderByWithRelationInput | WaterLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WaterLogs.
+     */
+    cursor?: WaterLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaterLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaterLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WaterLogs.
+     */
+    distinct?: WaterLogScalarFieldEnum | WaterLogScalarFieldEnum[]
+  }
+
+  /**
+   * WaterLog findFirstOrThrow
+   */
+  export type WaterLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WaterLog to fetch.
+     */
+    where?: WaterLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaterLogs to fetch.
+     */
+    orderBy?: WaterLogOrderByWithRelationInput | WaterLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WaterLogs.
+     */
+    cursor?: WaterLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaterLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaterLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WaterLogs.
+     */
+    distinct?: WaterLogScalarFieldEnum | WaterLogScalarFieldEnum[]
+  }
+
+  /**
+   * WaterLog findMany
+   */
+  export type WaterLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WaterLogs to fetch.
+     */
+    where?: WaterLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaterLogs to fetch.
+     */
+    orderBy?: WaterLogOrderByWithRelationInput | WaterLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WaterLogs.
+     */
+    cursor?: WaterLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaterLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaterLogs.
+     */
+    skip?: number
+    distinct?: WaterLogScalarFieldEnum | WaterLogScalarFieldEnum[]
+  }
+
+  /**
+   * WaterLog create
+   */
+  export type WaterLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WaterLog.
+     */
+    data: XOR<WaterLogCreateInput, WaterLogUncheckedCreateInput>
+  }
+
+  /**
+   * WaterLog createMany
+   */
+  export type WaterLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WaterLogs.
+     */
+    data: WaterLogCreateManyInput | WaterLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WaterLog createManyAndReturn
+   */
+  export type WaterLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many WaterLogs.
+     */
+    data: WaterLogCreateManyInput | WaterLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WaterLog update
+   */
+  export type WaterLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WaterLog.
+     */
+    data: XOR<WaterLogUpdateInput, WaterLogUncheckedUpdateInput>
+    /**
+     * Choose, which WaterLog to update.
+     */
+    where: WaterLogWhereUniqueInput
+  }
+
+  /**
+   * WaterLog updateMany
+   */
+  export type WaterLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WaterLogs.
+     */
+    data: XOR<WaterLogUpdateManyMutationInput, WaterLogUncheckedUpdateManyInput>
+    /**
+     * Filter which WaterLogs to update
+     */
+    where?: WaterLogWhereInput
+    /**
+     * Limit how many WaterLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WaterLog updateManyAndReturn
+   */
+  export type WaterLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * The data used to update WaterLogs.
+     */
+    data: XOR<WaterLogUpdateManyMutationInput, WaterLogUncheckedUpdateManyInput>
+    /**
+     * Filter which WaterLogs to update
+     */
+    where?: WaterLogWhereInput
+    /**
+     * Limit how many WaterLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WaterLog upsert
+   */
+  export type WaterLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WaterLog to update in case it exists.
+     */
+    where: WaterLogWhereUniqueInput
+    /**
+     * In case the WaterLog found by the `where` argument doesn't exist, create a new WaterLog with this data.
+     */
+    create: XOR<WaterLogCreateInput, WaterLogUncheckedCreateInput>
+    /**
+     * In case the WaterLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WaterLogUpdateInput, WaterLogUncheckedUpdateInput>
+  }
+
+  /**
+   * WaterLog delete
+   */
+  export type WaterLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter which WaterLog to delete.
+     */
+    where: WaterLogWhereUniqueInput
+  }
+
+  /**
+   * WaterLog deleteMany
+   */
+  export type WaterLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WaterLogs to delete
+     */
+    where?: WaterLogWhereInput
+    /**
+     * Limit how many WaterLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WaterLog without action
+   */
+  export type WaterLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SupplementLog
+   */
+
+  export type AggregateSupplementLog = {
+    _count: SupplementLogCountAggregateOutputType | null
+    _avg: SupplementLogAvgAggregateOutputType | null
+    _sum: SupplementLogSumAggregateOutputType | null
+    _min: SupplementLogMinAggregateOutputType | null
+    _max: SupplementLogMaxAggregateOutputType | null
+  }
+
+  export type SupplementLogAvgAggregateOutputType = {
+    dosage: number | null
+  }
+
+  export type SupplementLogSumAggregateOutputType = {
+    dosage: number | null
+  }
+
+  export type SupplementLogMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    dosage: number | null
+    unit: string | null
+    createdAt: Date | null
+  }
+
+  export type SupplementLogMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    dosage: number | null
+    unit: string | null
+    createdAt: Date | null
+  }
+
+  export type SupplementLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    name: number
+    dosage: number
+    unit: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type SupplementLogAvgAggregateInputType = {
+    dosage?: true
+  }
+
+  export type SupplementLogSumAggregateInputType = {
+    dosage?: true
+  }
+
+  export type SupplementLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    dosage?: true
+    unit?: true
+    createdAt?: true
+  }
+
+  export type SupplementLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    dosage?: true
+    unit?: true
+    createdAt?: true
+  }
+
+  export type SupplementLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    dosage?: true
+    unit?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type SupplementLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SupplementLog to aggregate.
+     */
+    where?: SupplementLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SupplementLogs to fetch.
+     */
+    orderBy?: SupplementLogOrderByWithRelationInput | SupplementLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SupplementLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SupplementLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SupplementLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SupplementLogs
+    **/
+    _count?: true | SupplementLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SupplementLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SupplementLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SupplementLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SupplementLogMaxAggregateInputType
+  }
+
+  export type GetSupplementLogAggregateType<T extends SupplementLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateSupplementLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSupplementLog[P]>
+      : GetScalarType<T[P], AggregateSupplementLog[P]>
+  }
+
+
+
+
+  export type SupplementLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SupplementLogWhereInput
+    orderBy?: SupplementLogOrderByWithAggregationInput | SupplementLogOrderByWithAggregationInput[]
+    by: SupplementLogScalarFieldEnum[] | SupplementLogScalarFieldEnum
+    having?: SupplementLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SupplementLogCountAggregateInputType | true
+    _avg?: SupplementLogAvgAggregateInputType
+    _sum?: SupplementLogSumAggregateInputType
+    _min?: SupplementLogMinAggregateInputType
+    _max?: SupplementLogMaxAggregateInputType
+  }
+
+  export type SupplementLogGroupByOutputType = {
+    id: string
+    userId: string
+    name: string
+    dosage: number
+    unit: string
+    createdAt: Date
+    _count: SupplementLogCountAggregateOutputType | null
+    _avg: SupplementLogAvgAggregateOutputType | null
+    _sum: SupplementLogSumAggregateOutputType | null
+    _min: SupplementLogMinAggregateOutputType | null
+    _max: SupplementLogMaxAggregateOutputType | null
+  }
+
+  type GetSupplementLogGroupByPayload<T extends SupplementLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SupplementLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SupplementLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SupplementLogGroupByOutputType[P]>
+            : GetScalarType<T[P], SupplementLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SupplementLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    dosage?: boolean
+    unit?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["supplementLog"]>
+
+  export type SupplementLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    dosage?: boolean
+    unit?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["supplementLog"]>
+
+  export type SupplementLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    dosage?: boolean
+    unit?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["supplementLog"]>
+
+  export type SupplementLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    dosage?: boolean
+    unit?: boolean
+    createdAt?: boolean
+  }
+
+  export type SupplementLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "dosage" | "unit" | "createdAt", ExtArgs["result"]["supplementLog"]>
+  export type SupplementLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SupplementLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SupplementLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SupplementLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SupplementLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      name: string
+      dosage: number
+      unit: string
+      createdAt: Date
+    }, ExtArgs["result"]["supplementLog"]>
+    composites: {}
+  }
+
+  type SupplementLogGetPayload<S extends boolean | null | undefined | SupplementLogDefaultArgs> = $Result.GetResult<Prisma.$SupplementLogPayload, S>
+
+  type SupplementLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SupplementLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SupplementLogCountAggregateInputType | true
+    }
+
+  export interface SupplementLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SupplementLog'], meta: { name: 'SupplementLog' } }
+    /**
+     * Find zero or one SupplementLog that matches the filter.
+     * @param {SupplementLogFindUniqueArgs} args - Arguments to find a SupplementLog
+     * @example
+     * // Get one SupplementLog
+     * const supplementLog = await prisma.supplementLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SupplementLogFindUniqueArgs>(args: SelectSubset<T, SupplementLogFindUniqueArgs<ExtArgs>>): Prisma__SupplementLogClient<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SupplementLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SupplementLogFindUniqueOrThrowArgs} args - Arguments to find a SupplementLog
+     * @example
+     * // Get one SupplementLog
+     * const supplementLog = await prisma.supplementLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SupplementLogFindUniqueOrThrowArgs>(args: SelectSubset<T, SupplementLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SupplementLogClient<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SupplementLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SupplementLogFindFirstArgs} args - Arguments to find a SupplementLog
+     * @example
+     * // Get one SupplementLog
+     * const supplementLog = await prisma.supplementLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SupplementLogFindFirstArgs>(args?: SelectSubset<T, SupplementLogFindFirstArgs<ExtArgs>>): Prisma__SupplementLogClient<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SupplementLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SupplementLogFindFirstOrThrowArgs} args - Arguments to find a SupplementLog
+     * @example
+     * // Get one SupplementLog
+     * const supplementLog = await prisma.supplementLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SupplementLogFindFirstOrThrowArgs>(args?: SelectSubset<T, SupplementLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__SupplementLogClient<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SupplementLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SupplementLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SupplementLogs
+     * const supplementLogs = await prisma.supplementLog.findMany()
+     * 
+     * // Get first 10 SupplementLogs
+     * const supplementLogs = await prisma.supplementLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const supplementLogWithIdOnly = await prisma.supplementLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SupplementLogFindManyArgs>(args?: SelectSubset<T, SupplementLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SupplementLog.
+     * @param {SupplementLogCreateArgs} args - Arguments to create a SupplementLog.
+     * @example
+     * // Create one SupplementLog
+     * const SupplementLog = await prisma.supplementLog.create({
+     *   data: {
+     *     // ... data to create a SupplementLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends SupplementLogCreateArgs>(args: SelectSubset<T, SupplementLogCreateArgs<ExtArgs>>): Prisma__SupplementLogClient<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SupplementLogs.
+     * @param {SupplementLogCreateManyArgs} args - Arguments to create many SupplementLogs.
+     * @example
+     * // Create many SupplementLogs
+     * const supplementLog = await prisma.supplementLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SupplementLogCreateManyArgs>(args?: SelectSubset<T, SupplementLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SupplementLogs and returns the data saved in the database.
+     * @param {SupplementLogCreateManyAndReturnArgs} args - Arguments to create many SupplementLogs.
+     * @example
+     * // Create many SupplementLogs
+     * const supplementLog = await prisma.supplementLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SupplementLogs and only return the `id`
+     * const supplementLogWithIdOnly = await prisma.supplementLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SupplementLogCreateManyAndReturnArgs>(args?: SelectSubset<T, SupplementLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SupplementLog.
+     * @param {SupplementLogDeleteArgs} args - Arguments to delete one SupplementLog.
+     * @example
+     * // Delete one SupplementLog
+     * const SupplementLog = await prisma.supplementLog.delete({
+     *   where: {
+     *     // ... filter to delete one SupplementLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SupplementLogDeleteArgs>(args: SelectSubset<T, SupplementLogDeleteArgs<ExtArgs>>): Prisma__SupplementLogClient<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SupplementLog.
+     * @param {SupplementLogUpdateArgs} args - Arguments to update one SupplementLog.
+     * @example
+     * // Update one SupplementLog
+     * const supplementLog = await prisma.supplementLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SupplementLogUpdateArgs>(args: SelectSubset<T, SupplementLogUpdateArgs<ExtArgs>>): Prisma__SupplementLogClient<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SupplementLogs.
+     * @param {SupplementLogDeleteManyArgs} args - Arguments to filter SupplementLogs to delete.
+     * @example
+     * // Delete a few SupplementLogs
+     * const { count } = await prisma.supplementLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SupplementLogDeleteManyArgs>(args?: SelectSubset<T, SupplementLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SupplementLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SupplementLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SupplementLogs
+     * const supplementLog = await prisma.supplementLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SupplementLogUpdateManyArgs>(args: SelectSubset<T, SupplementLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SupplementLogs and returns the data updated in the database.
+     * @param {SupplementLogUpdateManyAndReturnArgs} args - Arguments to update many SupplementLogs.
+     * @example
+     * // Update many SupplementLogs
+     * const supplementLog = await prisma.supplementLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SupplementLogs and only return the `id`
+     * const supplementLogWithIdOnly = await prisma.supplementLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SupplementLogUpdateManyAndReturnArgs>(args: SelectSubset<T, SupplementLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SupplementLog.
+     * @param {SupplementLogUpsertArgs} args - Arguments to update or create a SupplementLog.
+     * @example
+     * // Update or create a SupplementLog
+     * const supplementLog = await prisma.supplementLog.upsert({
+     *   create: {
+     *     // ... data to create a SupplementLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SupplementLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SupplementLogUpsertArgs>(args: SelectSubset<T, SupplementLogUpsertArgs<ExtArgs>>): Prisma__SupplementLogClient<$Result.GetResult<Prisma.$SupplementLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SupplementLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SupplementLogCountArgs} args - Arguments to filter SupplementLogs to count.
+     * @example
+     * // Count the number of SupplementLogs
+     * const count = await prisma.supplementLog.count({
+     *   where: {
+     *     // ... the filter for the SupplementLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends SupplementLogCountArgs>(
+      args?: Subset<T, SupplementLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SupplementLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SupplementLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SupplementLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SupplementLogAggregateArgs>(args: Subset<T, SupplementLogAggregateArgs>): Prisma.PrismaPromise<GetSupplementLogAggregateType<T>>
+
+    /**
+     * Group by SupplementLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SupplementLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SupplementLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SupplementLogGroupByArgs['orderBy'] }
+        : { orderBy?: SupplementLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SupplementLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSupplementLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SupplementLog model
+   */
+  readonly fields: SupplementLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SupplementLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SupplementLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SupplementLog model
+   */
+  interface SupplementLogFieldRefs {
+    readonly id: FieldRef<"SupplementLog", 'String'>
+    readonly userId: FieldRef<"SupplementLog", 'String'>
+    readonly name: FieldRef<"SupplementLog", 'String'>
+    readonly dosage: FieldRef<"SupplementLog", 'Float'>
+    readonly unit: FieldRef<"SupplementLog", 'String'>
+    readonly createdAt: FieldRef<"SupplementLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SupplementLog findUnique
+   */
+  export type SupplementLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+    /**
+     * Filter, which SupplementLog to fetch.
+     */
+    where: SupplementLogWhereUniqueInput
+  }
+
+  /**
+   * SupplementLog findUniqueOrThrow
+   */
+  export type SupplementLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+    /**
+     * Filter, which SupplementLog to fetch.
+     */
+    where: SupplementLogWhereUniqueInput
+  }
+
+  /**
+   * SupplementLog findFirst
+   */
+  export type SupplementLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+    /**
+     * Filter, which SupplementLog to fetch.
+     */
+    where?: SupplementLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SupplementLogs to fetch.
+     */
+    orderBy?: SupplementLogOrderByWithRelationInput | SupplementLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SupplementLogs.
+     */
+    cursor?: SupplementLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SupplementLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SupplementLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SupplementLogs.
+     */
+    distinct?: SupplementLogScalarFieldEnum | SupplementLogScalarFieldEnum[]
+  }
+
+  /**
+   * SupplementLog findFirstOrThrow
+   */
+  export type SupplementLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+    /**
+     * Filter, which SupplementLog to fetch.
+     */
+    where?: SupplementLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SupplementLogs to fetch.
+     */
+    orderBy?: SupplementLogOrderByWithRelationInput | SupplementLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SupplementLogs.
+     */
+    cursor?: SupplementLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SupplementLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SupplementLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SupplementLogs.
+     */
+    distinct?: SupplementLogScalarFieldEnum | SupplementLogScalarFieldEnum[]
+  }
+
+  /**
+   * SupplementLog findMany
+   */
+  export type SupplementLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+    /**
+     * Filter, which SupplementLogs to fetch.
+     */
+    where?: SupplementLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SupplementLogs to fetch.
+     */
+    orderBy?: SupplementLogOrderByWithRelationInput | SupplementLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SupplementLogs.
+     */
+    cursor?: SupplementLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SupplementLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SupplementLogs.
+     */
+    skip?: number
+    distinct?: SupplementLogScalarFieldEnum | SupplementLogScalarFieldEnum[]
+  }
+
+  /**
+   * SupplementLog create
+   */
+  export type SupplementLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SupplementLog.
+     */
+    data: XOR<SupplementLogCreateInput, SupplementLogUncheckedCreateInput>
+  }
+
+  /**
+   * SupplementLog createMany
+   */
+  export type SupplementLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SupplementLogs.
+     */
+    data: SupplementLogCreateManyInput | SupplementLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SupplementLog createManyAndReturn
+   */
+  export type SupplementLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many SupplementLogs.
+     */
+    data: SupplementLogCreateManyInput | SupplementLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SupplementLog update
+   */
+  export type SupplementLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SupplementLog.
+     */
+    data: XOR<SupplementLogUpdateInput, SupplementLogUncheckedUpdateInput>
+    /**
+     * Choose, which SupplementLog to update.
+     */
+    where: SupplementLogWhereUniqueInput
+  }
+
+  /**
+   * SupplementLog updateMany
+   */
+  export type SupplementLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SupplementLogs.
+     */
+    data: XOR<SupplementLogUpdateManyMutationInput, SupplementLogUncheckedUpdateManyInput>
+    /**
+     * Filter which SupplementLogs to update
+     */
+    where?: SupplementLogWhereInput
+    /**
+     * Limit how many SupplementLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SupplementLog updateManyAndReturn
+   */
+  export type SupplementLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * The data used to update SupplementLogs.
+     */
+    data: XOR<SupplementLogUpdateManyMutationInput, SupplementLogUncheckedUpdateManyInput>
+    /**
+     * Filter which SupplementLogs to update
+     */
+    where?: SupplementLogWhereInput
+    /**
+     * Limit how many SupplementLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SupplementLog upsert
+   */
+  export type SupplementLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SupplementLog to update in case it exists.
+     */
+    where: SupplementLogWhereUniqueInput
+    /**
+     * In case the SupplementLog found by the `where` argument doesn't exist, create a new SupplementLog with this data.
+     */
+    create: XOR<SupplementLogCreateInput, SupplementLogUncheckedCreateInput>
+    /**
+     * In case the SupplementLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SupplementLogUpdateInput, SupplementLogUncheckedUpdateInput>
+  }
+
+  /**
+   * SupplementLog delete
+   */
+  export type SupplementLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+    /**
+     * Filter which SupplementLog to delete.
+     */
+    where: SupplementLogWhereUniqueInput
+  }
+
+  /**
+   * SupplementLog deleteMany
+   */
+  export type SupplementLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SupplementLogs to delete
+     */
+    where?: SupplementLogWhereInput
+    /**
+     * Limit how many SupplementLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SupplementLog without action
+   */
+  export type SupplementLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SupplementLog
+     */
+    select?: SupplementLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SupplementLog
+     */
+    omit?: SupplementLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SupplementLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ExerciseLog
+   */
+
+  export type AggregateExerciseLog = {
+    _count: ExerciseLogCountAggregateOutputType | null
+    _avg: ExerciseLogAvgAggregateOutputType | null
+    _sum: ExerciseLogSumAggregateOutputType | null
+    _min: ExerciseLogMinAggregateOutputType | null
+    _max: ExerciseLogMaxAggregateOutputType | null
+  }
+
+  export type ExerciseLogAvgAggregateOutputType = {
+    durationMinutes: number | null
+    caloriesBurned: number | null
+  }
+
+  export type ExerciseLogSumAggregateOutputType = {
+    durationMinutes: number | null
+    caloriesBurned: number | null
+  }
+
+  export type ExerciseLogMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    activityName: string | null
+    durationMinutes: number | null
+    caloriesBurned: number | null
+    createdAt: Date | null
+  }
+
+  export type ExerciseLogMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    activityName: string | null
+    durationMinutes: number | null
+    caloriesBurned: number | null
+    createdAt: Date | null
+  }
+
+  export type ExerciseLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    activityName: number
+    durationMinutes: number
+    caloriesBurned: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ExerciseLogAvgAggregateInputType = {
+    durationMinutes?: true
+    caloriesBurned?: true
+  }
+
+  export type ExerciseLogSumAggregateInputType = {
+    durationMinutes?: true
+    caloriesBurned?: true
+  }
+
+  export type ExerciseLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    activityName?: true
+    durationMinutes?: true
+    caloriesBurned?: true
+    createdAt?: true
+  }
+
+  export type ExerciseLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    activityName?: true
+    durationMinutes?: true
+    caloriesBurned?: true
+    createdAt?: true
+  }
+
+  export type ExerciseLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    activityName?: true
+    durationMinutes?: true
+    caloriesBurned?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ExerciseLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExerciseLog to aggregate.
+     */
+    where?: ExerciseLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExerciseLogs to fetch.
+     */
+    orderBy?: ExerciseLogOrderByWithRelationInput | ExerciseLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ExerciseLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExerciseLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExerciseLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ExerciseLogs
+    **/
+    _count?: true | ExerciseLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ExerciseLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ExerciseLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ExerciseLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ExerciseLogMaxAggregateInputType
+  }
+
+  export type GetExerciseLogAggregateType<T extends ExerciseLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateExerciseLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateExerciseLog[P]>
+      : GetScalarType<T[P], AggregateExerciseLog[P]>
+  }
+
+
+
+
+  export type ExerciseLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExerciseLogWhereInput
+    orderBy?: ExerciseLogOrderByWithAggregationInput | ExerciseLogOrderByWithAggregationInput[]
+    by: ExerciseLogScalarFieldEnum[] | ExerciseLogScalarFieldEnum
+    having?: ExerciseLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ExerciseLogCountAggregateInputType | true
+    _avg?: ExerciseLogAvgAggregateInputType
+    _sum?: ExerciseLogSumAggregateInputType
+    _min?: ExerciseLogMinAggregateInputType
+    _max?: ExerciseLogMaxAggregateInputType
+  }
+
+  export type ExerciseLogGroupByOutputType = {
+    id: string
+    userId: string
+    activityName: string
+    durationMinutes: number
+    caloriesBurned: number
+    createdAt: Date
+    _count: ExerciseLogCountAggregateOutputType | null
+    _avg: ExerciseLogAvgAggregateOutputType | null
+    _sum: ExerciseLogSumAggregateOutputType | null
+    _min: ExerciseLogMinAggregateOutputType | null
+    _max: ExerciseLogMaxAggregateOutputType | null
+  }
+
+  type GetExerciseLogGroupByPayload<T extends ExerciseLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ExerciseLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ExerciseLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ExerciseLogGroupByOutputType[P]>
+            : GetScalarType<T[P], ExerciseLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ExerciseLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    activityName?: boolean
+    durationMinutes?: boolean
+    caloriesBurned?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["exerciseLog"]>
+
+  export type ExerciseLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    activityName?: boolean
+    durationMinutes?: boolean
+    caloriesBurned?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["exerciseLog"]>
+
+  export type ExerciseLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    activityName?: boolean
+    durationMinutes?: boolean
+    caloriesBurned?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["exerciseLog"]>
+
+  export type ExerciseLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    activityName?: boolean
+    durationMinutes?: boolean
+    caloriesBurned?: boolean
+    createdAt?: boolean
+  }
+
+  export type ExerciseLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "activityName" | "durationMinutes" | "caloriesBurned" | "createdAt", ExtArgs["result"]["exerciseLog"]>
+  export type ExerciseLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ExerciseLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ExerciseLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ExerciseLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ExerciseLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      activityName: string
+      durationMinutes: number
+      caloriesBurned: number
+      createdAt: Date
+    }, ExtArgs["result"]["exerciseLog"]>
+    composites: {}
+  }
+
+  type ExerciseLogGetPayload<S extends boolean | null | undefined | ExerciseLogDefaultArgs> = $Result.GetResult<Prisma.$ExerciseLogPayload, S>
+
+  type ExerciseLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ExerciseLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ExerciseLogCountAggregateInputType | true
+    }
+
+  export interface ExerciseLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ExerciseLog'], meta: { name: 'ExerciseLog' } }
+    /**
+     * Find zero or one ExerciseLog that matches the filter.
+     * @param {ExerciseLogFindUniqueArgs} args - Arguments to find a ExerciseLog
+     * @example
+     * // Get one ExerciseLog
+     * const exerciseLog = await prisma.exerciseLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ExerciseLogFindUniqueArgs>(args: SelectSubset<T, ExerciseLogFindUniqueArgs<ExtArgs>>): Prisma__ExerciseLogClient<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ExerciseLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ExerciseLogFindUniqueOrThrowArgs} args - Arguments to find a ExerciseLog
+     * @example
+     * // Get one ExerciseLog
+     * const exerciseLog = await prisma.exerciseLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ExerciseLogFindUniqueOrThrowArgs>(args: SelectSubset<T, ExerciseLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ExerciseLogClient<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ExerciseLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExerciseLogFindFirstArgs} args - Arguments to find a ExerciseLog
+     * @example
+     * // Get one ExerciseLog
+     * const exerciseLog = await prisma.exerciseLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ExerciseLogFindFirstArgs>(args?: SelectSubset<T, ExerciseLogFindFirstArgs<ExtArgs>>): Prisma__ExerciseLogClient<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ExerciseLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExerciseLogFindFirstOrThrowArgs} args - Arguments to find a ExerciseLog
+     * @example
+     * // Get one ExerciseLog
+     * const exerciseLog = await prisma.exerciseLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ExerciseLogFindFirstOrThrowArgs>(args?: SelectSubset<T, ExerciseLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__ExerciseLogClient<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ExerciseLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExerciseLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ExerciseLogs
+     * const exerciseLogs = await prisma.exerciseLog.findMany()
+     * 
+     * // Get first 10 ExerciseLogs
+     * const exerciseLogs = await prisma.exerciseLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const exerciseLogWithIdOnly = await prisma.exerciseLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ExerciseLogFindManyArgs>(args?: SelectSubset<T, ExerciseLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ExerciseLog.
+     * @param {ExerciseLogCreateArgs} args - Arguments to create a ExerciseLog.
+     * @example
+     * // Create one ExerciseLog
+     * const ExerciseLog = await prisma.exerciseLog.create({
+     *   data: {
+     *     // ... data to create a ExerciseLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends ExerciseLogCreateArgs>(args: SelectSubset<T, ExerciseLogCreateArgs<ExtArgs>>): Prisma__ExerciseLogClient<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ExerciseLogs.
+     * @param {ExerciseLogCreateManyArgs} args - Arguments to create many ExerciseLogs.
+     * @example
+     * // Create many ExerciseLogs
+     * const exerciseLog = await prisma.exerciseLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ExerciseLogCreateManyArgs>(args?: SelectSubset<T, ExerciseLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ExerciseLogs and returns the data saved in the database.
+     * @param {ExerciseLogCreateManyAndReturnArgs} args - Arguments to create many ExerciseLogs.
+     * @example
+     * // Create many ExerciseLogs
+     * const exerciseLog = await prisma.exerciseLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ExerciseLogs and only return the `id`
+     * const exerciseLogWithIdOnly = await prisma.exerciseLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ExerciseLogCreateManyAndReturnArgs>(args?: SelectSubset<T, ExerciseLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ExerciseLog.
+     * @param {ExerciseLogDeleteArgs} args - Arguments to delete one ExerciseLog.
+     * @example
+     * // Delete one ExerciseLog
+     * const ExerciseLog = await prisma.exerciseLog.delete({
+     *   where: {
+     *     // ... filter to delete one ExerciseLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ExerciseLogDeleteArgs>(args: SelectSubset<T, ExerciseLogDeleteArgs<ExtArgs>>): Prisma__ExerciseLogClient<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ExerciseLog.
+     * @param {ExerciseLogUpdateArgs} args - Arguments to update one ExerciseLog.
+     * @example
+     * // Update one ExerciseLog
+     * const exerciseLog = await prisma.exerciseLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ExerciseLogUpdateArgs>(args: SelectSubset<T, ExerciseLogUpdateArgs<ExtArgs>>): Prisma__ExerciseLogClient<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ExerciseLogs.
+     * @param {ExerciseLogDeleteManyArgs} args - Arguments to filter ExerciseLogs to delete.
+     * @example
+     * // Delete a few ExerciseLogs
+     * const { count } = await prisma.exerciseLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ExerciseLogDeleteManyArgs>(args?: SelectSubset<T, ExerciseLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ExerciseLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExerciseLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ExerciseLogs
+     * const exerciseLog = await prisma.exerciseLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ExerciseLogUpdateManyArgs>(args: SelectSubset<T, ExerciseLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ExerciseLogs and returns the data updated in the database.
+     * @param {ExerciseLogUpdateManyAndReturnArgs} args - Arguments to update many ExerciseLogs.
+     * @example
+     * // Update many ExerciseLogs
+     * const exerciseLog = await prisma.exerciseLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ExerciseLogs and only return the `id`
+     * const exerciseLogWithIdOnly = await prisma.exerciseLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ExerciseLogUpdateManyAndReturnArgs>(args: SelectSubset<T, ExerciseLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ExerciseLog.
+     * @param {ExerciseLogUpsertArgs} args - Arguments to update or create a ExerciseLog.
+     * @example
+     * // Update or create a ExerciseLog
+     * const exerciseLog = await prisma.exerciseLog.upsert({
+     *   create: {
+     *     // ... data to create a ExerciseLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ExerciseLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ExerciseLogUpsertArgs>(args: SelectSubset<T, ExerciseLogUpsertArgs<ExtArgs>>): Prisma__ExerciseLogClient<$Result.GetResult<Prisma.$ExerciseLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ExerciseLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExerciseLogCountArgs} args - Arguments to filter ExerciseLogs to count.
+     * @example
+     * // Count the number of ExerciseLogs
+     * const count = await prisma.exerciseLog.count({
+     *   where: {
+     *     // ... the filter for the ExerciseLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends ExerciseLogCountArgs>(
+      args?: Subset<T, ExerciseLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ExerciseLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ExerciseLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExerciseLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ExerciseLogAggregateArgs>(args: Subset<T, ExerciseLogAggregateArgs>): Prisma.PrismaPromise<GetExerciseLogAggregateType<T>>
+
+    /**
+     * Group by ExerciseLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExerciseLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ExerciseLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ExerciseLogGroupByArgs['orderBy'] }
+        : { orderBy?: ExerciseLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ExerciseLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExerciseLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ExerciseLog model
+   */
+  readonly fields: ExerciseLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ExerciseLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ExerciseLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ExerciseLog model
+   */
+  interface ExerciseLogFieldRefs {
+    readonly id: FieldRef<"ExerciseLog", 'String'>
+    readonly userId: FieldRef<"ExerciseLog", 'String'>
+    readonly activityName: FieldRef<"ExerciseLog", 'String'>
+    readonly durationMinutes: FieldRef<"ExerciseLog", 'Float'>
+    readonly caloriesBurned: FieldRef<"ExerciseLog", 'Float'>
+    readonly createdAt: FieldRef<"ExerciseLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ExerciseLog findUnique
+   */
+  export type ExerciseLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ExerciseLog to fetch.
+     */
+    where: ExerciseLogWhereUniqueInput
+  }
+
+  /**
+   * ExerciseLog findUniqueOrThrow
+   */
+  export type ExerciseLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ExerciseLog to fetch.
+     */
+    where: ExerciseLogWhereUniqueInput
+  }
+
+  /**
+   * ExerciseLog findFirst
+   */
+  export type ExerciseLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ExerciseLog to fetch.
+     */
+    where?: ExerciseLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExerciseLogs to fetch.
+     */
+    orderBy?: ExerciseLogOrderByWithRelationInput | ExerciseLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExerciseLogs.
+     */
+    cursor?: ExerciseLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExerciseLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExerciseLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExerciseLogs.
+     */
+    distinct?: ExerciseLogScalarFieldEnum | ExerciseLogScalarFieldEnum[]
+  }
+
+  /**
+   * ExerciseLog findFirstOrThrow
+   */
+  export type ExerciseLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ExerciseLog to fetch.
+     */
+    where?: ExerciseLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExerciseLogs to fetch.
+     */
+    orderBy?: ExerciseLogOrderByWithRelationInput | ExerciseLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExerciseLogs.
+     */
+    cursor?: ExerciseLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExerciseLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExerciseLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExerciseLogs.
+     */
+    distinct?: ExerciseLogScalarFieldEnum | ExerciseLogScalarFieldEnum[]
+  }
+
+  /**
+   * ExerciseLog findMany
+   */
+  export type ExerciseLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ExerciseLogs to fetch.
+     */
+    where?: ExerciseLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExerciseLogs to fetch.
+     */
+    orderBy?: ExerciseLogOrderByWithRelationInput | ExerciseLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ExerciseLogs.
+     */
+    cursor?: ExerciseLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExerciseLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExerciseLogs.
+     */
+    skip?: number
+    distinct?: ExerciseLogScalarFieldEnum | ExerciseLogScalarFieldEnum[]
+  }
+
+  /**
+   * ExerciseLog create
+   */
+  export type ExerciseLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ExerciseLog.
+     */
+    data: XOR<ExerciseLogCreateInput, ExerciseLogUncheckedCreateInput>
+  }
+
+  /**
+   * ExerciseLog createMany
+   */
+  export type ExerciseLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ExerciseLogs.
+     */
+    data: ExerciseLogCreateManyInput | ExerciseLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ExerciseLog createManyAndReturn
+   */
+  export type ExerciseLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many ExerciseLogs.
+     */
+    data: ExerciseLogCreateManyInput | ExerciseLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ExerciseLog update
+   */
+  export type ExerciseLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ExerciseLog.
+     */
+    data: XOR<ExerciseLogUpdateInput, ExerciseLogUncheckedUpdateInput>
+    /**
+     * Choose, which ExerciseLog to update.
+     */
+    where: ExerciseLogWhereUniqueInput
+  }
+
+  /**
+   * ExerciseLog updateMany
+   */
+  export type ExerciseLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ExerciseLogs.
+     */
+    data: XOR<ExerciseLogUpdateManyMutationInput, ExerciseLogUncheckedUpdateManyInput>
+    /**
+     * Filter which ExerciseLogs to update
+     */
+    where?: ExerciseLogWhereInput
+    /**
+     * Limit how many ExerciseLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ExerciseLog updateManyAndReturn
+   */
+  export type ExerciseLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * The data used to update ExerciseLogs.
+     */
+    data: XOR<ExerciseLogUpdateManyMutationInput, ExerciseLogUncheckedUpdateManyInput>
+    /**
+     * Filter which ExerciseLogs to update
+     */
+    where?: ExerciseLogWhereInput
+    /**
+     * Limit how many ExerciseLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ExerciseLog upsert
+   */
+  export type ExerciseLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ExerciseLog to update in case it exists.
+     */
+    where: ExerciseLogWhereUniqueInput
+    /**
+     * In case the ExerciseLog found by the `where` argument doesn't exist, create a new ExerciseLog with this data.
+     */
+    create: XOR<ExerciseLogCreateInput, ExerciseLogUncheckedCreateInput>
+    /**
+     * In case the ExerciseLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ExerciseLogUpdateInput, ExerciseLogUncheckedUpdateInput>
+  }
+
+  /**
+   * ExerciseLog delete
+   */
+  export type ExerciseLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+    /**
+     * Filter which ExerciseLog to delete.
+     */
+    where: ExerciseLogWhereUniqueInput
+  }
+
+  /**
+   * ExerciseLog deleteMany
+   */
+  export type ExerciseLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExerciseLogs to delete
+     */
+    where?: ExerciseLogWhereInput
+    /**
+     * Limit how many ExerciseLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ExerciseLog without action
+   */
+  export type ExerciseLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExerciseLog
+     */
+    select?: ExerciseLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExerciseLog
+     */
+    omit?: ExerciseLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExerciseLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MealScan
+   */
+
+  export type AggregateMealScan = {
+    _count: MealScanCountAggregateOutputType | null
+    _avg: MealScanAvgAggregateOutputType | null
+    _sum: MealScanSumAggregateOutputType | null
+    _min: MealScanMinAggregateOutputType | null
+    _max: MealScanMaxAggregateOutputType | null
+  }
+
+  export type MealScanAvgAggregateOutputType = {
+    confidence: number | null
+  }
+
+  export type MealScanSumAggregateOutputType = {
+    confidence: number | null
+  }
+
+  export type MealScanMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    mealId: string | null
+    imageUrl: string | null
+    model: string | null
+    confidence: number | null
+    rawResponse: string | null
+    processedMatches: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MealScanMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    mealId: string | null
+    imageUrl: string | null
+    model: string | null
+    confidence: number | null
+    rawResponse: string | null
+    processedMatches: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MealScanCountAggregateOutputType = {
+    id: number
+    userId: number
+    mealId: number
+    imageUrl: number
+    model: number
+    confidence: number
+    rawResponse: number
+    processedMatches: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MealScanAvgAggregateInputType = {
+    confidence?: true
+  }
+
+  export type MealScanSumAggregateInputType = {
+    confidence?: true
+  }
+
+  export type MealScanMinAggregateInputType = {
+    id?: true
+    userId?: true
+    mealId?: true
+    imageUrl?: true
+    model?: true
+    confidence?: true
+    rawResponse?: true
+    processedMatches?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MealScanMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    mealId?: true
+    imageUrl?: true
+    model?: true
+    confidence?: true
+    rawResponse?: true
+    processedMatches?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MealScanCountAggregateInputType = {
+    id?: true
+    userId?: true
+    mealId?: true
+    imageUrl?: true
+    model?: true
+    confidence?: true
+    rawResponse?: true
+    processedMatches?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MealScanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MealScan to aggregate.
+     */
+    where?: MealScanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MealScans to fetch.
+     */
+    orderBy?: MealScanOrderByWithRelationInput | MealScanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MealScanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MealScans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MealScans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MealScans
+    **/
+    _count?: true | MealScanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MealScanAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MealScanSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MealScanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MealScanMaxAggregateInputType
+  }
+
+  export type GetMealScanAggregateType<T extends MealScanAggregateArgs> = {
+        [P in keyof T & keyof AggregateMealScan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMealScan[P]>
+      : GetScalarType<T[P], AggregateMealScan[P]>
+  }
+
+
+
+
+  export type MealScanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MealScanWhereInput
+    orderBy?: MealScanOrderByWithAggregationInput | MealScanOrderByWithAggregationInput[]
+    by: MealScanScalarFieldEnum[] | MealScanScalarFieldEnum
+    having?: MealScanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MealScanCountAggregateInputType | true
+    _avg?: MealScanAvgAggregateInputType
+    _sum?: MealScanSumAggregateInputType
+    _min?: MealScanMinAggregateInputType
+    _max?: MealScanMaxAggregateInputType
+  }
+
+  export type MealScanGroupByOutputType = {
+    id: string
+    userId: string
+    mealId: string | null
+    imageUrl: string
+    model: string
+    confidence: number
+    rawResponse: string
+    processedMatches: string
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: MealScanCountAggregateOutputType | null
+    _avg: MealScanAvgAggregateOutputType | null
+    _sum: MealScanSumAggregateOutputType | null
+    _min: MealScanMinAggregateOutputType | null
+    _max: MealScanMaxAggregateOutputType | null
+  }
+
+  type GetMealScanGroupByPayload<T extends MealScanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MealScanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MealScanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MealScanGroupByOutputType[P]>
+            : GetScalarType<T[P], MealScanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MealScanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    mealId?: boolean
+    imageUrl?: boolean
+    model?: boolean
+    confidence?: boolean
+    rawResponse?: boolean
+    processedMatches?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    meal?: boolean | MealScan$mealArgs<ExtArgs>
+  }, ExtArgs["result"]["mealScan"]>
+
+  export type MealScanSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    mealId?: boolean
+    imageUrl?: boolean
+    model?: boolean
+    confidence?: boolean
+    rawResponse?: boolean
+    processedMatches?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    meal?: boolean | MealScan$mealArgs<ExtArgs>
+  }, ExtArgs["result"]["mealScan"]>
+
+  export type MealScanSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    mealId?: boolean
+    imageUrl?: boolean
+    model?: boolean
+    confidence?: boolean
+    rawResponse?: boolean
+    processedMatches?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    meal?: boolean | MealScan$mealArgs<ExtArgs>
+  }, ExtArgs["result"]["mealScan"]>
+
+  export type MealScanSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    mealId?: boolean
+    imageUrl?: boolean
+    model?: boolean
+    confidence?: boolean
+    rawResponse?: boolean
+    processedMatches?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MealScanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "mealId" | "imageUrl" | "model" | "confidence" | "rawResponse" | "processedMatches" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["mealScan"]>
+  export type MealScanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    meal?: boolean | MealScan$mealArgs<ExtArgs>
+  }
+  export type MealScanIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    meal?: boolean | MealScan$mealArgs<ExtArgs>
+  }
+  export type MealScanIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    meal?: boolean | MealScan$mealArgs<ExtArgs>
+  }
+
+  export type $MealScanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MealScan"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      meal: Prisma.$MealPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      mealId: string | null
+      imageUrl: string
+      model: string
+      confidence: number
+      rawResponse: string
+      processedMatches: string
+      status: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["mealScan"]>
+    composites: {}
+  }
+
+  type MealScanGetPayload<S extends boolean | null | undefined | MealScanDefaultArgs> = $Result.GetResult<Prisma.$MealScanPayload, S>
+
+  type MealScanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MealScanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MealScanCountAggregateInputType | true
+    }
+
+  export interface MealScanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MealScan'], meta: { name: 'MealScan' } }
+    /**
+     * Find zero or one MealScan that matches the filter.
+     * @param {MealScanFindUniqueArgs} args - Arguments to find a MealScan
+     * @example
+     * // Get one MealScan
+     * const mealScan = await prisma.mealScan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MealScanFindUniqueArgs>(args: SelectSubset<T, MealScanFindUniqueArgs<ExtArgs>>): Prisma__MealScanClient<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MealScan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MealScanFindUniqueOrThrowArgs} args - Arguments to find a MealScan
+     * @example
+     * // Get one MealScan
+     * const mealScan = await prisma.mealScan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MealScanFindUniqueOrThrowArgs>(args: SelectSubset<T, MealScanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MealScanClient<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MealScan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealScanFindFirstArgs} args - Arguments to find a MealScan
+     * @example
+     * // Get one MealScan
+     * const mealScan = await prisma.mealScan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MealScanFindFirstArgs>(args?: SelectSubset<T, MealScanFindFirstArgs<ExtArgs>>): Prisma__MealScanClient<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MealScan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealScanFindFirstOrThrowArgs} args - Arguments to find a MealScan
+     * @example
+     * // Get one MealScan
+     * const mealScan = await prisma.mealScan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MealScanFindFirstOrThrowArgs>(args?: SelectSubset<T, MealScanFindFirstOrThrowArgs<ExtArgs>>): Prisma__MealScanClient<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MealScans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealScanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MealScans
+     * const mealScans = await prisma.mealScan.findMany()
+     * 
+     * // Get first 10 MealScans
+     * const mealScans = await prisma.mealScan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mealScanWithIdOnly = await prisma.mealScan.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MealScanFindManyArgs>(args?: SelectSubset<T, MealScanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MealScan.
+     * @param {MealScanCreateArgs} args - Arguments to create a MealScan.
+     * @example
+     * // Create one MealScan
+     * const MealScan = await prisma.mealScan.create({
+     *   data: {
+     *     // ... data to create a MealScan
+     *   }
+     * })
+     * 
+     */
+    create<T extends MealScanCreateArgs>(args: SelectSubset<T, MealScanCreateArgs<ExtArgs>>): Prisma__MealScanClient<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MealScans.
+     * @param {MealScanCreateManyArgs} args - Arguments to create many MealScans.
+     * @example
+     * // Create many MealScans
+     * const mealScan = await prisma.mealScan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MealScanCreateManyArgs>(args?: SelectSubset<T, MealScanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MealScans and returns the data saved in the database.
+     * @param {MealScanCreateManyAndReturnArgs} args - Arguments to create many MealScans.
+     * @example
+     * // Create many MealScans
+     * const mealScan = await prisma.mealScan.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MealScans and only return the `id`
+     * const mealScanWithIdOnly = await prisma.mealScan.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MealScanCreateManyAndReturnArgs>(args?: SelectSubset<T, MealScanCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MealScan.
+     * @param {MealScanDeleteArgs} args - Arguments to delete one MealScan.
+     * @example
+     * // Delete one MealScan
+     * const MealScan = await prisma.mealScan.delete({
+     *   where: {
+     *     // ... filter to delete one MealScan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MealScanDeleteArgs>(args: SelectSubset<T, MealScanDeleteArgs<ExtArgs>>): Prisma__MealScanClient<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MealScan.
+     * @param {MealScanUpdateArgs} args - Arguments to update one MealScan.
+     * @example
+     * // Update one MealScan
+     * const mealScan = await prisma.mealScan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MealScanUpdateArgs>(args: SelectSubset<T, MealScanUpdateArgs<ExtArgs>>): Prisma__MealScanClient<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MealScans.
+     * @param {MealScanDeleteManyArgs} args - Arguments to filter MealScans to delete.
+     * @example
+     * // Delete a few MealScans
+     * const { count } = await prisma.mealScan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MealScanDeleteManyArgs>(args?: SelectSubset<T, MealScanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MealScans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealScanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MealScans
+     * const mealScan = await prisma.mealScan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MealScanUpdateManyArgs>(args: SelectSubset<T, MealScanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MealScans and returns the data updated in the database.
+     * @param {MealScanUpdateManyAndReturnArgs} args - Arguments to update many MealScans.
+     * @example
+     * // Update many MealScans
+     * const mealScan = await prisma.mealScan.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MealScans and only return the `id`
+     * const mealScanWithIdOnly = await prisma.mealScan.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MealScanUpdateManyAndReturnArgs>(args: SelectSubset<T, MealScanUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MealScan.
+     * @param {MealScanUpsertArgs} args - Arguments to update or create a MealScan.
+     * @example
+     * // Update or create a MealScan
+     * const mealScan = await prisma.mealScan.upsert({
+     *   create: {
+     *     // ... data to create a MealScan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MealScan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MealScanUpsertArgs>(args: SelectSubset<T, MealScanUpsertArgs<ExtArgs>>): Prisma__MealScanClient<$Result.GetResult<Prisma.$MealScanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MealScans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealScanCountArgs} args - Arguments to filter MealScans to count.
+     * @example
+     * // Count the number of MealScans
+     * const count = await prisma.mealScan.count({
+     *   where: {
+     *     // ... the filter for the MealScans we want to count
+     *   }
+     * })
+    **/
+    count<T extends MealScanCountArgs>(
+      args?: Subset<T, MealScanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MealScanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MealScan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealScanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MealScanAggregateArgs>(args: Subset<T, MealScanAggregateArgs>): Prisma.PrismaPromise<GetMealScanAggregateType<T>>
+
+    /**
+     * Group by MealScan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MealScanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MealScanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MealScanGroupByArgs['orderBy'] }
+        : { orderBy?: MealScanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MealScanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMealScanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MealScan model
+   */
+  readonly fields: MealScanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MealScan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MealScanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    meal<T extends MealScan$mealArgs<ExtArgs> = {}>(args?: Subset<T, MealScan$mealArgs<ExtArgs>>): Prisma__MealClient<$Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MealScan model
+   */
+  interface MealScanFieldRefs {
+    readonly id: FieldRef<"MealScan", 'String'>
+    readonly userId: FieldRef<"MealScan", 'String'>
+    readonly mealId: FieldRef<"MealScan", 'String'>
+    readonly imageUrl: FieldRef<"MealScan", 'String'>
+    readonly model: FieldRef<"MealScan", 'String'>
+    readonly confidence: FieldRef<"MealScan", 'Float'>
+    readonly rawResponse: FieldRef<"MealScan", 'String'>
+    readonly processedMatches: FieldRef<"MealScan", 'String'>
+    readonly status: FieldRef<"MealScan", 'String'>
+    readonly createdAt: FieldRef<"MealScan", 'DateTime'>
+    readonly updatedAt: FieldRef<"MealScan", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MealScan findUnique
+   */
+  export type MealScanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    /**
+     * Filter, which MealScan to fetch.
+     */
+    where: MealScanWhereUniqueInput
+  }
+
+  /**
+   * MealScan findUniqueOrThrow
+   */
+  export type MealScanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    /**
+     * Filter, which MealScan to fetch.
+     */
+    where: MealScanWhereUniqueInput
+  }
+
+  /**
+   * MealScan findFirst
+   */
+  export type MealScanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    /**
+     * Filter, which MealScan to fetch.
+     */
+    where?: MealScanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MealScans to fetch.
+     */
+    orderBy?: MealScanOrderByWithRelationInput | MealScanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MealScans.
+     */
+    cursor?: MealScanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MealScans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MealScans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MealScans.
+     */
+    distinct?: MealScanScalarFieldEnum | MealScanScalarFieldEnum[]
+  }
+
+  /**
+   * MealScan findFirstOrThrow
+   */
+  export type MealScanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    /**
+     * Filter, which MealScan to fetch.
+     */
+    where?: MealScanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MealScans to fetch.
+     */
+    orderBy?: MealScanOrderByWithRelationInput | MealScanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MealScans.
+     */
+    cursor?: MealScanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MealScans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MealScans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MealScans.
+     */
+    distinct?: MealScanScalarFieldEnum | MealScanScalarFieldEnum[]
+  }
+
+  /**
+   * MealScan findMany
+   */
+  export type MealScanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    /**
+     * Filter, which MealScans to fetch.
+     */
+    where?: MealScanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MealScans to fetch.
+     */
+    orderBy?: MealScanOrderByWithRelationInput | MealScanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MealScans.
+     */
+    cursor?: MealScanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MealScans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MealScans.
+     */
+    skip?: number
+    distinct?: MealScanScalarFieldEnum | MealScanScalarFieldEnum[]
+  }
+
+  /**
+   * MealScan create
+   */
+  export type MealScanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MealScan.
+     */
+    data: XOR<MealScanCreateInput, MealScanUncheckedCreateInput>
+  }
+
+  /**
+   * MealScan createMany
+   */
+  export type MealScanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MealScans.
+     */
+    data: MealScanCreateManyInput | MealScanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MealScan createManyAndReturn
+   */
+  export type MealScanCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * The data used to create many MealScans.
+     */
+    data: MealScanCreateManyInput | MealScanCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MealScan update
+   */
+  export type MealScanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MealScan.
+     */
+    data: XOR<MealScanUpdateInput, MealScanUncheckedUpdateInput>
+    /**
+     * Choose, which MealScan to update.
+     */
+    where: MealScanWhereUniqueInput
+  }
+
+  /**
+   * MealScan updateMany
+   */
+  export type MealScanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MealScans.
+     */
+    data: XOR<MealScanUpdateManyMutationInput, MealScanUncheckedUpdateManyInput>
+    /**
+     * Filter which MealScans to update
+     */
+    where?: MealScanWhereInput
+    /**
+     * Limit how many MealScans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MealScan updateManyAndReturn
+   */
+  export type MealScanUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * The data used to update MealScans.
+     */
+    data: XOR<MealScanUpdateManyMutationInput, MealScanUncheckedUpdateManyInput>
+    /**
+     * Filter which MealScans to update
+     */
+    where?: MealScanWhereInput
+    /**
+     * Limit how many MealScans to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MealScan upsert
+   */
+  export type MealScanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MealScan to update in case it exists.
+     */
+    where: MealScanWhereUniqueInput
+    /**
+     * In case the MealScan found by the `where` argument doesn't exist, create a new MealScan with this data.
+     */
+    create: XOR<MealScanCreateInput, MealScanUncheckedCreateInput>
+    /**
+     * In case the MealScan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MealScanUpdateInput, MealScanUncheckedUpdateInput>
+  }
+
+  /**
+   * MealScan delete
+   */
+  export type MealScanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+    /**
+     * Filter which MealScan to delete.
+     */
+    where: MealScanWhereUniqueInput
+  }
+
+  /**
+   * MealScan deleteMany
+   */
+  export type MealScanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MealScans to delete
+     */
+    where?: MealScanWhereInput
+    /**
+     * Limit how many MealScans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MealScan.meal
+   */
+  export type MealScan$mealArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meal
+     */
+    select?: MealSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meal
+     */
+    omit?: MealOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealInclude<ExtArgs> | null
+    where?: MealWhereInput
+  }
+
+  /**
+   * MealScan without action
+   */
+  export type MealScanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MealScan
+     */
+    select?: MealScanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MealScan
+     */
+    omit?: MealScanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MealScanInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Conversation
+   */
+
+  export type AggregateConversation = {
+    _count: ConversationCountAggregateOutputType | null
+    _min: ConversationMinAggregateOutputType | null
+    _max: ConversationMaxAggregateOutputType | null
+  }
+
+  export type ConversationMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ConversationMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ConversationCountAggregateOutputType = {
+    id: number
+    userId: number
+    title: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ConversationMinAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ConversationMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ConversationCountAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ConversationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Conversation to aggregate.
+     */
+    where?: ConversationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Conversations to fetch.
+     */
+    orderBy?: ConversationOrderByWithRelationInput | ConversationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ConversationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Conversations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Conversations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Conversations
+    **/
+    _count?: true | ConversationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ConversationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ConversationMaxAggregateInputType
+  }
+
+  export type GetConversationAggregateType<T extends ConversationAggregateArgs> = {
+        [P in keyof T & keyof AggregateConversation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateConversation[P]>
+      : GetScalarType<T[P], AggregateConversation[P]>
+  }
+
+
+
+
+  export type ConversationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConversationWhereInput
+    orderBy?: ConversationOrderByWithAggregationInput | ConversationOrderByWithAggregationInput[]
+    by: ConversationScalarFieldEnum[] | ConversationScalarFieldEnum
+    having?: ConversationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ConversationCountAggregateInputType | true
+    _min?: ConversationMinAggregateInputType
+    _max?: ConversationMaxAggregateInputType
+  }
+
+  export type ConversationGroupByOutputType = {
+    id: string
+    userId: string
+    title: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ConversationCountAggregateOutputType | null
+    _min: ConversationMinAggregateOutputType | null
+    _max: ConversationMaxAggregateOutputType | null
+  }
+
+  type GetConversationGroupByPayload<T extends ConversationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ConversationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ConversationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ConversationGroupByOutputType[P]>
+            : GetScalarType<T[P], ConversationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ConversationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    messages?: boolean | Conversation$messagesArgs<ExtArgs>
+    _count?: boolean | ConversationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversation"]>
+
+  export type ConversationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversation"]>
+
+  export type ConversationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversation"]>
+
+  export type ConversationSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ConversationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "createdAt" | "updatedAt", ExtArgs["result"]["conversation"]>
+  export type ConversationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    messages?: boolean | Conversation$messagesArgs<ExtArgs>
+    _count?: boolean | ConversationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ConversationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ConversationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ConversationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Conversation"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      messages: Prisma.$ConversationMessagePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      title: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["conversation"]>
+    composites: {}
+  }
+
+  type ConversationGetPayload<S extends boolean | null | undefined | ConversationDefaultArgs> = $Result.GetResult<Prisma.$ConversationPayload, S>
+
+  type ConversationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ConversationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ConversationCountAggregateInputType | true
+    }
+
+  export interface ConversationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Conversation'], meta: { name: 'Conversation' } }
+    /**
+     * Find zero or one Conversation that matches the filter.
+     * @param {ConversationFindUniqueArgs} args - Arguments to find a Conversation
+     * @example
+     * // Get one Conversation
+     * const conversation = await prisma.conversation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ConversationFindUniqueArgs>(args: SelectSubset<T, ConversationFindUniqueArgs<ExtArgs>>): Prisma__ConversationClient<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Conversation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ConversationFindUniqueOrThrowArgs} args - Arguments to find a Conversation
+     * @example
+     * // Get one Conversation
+     * const conversation = await prisma.conversation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ConversationFindUniqueOrThrowArgs>(args: SelectSubset<T, ConversationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ConversationClient<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Conversation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationFindFirstArgs} args - Arguments to find a Conversation
+     * @example
+     * // Get one Conversation
+     * const conversation = await prisma.conversation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ConversationFindFirstArgs>(args?: SelectSubset<T, ConversationFindFirstArgs<ExtArgs>>): Prisma__ConversationClient<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Conversation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationFindFirstOrThrowArgs} args - Arguments to find a Conversation
+     * @example
+     * // Get one Conversation
+     * const conversation = await prisma.conversation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ConversationFindFirstOrThrowArgs>(args?: SelectSubset<T, ConversationFindFirstOrThrowArgs<ExtArgs>>): Prisma__ConversationClient<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Conversations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Conversations
+     * const conversations = await prisma.conversation.findMany()
+     * 
+     * // Get first 10 Conversations
+     * const conversations = await prisma.conversation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const conversationWithIdOnly = await prisma.conversation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ConversationFindManyArgs>(args?: SelectSubset<T, ConversationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Conversation.
+     * @param {ConversationCreateArgs} args - Arguments to create a Conversation.
+     * @example
+     * // Create one Conversation
+     * const Conversation = await prisma.conversation.create({
+     *   data: {
+     *     // ... data to create a Conversation
+     *   }
+     * })
+     * 
+     */
+    create<T extends ConversationCreateArgs>(args: SelectSubset<T, ConversationCreateArgs<ExtArgs>>): Prisma__ConversationClient<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Conversations.
+     * @param {ConversationCreateManyArgs} args - Arguments to create many Conversations.
+     * @example
+     * // Create many Conversations
+     * const conversation = await prisma.conversation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ConversationCreateManyArgs>(args?: SelectSubset<T, ConversationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Conversations and returns the data saved in the database.
+     * @param {ConversationCreateManyAndReturnArgs} args - Arguments to create many Conversations.
+     * @example
+     * // Create many Conversations
+     * const conversation = await prisma.conversation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Conversations and only return the `id`
+     * const conversationWithIdOnly = await prisma.conversation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ConversationCreateManyAndReturnArgs>(args?: SelectSubset<T, ConversationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Conversation.
+     * @param {ConversationDeleteArgs} args - Arguments to delete one Conversation.
+     * @example
+     * // Delete one Conversation
+     * const Conversation = await prisma.conversation.delete({
+     *   where: {
+     *     // ... filter to delete one Conversation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ConversationDeleteArgs>(args: SelectSubset<T, ConversationDeleteArgs<ExtArgs>>): Prisma__ConversationClient<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Conversation.
+     * @param {ConversationUpdateArgs} args - Arguments to update one Conversation.
+     * @example
+     * // Update one Conversation
+     * const conversation = await prisma.conversation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ConversationUpdateArgs>(args: SelectSubset<T, ConversationUpdateArgs<ExtArgs>>): Prisma__ConversationClient<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Conversations.
+     * @param {ConversationDeleteManyArgs} args - Arguments to filter Conversations to delete.
+     * @example
+     * // Delete a few Conversations
+     * const { count } = await prisma.conversation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ConversationDeleteManyArgs>(args?: SelectSubset<T, ConversationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Conversations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Conversations
+     * const conversation = await prisma.conversation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ConversationUpdateManyArgs>(args: SelectSubset<T, ConversationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Conversations and returns the data updated in the database.
+     * @param {ConversationUpdateManyAndReturnArgs} args - Arguments to update many Conversations.
+     * @example
+     * // Update many Conversations
+     * const conversation = await prisma.conversation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Conversations and only return the `id`
+     * const conversationWithIdOnly = await prisma.conversation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ConversationUpdateManyAndReturnArgs>(args: SelectSubset<T, ConversationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Conversation.
+     * @param {ConversationUpsertArgs} args - Arguments to update or create a Conversation.
+     * @example
+     * // Update or create a Conversation
+     * const conversation = await prisma.conversation.upsert({
+     *   create: {
+     *     // ... data to create a Conversation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Conversation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ConversationUpsertArgs>(args: SelectSubset<T, ConversationUpsertArgs<ExtArgs>>): Prisma__ConversationClient<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Conversations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationCountArgs} args - Arguments to filter Conversations to count.
+     * @example
+     * // Count the number of Conversations
+     * const count = await prisma.conversation.count({
+     *   where: {
+     *     // ... the filter for the Conversations we want to count
+     *   }
+     * })
+    **/
+    count<T extends ConversationCountArgs>(
+      args?: Subset<T, ConversationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ConversationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Conversation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ConversationAggregateArgs>(args: Subset<T, ConversationAggregateArgs>): Prisma.PrismaPromise<GetConversationAggregateType<T>>
+
+    /**
+     * Group by Conversation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ConversationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ConversationGroupByArgs['orderBy'] }
+        : { orderBy?: ConversationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ConversationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetConversationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Conversation model
+   */
+  readonly fields: ConversationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Conversation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ConversationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    messages<T extends Conversation$messagesArgs<ExtArgs> = {}>(args?: Subset<T, Conversation$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Conversation model
+   */
+  interface ConversationFieldRefs {
+    readonly id: FieldRef<"Conversation", 'String'>
+    readonly userId: FieldRef<"Conversation", 'String'>
+    readonly title: FieldRef<"Conversation", 'String'>
+    readonly createdAt: FieldRef<"Conversation", 'DateTime'>
+    readonly updatedAt: FieldRef<"Conversation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Conversation findUnique
+   */
+  export type ConversationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+    /**
+     * Filter, which Conversation to fetch.
+     */
+    where: ConversationWhereUniqueInput
+  }
+
+  /**
+   * Conversation findUniqueOrThrow
+   */
+  export type ConversationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+    /**
+     * Filter, which Conversation to fetch.
+     */
+    where: ConversationWhereUniqueInput
+  }
+
+  /**
+   * Conversation findFirst
+   */
+  export type ConversationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+    /**
+     * Filter, which Conversation to fetch.
+     */
+    where?: ConversationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Conversations to fetch.
+     */
+    orderBy?: ConversationOrderByWithRelationInput | ConversationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Conversations.
+     */
+    cursor?: ConversationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Conversations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Conversations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Conversations.
+     */
+    distinct?: ConversationScalarFieldEnum | ConversationScalarFieldEnum[]
+  }
+
+  /**
+   * Conversation findFirstOrThrow
+   */
+  export type ConversationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+    /**
+     * Filter, which Conversation to fetch.
+     */
+    where?: ConversationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Conversations to fetch.
+     */
+    orderBy?: ConversationOrderByWithRelationInput | ConversationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Conversations.
+     */
+    cursor?: ConversationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Conversations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Conversations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Conversations.
+     */
+    distinct?: ConversationScalarFieldEnum | ConversationScalarFieldEnum[]
+  }
+
+  /**
+   * Conversation findMany
+   */
+  export type ConversationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+    /**
+     * Filter, which Conversations to fetch.
+     */
+    where?: ConversationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Conversations to fetch.
+     */
+    orderBy?: ConversationOrderByWithRelationInput | ConversationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Conversations.
+     */
+    cursor?: ConversationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Conversations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Conversations.
+     */
+    skip?: number
+    distinct?: ConversationScalarFieldEnum | ConversationScalarFieldEnum[]
+  }
+
+  /**
+   * Conversation create
+   */
+  export type ConversationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Conversation.
+     */
+    data: XOR<ConversationCreateInput, ConversationUncheckedCreateInput>
+  }
+
+  /**
+   * Conversation createMany
+   */
+  export type ConversationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Conversations.
+     */
+    data: ConversationCreateManyInput | ConversationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Conversation createManyAndReturn
+   */
+  export type ConversationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Conversations.
+     */
+    data: ConversationCreateManyInput | ConversationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Conversation update
+   */
+  export type ConversationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Conversation.
+     */
+    data: XOR<ConversationUpdateInput, ConversationUncheckedUpdateInput>
+    /**
+     * Choose, which Conversation to update.
+     */
+    where: ConversationWhereUniqueInput
+  }
+
+  /**
+   * Conversation updateMany
+   */
+  export type ConversationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Conversations.
+     */
+    data: XOR<ConversationUpdateManyMutationInput, ConversationUncheckedUpdateManyInput>
+    /**
+     * Filter which Conversations to update
+     */
+    where?: ConversationWhereInput
+    /**
+     * Limit how many Conversations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Conversation updateManyAndReturn
+   */
+  export type ConversationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * The data used to update Conversations.
+     */
+    data: XOR<ConversationUpdateManyMutationInput, ConversationUncheckedUpdateManyInput>
+    /**
+     * Filter which Conversations to update
+     */
+    where?: ConversationWhereInput
+    /**
+     * Limit how many Conversations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Conversation upsert
+   */
+  export type ConversationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Conversation to update in case it exists.
+     */
+    where: ConversationWhereUniqueInput
+    /**
+     * In case the Conversation found by the `where` argument doesn't exist, create a new Conversation with this data.
+     */
+    create: XOR<ConversationCreateInput, ConversationUncheckedCreateInput>
+    /**
+     * In case the Conversation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ConversationUpdateInput, ConversationUncheckedUpdateInput>
+  }
+
+  /**
+   * Conversation delete
+   */
+  export type ConversationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+    /**
+     * Filter which Conversation to delete.
+     */
+    where: ConversationWhereUniqueInput
+  }
+
+  /**
+   * Conversation deleteMany
+   */
+  export type ConversationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Conversations to delete
+     */
+    where?: ConversationWhereInput
+    /**
+     * Limit how many Conversations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Conversation.messages
+   */
+  export type Conversation$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+    where?: ConversationMessageWhereInput
+    orderBy?: ConversationMessageOrderByWithRelationInput | ConversationMessageOrderByWithRelationInput[]
+    cursor?: ConversationMessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ConversationMessageScalarFieldEnum | ConversationMessageScalarFieldEnum[]
+  }
+
+  /**
+   * Conversation without action
+   */
+  export type ConversationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conversation
+     */
+    select?: ConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conversation
+     */
+    omit?: ConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ConversationMessage
+   */
+
+  export type AggregateConversationMessage = {
+    _count: ConversationMessageCountAggregateOutputType | null
+    _avg: ConversationMessageAvgAggregateOutputType | null
+    _sum: ConversationMessageSumAggregateOutputType | null
+    _min: ConversationMessageMinAggregateOutputType | null
+    _max: ConversationMessageMaxAggregateOutputType | null
+  }
+
+  export type ConversationMessageAvgAggregateOutputType = {
+    tokens: number | null
+  }
+
+  export type ConversationMessageSumAggregateOutputType = {
+    tokens: number | null
+  }
+
+  export type ConversationMessageMinAggregateOutputType = {
+    id: string | null
+    conversationId: string | null
+    role: string | null
+    content: string | null
+    metadata: string | null
+    tokens: number | null
+    createdAt: Date | null
+  }
+
+  export type ConversationMessageMaxAggregateOutputType = {
+    id: string | null
+    conversationId: string | null
+    role: string | null
+    content: string | null
+    metadata: string | null
+    tokens: number | null
+    createdAt: Date | null
+  }
+
+  export type ConversationMessageCountAggregateOutputType = {
+    id: number
+    conversationId: number
+    role: number
+    content: number
+    metadata: number
+    tokens: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ConversationMessageAvgAggregateInputType = {
+    tokens?: true
+  }
+
+  export type ConversationMessageSumAggregateInputType = {
+    tokens?: true
+  }
+
+  export type ConversationMessageMinAggregateInputType = {
+    id?: true
+    conversationId?: true
+    role?: true
+    content?: true
+    metadata?: true
+    tokens?: true
+    createdAt?: true
+  }
+
+  export type ConversationMessageMaxAggregateInputType = {
+    id?: true
+    conversationId?: true
+    role?: true
+    content?: true
+    metadata?: true
+    tokens?: true
+    createdAt?: true
+  }
+
+  export type ConversationMessageCountAggregateInputType = {
+    id?: true
+    conversationId?: true
+    role?: true
+    content?: true
+    metadata?: true
+    tokens?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ConversationMessageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ConversationMessage to aggregate.
+     */
+    where?: ConversationMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationMessages to fetch.
+     */
+    orderBy?: ConversationMessageOrderByWithRelationInput | ConversationMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ConversationMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ConversationMessages
+    **/
+    _count?: true | ConversationMessageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ConversationMessageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ConversationMessageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ConversationMessageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ConversationMessageMaxAggregateInputType
+  }
+
+  export type GetConversationMessageAggregateType<T extends ConversationMessageAggregateArgs> = {
+        [P in keyof T & keyof AggregateConversationMessage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateConversationMessage[P]>
+      : GetScalarType<T[P], AggregateConversationMessage[P]>
+  }
+
+
+
+
+  export type ConversationMessageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConversationMessageWhereInput
+    orderBy?: ConversationMessageOrderByWithAggregationInput | ConversationMessageOrderByWithAggregationInput[]
+    by: ConversationMessageScalarFieldEnum[] | ConversationMessageScalarFieldEnum
+    having?: ConversationMessageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ConversationMessageCountAggregateInputType | true
+    _avg?: ConversationMessageAvgAggregateInputType
+    _sum?: ConversationMessageSumAggregateInputType
+    _min?: ConversationMessageMinAggregateInputType
+    _max?: ConversationMessageMaxAggregateInputType
+  }
+
+  export type ConversationMessageGroupByOutputType = {
+    id: string
+    conversationId: string
+    role: string
+    content: string
+    metadata: string | null
+    tokens: number
+    createdAt: Date
+    _count: ConversationMessageCountAggregateOutputType | null
+    _avg: ConversationMessageAvgAggregateOutputType | null
+    _sum: ConversationMessageSumAggregateOutputType | null
+    _min: ConversationMessageMinAggregateOutputType | null
+    _max: ConversationMessageMaxAggregateOutputType | null
+  }
+
+  type GetConversationMessageGroupByPayload<T extends ConversationMessageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ConversationMessageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ConversationMessageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ConversationMessageGroupByOutputType[P]>
+            : GetScalarType<T[P], ConversationMessageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ConversationMessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    conversationId?: boolean
+    role?: boolean
+    content?: boolean
+    metadata?: boolean
+    tokens?: boolean
+    createdAt?: boolean
+    conversation?: boolean | ConversationDefaultArgs<ExtArgs>
+    feedback?: boolean | ConversationMessage$feedbackArgs<ExtArgs>
+  }, ExtArgs["result"]["conversationMessage"]>
+
+  export type ConversationMessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    conversationId?: boolean
+    role?: boolean
+    content?: boolean
+    metadata?: boolean
+    tokens?: boolean
+    createdAt?: boolean
+    conversation?: boolean | ConversationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversationMessage"]>
+
+  export type ConversationMessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    conversationId?: boolean
+    role?: boolean
+    content?: boolean
+    metadata?: boolean
+    tokens?: boolean
+    createdAt?: boolean
+    conversation?: boolean | ConversationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversationMessage"]>
+
+  export type ConversationMessageSelectScalar = {
+    id?: boolean
+    conversationId?: boolean
+    role?: boolean
+    content?: boolean
+    metadata?: boolean
+    tokens?: boolean
+    createdAt?: boolean
+  }
+
+  export type ConversationMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "conversationId" | "role" | "content" | "metadata" | "tokens" | "createdAt", ExtArgs["result"]["conversationMessage"]>
+  export type ConversationMessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    conversation?: boolean | ConversationDefaultArgs<ExtArgs>
+    feedback?: boolean | ConversationMessage$feedbackArgs<ExtArgs>
+  }
+  export type ConversationMessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    conversation?: boolean | ConversationDefaultArgs<ExtArgs>
+  }
+  export type ConversationMessageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    conversation?: boolean | ConversationDefaultArgs<ExtArgs>
+  }
+
+  export type $ConversationMessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ConversationMessage"
+    objects: {
+      conversation: Prisma.$ConversationPayload<ExtArgs>
+      feedback: Prisma.$ConversationFeedbackPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      conversationId: string
+      role: string
+      content: string
+      metadata: string | null
+      tokens: number
+      createdAt: Date
+    }, ExtArgs["result"]["conversationMessage"]>
+    composites: {}
+  }
+
+  type ConversationMessageGetPayload<S extends boolean | null | undefined | ConversationMessageDefaultArgs> = $Result.GetResult<Prisma.$ConversationMessagePayload, S>
+
+  type ConversationMessageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ConversationMessageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ConversationMessageCountAggregateInputType | true
+    }
+
+  export interface ConversationMessageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ConversationMessage'], meta: { name: 'ConversationMessage' } }
+    /**
+     * Find zero or one ConversationMessage that matches the filter.
+     * @param {ConversationMessageFindUniqueArgs} args - Arguments to find a ConversationMessage
+     * @example
+     * // Get one ConversationMessage
+     * const conversationMessage = await prisma.conversationMessage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ConversationMessageFindUniqueArgs>(args: SelectSubset<T, ConversationMessageFindUniqueArgs<ExtArgs>>): Prisma__ConversationMessageClient<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ConversationMessage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ConversationMessageFindUniqueOrThrowArgs} args - Arguments to find a ConversationMessage
+     * @example
+     * // Get one ConversationMessage
+     * const conversationMessage = await prisma.conversationMessage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ConversationMessageFindUniqueOrThrowArgs>(args: SelectSubset<T, ConversationMessageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ConversationMessageClient<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ConversationMessage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationMessageFindFirstArgs} args - Arguments to find a ConversationMessage
+     * @example
+     * // Get one ConversationMessage
+     * const conversationMessage = await prisma.conversationMessage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ConversationMessageFindFirstArgs>(args?: SelectSubset<T, ConversationMessageFindFirstArgs<ExtArgs>>): Prisma__ConversationMessageClient<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ConversationMessage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationMessageFindFirstOrThrowArgs} args - Arguments to find a ConversationMessage
+     * @example
+     * // Get one ConversationMessage
+     * const conversationMessage = await prisma.conversationMessage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ConversationMessageFindFirstOrThrowArgs>(args?: SelectSubset<T, ConversationMessageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ConversationMessageClient<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ConversationMessages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationMessageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ConversationMessages
+     * const conversationMessages = await prisma.conversationMessage.findMany()
+     * 
+     * // Get first 10 ConversationMessages
+     * const conversationMessages = await prisma.conversationMessage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const conversationMessageWithIdOnly = await prisma.conversationMessage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ConversationMessageFindManyArgs>(args?: SelectSubset<T, ConversationMessageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ConversationMessage.
+     * @param {ConversationMessageCreateArgs} args - Arguments to create a ConversationMessage.
+     * @example
+     * // Create one ConversationMessage
+     * const ConversationMessage = await prisma.conversationMessage.create({
+     *   data: {
+     *     // ... data to create a ConversationMessage
+     *   }
+     * })
+     * 
+     */
+    create<T extends ConversationMessageCreateArgs>(args: SelectSubset<T, ConversationMessageCreateArgs<ExtArgs>>): Prisma__ConversationMessageClient<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ConversationMessages.
+     * @param {ConversationMessageCreateManyArgs} args - Arguments to create many ConversationMessages.
+     * @example
+     * // Create many ConversationMessages
+     * const conversationMessage = await prisma.conversationMessage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ConversationMessageCreateManyArgs>(args?: SelectSubset<T, ConversationMessageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ConversationMessages and returns the data saved in the database.
+     * @param {ConversationMessageCreateManyAndReturnArgs} args - Arguments to create many ConversationMessages.
+     * @example
+     * // Create many ConversationMessages
+     * const conversationMessage = await prisma.conversationMessage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ConversationMessages and only return the `id`
+     * const conversationMessageWithIdOnly = await prisma.conversationMessage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ConversationMessageCreateManyAndReturnArgs>(args?: SelectSubset<T, ConversationMessageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ConversationMessage.
+     * @param {ConversationMessageDeleteArgs} args - Arguments to delete one ConversationMessage.
+     * @example
+     * // Delete one ConversationMessage
+     * const ConversationMessage = await prisma.conversationMessage.delete({
+     *   where: {
+     *     // ... filter to delete one ConversationMessage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ConversationMessageDeleteArgs>(args: SelectSubset<T, ConversationMessageDeleteArgs<ExtArgs>>): Prisma__ConversationMessageClient<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ConversationMessage.
+     * @param {ConversationMessageUpdateArgs} args - Arguments to update one ConversationMessage.
+     * @example
+     * // Update one ConversationMessage
+     * const conversationMessage = await prisma.conversationMessage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ConversationMessageUpdateArgs>(args: SelectSubset<T, ConversationMessageUpdateArgs<ExtArgs>>): Prisma__ConversationMessageClient<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ConversationMessages.
+     * @param {ConversationMessageDeleteManyArgs} args - Arguments to filter ConversationMessages to delete.
+     * @example
+     * // Delete a few ConversationMessages
+     * const { count } = await prisma.conversationMessage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ConversationMessageDeleteManyArgs>(args?: SelectSubset<T, ConversationMessageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ConversationMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationMessageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ConversationMessages
+     * const conversationMessage = await prisma.conversationMessage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ConversationMessageUpdateManyArgs>(args: SelectSubset<T, ConversationMessageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ConversationMessages and returns the data updated in the database.
+     * @param {ConversationMessageUpdateManyAndReturnArgs} args - Arguments to update many ConversationMessages.
+     * @example
+     * // Update many ConversationMessages
+     * const conversationMessage = await prisma.conversationMessage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ConversationMessages and only return the `id`
+     * const conversationMessageWithIdOnly = await prisma.conversationMessage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ConversationMessageUpdateManyAndReturnArgs>(args: SelectSubset<T, ConversationMessageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ConversationMessage.
+     * @param {ConversationMessageUpsertArgs} args - Arguments to update or create a ConversationMessage.
+     * @example
+     * // Update or create a ConversationMessage
+     * const conversationMessage = await prisma.conversationMessage.upsert({
+     *   create: {
+     *     // ... data to create a ConversationMessage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ConversationMessage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ConversationMessageUpsertArgs>(args: SelectSubset<T, ConversationMessageUpsertArgs<ExtArgs>>): Prisma__ConversationMessageClient<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ConversationMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationMessageCountArgs} args - Arguments to filter ConversationMessages to count.
+     * @example
+     * // Count the number of ConversationMessages
+     * const count = await prisma.conversationMessage.count({
+     *   where: {
+     *     // ... the filter for the ConversationMessages we want to count
+     *   }
+     * })
+    **/
+    count<T extends ConversationMessageCountArgs>(
+      args?: Subset<T, ConversationMessageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ConversationMessageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ConversationMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationMessageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ConversationMessageAggregateArgs>(args: Subset<T, ConversationMessageAggregateArgs>): Prisma.PrismaPromise<GetConversationMessageAggregateType<T>>
+
+    /**
+     * Group by ConversationMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationMessageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ConversationMessageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ConversationMessageGroupByArgs['orderBy'] }
+        : { orderBy?: ConversationMessageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ConversationMessageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetConversationMessageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ConversationMessage model
+   */
+  readonly fields: ConversationMessageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ConversationMessage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ConversationMessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    conversation<T extends ConversationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ConversationDefaultArgs<ExtArgs>>): Prisma__ConversationClient<$Result.GetResult<Prisma.$ConversationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    feedback<T extends ConversationMessage$feedbackArgs<ExtArgs> = {}>(args?: Subset<T, ConversationMessage$feedbackArgs<ExtArgs>>): Prisma__ConversationFeedbackClient<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ConversationMessage model
+   */
+  interface ConversationMessageFieldRefs {
+    readonly id: FieldRef<"ConversationMessage", 'String'>
+    readonly conversationId: FieldRef<"ConversationMessage", 'String'>
+    readonly role: FieldRef<"ConversationMessage", 'String'>
+    readonly content: FieldRef<"ConversationMessage", 'String'>
+    readonly metadata: FieldRef<"ConversationMessage", 'String'>
+    readonly tokens: FieldRef<"ConversationMessage", 'Int'>
+    readonly createdAt: FieldRef<"ConversationMessage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ConversationMessage findUnique
+   */
+  export type ConversationMessageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationMessage to fetch.
+     */
+    where: ConversationMessageWhereUniqueInput
+  }
+
+  /**
+   * ConversationMessage findUniqueOrThrow
+   */
+  export type ConversationMessageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationMessage to fetch.
+     */
+    where: ConversationMessageWhereUniqueInput
+  }
+
+  /**
+   * ConversationMessage findFirst
+   */
+  export type ConversationMessageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationMessage to fetch.
+     */
+    where?: ConversationMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationMessages to fetch.
+     */
+    orderBy?: ConversationMessageOrderByWithRelationInput | ConversationMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ConversationMessages.
+     */
+    cursor?: ConversationMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ConversationMessages.
+     */
+    distinct?: ConversationMessageScalarFieldEnum | ConversationMessageScalarFieldEnum[]
+  }
+
+  /**
+   * ConversationMessage findFirstOrThrow
+   */
+  export type ConversationMessageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationMessage to fetch.
+     */
+    where?: ConversationMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationMessages to fetch.
+     */
+    orderBy?: ConversationMessageOrderByWithRelationInput | ConversationMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ConversationMessages.
+     */
+    cursor?: ConversationMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ConversationMessages.
+     */
+    distinct?: ConversationMessageScalarFieldEnum | ConversationMessageScalarFieldEnum[]
+  }
+
+  /**
+   * ConversationMessage findMany
+   */
+  export type ConversationMessageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationMessages to fetch.
+     */
+    where?: ConversationMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationMessages to fetch.
+     */
+    orderBy?: ConversationMessageOrderByWithRelationInput | ConversationMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ConversationMessages.
+     */
+    cursor?: ConversationMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationMessages.
+     */
+    skip?: number
+    distinct?: ConversationMessageScalarFieldEnum | ConversationMessageScalarFieldEnum[]
+  }
+
+  /**
+   * ConversationMessage create
+   */
+  export type ConversationMessageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ConversationMessage.
+     */
+    data: XOR<ConversationMessageCreateInput, ConversationMessageUncheckedCreateInput>
+  }
+
+  /**
+   * ConversationMessage createMany
+   */
+  export type ConversationMessageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ConversationMessages.
+     */
+    data: ConversationMessageCreateManyInput | ConversationMessageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ConversationMessage createManyAndReturn
+   */
+  export type ConversationMessageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * The data used to create many ConversationMessages.
+     */
+    data: ConversationMessageCreateManyInput | ConversationMessageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ConversationMessage update
+   */
+  export type ConversationMessageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ConversationMessage.
+     */
+    data: XOR<ConversationMessageUpdateInput, ConversationMessageUncheckedUpdateInput>
+    /**
+     * Choose, which ConversationMessage to update.
+     */
+    where: ConversationMessageWhereUniqueInput
+  }
+
+  /**
+   * ConversationMessage updateMany
+   */
+  export type ConversationMessageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ConversationMessages.
+     */
+    data: XOR<ConversationMessageUpdateManyMutationInput, ConversationMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which ConversationMessages to update
+     */
+    where?: ConversationMessageWhereInput
+    /**
+     * Limit how many ConversationMessages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ConversationMessage updateManyAndReturn
+   */
+  export type ConversationMessageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * The data used to update ConversationMessages.
+     */
+    data: XOR<ConversationMessageUpdateManyMutationInput, ConversationMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which ConversationMessages to update
+     */
+    where?: ConversationMessageWhereInput
+    /**
+     * Limit how many ConversationMessages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ConversationMessage upsert
+   */
+  export type ConversationMessageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ConversationMessage to update in case it exists.
+     */
+    where: ConversationMessageWhereUniqueInput
+    /**
+     * In case the ConversationMessage found by the `where` argument doesn't exist, create a new ConversationMessage with this data.
+     */
+    create: XOR<ConversationMessageCreateInput, ConversationMessageUncheckedCreateInput>
+    /**
+     * In case the ConversationMessage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ConversationMessageUpdateInput, ConversationMessageUncheckedUpdateInput>
+  }
+
+  /**
+   * ConversationMessage delete
+   */
+  export type ConversationMessageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+    /**
+     * Filter which ConversationMessage to delete.
+     */
+    where: ConversationMessageWhereUniqueInput
+  }
+
+  /**
+   * ConversationMessage deleteMany
+   */
+  export type ConversationMessageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ConversationMessages to delete
+     */
+    where?: ConversationMessageWhereInput
+    /**
+     * Limit how many ConversationMessages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ConversationMessage.feedback
+   */
+  export type ConversationMessage$feedbackArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+    where?: ConversationFeedbackWhereInput
+  }
+
+  /**
+   * ConversationMessage without action
+   */
+  export type ConversationMessageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationMessage
+     */
+    select?: ConversationMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationMessage
+     */
+    omit?: ConversationMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationMessageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ConversationFeedback
+   */
+
+  export type AggregateConversationFeedback = {
+    _count: ConversationFeedbackCountAggregateOutputType | null
+    _avg: ConversationFeedbackAvgAggregateOutputType | null
+    _sum: ConversationFeedbackSumAggregateOutputType | null
+    _min: ConversationFeedbackMinAggregateOutputType | null
+    _max: ConversationFeedbackMaxAggregateOutputType | null
+  }
+
+  export type ConversationFeedbackAvgAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type ConversationFeedbackSumAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type ConversationFeedbackMinAggregateOutputType = {
+    id: string | null
+    messageId: string | null
+    rating: number | null
+    comment: string | null
+    createdAt: Date | null
+  }
+
+  export type ConversationFeedbackMaxAggregateOutputType = {
+    id: string | null
+    messageId: string | null
+    rating: number | null
+    comment: string | null
+    createdAt: Date | null
+  }
+
+  export type ConversationFeedbackCountAggregateOutputType = {
+    id: number
+    messageId: number
+    rating: number
+    comment: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ConversationFeedbackAvgAggregateInputType = {
+    rating?: true
+  }
+
+  export type ConversationFeedbackSumAggregateInputType = {
+    rating?: true
+  }
+
+  export type ConversationFeedbackMinAggregateInputType = {
+    id?: true
+    messageId?: true
+    rating?: true
+    comment?: true
+    createdAt?: true
+  }
+
+  export type ConversationFeedbackMaxAggregateInputType = {
+    id?: true
+    messageId?: true
+    rating?: true
+    comment?: true
+    createdAt?: true
+  }
+
+  export type ConversationFeedbackCountAggregateInputType = {
+    id?: true
+    messageId?: true
+    rating?: true
+    comment?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ConversationFeedbackAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ConversationFeedback to aggregate.
+     */
+    where?: ConversationFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationFeedbacks to fetch.
+     */
+    orderBy?: ConversationFeedbackOrderByWithRelationInput | ConversationFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ConversationFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ConversationFeedbacks
+    **/
+    _count?: true | ConversationFeedbackCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ConversationFeedbackAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ConversationFeedbackSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ConversationFeedbackMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ConversationFeedbackMaxAggregateInputType
+  }
+
+  export type GetConversationFeedbackAggregateType<T extends ConversationFeedbackAggregateArgs> = {
+        [P in keyof T & keyof AggregateConversationFeedback]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateConversationFeedback[P]>
+      : GetScalarType<T[P], AggregateConversationFeedback[P]>
+  }
+
+
+
+
+  export type ConversationFeedbackGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConversationFeedbackWhereInput
+    orderBy?: ConversationFeedbackOrderByWithAggregationInput | ConversationFeedbackOrderByWithAggregationInput[]
+    by: ConversationFeedbackScalarFieldEnum[] | ConversationFeedbackScalarFieldEnum
+    having?: ConversationFeedbackScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ConversationFeedbackCountAggregateInputType | true
+    _avg?: ConversationFeedbackAvgAggregateInputType
+    _sum?: ConversationFeedbackSumAggregateInputType
+    _min?: ConversationFeedbackMinAggregateInputType
+    _max?: ConversationFeedbackMaxAggregateInputType
+  }
+
+  export type ConversationFeedbackGroupByOutputType = {
+    id: string
+    messageId: string
+    rating: number
+    comment: string | null
+    createdAt: Date
+    _count: ConversationFeedbackCountAggregateOutputType | null
+    _avg: ConversationFeedbackAvgAggregateOutputType | null
+    _sum: ConversationFeedbackSumAggregateOutputType | null
+    _min: ConversationFeedbackMinAggregateOutputType | null
+    _max: ConversationFeedbackMaxAggregateOutputType | null
+  }
+
+  type GetConversationFeedbackGroupByPayload<T extends ConversationFeedbackGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ConversationFeedbackGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ConversationFeedbackGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ConversationFeedbackGroupByOutputType[P]>
+            : GetScalarType<T[P], ConversationFeedbackGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ConversationFeedbackSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    messageId?: boolean
+    rating?: boolean
+    comment?: boolean
+    createdAt?: boolean
+    message?: boolean | ConversationMessageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversationFeedback"]>
+
+  export type ConversationFeedbackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    messageId?: boolean
+    rating?: boolean
+    comment?: boolean
+    createdAt?: boolean
+    message?: boolean | ConversationMessageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversationFeedback"]>
+
+  export type ConversationFeedbackSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    messageId?: boolean
+    rating?: boolean
+    comment?: boolean
+    createdAt?: boolean
+    message?: boolean | ConversationMessageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversationFeedback"]>
+
+  export type ConversationFeedbackSelectScalar = {
+    id?: boolean
+    messageId?: boolean
+    rating?: boolean
+    comment?: boolean
+    createdAt?: boolean
+  }
+
+  export type ConversationFeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "messageId" | "rating" | "comment" | "createdAt", ExtArgs["result"]["conversationFeedback"]>
+  export type ConversationFeedbackInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    message?: boolean | ConversationMessageDefaultArgs<ExtArgs>
+  }
+  export type ConversationFeedbackIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    message?: boolean | ConversationMessageDefaultArgs<ExtArgs>
+  }
+  export type ConversationFeedbackIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    message?: boolean | ConversationMessageDefaultArgs<ExtArgs>
+  }
+
+  export type $ConversationFeedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ConversationFeedback"
+    objects: {
+      message: Prisma.$ConversationMessagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      messageId: string
+      rating: number
+      comment: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["conversationFeedback"]>
+    composites: {}
+  }
+
+  type ConversationFeedbackGetPayload<S extends boolean | null | undefined | ConversationFeedbackDefaultArgs> = $Result.GetResult<Prisma.$ConversationFeedbackPayload, S>
+
+  type ConversationFeedbackCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ConversationFeedbackFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ConversationFeedbackCountAggregateInputType | true
+    }
+
+  export interface ConversationFeedbackDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ConversationFeedback'], meta: { name: 'ConversationFeedback' } }
+    /**
+     * Find zero or one ConversationFeedback that matches the filter.
+     * @param {ConversationFeedbackFindUniqueArgs} args - Arguments to find a ConversationFeedback
+     * @example
+     * // Get one ConversationFeedback
+     * const conversationFeedback = await prisma.conversationFeedback.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ConversationFeedbackFindUniqueArgs>(args: SelectSubset<T, ConversationFeedbackFindUniqueArgs<ExtArgs>>): Prisma__ConversationFeedbackClient<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ConversationFeedback that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ConversationFeedbackFindUniqueOrThrowArgs} args - Arguments to find a ConversationFeedback
+     * @example
+     * // Get one ConversationFeedback
+     * const conversationFeedback = await prisma.conversationFeedback.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ConversationFeedbackFindUniqueOrThrowArgs>(args: SelectSubset<T, ConversationFeedbackFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ConversationFeedbackClient<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ConversationFeedback that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationFeedbackFindFirstArgs} args - Arguments to find a ConversationFeedback
+     * @example
+     * // Get one ConversationFeedback
+     * const conversationFeedback = await prisma.conversationFeedback.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ConversationFeedbackFindFirstArgs>(args?: SelectSubset<T, ConversationFeedbackFindFirstArgs<ExtArgs>>): Prisma__ConversationFeedbackClient<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ConversationFeedback that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationFeedbackFindFirstOrThrowArgs} args - Arguments to find a ConversationFeedback
+     * @example
+     * // Get one ConversationFeedback
+     * const conversationFeedback = await prisma.conversationFeedback.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ConversationFeedbackFindFirstOrThrowArgs>(args?: SelectSubset<T, ConversationFeedbackFindFirstOrThrowArgs<ExtArgs>>): Prisma__ConversationFeedbackClient<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ConversationFeedbacks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationFeedbackFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ConversationFeedbacks
+     * const conversationFeedbacks = await prisma.conversationFeedback.findMany()
+     * 
+     * // Get first 10 ConversationFeedbacks
+     * const conversationFeedbacks = await prisma.conversationFeedback.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const conversationFeedbackWithIdOnly = await prisma.conversationFeedback.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ConversationFeedbackFindManyArgs>(args?: SelectSubset<T, ConversationFeedbackFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ConversationFeedback.
+     * @param {ConversationFeedbackCreateArgs} args - Arguments to create a ConversationFeedback.
+     * @example
+     * // Create one ConversationFeedback
+     * const ConversationFeedback = await prisma.conversationFeedback.create({
+     *   data: {
+     *     // ... data to create a ConversationFeedback
+     *   }
+     * })
+     * 
+     */
+    create<T extends ConversationFeedbackCreateArgs>(args: SelectSubset<T, ConversationFeedbackCreateArgs<ExtArgs>>): Prisma__ConversationFeedbackClient<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ConversationFeedbacks.
+     * @param {ConversationFeedbackCreateManyArgs} args - Arguments to create many ConversationFeedbacks.
+     * @example
+     * // Create many ConversationFeedbacks
+     * const conversationFeedback = await prisma.conversationFeedback.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ConversationFeedbackCreateManyArgs>(args?: SelectSubset<T, ConversationFeedbackCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ConversationFeedbacks and returns the data saved in the database.
+     * @param {ConversationFeedbackCreateManyAndReturnArgs} args - Arguments to create many ConversationFeedbacks.
+     * @example
+     * // Create many ConversationFeedbacks
+     * const conversationFeedback = await prisma.conversationFeedback.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ConversationFeedbacks and only return the `id`
+     * const conversationFeedbackWithIdOnly = await prisma.conversationFeedback.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ConversationFeedbackCreateManyAndReturnArgs>(args?: SelectSubset<T, ConversationFeedbackCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ConversationFeedback.
+     * @param {ConversationFeedbackDeleteArgs} args - Arguments to delete one ConversationFeedback.
+     * @example
+     * // Delete one ConversationFeedback
+     * const ConversationFeedback = await prisma.conversationFeedback.delete({
+     *   where: {
+     *     // ... filter to delete one ConversationFeedback
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ConversationFeedbackDeleteArgs>(args: SelectSubset<T, ConversationFeedbackDeleteArgs<ExtArgs>>): Prisma__ConversationFeedbackClient<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ConversationFeedback.
+     * @param {ConversationFeedbackUpdateArgs} args - Arguments to update one ConversationFeedback.
+     * @example
+     * // Update one ConversationFeedback
+     * const conversationFeedback = await prisma.conversationFeedback.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ConversationFeedbackUpdateArgs>(args: SelectSubset<T, ConversationFeedbackUpdateArgs<ExtArgs>>): Prisma__ConversationFeedbackClient<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ConversationFeedbacks.
+     * @param {ConversationFeedbackDeleteManyArgs} args - Arguments to filter ConversationFeedbacks to delete.
+     * @example
+     * // Delete a few ConversationFeedbacks
+     * const { count } = await prisma.conversationFeedback.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ConversationFeedbackDeleteManyArgs>(args?: SelectSubset<T, ConversationFeedbackDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ConversationFeedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationFeedbackUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ConversationFeedbacks
+     * const conversationFeedback = await prisma.conversationFeedback.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ConversationFeedbackUpdateManyArgs>(args: SelectSubset<T, ConversationFeedbackUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ConversationFeedbacks and returns the data updated in the database.
+     * @param {ConversationFeedbackUpdateManyAndReturnArgs} args - Arguments to update many ConversationFeedbacks.
+     * @example
+     * // Update many ConversationFeedbacks
+     * const conversationFeedback = await prisma.conversationFeedback.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ConversationFeedbacks and only return the `id`
+     * const conversationFeedbackWithIdOnly = await prisma.conversationFeedback.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ConversationFeedbackUpdateManyAndReturnArgs>(args: SelectSubset<T, ConversationFeedbackUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ConversationFeedback.
+     * @param {ConversationFeedbackUpsertArgs} args - Arguments to update or create a ConversationFeedback.
+     * @example
+     * // Update or create a ConversationFeedback
+     * const conversationFeedback = await prisma.conversationFeedback.upsert({
+     *   create: {
+     *     // ... data to create a ConversationFeedback
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ConversationFeedback we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ConversationFeedbackUpsertArgs>(args: SelectSubset<T, ConversationFeedbackUpsertArgs<ExtArgs>>): Prisma__ConversationFeedbackClient<$Result.GetResult<Prisma.$ConversationFeedbackPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ConversationFeedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationFeedbackCountArgs} args - Arguments to filter ConversationFeedbacks to count.
+     * @example
+     * // Count the number of ConversationFeedbacks
+     * const count = await prisma.conversationFeedback.count({
+     *   where: {
+     *     // ... the filter for the ConversationFeedbacks we want to count
+     *   }
+     * })
+    **/
+    count<T extends ConversationFeedbackCountArgs>(
+      args?: Subset<T, ConversationFeedbackCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ConversationFeedbackCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ConversationFeedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationFeedbackAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ConversationFeedbackAggregateArgs>(args: Subset<T, ConversationFeedbackAggregateArgs>): Prisma.PrismaPromise<GetConversationFeedbackAggregateType<T>>
+
+    /**
+     * Group by ConversationFeedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationFeedbackGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ConversationFeedbackGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ConversationFeedbackGroupByArgs['orderBy'] }
+        : { orderBy?: ConversationFeedbackGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ConversationFeedbackGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetConversationFeedbackGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ConversationFeedback model
+   */
+  readonly fields: ConversationFeedbackFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ConversationFeedback.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ConversationFeedbackClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    message<T extends ConversationMessageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ConversationMessageDefaultArgs<ExtArgs>>): Prisma__ConversationMessageClient<$Result.GetResult<Prisma.$ConversationMessagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ConversationFeedback model
+   */
+  interface ConversationFeedbackFieldRefs {
+    readonly id: FieldRef<"ConversationFeedback", 'String'>
+    readonly messageId: FieldRef<"ConversationFeedback", 'String'>
+    readonly rating: FieldRef<"ConversationFeedback", 'Int'>
+    readonly comment: FieldRef<"ConversationFeedback", 'String'>
+    readonly createdAt: FieldRef<"ConversationFeedback", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ConversationFeedback findUnique
+   */
+  export type ConversationFeedbackFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationFeedback to fetch.
+     */
+    where: ConversationFeedbackWhereUniqueInput
+  }
+
+  /**
+   * ConversationFeedback findUniqueOrThrow
+   */
+  export type ConversationFeedbackFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationFeedback to fetch.
+     */
+    where: ConversationFeedbackWhereUniqueInput
+  }
+
+  /**
+   * ConversationFeedback findFirst
+   */
+  export type ConversationFeedbackFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationFeedback to fetch.
+     */
+    where?: ConversationFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationFeedbacks to fetch.
+     */
+    orderBy?: ConversationFeedbackOrderByWithRelationInput | ConversationFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ConversationFeedbacks.
+     */
+    cursor?: ConversationFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ConversationFeedbacks.
+     */
+    distinct?: ConversationFeedbackScalarFieldEnum | ConversationFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * ConversationFeedback findFirstOrThrow
+   */
+  export type ConversationFeedbackFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationFeedback to fetch.
+     */
+    where?: ConversationFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationFeedbacks to fetch.
+     */
+    orderBy?: ConversationFeedbackOrderByWithRelationInput | ConversationFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ConversationFeedbacks.
+     */
+    cursor?: ConversationFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ConversationFeedbacks.
+     */
+    distinct?: ConversationFeedbackScalarFieldEnum | ConversationFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * ConversationFeedback findMany
+   */
+  export type ConversationFeedbackFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationFeedbacks to fetch.
+     */
+    where?: ConversationFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationFeedbacks to fetch.
+     */
+    orderBy?: ConversationFeedbackOrderByWithRelationInput | ConversationFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ConversationFeedbacks.
+     */
+    cursor?: ConversationFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationFeedbacks.
+     */
+    skip?: number
+    distinct?: ConversationFeedbackScalarFieldEnum | ConversationFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * ConversationFeedback create
+   */
+  export type ConversationFeedbackCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ConversationFeedback.
+     */
+    data: XOR<ConversationFeedbackCreateInput, ConversationFeedbackUncheckedCreateInput>
+  }
+
+  /**
+   * ConversationFeedback createMany
+   */
+  export type ConversationFeedbackCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ConversationFeedbacks.
+     */
+    data: ConversationFeedbackCreateManyInput | ConversationFeedbackCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ConversationFeedback createManyAndReturn
+   */
+  export type ConversationFeedbackCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * The data used to create many ConversationFeedbacks.
+     */
+    data: ConversationFeedbackCreateManyInput | ConversationFeedbackCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ConversationFeedback update
+   */
+  export type ConversationFeedbackUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ConversationFeedback.
+     */
+    data: XOR<ConversationFeedbackUpdateInput, ConversationFeedbackUncheckedUpdateInput>
+    /**
+     * Choose, which ConversationFeedback to update.
+     */
+    where: ConversationFeedbackWhereUniqueInput
+  }
+
+  /**
+   * ConversationFeedback updateMany
+   */
+  export type ConversationFeedbackUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ConversationFeedbacks.
+     */
+    data: XOR<ConversationFeedbackUpdateManyMutationInput, ConversationFeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which ConversationFeedbacks to update
+     */
+    where?: ConversationFeedbackWhereInput
+    /**
+     * Limit how many ConversationFeedbacks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ConversationFeedback updateManyAndReturn
+   */
+  export type ConversationFeedbackUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * The data used to update ConversationFeedbacks.
+     */
+    data: XOR<ConversationFeedbackUpdateManyMutationInput, ConversationFeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which ConversationFeedbacks to update
+     */
+    where?: ConversationFeedbackWhereInput
+    /**
+     * Limit how many ConversationFeedbacks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ConversationFeedback upsert
+   */
+  export type ConversationFeedbackUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ConversationFeedback to update in case it exists.
+     */
+    where: ConversationFeedbackWhereUniqueInput
+    /**
+     * In case the ConversationFeedback found by the `where` argument doesn't exist, create a new ConversationFeedback with this data.
+     */
+    create: XOR<ConversationFeedbackCreateInput, ConversationFeedbackUncheckedCreateInput>
+    /**
+     * In case the ConversationFeedback was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ConversationFeedbackUpdateInput, ConversationFeedbackUncheckedUpdateInput>
+  }
+
+  /**
+   * ConversationFeedback delete
+   */
+  export type ConversationFeedbackDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter which ConversationFeedback to delete.
+     */
+    where: ConversationFeedbackWhereUniqueInput
+  }
+
+  /**
+   * ConversationFeedback deleteMany
+   */
+  export type ConversationFeedbackDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ConversationFeedbacks to delete
+     */
+    where?: ConversationFeedbackWhereInput
+    /**
+     * Limit how many ConversationFeedbacks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ConversationFeedback without action
+   */
+  export type ConversationFeedbackDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationFeedback
+     */
+    select?: ConversationFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationFeedback
+     */
+    omit?: ConversationFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationFeedbackInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TravelSession
+   */
+
+  export type AggregateTravelSession = {
+    _count: TravelSessionCountAggregateOutputType | null
+    _min: TravelSessionMinAggregateOutputType | null
+    _max: TravelSessionMaxAggregateOutputType | null
+  }
+
+  export type TravelSessionMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    active: boolean | null
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TravelSessionMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    active: boolean | null
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TravelSessionCountAggregateOutputType = {
+    id: number
+    userId: number
+    active: number
+    startDate: number
+    endDate: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TravelSessionMinAggregateInputType = {
+    id?: true
+    userId?: true
+    active?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TravelSessionMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    active?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TravelSessionCountAggregateInputType = {
+    id?: true
+    userId?: true
+    active?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TravelSessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TravelSession to aggregate.
+     */
+    where?: TravelSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TravelSessions to fetch.
+     */
+    orderBy?: TravelSessionOrderByWithRelationInput | TravelSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TravelSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TravelSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TravelSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TravelSessions
+    **/
+    _count?: true | TravelSessionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TravelSessionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TravelSessionMaxAggregateInputType
+  }
+
+  export type GetTravelSessionAggregateType<T extends TravelSessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateTravelSession]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTravelSession[P]>
+      : GetScalarType<T[P], AggregateTravelSession[P]>
+  }
+
+
+
+
+  export type TravelSessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TravelSessionWhereInput
+    orderBy?: TravelSessionOrderByWithAggregationInput | TravelSessionOrderByWithAggregationInput[]
+    by: TravelSessionScalarFieldEnum[] | TravelSessionScalarFieldEnum
+    having?: TravelSessionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TravelSessionCountAggregateInputType | true
+    _min?: TravelSessionMinAggregateInputType
+    _max?: TravelSessionMaxAggregateInputType
+  }
+
+  export type TravelSessionGroupByOutputType = {
+    id: string
+    userId: string
+    active: boolean
+    startDate: Date
+    endDate: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: TravelSessionCountAggregateOutputType | null
+    _min: TravelSessionMinAggregateOutputType | null
+    _max: TravelSessionMaxAggregateOutputType | null
+  }
+
+  type GetTravelSessionGroupByPayload<T extends TravelSessionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TravelSessionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TravelSessionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TravelSessionGroupByOutputType[P]>
+            : GetScalarType<T[P], TravelSessionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TravelSessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    active?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["travelSession"]>
+
+  export type TravelSessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    active?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["travelSession"]>
+
+  export type TravelSessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    active?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["travelSession"]>
+
+  export type TravelSessionSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    active?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TravelSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "active" | "startDate" | "endDate" | "createdAt" | "updatedAt", ExtArgs["result"]["travelSession"]>
+  export type TravelSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TravelSessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TravelSessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $TravelSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TravelSession"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      active: boolean
+      startDate: Date
+      endDate: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["travelSession"]>
+    composites: {}
+  }
+
+  type TravelSessionGetPayload<S extends boolean | null | undefined | TravelSessionDefaultArgs> = $Result.GetResult<Prisma.$TravelSessionPayload, S>
+
+  type TravelSessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TravelSessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TravelSessionCountAggregateInputType | true
+    }
+
+  export interface TravelSessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TravelSession'], meta: { name: 'TravelSession' } }
+    /**
+     * Find zero or one TravelSession that matches the filter.
+     * @param {TravelSessionFindUniqueArgs} args - Arguments to find a TravelSession
+     * @example
+     * // Get one TravelSession
+     * const travelSession = await prisma.travelSession.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TravelSessionFindUniqueArgs>(args: SelectSubset<T, TravelSessionFindUniqueArgs<ExtArgs>>): Prisma__TravelSessionClient<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TravelSession that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TravelSessionFindUniqueOrThrowArgs} args - Arguments to find a TravelSession
+     * @example
+     * // Get one TravelSession
+     * const travelSession = await prisma.travelSession.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TravelSessionFindUniqueOrThrowArgs>(args: SelectSubset<T, TravelSessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TravelSessionClient<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TravelSession that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TravelSessionFindFirstArgs} args - Arguments to find a TravelSession
+     * @example
+     * // Get one TravelSession
+     * const travelSession = await prisma.travelSession.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TravelSessionFindFirstArgs>(args?: SelectSubset<T, TravelSessionFindFirstArgs<ExtArgs>>): Prisma__TravelSessionClient<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TravelSession that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TravelSessionFindFirstOrThrowArgs} args - Arguments to find a TravelSession
+     * @example
+     * // Get one TravelSession
+     * const travelSession = await prisma.travelSession.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TravelSessionFindFirstOrThrowArgs>(args?: SelectSubset<T, TravelSessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__TravelSessionClient<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TravelSessions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TravelSessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TravelSessions
+     * const travelSessions = await prisma.travelSession.findMany()
+     * 
+     * // Get first 10 TravelSessions
+     * const travelSessions = await prisma.travelSession.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const travelSessionWithIdOnly = await prisma.travelSession.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TravelSessionFindManyArgs>(args?: SelectSubset<T, TravelSessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TravelSession.
+     * @param {TravelSessionCreateArgs} args - Arguments to create a TravelSession.
+     * @example
+     * // Create one TravelSession
+     * const TravelSession = await prisma.travelSession.create({
+     *   data: {
+     *     // ... data to create a TravelSession
+     *   }
+     * })
+     * 
+     */
+    create<T extends TravelSessionCreateArgs>(args: SelectSubset<T, TravelSessionCreateArgs<ExtArgs>>): Prisma__TravelSessionClient<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TravelSessions.
+     * @param {TravelSessionCreateManyArgs} args - Arguments to create many TravelSessions.
+     * @example
+     * // Create many TravelSessions
+     * const travelSession = await prisma.travelSession.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TravelSessionCreateManyArgs>(args?: SelectSubset<T, TravelSessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TravelSessions and returns the data saved in the database.
+     * @param {TravelSessionCreateManyAndReturnArgs} args - Arguments to create many TravelSessions.
+     * @example
+     * // Create many TravelSessions
+     * const travelSession = await prisma.travelSession.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TravelSessions and only return the `id`
+     * const travelSessionWithIdOnly = await prisma.travelSession.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TravelSessionCreateManyAndReturnArgs>(args?: SelectSubset<T, TravelSessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TravelSession.
+     * @param {TravelSessionDeleteArgs} args - Arguments to delete one TravelSession.
+     * @example
+     * // Delete one TravelSession
+     * const TravelSession = await prisma.travelSession.delete({
+     *   where: {
+     *     // ... filter to delete one TravelSession
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TravelSessionDeleteArgs>(args: SelectSubset<T, TravelSessionDeleteArgs<ExtArgs>>): Prisma__TravelSessionClient<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TravelSession.
+     * @param {TravelSessionUpdateArgs} args - Arguments to update one TravelSession.
+     * @example
+     * // Update one TravelSession
+     * const travelSession = await prisma.travelSession.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TravelSessionUpdateArgs>(args: SelectSubset<T, TravelSessionUpdateArgs<ExtArgs>>): Prisma__TravelSessionClient<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TravelSessions.
+     * @param {TravelSessionDeleteManyArgs} args - Arguments to filter TravelSessions to delete.
+     * @example
+     * // Delete a few TravelSessions
+     * const { count } = await prisma.travelSession.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TravelSessionDeleteManyArgs>(args?: SelectSubset<T, TravelSessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TravelSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TravelSessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TravelSessions
+     * const travelSession = await prisma.travelSession.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TravelSessionUpdateManyArgs>(args: SelectSubset<T, TravelSessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TravelSessions and returns the data updated in the database.
+     * @param {TravelSessionUpdateManyAndReturnArgs} args - Arguments to update many TravelSessions.
+     * @example
+     * // Update many TravelSessions
+     * const travelSession = await prisma.travelSession.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TravelSessions and only return the `id`
+     * const travelSessionWithIdOnly = await prisma.travelSession.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TravelSessionUpdateManyAndReturnArgs>(args: SelectSubset<T, TravelSessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TravelSession.
+     * @param {TravelSessionUpsertArgs} args - Arguments to update or create a TravelSession.
+     * @example
+     * // Update or create a TravelSession
+     * const travelSession = await prisma.travelSession.upsert({
+     *   create: {
+     *     // ... data to create a TravelSession
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TravelSession we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TravelSessionUpsertArgs>(args: SelectSubset<T, TravelSessionUpsertArgs<ExtArgs>>): Prisma__TravelSessionClient<$Result.GetResult<Prisma.$TravelSessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TravelSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TravelSessionCountArgs} args - Arguments to filter TravelSessions to count.
+     * @example
+     * // Count the number of TravelSessions
+     * const count = await prisma.travelSession.count({
+     *   where: {
+     *     // ... the filter for the TravelSessions we want to count
+     *   }
+     * })
+    **/
+    count<T extends TravelSessionCountArgs>(
+      args?: Subset<T, TravelSessionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TravelSessionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TravelSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TravelSessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TravelSessionAggregateArgs>(args: Subset<T, TravelSessionAggregateArgs>): Prisma.PrismaPromise<GetTravelSessionAggregateType<T>>
+
+    /**
+     * Group by TravelSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TravelSessionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TravelSessionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TravelSessionGroupByArgs['orderBy'] }
+        : { orderBy?: TravelSessionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TravelSessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTravelSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TravelSession model
+   */
+  readonly fields: TravelSessionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TravelSession.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TravelSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TravelSession model
+   */
+  interface TravelSessionFieldRefs {
+    readonly id: FieldRef<"TravelSession", 'String'>
+    readonly userId: FieldRef<"TravelSession", 'String'>
+    readonly active: FieldRef<"TravelSession", 'Boolean'>
+    readonly startDate: FieldRef<"TravelSession", 'DateTime'>
+    readonly endDate: FieldRef<"TravelSession", 'DateTime'>
+    readonly createdAt: FieldRef<"TravelSession", 'DateTime'>
+    readonly updatedAt: FieldRef<"TravelSession", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TravelSession findUnique
+   */
+  export type TravelSessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which TravelSession to fetch.
+     */
+    where: TravelSessionWhereUniqueInput
+  }
+
+  /**
+   * TravelSession findUniqueOrThrow
+   */
+  export type TravelSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which TravelSession to fetch.
+     */
+    where: TravelSessionWhereUniqueInput
+  }
+
+  /**
+   * TravelSession findFirst
+   */
+  export type TravelSessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which TravelSession to fetch.
+     */
+    where?: TravelSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TravelSessions to fetch.
+     */
+    orderBy?: TravelSessionOrderByWithRelationInput | TravelSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TravelSessions.
+     */
+    cursor?: TravelSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TravelSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TravelSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TravelSessions.
+     */
+    distinct?: TravelSessionScalarFieldEnum | TravelSessionScalarFieldEnum[]
+  }
+
+  /**
+   * TravelSession findFirstOrThrow
+   */
+  export type TravelSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which TravelSession to fetch.
+     */
+    where?: TravelSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TravelSessions to fetch.
+     */
+    orderBy?: TravelSessionOrderByWithRelationInput | TravelSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TravelSessions.
+     */
+    cursor?: TravelSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TravelSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TravelSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TravelSessions.
+     */
+    distinct?: TravelSessionScalarFieldEnum | TravelSessionScalarFieldEnum[]
+  }
+
+  /**
+   * TravelSession findMany
+   */
+  export type TravelSessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which TravelSessions to fetch.
+     */
+    where?: TravelSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TravelSessions to fetch.
+     */
+    orderBy?: TravelSessionOrderByWithRelationInput | TravelSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TravelSessions.
+     */
+    cursor?: TravelSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TravelSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TravelSessions.
+     */
+    skip?: number
+    distinct?: TravelSessionScalarFieldEnum | TravelSessionScalarFieldEnum[]
+  }
+
+  /**
+   * TravelSession create
+   */
+  export type TravelSessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TravelSession.
+     */
+    data: XOR<TravelSessionCreateInput, TravelSessionUncheckedCreateInput>
+  }
+
+  /**
+   * TravelSession createMany
+   */
+  export type TravelSessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TravelSessions.
+     */
+    data: TravelSessionCreateManyInput | TravelSessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TravelSession createManyAndReturn
+   */
+  export type TravelSessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * The data used to create many TravelSessions.
+     */
+    data: TravelSessionCreateManyInput | TravelSessionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TravelSession update
+   */
+  export type TravelSessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TravelSession.
+     */
+    data: XOR<TravelSessionUpdateInput, TravelSessionUncheckedUpdateInput>
+    /**
+     * Choose, which TravelSession to update.
+     */
+    where: TravelSessionWhereUniqueInput
+  }
+
+  /**
+   * TravelSession updateMany
+   */
+  export type TravelSessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TravelSessions.
+     */
+    data: XOR<TravelSessionUpdateManyMutationInput, TravelSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which TravelSessions to update
+     */
+    where?: TravelSessionWhereInput
+    /**
+     * Limit how many TravelSessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TravelSession updateManyAndReturn
+   */
+  export type TravelSessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * The data used to update TravelSessions.
+     */
+    data: XOR<TravelSessionUpdateManyMutationInput, TravelSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which TravelSessions to update
+     */
+    where?: TravelSessionWhereInput
+    /**
+     * Limit how many TravelSessions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TravelSession upsert
+   */
+  export type TravelSessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TravelSession to update in case it exists.
+     */
+    where: TravelSessionWhereUniqueInput
+    /**
+     * In case the TravelSession found by the `where` argument doesn't exist, create a new TravelSession with this data.
+     */
+    create: XOR<TravelSessionCreateInput, TravelSessionUncheckedCreateInput>
+    /**
+     * In case the TravelSession was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TravelSessionUpdateInput, TravelSessionUncheckedUpdateInput>
+  }
+
+  /**
+   * TravelSession delete
+   */
+  export type TravelSessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+    /**
+     * Filter which TravelSession to delete.
+     */
+    where: TravelSessionWhereUniqueInput
+  }
+
+  /**
+   * TravelSession deleteMany
+   */
+  export type TravelSessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TravelSessions to delete
+     */
+    where?: TravelSessionWhereInput
+    /**
+     * Limit how many TravelSessions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TravelSession without action
+   */
+  export type TravelSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TravelSession
+     */
+    select?: TravelSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TravelSession
+     */
+    omit?: TravelSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TravelSessionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CacheEntry
+   */
+
+  export type AggregateCacheEntry = {
+    _count: CacheEntryCountAggregateOutputType | null
+    _min: CacheEntryMinAggregateOutputType | null
+    _max: CacheEntryMaxAggregateOutputType | null
+  }
+
+  export type CacheEntryMinAggregateOutputType = {
+    key: string | null
+    value: string | null
+    createdAt: Date | null
+    expiresAt: Date | null
+  }
+
+  export type CacheEntryMaxAggregateOutputType = {
+    key: string | null
+    value: string | null
+    createdAt: Date | null
+    expiresAt: Date | null
+  }
+
+  export type CacheEntryCountAggregateOutputType = {
+    key: number
+    value: number
+    createdAt: number
+    expiresAt: number
+    _all: number
+  }
+
+
+  export type CacheEntryMinAggregateInputType = {
+    key?: true
+    value?: true
+    createdAt?: true
+    expiresAt?: true
+  }
+
+  export type CacheEntryMaxAggregateInputType = {
+    key?: true
+    value?: true
+    createdAt?: true
+    expiresAt?: true
+  }
+
+  export type CacheEntryCountAggregateInputType = {
+    key?: true
+    value?: true
+    createdAt?: true
+    expiresAt?: true
+    _all?: true
+  }
+
+  export type CacheEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CacheEntry to aggregate.
+     */
+    where?: CacheEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CacheEntries to fetch.
+     */
+    orderBy?: CacheEntryOrderByWithRelationInput | CacheEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CacheEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CacheEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CacheEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CacheEntries
+    **/
+    _count?: true | CacheEntryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CacheEntryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CacheEntryMaxAggregateInputType
+  }
+
+  export type GetCacheEntryAggregateType<T extends CacheEntryAggregateArgs> = {
+        [P in keyof T & keyof AggregateCacheEntry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCacheEntry[P]>
+      : GetScalarType<T[P], AggregateCacheEntry[P]>
+  }
+
+
+
+
+  export type CacheEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CacheEntryWhereInput
+    orderBy?: CacheEntryOrderByWithAggregationInput | CacheEntryOrderByWithAggregationInput[]
+    by: CacheEntryScalarFieldEnum[] | CacheEntryScalarFieldEnum
+    having?: CacheEntryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CacheEntryCountAggregateInputType | true
+    _min?: CacheEntryMinAggregateInputType
+    _max?: CacheEntryMaxAggregateInputType
+  }
+
+  export type CacheEntryGroupByOutputType = {
+    key: string
+    value: string
+    createdAt: Date
+    expiresAt: Date
+    _count: CacheEntryCountAggregateOutputType | null
+    _min: CacheEntryMinAggregateOutputType | null
+    _max: CacheEntryMaxAggregateOutputType | null
+  }
+
+  type GetCacheEntryGroupByPayload<T extends CacheEntryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CacheEntryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CacheEntryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CacheEntryGroupByOutputType[P]>
+            : GetScalarType<T[P], CacheEntryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CacheEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    key?: boolean
+    value?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+  }, ExtArgs["result"]["cacheEntry"]>
+
+  export type CacheEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    key?: boolean
+    value?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+  }, ExtArgs["result"]["cacheEntry"]>
+
+  export type CacheEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    key?: boolean
+    value?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+  }, ExtArgs["result"]["cacheEntry"]>
+
+  export type CacheEntrySelectScalar = {
+    key?: boolean
+    value?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+  }
+
+  export type CacheEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"key" | "value" | "createdAt" | "expiresAt", ExtArgs["result"]["cacheEntry"]>
+
+  export type $CacheEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CacheEntry"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      key: string
+      value: string
+      createdAt: Date
+      expiresAt: Date
+    }, ExtArgs["result"]["cacheEntry"]>
+    composites: {}
+  }
+
+  type CacheEntryGetPayload<S extends boolean | null | undefined | CacheEntryDefaultArgs> = $Result.GetResult<Prisma.$CacheEntryPayload, S>
+
+  type CacheEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CacheEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CacheEntryCountAggregateInputType | true
+    }
+
+  export interface CacheEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CacheEntry'], meta: { name: 'CacheEntry' } }
+    /**
+     * Find zero or one CacheEntry that matches the filter.
+     * @param {CacheEntryFindUniqueArgs} args - Arguments to find a CacheEntry
+     * @example
+     * // Get one CacheEntry
+     * const cacheEntry = await prisma.cacheEntry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CacheEntryFindUniqueArgs>(args: SelectSubset<T, CacheEntryFindUniqueArgs<ExtArgs>>): Prisma__CacheEntryClient<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CacheEntry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CacheEntryFindUniqueOrThrowArgs} args - Arguments to find a CacheEntry
+     * @example
+     * // Get one CacheEntry
+     * const cacheEntry = await prisma.cacheEntry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CacheEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, CacheEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CacheEntryClient<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CacheEntry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CacheEntryFindFirstArgs} args - Arguments to find a CacheEntry
+     * @example
+     * // Get one CacheEntry
+     * const cacheEntry = await prisma.cacheEntry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CacheEntryFindFirstArgs>(args?: SelectSubset<T, CacheEntryFindFirstArgs<ExtArgs>>): Prisma__CacheEntryClient<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CacheEntry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CacheEntryFindFirstOrThrowArgs} args - Arguments to find a CacheEntry
+     * @example
+     * // Get one CacheEntry
+     * const cacheEntry = await prisma.cacheEntry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CacheEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, CacheEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__CacheEntryClient<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CacheEntries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CacheEntryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CacheEntries
+     * const cacheEntries = await prisma.cacheEntry.findMany()
+     * 
+     * // Get first 10 CacheEntries
+     * const cacheEntries = await prisma.cacheEntry.findMany({ take: 10 })
+     * 
+     * // Only select the `key`
+     * const cacheEntryWithKeyOnly = await prisma.cacheEntry.findMany({ select: { key: true } })
+     * 
+     */
+    findMany<T extends CacheEntryFindManyArgs>(args?: SelectSubset<T, CacheEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CacheEntry.
+     * @param {CacheEntryCreateArgs} args - Arguments to create a CacheEntry.
+     * @example
+     * // Create one CacheEntry
+     * const CacheEntry = await prisma.cacheEntry.create({
+     *   data: {
+     *     // ... data to create a CacheEntry
+     *   }
+     * })
+     * 
+     */
+    create<T extends CacheEntryCreateArgs>(args: SelectSubset<T, CacheEntryCreateArgs<ExtArgs>>): Prisma__CacheEntryClient<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CacheEntries.
+     * @param {CacheEntryCreateManyArgs} args - Arguments to create many CacheEntries.
+     * @example
+     * // Create many CacheEntries
+     * const cacheEntry = await prisma.cacheEntry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CacheEntryCreateManyArgs>(args?: SelectSubset<T, CacheEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CacheEntries and returns the data saved in the database.
+     * @param {CacheEntryCreateManyAndReturnArgs} args - Arguments to create many CacheEntries.
+     * @example
+     * // Create many CacheEntries
+     * const cacheEntry = await prisma.cacheEntry.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CacheEntries and only return the `key`
+     * const cacheEntryWithKeyOnly = await prisma.cacheEntry.createManyAndReturn({
+     *   select: { key: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CacheEntryCreateManyAndReturnArgs>(args?: SelectSubset<T, CacheEntryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CacheEntry.
+     * @param {CacheEntryDeleteArgs} args - Arguments to delete one CacheEntry.
+     * @example
+     * // Delete one CacheEntry
+     * const CacheEntry = await prisma.cacheEntry.delete({
+     *   where: {
+     *     // ... filter to delete one CacheEntry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CacheEntryDeleteArgs>(args: SelectSubset<T, CacheEntryDeleteArgs<ExtArgs>>): Prisma__CacheEntryClient<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CacheEntry.
+     * @param {CacheEntryUpdateArgs} args - Arguments to update one CacheEntry.
+     * @example
+     * // Update one CacheEntry
+     * const cacheEntry = await prisma.cacheEntry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CacheEntryUpdateArgs>(args: SelectSubset<T, CacheEntryUpdateArgs<ExtArgs>>): Prisma__CacheEntryClient<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CacheEntries.
+     * @param {CacheEntryDeleteManyArgs} args - Arguments to filter CacheEntries to delete.
+     * @example
+     * // Delete a few CacheEntries
+     * const { count } = await prisma.cacheEntry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CacheEntryDeleteManyArgs>(args?: SelectSubset<T, CacheEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CacheEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CacheEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CacheEntries
+     * const cacheEntry = await prisma.cacheEntry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CacheEntryUpdateManyArgs>(args: SelectSubset<T, CacheEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CacheEntries and returns the data updated in the database.
+     * @param {CacheEntryUpdateManyAndReturnArgs} args - Arguments to update many CacheEntries.
+     * @example
+     * // Update many CacheEntries
+     * const cacheEntry = await prisma.cacheEntry.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CacheEntries and only return the `key`
+     * const cacheEntryWithKeyOnly = await prisma.cacheEntry.updateManyAndReturn({
+     *   select: { key: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CacheEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, CacheEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CacheEntry.
+     * @param {CacheEntryUpsertArgs} args - Arguments to update or create a CacheEntry.
+     * @example
+     * // Update or create a CacheEntry
+     * const cacheEntry = await prisma.cacheEntry.upsert({
+     *   create: {
+     *     // ... data to create a CacheEntry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CacheEntry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CacheEntryUpsertArgs>(args: SelectSubset<T, CacheEntryUpsertArgs<ExtArgs>>): Prisma__CacheEntryClient<$Result.GetResult<Prisma.$CacheEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CacheEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CacheEntryCountArgs} args - Arguments to filter CacheEntries to count.
+     * @example
+     * // Count the number of CacheEntries
+     * const count = await prisma.cacheEntry.count({
+     *   where: {
+     *     // ... the filter for the CacheEntries we want to count
+     *   }
+     * })
+    **/
+    count<T extends CacheEntryCountArgs>(
+      args?: Subset<T, CacheEntryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CacheEntryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CacheEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CacheEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CacheEntryAggregateArgs>(args: Subset<T, CacheEntryAggregateArgs>): Prisma.PrismaPromise<GetCacheEntryAggregateType<T>>
+
+    /**
+     * Group by CacheEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CacheEntryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CacheEntryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CacheEntryGroupByArgs['orderBy'] }
+        : { orderBy?: CacheEntryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CacheEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCacheEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CacheEntry model
+   */
+  readonly fields: CacheEntryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CacheEntry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CacheEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CacheEntry model
+   */
+  interface CacheEntryFieldRefs {
+    readonly key: FieldRef<"CacheEntry", 'String'>
+    readonly value: FieldRef<"CacheEntry", 'String'>
+    readonly createdAt: FieldRef<"CacheEntry", 'DateTime'>
+    readonly expiresAt: FieldRef<"CacheEntry", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CacheEntry findUnique
+   */
+  export type CacheEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which CacheEntry to fetch.
+     */
+    where: CacheEntryWhereUniqueInput
+  }
+
+  /**
+   * CacheEntry findUniqueOrThrow
+   */
+  export type CacheEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which CacheEntry to fetch.
+     */
+    where: CacheEntryWhereUniqueInput
+  }
+
+  /**
+   * CacheEntry findFirst
+   */
+  export type CacheEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which CacheEntry to fetch.
+     */
+    where?: CacheEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CacheEntries to fetch.
+     */
+    orderBy?: CacheEntryOrderByWithRelationInput | CacheEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CacheEntries.
+     */
+    cursor?: CacheEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CacheEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CacheEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CacheEntries.
+     */
+    distinct?: CacheEntryScalarFieldEnum | CacheEntryScalarFieldEnum[]
+  }
+
+  /**
+   * CacheEntry findFirstOrThrow
+   */
+  export type CacheEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which CacheEntry to fetch.
+     */
+    where?: CacheEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CacheEntries to fetch.
+     */
+    orderBy?: CacheEntryOrderByWithRelationInput | CacheEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CacheEntries.
+     */
+    cursor?: CacheEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CacheEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CacheEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CacheEntries.
+     */
+    distinct?: CacheEntryScalarFieldEnum | CacheEntryScalarFieldEnum[]
+  }
+
+  /**
+   * CacheEntry findMany
+   */
+  export type CacheEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which CacheEntries to fetch.
+     */
+    where?: CacheEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CacheEntries to fetch.
+     */
+    orderBy?: CacheEntryOrderByWithRelationInput | CacheEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CacheEntries.
+     */
+    cursor?: CacheEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CacheEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CacheEntries.
+     */
+    skip?: number
+    distinct?: CacheEntryScalarFieldEnum | CacheEntryScalarFieldEnum[]
+  }
+
+  /**
+   * CacheEntry create
+   */
+  export type CacheEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * The data needed to create a CacheEntry.
+     */
+    data: XOR<CacheEntryCreateInput, CacheEntryUncheckedCreateInput>
+  }
+
+  /**
+   * CacheEntry createMany
+   */
+  export type CacheEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CacheEntries.
+     */
+    data: CacheEntryCreateManyInput | CacheEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CacheEntry createManyAndReturn
+   */
+  export type CacheEntryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * The data used to create many CacheEntries.
+     */
+    data: CacheEntryCreateManyInput | CacheEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CacheEntry update
+   */
+  export type CacheEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * The data needed to update a CacheEntry.
+     */
+    data: XOR<CacheEntryUpdateInput, CacheEntryUncheckedUpdateInput>
+    /**
+     * Choose, which CacheEntry to update.
+     */
+    where: CacheEntryWhereUniqueInput
+  }
+
+  /**
+   * CacheEntry updateMany
+   */
+  export type CacheEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CacheEntries.
+     */
+    data: XOR<CacheEntryUpdateManyMutationInput, CacheEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which CacheEntries to update
+     */
+    where?: CacheEntryWhereInput
+    /**
+     * Limit how many CacheEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CacheEntry updateManyAndReturn
+   */
+  export type CacheEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * The data used to update CacheEntries.
+     */
+    data: XOR<CacheEntryUpdateManyMutationInput, CacheEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which CacheEntries to update
+     */
+    where?: CacheEntryWhereInput
+    /**
+     * Limit how many CacheEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CacheEntry upsert
+   */
+  export type CacheEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * The filter to search for the CacheEntry to update in case it exists.
+     */
+    where: CacheEntryWhereUniqueInput
+    /**
+     * In case the CacheEntry found by the `where` argument doesn't exist, create a new CacheEntry with this data.
+     */
+    create: XOR<CacheEntryCreateInput, CacheEntryUncheckedCreateInput>
+    /**
+     * In case the CacheEntry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CacheEntryUpdateInput, CacheEntryUncheckedUpdateInput>
+  }
+
+  /**
+   * CacheEntry delete
+   */
+  export type CacheEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+    /**
+     * Filter which CacheEntry to delete.
+     */
+    where: CacheEntryWhereUniqueInput
+  }
+
+  /**
+   * CacheEntry deleteMany
+   */
+  export type CacheEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CacheEntries to delete
+     */
+    where?: CacheEntryWhereInput
+    /**
+     * Limit how many CacheEntries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CacheEntry without action
+   */
+  export type CacheEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CacheEntry
+     */
+    select?: CacheEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CacheEntry
+     */
+    omit?: CacheEntryOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Enums
+   */
+
+  export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
+    Serializable: 'Serializable'
+  };
+
+  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+  export const UserScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    passwordHash: 'passwordHash',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const UserProfileScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    fullName: 'fullName',
+    age: 'age',
+    gender: 'gender',
+    weight: 'weight',
+    height: 'height',
+    activityLevel: 'activityLevel',
+    goal: 'goal',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
+
+
+  export const FoodScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    calories: 'calories',
+    protein: 'protein',
+    carbohydrates: 'carbohydrates',
+    fats: 'fats',
+    fiber: 'fiber',
+    sugar: 'sugar',
+    defaultUnit: 'defaultUnit',
+    servingSize: 'servingSize',
+    source: 'source',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FoodScalarFieldEnum = (typeof FoodScalarFieldEnum)[keyof typeof FoodScalarFieldEnum]
+
+
+  export const MealScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    mealType: 'mealType',
+    source: 'source',
+    createdAt: 'createdAt'
+  };
+
+  export type MealScalarFieldEnum = (typeof MealScalarFieldEnum)[keyof typeof MealScalarFieldEnum]
+
+
+  export const MealItemScalarFieldEnum: {
+    id: 'id',
+    mealId: 'mealId',
+    foodId: 'foodId',
+    foodName: 'foodName',
+    quantity: 'quantity',
+    unit: 'unit',
+    calories: 'calories',
+    protein: 'protein',
+    carbohydrates: 'carbohydrates',
+    fats: 'fats',
+    fiber: 'fiber',
+    sugar: 'sugar'
+  };
+
+  export type MealItemScalarFieldEnum = (typeof MealItemScalarFieldEnum)[keyof typeof MealItemScalarFieldEnum]
+
+
+  export const WaterLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    amount: 'amount',
+    unit: 'unit',
+    createdAt: 'createdAt'
+  };
+
+  export type WaterLogScalarFieldEnum = (typeof WaterLogScalarFieldEnum)[keyof typeof WaterLogScalarFieldEnum]
+
+
+  export const SupplementLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    name: 'name',
+    dosage: 'dosage',
+    unit: 'unit',
+    createdAt: 'createdAt'
+  };
+
+  export type SupplementLogScalarFieldEnum = (typeof SupplementLogScalarFieldEnum)[keyof typeof SupplementLogScalarFieldEnum]
+
+
+  export const ExerciseLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    activityName: 'activityName',
+    durationMinutes: 'durationMinutes',
+    caloriesBurned: 'caloriesBurned',
+    createdAt: 'createdAt'
+  };
+
+  export type ExerciseLogScalarFieldEnum = (typeof ExerciseLogScalarFieldEnum)[keyof typeof ExerciseLogScalarFieldEnum]
+
+
+  export const MealScanScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    mealId: 'mealId',
+    imageUrl: 'imageUrl',
+    model: 'model',
+    confidence: 'confidence',
+    rawResponse: 'rawResponse',
+    processedMatches: 'processedMatches',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MealScanScalarFieldEnum = (typeof MealScanScalarFieldEnum)[keyof typeof MealScanScalarFieldEnum]
+
+
+  export const ConversationScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    title: 'title',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ConversationScalarFieldEnum = (typeof ConversationScalarFieldEnum)[keyof typeof ConversationScalarFieldEnum]
+
+
+  export const ConversationMessageScalarFieldEnum: {
+    id: 'id',
+    conversationId: 'conversationId',
+    role: 'role',
+    content: 'content',
+    metadata: 'metadata',
+    tokens: 'tokens',
+    createdAt: 'createdAt'
+  };
+
+  export type ConversationMessageScalarFieldEnum = (typeof ConversationMessageScalarFieldEnum)[keyof typeof ConversationMessageScalarFieldEnum]
+
+
+  export const ConversationFeedbackScalarFieldEnum: {
+    id: 'id',
+    messageId: 'messageId',
+    rating: 'rating',
+    comment: 'comment',
+    createdAt: 'createdAt'
+  };
+
+  export type ConversationFeedbackScalarFieldEnum = (typeof ConversationFeedbackScalarFieldEnum)[keyof typeof ConversationFeedbackScalarFieldEnum]
+
+
+  export const TravelSessionScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    active: 'active',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TravelSessionScalarFieldEnum = (typeof TravelSessionScalarFieldEnum)[keyof typeof TravelSessionScalarFieldEnum]
+
+
+  export const CacheEntryScalarFieldEnum: {
+    key: 'key',
+    value: 'value',
+    createdAt: 'createdAt',
+    expiresAt: 'expiresAt'
+  };
+
+  export type CacheEntryScalarFieldEnum = (typeof CacheEntryScalarFieldEnum)[keyof typeof CacheEntryScalarFieldEnum]
+
+
+  export const SortOrder: {
+    asc: 'asc',
+    desc: 'desc'
+  };
+
+  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  /**
+   * Field references
+   */
+
+
+  /**
+   * Reference to a field of type 'String'
+   */
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'FoodSource'
+   */
+  export type EnumFoodSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FoodSource'>
+    
+
+
+  /**
+   * Reference to a field of type 'FoodSource[]'
+   */
+  export type ListEnumFoodSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FoodSource[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+  /**
+   * Deep Input Types
+   */
+
+
+  export type UserWhereInput = {
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    id?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
+    passwordHash?: StringFilter<"User"> | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    profile?: XOR<UserProfileNullableScalarRelationFilter, UserProfileWhereInput> | null
+    meals?: MealListRelationFilter
+    waterLogs?: WaterLogListRelationFilter
+    supplementLogs?: SupplementLogListRelationFilter
+    exerciseLogs?: ExerciseLogListRelationFilter
+    mealScans?: MealScanListRelationFilter
+    conversations?: ConversationListRelationFilter
+    travelSessions?: TravelSessionListRelationFilter
+  }
+
+  export type UserOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    passwordHash?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    profile?: UserProfileOrderByWithRelationInput
+    meals?: MealOrderByRelationAggregateInput
+    waterLogs?: WaterLogOrderByRelationAggregateInput
+    supplementLogs?: SupplementLogOrderByRelationAggregateInput
+    exerciseLogs?: ExerciseLogOrderByRelationAggregateInput
+    mealScans?: MealScanOrderByRelationAggregateInput
+    conversations?: ConversationOrderByRelationAggregateInput
+    travelSessions?: TravelSessionOrderByRelationAggregateInput
+  }
+
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    passwordHash?: StringFilter<"User"> | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    profile?: XOR<UserProfileNullableScalarRelationFilter, UserProfileWhereInput> | null
+    meals?: MealListRelationFilter
+    waterLogs?: WaterLogListRelationFilter
+    supplementLogs?: SupplementLogListRelationFilter
+    exerciseLogs?: ExerciseLogListRelationFilter
+    mealScans?: MealScanListRelationFilter
+    conversations?: ConversationListRelationFilter
+    travelSessions?: TravelSessionListRelationFilter
+  }, "id" | "email">
+
+  export type UserOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    passwordHash?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserCountOrderByAggregateInput
+    _max?: UserMaxOrderByAggregateInput
+    _min?: UserMinOrderByAggregateInput
+  }
+
+  export type UserScalarWhereWithAggregatesInput = {
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    OR?: UserScalarWhereWithAggregatesInput[]
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"User"> | string
+    email?: StringWithAggregatesFilter<"User"> | string
+    passwordHash?: StringWithAggregatesFilter<"User"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type UserProfileWhereInput = {
+    AND?: UserProfileWhereInput | UserProfileWhereInput[]
+    OR?: UserProfileWhereInput[]
+    NOT?: UserProfileWhereInput | UserProfileWhereInput[]
+    id?: StringFilter<"UserProfile"> | string
+    userId?: StringFilter<"UserProfile"> | string
+    fullName?: StringFilter<"UserProfile"> | string
+    age?: IntFilter<"UserProfile"> | number
+    gender?: StringFilter<"UserProfile"> | string
+    weight?: FloatFilter<"UserProfile"> | number
+    height?: FloatFilter<"UserProfile"> | number
+    activityLevel?: StringFilter<"UserProfile"> | string
+    goal?: StringFilter<"UserProfile"> | string
+    createdAt?: DateTimeFilter<"UserProfile"> | Date | string
+    updatedAt?: DateTimeFilter<"UserProfile"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UserProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    fullName?: SortOrder
+    age?: SortOrder
+    gender?: SortOrder
+    weight?: SortOrder
+    height?: SortOrder
+    activityLevel?: SortOrder
+    goal?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type UserProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: UserProfileWhereInput | UserProfileWhereInput[]
+    OR?: UserProfileWhereInput[]
+    NOT?: UserProfileWhereInput | UserProfileWhereInput[]
+    fullName?: StringFilter<"UserProfile"> | string
+    age?: IntFilter<"UserProfile"> | number
+    gender?: StringFilter<"UserProfile"> | string
+    weight?: FloatFilter<"UserProfile"> | number
+    height?: FloatFilter<"UserProfile"> | number
+    activityLevel?: StringFilter<"UserProfile"> | string
+    goal?: StringFilter<"UserProfile"> | string
+    createdAt?: DateTimeFilter<"UserProfile"> | Date | string
+    updatedAt?: DateTimeFilter<"UserProfile"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type UserProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    fullName?: SortOrder
+    age?: SortOrder
+    gender?: SortOrder
+    weight?: SortOrder
+    height?: SortOrder
+    activityLevel?: SortOrder
+    goal?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserProfileCountOrderByAggregateInput
+    _avg?: UserProfileAvgOrderByAggregateInput
+    _max?: UserProfileMaxOrderByAggregateInput
+    _min?: UserProfileMinOrderByAggregateInput
+    _sum?: UserProfileSumOrderByAggregateInput
+  }
+
+  export type UserProfileScalarWhereWithAggregatesInput = {
+    AND?: UserProfileScalarWhereWithAggregatesInput | UserProfileScalarWhereWithAggregatesInput[]
+    OR?: UserProfileScalarWhereWithAggregatesInput[]
+    NOT?: UserProfileScalarWhereWithAggregatesInput | UserProfileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserProfile"> | string
+    userId?: StringWithAggregatesFilter<"UserProfile"> | string
+    fullName?: StringWithAggregatesFilter<"UserProfile"> | string
+    age?: IntWithAggregatesFilter<"UserProfile"> | number
+    gender?: StringWithAggregatesFilter<"UserProfile"> | string
+    weight?: FloatWithAggregatesFilter<"UserProfile"> | number
+    height?: FloatWithAggregatesFilter<"UserProfile"> | number
+    activityLevel?: StringWithAggregatesFilter<"UserProfile"> | string
+    goal?: StringWithAggregatesFilter<"UserProfile"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"UserProfile"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"UserProfile"> | Date | string
+  }
+
+  export type FoodWhereInput = {
+    AND?: FoodWhereInput | FoodWhereInput[]
+    OR?: FoodWhereInput[]
+    NOT?: FoodWhereInput | FoodWhereInput[]
+    id?: StringFilter<"Food"> | string
+    name?: StringFilter<"Food"> | string
+    calories?: FloatFilter<"Food"> | number
+    protein?: FloatFilter<"Food"> | number
+    carbohydrates?: FloatFilter<"Food"> | number
+    fats?: FloatFilter<"Food"> | number
+    fiber?: FloatFilter<"Food"> | number
+    sugar?: FloatFilter<"Food"> | number
+    defaultUnit?: StringFilter<"Food"> | string
+    servingSize?: FloatFilter<"Food"> | number
+    source?: EnumFoodSourceFilter<"Food"> | $Enums.FoodSource
+    createdAt?: DateTimeFilter<"Food"> | Date | string
+    updatedAt?: DateTimeFilter<"Food"> | Date | string
+    mealItems?: MealItemListRelationFilter
+  }
+
+  export type FoodOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+    defaultUnit?: SortOrder
+    servingSize?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    mealItems?: MealItemOrderByRelationAggregateInput
+  }
+
+  export type FoodWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: FoodWhereInput | FoodWhereInput[]
+    OR?: FoodWhereInput[]
+    NOT?: FoodWhereInput | FoodWhereInput[]
+    calories?: FloatFilter<"Food"> | number
+    protein?: FloatFilter<"Food"> | number
+    carbohydrates?: FloatFilter<"Food"> | number
+    fats?: FloatFilter<"Food"> | number
+    fiber?: FloatFilter<"Food"> | number
+    sugar?: FloatFilter<"Food"> | number
+    defaultUnit?: StringFilter<"Food"> | string
+    servingSize?: FloatFilter<"Food"> | number
+    source?: EnumFoodSourceFilter<"Food"> | $Enums.FoodSource
+    createdAt?: DateTimeFilter<"Food"> | Date | string
+    updatedAt?: DateTimeFilter<"Food"> | Date | string
+    mealItems?: MealItemListRelationFilter
+  }, "id" | "name">
+
+  export type FoodOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+    defaultUnit?: SortOrder
+    servingSize?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FoodCountOrderByAggregateInput
+    _avg?: FoodAvgOrderByAggregateInput
+    _max?: FoodMaxOrderByAggregateInput
+    _min?: FoodMinOrderByAggregateInput
+    _sum?: FoodSumOrderByAggregateInput
+  }
+
+  export type FoodScalarWhereWithAggregatesInput = {
+    AND?: FoodScalarWhereWithAggregatesInput | FoodScalarWhereWithAggregatesInput[]
+    OR?: FoodScalarWhereWithAggregatesInput[]
+    NOT?: FoodScalarWhereWithAggregatesInput | FoodScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Food"> | string
+    name?: StringWithAggregatesFilter<"Food"> | string
+    calories?: FloatWithAggregatesFilter<"Food"> | number
+    protein?: FloatWithAggregatesFilter<"Food"> | number
+    carbohydrates?: FloatWithAggregatesFilter<"Food"> | number
+    fats?: FloatWithAggregatesFilter<"Food"> | number
+    fiber?: FloatWithAggregatesFilter<"Food"> | number
+    sugar?: FloatWithAggregatesFilter<"Food"> | number
+    defaultUnit?: StringWithAggregatesFilter<"Food"> | string
+    servingSize?: FloatWithAggregatesFilter<"Food"> | number
+    source?: EnumFoodSourceWithAggregatesFilter<"Food"> | $Enums.FoodSource
+    createdAt?: DateTimeWithAggregatesFilter<"Food"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Food"> | Date | string
+  }
+
+  export type MealWhereInput = {
+    AND?: MealWhereInput | MealWhereInput[]
+    OR?: MealWhereInput[]
+    NOT?: MealWhereInput | MealWhereInput[]
+    id?: StringFilter<"Meal"> | string
+    userId?: StringFilter<"Meal"> | string
+    mealType?: StringFilter<"Meal"> | string
+    source?: StringFilter<"Meal"> | string
+    createdAt?: DateTimeFilter<"Meal"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    items?: MealItemListRelationFilter
+    mealScan?: XOR<MealScanNullableScalarRelationFilter, MealScanWhereInput> | null
+  }
+
+  export type MealOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    mealType?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    items?: MealItemOrderByRelationAggregateInput
+    mealScan?: MealScanOrderByWithRelationInput
+  }
+
+  export type MealWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MealWhereInput | MealWhereInput[]
+    OR?: MealWhereInput[]
+    NOT?: MealWhereInput | MealWhereInput[]
+    userId?: StringFilter<"Meal"> | string
+    mealType?: StringFilter<"Meal"> | string
+    source?: StringFilter<"Meal"> | string
+    createdAt?: DateTimeFilter<"Meal"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    items?: MealItemListRelationFilter
+    mealScan?: XOR<MealScanNullableScalarRelationFilter, MealScanWhereInput> | null
+  }, "id">
+
+  export type MealOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    mealType?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+    _count?: MealCountOrderByAggregateInput
+    _max?: MealMaxOrderByAggregateInput
+    _min?: MealMinOrderByAggregateInput
+  }
+
+  export type MealScalarWhereWithAggregatesInput = {
+    AND?: MealScalarWhereWithAggregatesInput | MealScalarWhereWithAggregatesInput[]
+    OR?: MealScalarWhereWithAggregatesInput[]
+    NOT?: MealScalarWhereWithAggregatesInput | MealScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Meal"> | string
+    userId?: StringWithAggregatesFilter<"Meal"> | string
+    mealType?: StringWithAggregatesFilter<"Meal"> | string
+    source?: StringWithAggregatesFilter<"Meal"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Meal"> | Date | string
+  }
+
+  export type MealItemWhereInput = {
+    AND?: MealItemWhereInput | MealItemWhereInput[]
+    OR?: MealItemWhereInput[]
+    NOT?: MealItemWhereInput | MealItemWhereInput[]
+    id?: StringFilter<"MealItem"> | string
+    mealId?: StringFilter<"MealItem"> | string
+    foodId?: StringNullableFilter<"MealItem"> | string | null
+    foodName?: StringFilter<"MealItem"> | string
+    quantity?: FloatFilter<"MealItem"> | number
+    unit?: StringFilter<"MealItem"> | string
+    calories?: FloatFilter<"MealItem"> | number
+    protein?: FloatFilter<"MealItem"> | number
+    carbohydrates?: FloatFilter<"MealItem"> | number
+    fats?: FloatFilter<"MealItem"> | number
+    fiber?: FloatFilter<"MealItem"> | number
+    sugar?: FloatFilter<"MealItem"> | number
+    meal?: XOR<MealScalarRelationFilter, MealWhereInput>
+    food?: XOR<FoodNullableScalarRelationFilter, FoodWhereInput> | null
+  }
+
+  export type MealItemOrderByWithRelationInput = {
+    id?: SortOrder
+    mealId?: SortOrder
+    foodId?: SortOrderInput | SortOrder
+    foodName?: SortOrder
+    quantity?: SortOrder
+    unit?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+    meal?: MealOrderByWithRelationInput
+    food?: FoodOrderByWithRelationInput
+  }
+
+  export type MealItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MealItemWhereInput | MealItemWhereInput[]
+    OR?: MealItemWhereInput[]
+    NOT?: MealItemWhereInput | MealItemWhereInput[]
+    mealId?: StringFilter<"MealItem"> | string
+    foodId?: StringNullableFilter<"MealItem"> | string | null
+    foodName?: StringFilter<"MealItem"> | string
+    quantity?: FloatFilter<"MealItem"> | number
+    unit?: StringFilter<"MealItem"> | string
+    calories?: FloatFilter<"MealItem"> | number
+    protein?: FloatFilter<"MealItem"> | number
+    carbohydrates?: FloatFilter<"MealItem"> | number
+    fats?: FloatFilter<"MealItem"> | number
+    fiber?: FloatFilter<"MealItem"> | number
+    sugar?: FloatFilter<"MealItem"> | number
+    meal?: XOR<MealScalarRelationFilter, MealWhereInput>
+    food?: XOR<FoodNullableScalarRelationFilter, FoodWhereInput> | null
+  }, "id">
+
+  export type MealItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    mealId?: SortOrder
+    foodId?: SortOrderInput | SortOrder
+    foodName?: SortOrder
+    quantity?: SortOrder
+    unit?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+    _count?: MealItemCountOrderByAggregateInput
+    _avg?: MealItemAvgOrderByAggregateInput
+    _max?: MealItemMaxOrderByAggregateInput
+    _min?: MealItemMinOrderByAggregateInput
+    _sum?: MealItemSumOrderByAggregateInput
+  }
+
+  export type MealItemScalarWhereWithAggregatesInput = {
+    AND?: MealItemScalarWhereWithAggregatesInput | MealItemScalarWhereWithAggregatesInput[]
+    OR?: MealItemScalarWhereWithAggregatesInput[]
+    NOT?: MealItemScalarWhereWithAggregatesInput | MealItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MealItem"> | string
+    mealId?: StringWithAggregatesFilter<"MealItem"> | string
+    foodId?: StringNullableWithAggregatesFilter<"MealItem"> | string | null
+    foodName?: StringWithAggregatesFilter<"MealItem"> | string
+    quantity?: FloatWithAggregatesFilter<"MealItem"> | number
+    unit?: StringWithAggregatesFilter<"MealItem"> | string
+    calories?: FloatWithAggregatesFilter<"MealItem"> | number
+    protein?: FloatWithAggregatesFilter<"MealItem"> | number
+    carbohydrates?: FloatWithAggregatesFilter<"MealItem"> | number
+    fats?: FloatWithAggregatesFilter<"MealItem"> | number
+    fiber?: FloatWithAggregatesFilter<"MealItem"> | number
+    sugar?: FloatWithAggregatesFilter<"MealItem"> | number
+  }
+
+  export type WaterLogWhereInput = {
+    AND?: WaterLogWhereInput | WaterLogWhereInput[]
+    OR?: WaterLogWhereInput[]
+    NOT?: WaterLogWhereInput | WaterLogWhereInput[]
+    id?: StringFilter<"WaterLog"> | string
+    userId?: StringFilter<"WaterLog"> | string
+    amount?: FloatFilter<"WaterLog"> | number
+    unit?: StringFilter<"WaterLog"> | string
+    createdAt?: DateTimeFilter<"WaterLog"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type WaterLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type WaterLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: WaterLogWhereInput | WaterLogWhereInput[]
+    OR?: WaterLogWhereInput[]
+    NOT?: WaterLogWhereInput | WaterLogWhereInput[]
+    userId?: StringFilter<"WaterLog"> | string
+    amount?: FloatFilter<"WaterLog"> | number
+    unit?: StringFilter<"WaterLog"> | string
+    createdAt?: DateTimeFilter<"WaterLog"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type WaterLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+    _count?: WaterLogCountOrderByAggregateInput
+    _avg?: WaterLogAvgOrderByAggregateInput
+    _max?: WaterLogMaxOrderByAggregateInput
+    _min?: WaterLogMinOrderByAggregateInput
+    _sum?: WaterLogSumOrderByAggregateInput
+  }
+
+  export type WaterLogScalarWhereWithAggregatesInput = {
+    AND?: WaterLogScalarWhereWithAggregatesInput | WaterLogScalarWhereWithAggregatesInput[]
+    OR?: WaterLogScalarWhereWithAggregatesInput[]
+    NOT?: WaterLogScalarWhereWithAggregatesInput | WaterLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"WaterLog"> | string
+    userId?: StringWithAggregatesFilter<"WaterLog"> | string
+    amount?: FloatWithAggregatesFilter<"WaterLog"> | number
+    unit?: StringWithAggregatesFilter<"WaterLog"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"WaterLog"> | Date | string
+  }
+
+  export type SupplementLogWhereInput = {
+    AND?: SupplementLogWhereInput | SupplementLogWhereInput[]
+    OR?: SupplementLogWhereInput[]
+    NOT?: SupplementLogWhereInput | SupplementLogWhereInput[]
+    id?: StringFilter<"SupplementLog"> | string
+    userId?: StringFilter<"SupplementLog"> | string
+    name?: StringFilter<"SupplementLog"> | string
+    dosage?: FloatFilter<"SupplementLog"> | number
+    unit?: StringFilter<"SupplementLog"> | string
+    createdAt?: DateTimeFilter<"SupplementLog"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type SupplementLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    dosage?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type SupplementLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SupplementLogWhereInput | SupplementLogWhereInput[]
+    OR?: SupplementLogWhereInput[]
+    NOT?: SupplementLogWhereInput | SupplementLogWhereInput[]
+    userId?: StringFilter<"SupplementLog"> | string
+    name?: StringFilter<"SupplementLog"> | string
+    dosage?: FloatFilter<"SupplementLog"> | number
+    unit?: StringFilter<"SupplementLog"> | string
+    createdAt?: DateTimeFilter<"SupplementLog"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type SupplementLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    dosage?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+    _count?: SupplementLogCountOrderByAggregateInput
+    _avg?: SupplementLogAvgOrderByAggregateInput
+    _max?: SupplementLogMaxOrderByAggregateInput
+    _min?: SupplementLogMinOrderByAggregateInput
+    _sum?: SupplementLogSumOrderByAggregateInput
+  }
+
+  export type SupplementLogScalarWhereWithAggregatesInput = {
+    AND?: SupplementLogScalarWhereWithAggregatesInput | SupplementLogScalarWhereWithAggregatesInput[]
+    OR?: SupplementLogScalarWhereWithAggregatesInput[]
+    NOT?: SupplementLogScalarWhereWithAggregatesInput | SupplementLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SupplementLog"> | string
+    userId?: StringWithAggregatesFilter<"SupplementLog"> | string
+    name?: StringWithAggregatesFilter<"SupplementLog"> | string
+    dosage?: FloatWithAggregatesFilter<"SupplementLog"> | number
+    unit?: StringWithAggregatesFilter<"SupplementLog"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"SupplementLog"> | Date | string
+  }
+
+  export type ExerciseLogWhereInput = {
+    AND?: ExerciseLogWhereInput | ExerciseLogWhereInput[]
+    OR?: ExerciseLogWhereInput[]
+    NOT?: ExerciseLogWhereInput | ExerciseLogWhereInput[]
+    id?: StringFilter<"ExerciseLog"> | string
+    userId?: StringFilter<"ExerciseLog"> | string
+    activityName?: StringFilter<"ExerciseLog"> | string
+    durationMinutes?: FloatFilter<"ExerciseLog"> | number
+    caloriesBurned?: FloatFilter<"ExerciseLog"> | number
+    createdAt?: DateTimeFilter<"ExerciseLog"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ExerciseLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    activityName?: SortOrder
+    durationMinutes?: SortOrder
+    caloriesBurned?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ExerciseLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ExerciseLogWhereInput | ExerciseLogWhereInput[]
+    OR?: ExerciseLogWhereInput[]
+    NOT?: ExerciseLogWhereInput | ExerciseLogWhereInput[]
+    userId?: StringFilter<"ExerciseLog"> | string
+    activityName?: StringFilter<"ExerciseLog"> | string
+    durationMinutes?: FloatFilter<"ExerciseLog"> | number
+    caloriesBurned?: FloatFilter<"ExerciseLog"> | number
+    createdAt?: DateTimeFilter<"ExerciseLog"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ExerciseLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    activityName?: SortOrder
+    durationMinutes?: SortOrder
+    caloriesBurned?: SortOrder
+    createdAt?: SortOrder
+    _count?: ExerciseLogCountOrderByAggregateInput
+    _avg?: ExerciseLogAvgOrderByAggregateInput
+    _max?: ExerciseLogMaxOrderByAggregateInput
+    _min?: ExerciseLogMinOrderByAggregateInput
+    _sum?: ExerciseLogSumOrderByAggregateInput
+  }
+
+  export type ExerciseLogScalarWhereWithAggregatesInput = {
+    AND?: ExerciseLogScalarWhereWithAggregatesInput | ExerciseLogScalarWhereWithAggregatesInput[]
+    OR?: ExerciseLogScalarWhereWithAggregatesInput[]
+    NOT?: ExerciseLogScalarWhereWithAggregatesInput | ExerciseLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ExerciseLog"> | string
+    userId?: StringWithAggregatesFilter<"ExerciseLog"> | string
+    activityName?: StringWithAggregatesFilter<"ExerciseLog"> | string
+    durationMinutes?: FloatWithAggregatesFilter<"ExerciseLog"> | number
+    caloriesBurned?: FloatWithAggregatesFilter<"ExerciseLog"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"ExerciseLog"> | Date | string
+  }
+
+  export type MealScanWhereInput = {
+    AND?: MealScanWhereInput | MealScanWhereInput[]
+    OR?: MealScanWhereInput[]
+    NOT?: MealScanWhereInput | MealScanWhereInput[]
+    id?: StringFilter<"MealScan"> | string
+    userId?: StringFilter<"MealScan"> | string
+    mealId?: StringNullableFilter<"MealScan"> | string | null
+    imageUrl?: StringFilter<"MealScan"> | string
+    model?: StringFilter<"MealScan"> | string
+    confidence?: FloatFilter<"MealScan"> | number
+    rawResponse?: StringFilter<"MealScan"> | string
+    processedMatches?: StringFilter<"MealScan"> | string
+    status?: StringFilter<"MealScan"> | string
+    createdAt?: DateTimeFilter<"MealScan"> | Date | string
+    updatedAt?: DateTimeFilter<"MealScan"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    meal?: XOR<MealNullableScalarRelationFilter, MealWhereInput> | null
+  }
+
+  export type MealScanOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    mealId?: SortOrderInput | SortOrder
+    imageUrl?: SortOrder
+    model?: SortOrder
+    confidence?: SortOrder
+    rawResponse?: SortOrder
+    processedMatches?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    meal?: MealOrderByWithRelationInput
+  }
+
+  export type MealScanWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    mealId?: string
+    AND?: MealScanWhereInput | MealScanWhereInput[]
+    OR?: MealScanWhereInput[]
+    NOT?: MealScanWhereInput | MealScanWhereInput[]
+    userId?: StringFilter<"MealScan"> | string
+    imageUrl?: StringFilter<"MealScan"> | string
+    model?: StringFilter<"MealScan"> | string
+    confidence?: FloatFilter<"MealScan"> | number
+    rawResponse?: StringFilter<"MealScan"> | string
+    processedMatches?: StringFilter<"MealScan"> | string
+    status?: StringFilter<"MealScan"> | string
+    createdAt?: DateTimeFilter<"MealScan"> | Date | string
+    updatedAt?: DateTimeFilter<"MealScan"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    meal?: XOR<MealNullableScalarRelationFilter, MealWhereInput> | null
+  }, "id" | "mealId">
+
+  export type MealScanOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    mealId?: SortOrderInput | SortOrder
+    imageUrl?: SortOrder
+    model?: SortOrder
+    confidence?: SortOrder
+    rawResponse?: SortOrder
+    processedMatches?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MealScanCountOrderByAggregateInput
+    _avg?: MealScanAvgOrderByAggregateInput
+    _max?: MealScanMaxOrderByAggregateInput
+    _min?: MealScanMinOrderByAggregateInput
+    _sum?: MealScanSumOrderByAggregateInput
+  }
+
+  export type MealScanScalarWhereWithAggregatesInput = {
+    AND?: MealScanScalarWhereWithAggregatesInput | MealScanScalarWhereWithAggregatesInput[]
+    OR?: MealScanScalarWhereWithAggregatesInput[]
+    NOT?: MealScanScalarWhereWithAggregatesInput | MealScanScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MealScan"> | string
+    userId?: StringWithAggregatesFilter<"MealScan"> | string
+    mealId?: StringNullableWithAggregatesFilter<"MealScan"> | string | null
+    imageUrl?: StringWithAggregatesFilter<"MealScan"> | string
+    model?: StringWithAggregatesFilter<"MealScan"> | string
+    confidence?: FloatWithAggregatesFilter<"MealScan"> | number
+    rawResponse?: StringWithAggregatesFilter<"MealScan"> | string
+    processedMatches?: StringWithAggregatesFilter<"MealScan"> | string
+    status?: StringWithAggregatesFilter<"MealScan"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"MealScan"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MealScan"> | Date | string
+  }
+
+  export type ConversationWhereInput = {
+    AND?: ConversationWhereInput | ConversationWhereInput[]
+    OR?: ConversationWhereInput[]
+    NOT?: ConversationWhereInput | ConversationWhereInput[]
+    id?: StringFilter<"Conversation"> | string
+    userId?: StringFilter<"Conversation"> | string
+    title?: StringFilter<"Conversation"> | string
+    createdAt?: DateTimeFilter<"Conversation"> | Date | string
+    updatedAt?: DateTimeFilter<"Conversation"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    messages?: ConversationMessageListRelationFilter
+  }
+
+  export type ConversationOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    messages?: ConversationMessageOrderByRelationAggregateInput
+  }
+
+  export type ConversationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ConversationWhereInput | ConversationWhereInput[]
+    OR?: ConversationWhereInput[]
+    NOT?: ConversationWhereInput | ConversationWhereInput[]
+    userId?: StringFilter<"Conversation"> | string
+    title?: StringFilter<"Conversation"> | string
+    createdAt?: DateTimeFilter<"Conversation"> | Date | string
+    updatedAt?: DateTimeFilter<"Conversation"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    messages?: ConversationMessageListRelationFilter
+  }, "id">
+
+  export type ConversationOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ConversationCountOrderByAggregateInput
+    _max?: ConversationMaxOrderByAggregateInput
+    _min?: ConversationMinOrderByAggregateInput
+  }
+
+  export type ConversationScalarWhereWithAggregatesInput = {
+    AND?: ConversationScalarWhereWithAggregatesInput | ConversationScalarWhereWithAggregatesInput[]
+    OR?: ConversationScalarWhereWithAggregatesInput[]
+    NOT?: ConversationScalarWhereWithAggregatesInput | ConversationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Conversation"> | string
+    userId?: StringWithAggregatesFilter<"Conversation"> | string
+    title?: StringWithAggregatesFilter<"Conversation"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Conversation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Conversation"> | Date | string
+  }
+
+  export type ConversationMessageWhereInput = {
+    AND?: ConversationMessageWhereInput | ConversationMessageWhereInput[]
+    OR?: ConversationMessageWhereInput[]
+    NOT?: ConversationMessageWhereInput | ConversationMessageWhereInput[]
+    id?: StringFilter<"ConversationMessage"> | string
+    conversationId?: StringFilter<"ConversationMessage"> | string
+    role?: StringFilter<"ConversationMessage"> | string
+    content?: StringFilter<"ConversationMessage"> | string
+    metadata?: StringNullableFilter<"ConversationMessage"> | string | null
+    tokens?: IntFilter<"ConversationMessage"> | number
+    createdAt?: DateTimeFilter<"ConversationMessage"> | Date | string
+    conversation?: XOR<ConversationScalarRelationFilter, ConversationWhereInput>
+    feedback?: XOR<ConversationFeedbackNullableScalarRelationFilter, ConversationFeedbackWhereInput> | null
+  }
+
+  export type ConversationMessageOrderByWithRelationInput = {
+    id?: SortOrder
+    conversationId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    tokens?: SortOrder
+    createdAt?: SortOrder
+    conversation?: ConversationOrderByWithRelationInput
+    feedback?: ConversationFeedbackOrderByWithRelationInput
+  }
+
+  export type ConversationMessageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ConversationMessageWhereInput | ConversationMessageWhereInput[]
+    OR?: ConversationMessageWhereInput[]
+    NOT?: ConversationMessageWhereInput | ConversationMessageWhereInput[]
+    conversationId?: StringFilter<"ConversationMessage"> | string
+    role?: StringFilter<"ConversationMessage"> | string
+    content?: StringFilter<"ConversationMessage"> | string
+    metadata?: StringNullableFilter<"ConversationMessage"> | string | null
+    tokens?: IntFilter<"ConversationMessage"> | number
+    createdAt?: DateTimeFilter<"ConversationMessage"> | Date | string
+    conversation?: XOR<ConversationScalarRelationFilter, ConversationWhereInput>
+    feedback?: XOR<ConversationFeedbackNullableScalarRelationFilter, ConversationFeedbackWhereInput> | null
+  }, "id">
+
+  export type ConversationMessageOrderByWithAggregationInput = {
+    id?: SortOrder
+    conversationId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    tokens?: SortOrder
+    createdAt?: SortOrder
+    _count?: ConversationMessageCountOrderByAggregateInput
+    _avg?: ConversationMessageAvgOrderByAggregateInput
+    _max?: ConversationMessageMaxOrderByAggregateInput
+    _min?: ConversationMessageMinOrderByAggregateInput
+    _sum?: ConversationMessageSumOrderByAggregateInput
+  }
+
+  export type ConversationMessageScalarWhereWithAggregatesInput = {
+    AND?: ConversationMessageScalarWhereWithAggregatesInput | ConversationMessageScalarWhereWithAggregatesInput[]
+    OR?: ConversationMessageScalarWhereWithAggregatesInput[]
+    NOT?: ConversationMessageScalarWhereWithAggregatesInput | ConversationMessageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ConversationMessage"> | string
+    conversationId?: StringWithAggregatesFilter<"ConversationMessage"> | string
+    role?: StringWithAggregatesFilter<"ConversationMessage"> | string
+    content?: StringWithAggregatesFilter<"ConversationMessage"> | string
+    metadata?: StringNullableWithAggregatesFilter<"ConversationMessage"> | string | null
+    tokens?: IntWithAggregatesFilter<"ConversationMessage"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"ConversationMessage"> | Date | string
+  }
+
+  export type ConversationFeedbackWhereInput = {
+    AND?: ConversationFeedbackWhereInput | ConversationFeedbackWhereInput[]
+    OR?: ConversationFeedbackWhereInput[]
+    NOT?: ConversationFeedbackWhereInput | ConversationFeedbackWhereInput[]
+    id?: StringFilter<"ConversationFeedback"> | string
+    messageId?: StringFilter<"ConversationFeedback"> | string
+    rating?: IntFilter<"ConversationFeedback"> | number
+    comment?: StringNullableFilter<"ConversationFeedback"> | string | null
+    createdAt?: DateTimeFilter<"ConversationFeedback"> | Date | string
+    message?: XOR<ConversationMessageScalarRelationFilter, ConversationMessageWhereInput>
+  }
+
+  export type ConversationFeedbackOrderByWithRelationInput = {
+    id?: SortOrder
+    messageId?: SortOrder
+    rating?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    message?: ConversationMessageOrderByWithRelationInput
+  }
+
+  export type ConversationFeedbackWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    messageId?: string
+    AND?: ConversationFeedbackWhereInput | ConversationFeedbackWhereInput[]
+    OR?: ConversationFeedbackWhereInput[]
+    NOT?: ConversationFeedbackWhereInput | ConversationFeedbackWhereInput[]
+    rating?: IntFilter<"ConversationFeedback"> | number
+    comment?: StringNullableFilter<"ConversationFeedback"> | string | null
+    createdAt?: DateTimeFilter<"ConversationFeedback"> | Date | string
+    message?: XOR<ConversationMessageScalarRelationFilter, ConversationMessageWhereInput>
+  }, "id" | "messageId">
+
+  export type ConversationFeedbackOrderByWithAggregationInput = {
+    id?: SortOrder
+    messageId?: SortOrder
+    rating?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ConversationFeedbackCountOrderByAggregateInput
+    _avg?: ConversationFeedbackAvgOrderByAggregateInput
+    _max?: ConversationFeedbackMaxOrderByAggregateInput
+    _min?: ConversationFeedbackMinOrderByAggregateInput
+    _sum?: ConversationFeedbackSumOrderByAggregateInput
+  }
+
+  export type ConversationFeedbackScalarWhereWithAggregatesInput = {
+    AND?: ConversationFeedbackScalarWhereWithAggregatesInput | ConversationFeedbackScalarWhereWithAggregatesInput[]
+    OR?: ConversationFeedbackScalarWhereWithAggregatesInput[]
+    NOT?: ConversationFeedbackScalarWhereWithAggregatesInput | ConversationFeedbackScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ConversationFeedback"> | string
+    messageId?: StringWithAggregatesFilter<"ConversationFeedback"> | string
+    rating?: IntWithAggregatesFilter<"ConversationFeedback"> | number
+    comment?: StringNullableWithAggregatesFilter<"ConversationFeedback"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ConversationFeedback"> | Date | string
+  }
+
+  export type TravelSessionWhereInput = {
+    AND?: TravelSessionWhereInput | TravelSessionWhereInput[]
+    OR?: TravelSessionWhereInput[]
+    NOT?: TravelSessionWhereInput | TravelSessionWhereInput[]
+    id?: StringFilter<"TravelSession"> | string
+    userId?: StringFilter<"TravelSession"> | string
+    active?: BoolFilter<"TravelSession"> | boolean
+    startDate?: DateTimeFilter<"TravelSession"> | Date | string
+    endDate?: DateTimeNullableFilter<"TravelSession"> | Date | string | null
+    createdAt?: DateTimeFilter<"TravelSession"> | Date | string
+    updatedAt?: DateTimeFilter<"TravelSession"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type TravelSessionOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    active?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type TravelSessionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TravelSessionWhereInput | TravelSessionWhereInput[]
+    OR?: TravelSessionWhereInput[]
+    NOT?: TravelSessionWhereInput | TravelSessionWhereInput[]
+    userId?: StringFilter<"TravelSession"> | string
+    active?: BoolFilter<"TravelSession"> | boolean
+    startDate?: DateTimeFilter<"TravelSession"> | Date | string
+    endDate?: DateTimeNullableFilter<"TravelSession"> | Date | string | null
+    createdAt?: DateTimeFilter<"TravelSession"> | Date | string
+    updatedAt?: DateTimeFilter<"TravelSession"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type TravelSessionOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    active?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TravelSessionCountOrderByAggregateInput
+    _max?: TravelSessionMaxOrderByAggregateInput
+    _min?: TravelSessionMinOrderByAggregateInput
+  }
+
+  export type TravelSessionScalarWhereWithAggregatesInput = {
+    AND?: TravelSessionScalarWhereWithAggregatesInput | TravelSessionScalarWhereWithAggregatesInput[]
+    OR?: TravelSessionScalarWhereWithAggregatesInput[]
+    NOT?: TravelSessionScalarWhereWithAggregatesInput | TravelSessionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TravelSession"> | string
+    userId?: StringWithAggregatesFilter<"TravelSession"> | string
+    active?: BoolWithAggregatesFilter<"TravelSession"> | boolean
+    startDate?: DateTimeWithAggregatesFilter<"TravelSession"> | Date | string
+    endDate?: DateTimeNullableWithAggregatesFilter<"TravelSession"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"TravelSession"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TravelSession"> | Date | string
+  }
+
+  export type CacheEntryWhereInput = {
+    AND?: CacheEntryWhereInput | CacheEntryWhereInput[]
+    OR?: CacheEntryWhereInput[]
+    NOT?: CacheEntryWhereInput | CacheEntryWhereInput[]
+    key?: StringFilter<"CacheEntry"> | string
+    value?: StringFilter<"CacheEntry"> | string
+    createdAt?: DateTimeFilter<"CacheEntry"> | Date | string
+    expiresAt?: DateTimeFilter<"CacheEntry"> | Date | string
+  }
+
+  export type CacheEntryOrderByWithRelationInput = {
+    key?: SortOrder
+    value?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type CacheEntryWhereUniqueInput = Prisma.AtLeast<{
+    key?: string
+    AND?: CacheEntryWhereInput | CacheEntryWhereInput[]
+    OR?: CacheEntryWhereInput[]
+    NOT?: CacheEntryWhereInput | CacheEntryWhereInput[]
+    value?: StringFilter<"CacheEntry"> | string
+    createdAt?: DateTimeFilter<"CacheEntry"> | Date | string
+    expiresAt?: DateTimeFilter<"CacheEntry"> | Date | string
+  }, "key">
+
+  export type CacheEntryOrderByWithAggregationInput = {
+    key?: SortOrder
+    value?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    _count?: CacheEntryCountOrderByAggregateInput
+    _max?: CacheEntryMaxOrderByAggregateInput
+    _min?: CacheEntryMinOrderByAggregateInput
+  }
+
+  export type CacheEntryScalarWhereWithAggregatesInput = {
+    AND?: CacheEntryScalarWhereWithAggregatesInput | CacheEntryScalarWhereWithAggregatesInput[]
+    OR?: CacheEntryScalarWhereWithAggregatesInput[]
+    NOT?: CacheEntryScalarWhereWithAggregatesInput | CacheEntryScalarWhereWithAggregatesInput[]
+    key?: StringWithAggregatesFilter<"CacheEntry"> | string
+    value?: StringWithAggregatesFilter<"CacheEntry"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"CacheEntry"> | Date | string
+    expiresAt?: DateTimeWithAggregatesFilter<"CacheEntry"> | Date | string
+  }
+
+  export type UserCreateInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    meals?: MealCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogCreateNestedManyWithoutUserInput
+    mealScans?: MealScanCreateNestedManyWithoutUserInput
+    conversations?: ConversationCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    meals?: MealUncheckedCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogUncheckedCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogUncheckedCreateNestedManyWithoutUserInput
+    mealScans?: MealScanUncheckedCreateNestedManyWithoutUserInput
+    conversations?: ConversationUncheckedCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    meals?: MealUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    meals?: MealUncheckedUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUncheckedUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUncheckedUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUncheckedUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUncheckedUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateManyInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserProfileCreateInput = {
+    id?: string
+    fullName: string
+    age: number
+    gender: string
+    weight: number
+    height: number
+    activityLevel: string
+    goal: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutProfileInput
+  }
+
+  export type UserProfileUncheckedCreateInput = {
+    id?: string
+    userId: string
+    fullName: string
+    age: number
+    gender: string
+    weight: number
+    height: number
+    activityLevel: string
+    goal: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserProfileUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    gender?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    height?: FloatFieldUpdateOperationsInput | number
+    activityLevel?: StringFieldUpdateOperationsInput | string
+    goal?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProfileNestedInput
+  }
+
+  export type UserProfileUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    gender?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    height?: FloatFieldUpdateOperationsInput | number
+    activityLevel?: StringFieldUpdateOperationsInput | string
+    goal?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserProfileCreateManyInput = {
+    id?: string
+    userId: string
+    fullName: string
+    age: number
+    gender: string
+    weight: number
+    height: number
+    activityLevel: string
+    goal: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserProfileUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    gender?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    height?: FloatFieldUpdateOperationsInput | number
+    activityLevel?: StringFieldUpdateOperationsInput | string
+    goal?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserProfileUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    gender?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    height?: FloatFieldUpdateOperationsInput | number
+    activityLevel?: StringFieldUpdateOperationsInput | string
+    goal?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FoodCreateInput = {
+    id?: string
+    name: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    defaultUnit?: string
+    servingSize?: number
+    source?: $Enums.FoodSource
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    mealItems?: MealItemCreateNestedManyWithoutFoodInput
+  }
+
+  export type FoodUncheckedCreateInput = {
+    id?: string
+    name: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    defaultUnit?: string
+    servingSize?: number
+    source?: $Enums.FoodSource
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    mealItems?: MealItemUncheckedCreateNestedManyWithoutFoodInput
+  }
+
+  export type FoodUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+    defaultUnit?: StringFieldUpdateOperationsInput | string
+    servingSize?: FloatFieldUpdateOperationsInput | number
+    source?: EnumFoodSourceFieldUpdateOperationsInput | $Enums.FoodSource
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mealItems?: MealItemUpdateManyWithoutFoodNestedInput
+  }
+
+  export type FoodUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+    defaultUnit?: StringFieldUpdateOperationsInput | string
+    servingSize?: FloatFieldUpdateOperationsInput | number
+    source?: EnumFoodSourceFieldUpdateOperationsInput | $Enums.FoodSource
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mealItems?: MealItemUncheckedUpdateManyWithoutFoodNestedInput
+  }
+
+  export type FoodCreateManyInput = {
+    id?: string
+    name: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    defaultUnit?: string
+    servingSize?: number
+    source?: $Enums.FoodSource
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FoodUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+    defaultUnit?: StringFieldUpdateOperationsInput | string
+    servingSize?: FloatFieldUpdateOperationsInput | number
+    source?: EnumFoodSourceFieldUpdateOperationsInput | $Enums.FoodSource
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FoodUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+    defaultUnit?: StringFieldUpdateOperationsInput | string
+    servingSize?: FloatFieldUpdateOperationsInput | number
+    source?: EnumFoodSourceFieldUpdateOperationsInput | $Enums.FoodSource
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealCreateInput = {
+    id?: string
+    mealType: string
+    source: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutMealsInput
+    items?: MealItemCreateNestedManyWithoutMealInput
+    mealScan?: MealScanCreateNestedOneWithoutMealInput
+  }
+
+  export type MealUncheckedCreateInput = {
+    id?: string
+    userId: string
+    mealType: string
+    source: string
+    createdAt?: Date | string
+    items?: MealItemUncheckedCreateNestedManyWithoutMealInput
+    mealScan?: MealScanUncheckedCreateNestedOneWithoutMealInput
+  }
+
+  export type MealUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMealsNestedInput
+    items?: MealItemUpdateManyWithoutMealNestedInput
+    mealScan?: MealScanUpdateOneWithoutMealNestedInput
+  }
+
+  export type MealUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: MealItemUncheckedUpdateManyWithoutMealNestedInput
+    mealScan?: MealScanUncheckedUpdateOneWithoutMealNestedInput
+  }
+
+  export type MealCreateManyInput = {
+    id?: string
+    userId: string
+    mealType: string
+    source: string
+    createdAt?: Date | string
+  }
+
+  export type MealUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealItemCreateInput = {
+    id?: string
+    foodName: string
+    quantity: number
+    unit: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    meal: MealCreateNestedOneWithoutItemsInput
+    food?: FoodCreateNestedOneWithoutMealItemsInput
+  }
+
+  export type MealItemUncheckedCreateInput = {
+    id?: string
+    mealId: string
+    foodId?: string | null
+    foodName: string
+    quantity: number
+    unit: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+  }
+
+  export type MealItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    foodName?: StringFieldUpdateOperationsInput | string
+    quantity?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+    meal?: MealUpdateOneRequiredWithoutItemsNestedInput
+    food?: FoodUpdateOneWithoutMealItemsNestedInput
+  }
+
+  export type MealItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealId?: StringFieldUpdateOperationsInput | string
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
+    foodName?: StringFieldUpdateOperationsInput | string
+    quantity?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type MealItemCreateManyInput = {
+    id?: string
+    mealId: string
+    foodId?: string | null
+    foodName: string
+    quantity: number
+    unit: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+  }
+
+  export type MealItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    foodName?: StringFieldUpdateOperationsInput | string
+    quantity?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type MealItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealId?: StringFieldUpdateOperationsInput | string
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
+    foodName?: StringFieldUpdateOperationsInput | string
+    quantity?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type WaterLogCreateInput = {
+    id?: string
+    amount: number
+    unit: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutWaterLogsInput
+  }
+
+  export type WaterLogUncheckedCreateInput = {
+    id?: string
+    userId: string
+    amount: number
+    unit: string
+    createdAt?: Date | string
+  }
+
+  export type WaterLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutWaterLogsNestedInput
+  }
+
+  export type WaterLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WaterLogCreateManyInput = {
+    id?: string
+    userId: string
+    amount: number
+    unit: string
+    createdAt?: Date | string
+  }
+
+  export type WaterLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WaterLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SupplementLogCreateInput = {
+    id?: string
+    name: string
+    dosage: number
+    unit: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutSupplementLogsInput
+  }
+
+  export type SupplementLogUncheckedCreateInput = {
+    id?: string
+    userId: string
+    name: string
+    dosage: number
+    unit: string
+    createdAt?: Date | string
+  }
+
+  export type SupplementLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dosage?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSupplementLogsNestedInput
+  }
+
+  export type SupplementLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dosage?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SupplementLogCreateManyInput = {
+    id?: string
+    userId: string
+    name: string
+    dosage: number
+    unit: string
+    createdAt?: Date | string
+  }
+
+  export type SupplementLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dosage?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SupplementLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dosage?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExerciseLogCreateInput = {
+    id?: string
+    activityName: string
+    durationMinutes: number
+    caloriesBurned: number
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutExerciseLogsInput
+  }
+
+  export type ExerciseLogUncheckedCreateInput = {
+    id?: string
+    userId: string
+    activityName: string
+    durationMinutes: number
+    caloriesBurned: number
+    createdAt?: Date | string
+  }
+
+  export type ExerciseLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    activityName?: StringFieldUpdateOperationsInput | string
+    durationMinutes?: FloatFieldUpdateOperationsInput | number
+    caloriesBurned?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutExerciseLogsNestedInput
+  }
+
+  export type ExerciseLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    activityName?: StringFieldUpdateOperationsInput | string
+    durationMinutes?: FloatFieldUpdateOperationsInput | number
+    caloriesBurned?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExerciseLogCreateManyInput = {
+    id?: string
+    userId: string
+    activityName: string
+    durationMinutes: number
+    caloriesBurned: number
+    createdAt?: Date | string
+  }
+
+  export type ExerciseLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    activityName?: StringFieldUpdateOperationsInput | string
+    durationMinutes?: FloatFieldUpdateOperationsInput | number
+    caloriesBurned?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExerciseLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    activityName?: StringFieldUpdateOperationsInput | string
+    durationMinutes?: FloatFieldUpdateOperationsInput | number
+    caloriesBurned?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealScanCreateInput = {
+    id?: string
+    imageUrl: string
+    model: string
+    confidence: number
+    rawResponse: string
+    processedMatches: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutMealScansInput
+    meal?: MealCreateNestedOneWithoutMealScanInput
+  }
+
+  export type MealScanUncheckedCreateInput = {
+    id?: string
+    userId: string
+    mealId?: string | null
+    imageUrl: string
+    model: string
+    confidence: number
+    rawResponse: string
+    processedMatches: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MealScanUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    confidence?: FloatFieldUpdateOperationsInput | number
+    rawResponse?: StringFieldUpdateOperationsInput | string
+    processedMatches?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMealScansNestedInput
+    meal?: MealUpdateOneWithoutMealScanNestedInput
+  }
+
+  export type MealScanUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mealId?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    confidence?: FloatFieldUpdateOperationsInput | number
+    rawResponse?: StringFieldUpdateOperationsInput | string
+    processedMatches?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealScanCreateManyInput = {
+    id?: string
+    userId: string
+    mealId?: string | null
+    imageUrl: string
+    model: string
+    confidence: number
+    rawResponse: string
+    processedMatches: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MealScanUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    confidence?: FloatFieldUpdateOperationsInput | number
+    rawResponse?: StringFieldUpdateOperationsInput | string
+    processedMatches?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealScanUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mealId?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    confidence?: FloatFieldUpdateOperationsInput | number
+    rawResponse?: StringFieldUpdateOperationsInput | string
+    processedMatches?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutConversationsInput
+    messages?: ConversationMessageCreateNestedManyWithoutConversationInput
+  }
+
+  export type ConversationUncheckedCreateInput = {
+    id?: string
+    userId: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    messages?: ConversationMessageUncheckedCreateNestedManyWithoutConversationInput
+  }
+
+  export type ConversationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutConversationsNestedInput
+    messages?: ConversationMessageUpdateManyWithoutConversationNestedInput
+  }
+
+  export type ConversationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: ConversationMessageUncheckedUpdateManyWithoutConversationNestedInput
+  }
+
+  export type ConversationCreateManyInput = {
+    id?: string
+    userId: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConversationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationMessageCreateInput = {
+    id?: string
+    role: string
+    content: string
+    metadata?: string | null
+    tokens?: number
+    createdAt?: Date | string
+    conversation: ConversationCreateNestedOneWithoutMessagesInput
+    feedback?: ConversationFeedbackCreateNestedOneWithoutMessageInput
+  }
+
+  export type ConversationMessageUncheckedCreateInput = {
+    id?: string
+    conversationId: string
+    role: string
+    content: string
+    metadata?: string | null
+    tokens?: number
+    createdAt?: Date | string
+    feedback?: ConversationFeedbackUncheckedCreateNestedOneWithoutMessageInput
+  }
+
+  export type ConversationMessageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    tokens?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    conversation?: ConversationUpdateOneRequiredWithoutMessagesNestedInput
+    feedback?: ConversationFeedbackUpdateOneWithoutMessageNestedInput
+  }
+
+  export type ConversationMessageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversationId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    tokens?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedback?: ConversationFeedbackUncheckedUpdateOneWithoutMessageNestedInput
+  }
+
+  export type ConversationMessageCreateManyInput = {
+    id?: string
+    conversationId: string
+    role: string
+    content: string
+    metadata?: string | null
+    tokens?: number
+    createdAt?: Date | string
+  }
+
+  export type ConversationMessageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    tokens?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationMessageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversationId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    tokens?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationFeedbackCreateInput = {
+    id?: string
+    rating: number
+    comment?: string | null
+    createdAt?: Date | string
+    message: ConversationMessageCreateNestedOneWithoutFeedbackInput
+  }
+
+  export type ConversationFeedbackUncheckedCreateInput = {
+    id?: string
+    messageId: string
+    rating: number
+    comment?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ConversationFeedbackUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: ConversationMessageUpdateOneRequiredWithoutFeedbackNestedInput
+  }
+
+  export type ConversationFeedbackUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationFeedbackCreateManyInput = {
+    id?: string
+    messageId: string
+    rating: number
+    comment?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ConversationFeedbackUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationFeedbackUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TravelSessionCreateInput = {
+    id?: string
+    active?: boolean
+    startDate?: Date | string
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutTravelSessionsInput
+  }
+
+  export type TravelSessionUncheckedCreateInput = {
+    id?: string
+    userId: string
+    active?: boolean
+    startDate?: Date | string
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TravelSessionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTravelSessionsNestedInput
+  }
+
+  export type TravelSessionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TravelSessionCreateManyInput = {
+    id?: string
+    userId: string
+    active?: boolean
+    startDate?: Date | string
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TravelSessionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TravelSessionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CacheEntryCreateInput = {
+    key: string
+    value: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type CacheEntryUncheckedCreateInput = {
+    key: string
+    value: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type CacheEntryUpdateInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CacheEntryUncheckedUpdateInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CacheEntryCreateManyInput = {
+    key: string
+    value: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type CacheEntryUpdateManyMutationInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CacheEntryUncheckedUpdateManyInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type UserProfileNullableScalarRelationFilter = {
+    is?: UserProfileWhereInput | null
+    isNot?: UserProfileWhereInput | null
+  }
+
+  export type MealListRelationFilter = {
+    every?: MealWhereInput
+    some?: MealWhereInput
+    none?: MealWhereInput
+  }
+
+  export type WaterLogListRelationFilter = {
+    every?: WaterLogWhereInput
+    some?: WaterLogWhereInput
+    none?: WaterLogWhereInput
+  }
+
+  export type SupplementLogListRelationFilter = {
+    every?: SupplementLogWhereInput
+    some?: SupplementLogWhereInput
+    none?: SupplementLogWhereInput
+  }
+
+  export type ExerciseLogListRelationFilter = {
+    every?: ExerciseLogWhereInput
+    some?: ExerciseLogWhereInput
+    none?: ExerciseLogWhereInput
+  }
+
+  export type MealScanListRelationFilter = {
+    every?: MealScanWhereInput
+    some?: MealScanWhereInput
+    none?: MealScanWhereInput
+  }
+
+  export type ConversationListRelationFilter = {
+    every?: ConversationWhereInput
+    some?: ConversationWhereInput
+    none?: ConversationWhereInput
+  }
+
+  export type TravelSessionListRelationFilter = {
+    every?: TravelSessionWhereInput
+    some?: TravelSessionWhereInput
+    none?: TravelSessionWhereInput
+  }
+
+  export type MealOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WaterLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SupplementLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ExerciseLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MealScanOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ConversationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TravelSessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    passwordHash?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    passwordHash?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    passwordHash?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type UserProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    fullName?: SortOrder
+    age?: SortOrder
+    gender?: SortOrder
+    weight?: SortOrder
+    height?: SortOrder
+    activityLevel?: SortOrder
+    goal?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserProfileAvgOrderByAggregateInput = {
+    age?: SortOrder
+    weight?: SortOrder
+    height?: SortOrder
+  }
+
+  export type UserProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    fullName?: SortOrder
+    age?: SortOrder
+    gender?: SortOrder
+    weight?: SortOrder
+    height?: SortOrder
+    activityLevel?: SortOrder
+    goal?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    fullName?: SortOrder
+    age?: SortOrder
+    gender?: SortOrder
+    weight?: SortOrder
+    height?: SortOrder
+    activityLevel?: SortOrder
+    goal?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserProfileSumOrderByAggregateInput = {
+    age?: SortOrder
+    weight?: SortOrder
+    height?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type EnumFoodSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.FoodSource | EnumFoodSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.FoodSource[] | ListEnumFoodSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FoodSource[] | ListEnumFoodSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumFoodSourceFilter<$PrismaModel> | $Enums.FoodSource
+  }
+
+  export type MealItemListRelationFilter = {
+    every?: MealItemWhereInput
+    some?: MealItemWhereInput
+    none?: MealItemWhereInput
+  }
+
+  export type MealItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FoodCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+    defaultUnit?: SortOrder
+    servingSize?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FoodAvgOrderByAggregateInput = {
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+    servingSize?: SortOrder
+  }
+
+  export type FoodMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+    defaultUnit?: SortOrder
+    servingSize?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FoodMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+    defaultUnit?: SortOrder
+    servingSize?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FoodSumOrderByAggregateInput = {
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+    servingSize?: SortOrder
+  }
+
+  export type EnumFoodSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FoodSource | EnumFoodSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.FoodSource[] | ListEnumFoodSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FoodSource[] | ListEnumFoodSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumFoodSourceWithAggregatesFilter<$PrismaModel> | $Enums.FoodSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFoodSourceFilter<$PrismaModel>
+    _max?: NestedEnumFoodSourceFilter<$PrismaModel>
+  }
+
+  export type MealScanNullableScalarRelationFilter = {
+    is?: MealScanWhereInput | null
+    isNot?: MealScanWhereInput | null
+  }
+
+  export type MealCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    mealType?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MealMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    mealType?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MealMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    mealType?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type MealScalarRelationFilter = {
+    is?: MealWhereInput
+    isNot?: MealWhereInput
+  }
+
+  export type FoodNullableScalarRelationFilter = {
+    is?: FoodWhereInput | null
+    isNot?: FoodWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type MealItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    mealId?: SortOrder
+    foodId?: SortOrder
+    foodName?: SortOrder
+    quantity?: SortOrder
+    unit?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+  }
+
+  export type MealItemAvgOrderByAggregateInput = {
+    quantity?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+  }
+
+  export type MealItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    mealId?: SortOrder
+    foodId?: SortOrder
+    foodName?: SortOrder
+    quantity?: SortOrder
+    unit?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+  }
+
+  export type MealItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    mealId?: SortOrder
+    foodId?: SortOrder
+    foodName?: SortOrder
+    quantity?: SortOrder
+    unit?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+  }
+
+  export type MealItemSumOrderByAggregateInput = {
+    quantity?: SortOrder
+    calories?: SortOrder
+    protein?: SortOrder
+    carbohydrates?: SortOrder
+    fats?: SortOrder
+    fiber?: SortOrder
+    sugar?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type WaterLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type WaterLogAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type WaterLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type WaterLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type WaterLogSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type SupplementLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    dosage?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SupplementLogAvgOrderByAggregateInput = {
+    dosage?: SortOrder
+  }
+
+  export type SupplementLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    dosage?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SupplementLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    dosage?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SupplementLogSumOrderByAggregateInput = {
+    dosage?: SortOrder
+  }
+
+  export type ExerciseLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    activityName?: SortOrder
+    durationMinutes?: SortOrder
+    caloriesBurned?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ExerciseLogAvgOrderByAggregateInput = {
+    durationMinutes?: SortOrder
+    caloriesBurned?: SortOrder
+  }
+
+  export type ExerciseLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    activityName?: SortOrder
+    durationMinutes?: SortOrder
+    caloriesBurned?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ExerciseLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    activityName?: SortOrder
+    durationMinutes?: SortOrder
+    caloriesBurned?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ExerciseLogSumOrderByAggregateInput = {
+    durationMinutes?: SortOrder
+    caloriesBurned?: SortOrder
+  }
+
+  export type MealNullableScalarRelationFilter = {
+    is?: MealWhereInput | null
+    isNot?: MealWhereInput | null
+  }
+
+  export type MealScanCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    mealId?: SortOrder
+    imageUrl?: SortOrder
+    model?: SortOrder
+    confidence?: SortOrder
+    rawResponse?: SortOrder
+    processedMatches?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MealScanAvgOrderByAggregateInput = {
+    confidence?: SortOrder
+  }
+
+  export type MealScanMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    mealId?: SortOrder
+    imageUrl?: SortOrder
+    model?: SortOrder
+    confidence?: SortOrder
+    rawResponse?: SortOrder
+    processedMatches?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MealScanMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    mealId?: SortOrder
+    imageUrl?: SortOrder
+    model?: SortOrder
+    confidence?: SortOrder
+    rawResponse?: SortOrder
+    processedMatches?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MealScanSumOrderByAggregateInput = {
+    confidence?: SortOrder
+  }
+
+  export type ConversationMessageListRelationFilter = {
+    every?: ConversationMessageWhereInput
+    some?: ConversationMessageWhereInput
+    none?: ConversationMessageWhereInput
+  }
+
+  export type ConversationMessageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ConversationCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ConversationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ConversationMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ConversationScalarRelationFilter = {
+    is?: ConversationWhereInput
+    isNot?: ConversationWhereInput
+  }
+
+  export type ConversationFeedbackNullableScalarRelationFilter = {
+    is?: ConversationFeedbackWhereInput | null
+    isNot?: ConversationFeedbackWhereInput | null
+  }
+
+  export type ConversationMessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    conversationId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    metadata?: SortOrder
+    tokens?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConversationMessageAvgOrderByAggregateInput = {
+    tokens?: SortOrder
+  }
+
+  export type ConversationMessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    conversationId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    metadata?: SortOrder
+    tokens?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConversationMessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    conversationId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    metadata?: SortOrder
+    tokens?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConversationMessageSumOrderByAggregateInput = {
+    tokens?: SortOrder
+  }
+
+  export type ConversationMessageScalarRelationFilter = {
+    is?: ConversationMessageWhereInput
+    isNot?: ConversationMessageWhereInput
+  }
+
+  export type ConversationFeedbackCountOrderByAggregateInput = {
+    id?: SortOrder
+    messageId?: SortOrder
+    rating?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConversationFeedbackAvgOrderByAggregateInput = {
+    rating?: SortOrder
+  }
+
+  export type ConversationFeedbackMaxOrderByAggregateInput = {
+    id?: SortOrder
+    messageId?: SortOrder
+    rating?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConversationFeedbackMinOrderByAggregateInput = {
+    id?: SortOrder
+    messageId?: SortOrder
+    rating?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConversationFeedbackSumOrderByAggregateInput = {
+    rating?: SortOrder
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type TravelSessionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    active?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TravelSessionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    active?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TravelSessionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    active?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type CacheEntryCountOrderByAggregateInput = {
+    key?: SortOrder
+    value?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type CacheEntryMaxOrderByAggregateInput = {
+    key?: SortOrder
+    value?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type CacheEntryMinOrderByAggregateInput = {
+    key?: SortOrder
+    value?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type UserProfileCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
+    connect?: UserProfileWhereUniqueInput
+  }
+
+  export type MealCreateNestedManyWithoutUserInput = {
+    create?: XOR<MealCreateWithoutUserInput, MealUncheckedCreateWithoutUserInput> | MealCreateWithoutUserInput[] | MealUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MealCreateOrConnectWithoutUserInput | MealCreateOrConnectWithoutUserInput[]
+    createMany?: MealCreateManyUserInputEnvelope
+    connect?: MealWhereUniqueInput | MealWhereUniqueInput[]
+  }
+
+  export type WaterLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput> | WaterLogCreateWithoutUserInput[] | WaterLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WaterLogCreateOrConnectWithoutUserInput | WaterLogCreateOrConnectWithoutUserInput[]
+    createMany?: WaterLogCreateManyUserInputEnvelope
+    connect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+  }
+
+  export type SupplementLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<SupplementLogCreateWithoutUserInput, SupplementLogUncheckedCreateWithoutUserInput> | SupplementLogCreateWithoutUserInput[] | SupplementLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SupplementLogCreateOrConnectWithoutUserInput | SupplementLogCreateOrConnectWithoutUserInput[]
+    createMany?: SupplementLogCreateManyUserInputEnvelope
+    connect?: SupplementLogWhereUniqueInput | SupplementLogWhereUniqueInput[]
+  }
+
+  export type ExerciseLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<ExerciseLogCreateWithoutUserInput, ExerciseLogUncheckedCreateWithoutUserInput> | ExerciseLogCreateWithoutUserInput[] | ExerciseLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ExerciseLogCreateOrConnectWithoutUserInput | ExerciseLogCreateOrConnectWithoutUserInput[]
+    createMany?: ExerciseLogCreateManyUserInputEnvelope
+    connect?: ExerciseLogWhereUniqueInput | ExerciseLogWhereUniqueInput[]
+  }
+
+  export type MealScanCreateNestedManyWithoutUserInput = {
+    create?: XOR<MealScanCreateWithoutUserInput, MealScanUncheckedCreateWithoutUserInput> | MealScanCreateWithoutUserInput[] | MealScanUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MealScanCreateOrConnectWithoutUserInput | MealScanCreateOrConnectWithoutUserInput[]
+    createMany?: MealScanCreateManyUserInputEnvelope
+    connect?: MealScanWhereUniqueInput | MealScanWhereUniqueInput[]
+  }
+
+  export type ConversationCreateNestedManyWithoutUserInput = {
+    create?: XOR<ConversationCreateWithoutUserInput, ConversationUncheckedCreateWithoutUserInput> | ConversationCreateWithoutUserInput[] | ConversationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ConversationCreateOrConnectWithoutUserInput | ConversationCreateOrConnectWithoutUserInput[]
+    createMany?: ConversationCreateManyUserInputEnvelope
+    connect?: ConversationWhereUniqueInput | ConversationWhereUniqueInput[]
+  }
+
+  export type TravelSessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<TravelSessionCreateWithoutUserInput, TravelSessionUncheckedCreateWithoutUserInput> | TravelSessionCreateWithoutUserInput[] | TravelSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TravelSessionCreateOrConnectWithoutUserInput | TravelSessionCreateOrConnectWithoutUserInput[]
+    createMany?: TravelSessionCreateManyUserInputEnvelope
+    connect?: TravelSessionWhereUniqueInput | TravelSessionWhereUniqueInput[]
+  }
+
+  export type UserProfileUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
+    connect?: UserProfileWhereUniqueInput
+  }
+
+  export type MealUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MealCreateWithoutUserInput, MealUncheckedCreateWithoutUserInput> | MealCreateWithoutUserInput[] | MealUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MealCreateOrConnectWithoutUserInput | MealCreateOrConnectWithoutUserInput[]
+    createMany?: MealCreateManyUserInputEnvelope
+    connect?: MealWhereUniqueInput | MealWhereUniqueInput[]
+  }
+
+  export type WaterLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput> | WaterLogCreateWithoutUserInput[] | WaterLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WaterLogCreateOrConnectWithoutUserInput | WaterLogCreateOrConnectWithoutUserInput[]
+    createMany?: WaterLogCreateManyUserInputEnvelope
+    connect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+  }
+
+  export type SupplementLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SupplementLogCreateWithoutUserInput, SupplementLogUncheckedCreateWithoutUserInput> | SupplementLogCreateWithoutUserInput[] | SupplementLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SupplementLogCreateOrConnectWithoutUserInput | SupplementLogCreateOrConnectWithoutUserInput[]
+    createMany?: SupplementLogCreateManyUserInputEnvelope
+    connect?: SupplementLogWhereUniqueInput | SupplementLogWhereUniqueInput[]
+  }
+
+  export type ExerciseLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ExerciseLogCreateWithoutUserInput, ExerciseLogUncheckedCreateWithoutUserInput> | ExerciseLogCreateWithoutUserInput[] | ExerciseLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ExerciseLogCreateOrConnectWithoutUserInput | ExerciseLogCreateOrConnectWithoutUserInput[]
+    createMany?: ExerciseLogCreateManyUserInputEnvelope
+    connect?: ExerciseLogWhereUniqueInput | ExerciseLogWhereUniqueInput[]
+  }
+
+  export type MealScanUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MealScanCreateWithoutUserInput, MealScanUncheckedCreateWithoutUserInput> | MealScanCreateWithoutUserInput[] | MealScanUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MealScanCreateOrConnectWithoutUserInput | MealScanCreateOrConnectWithoutUserInput[]
+    createMany?: MealScanCreateManyUserInputEnvelope
+    connect?: MealScanWhereUniqueInput | MealScanWhereUniqueInput[]
+  }
+
+  export type ConversationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ConversationCreateWithoutUserInput, ConversationUncheckedCreateWithoutUserInput> | ConversationCreateWithoutUserInput[] | ConversationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ConversationCreateOrConnectWithoutUserInput | ConversationCreateOrConnectWithoutUserInput[]
+    createMany?: ConversationCreateManyUserInputEnvelope
+    connect?: ConversationWhereUniqueInput | ConversationWhereUniqueInput[]
+  }
+
+  export type TravelSessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TravelSessionCreateWithoutUserInput, TravelSessionUncheckedCreateWithoutUserInput> | TravelSessionCreateWithoutUserInput[] | TravelSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TravelSessionCreateOrConnectWithoutUserInput | TravelSessionCreateOrConnectWithoutUserInput[]
+    createMany?: TravelSessionCreateManyUserInputEnvelope
+    connect?: TravelSessionWhereUniqueInput | TravelSessionWhereUniqueInput[]
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type UserProfileUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
+    upsert?: UserProfileUpsertWithoutUserInput
+    disconnect?: UserProfileWhereInput | boolean
+    delete?: UserProfileWhereInput | boolean
+    connect?: UserProfileWhereUniqueInput
+    update?: XOR<XOR<UserProfileUpdateToOneWithWhereWithoutUserInput, UserProfileUpdateWithoutUserInput>, UserProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MealUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MealCreateWithoutUserInput, MealUncheckedCreateWithoutUserInput> | MealCreateWithoutUserInput[] | MealUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MealCreateOrConnectWithoutUserInput | MealCreateOrConnectWithoutUserInput[]
+    upsert?: MealUpsertWithWhereUniqueWithoutUserInput | MealUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MealCreateManyUserInputEnvelope
+    set?: MealWhereUniqueInput | MealWhereUniqueInput[]
+    disconnect?: MealWhereUniqueInput | MealWhereUniqueInput[]
+    delete?: MealWhereUniqueInput | MealWhereUniqueInput[]
+    connect?: MealWhereUniqueInput | MealWhereUniqueInput[]
+    update?: MealUpdateWithWhereUniqueWithoutUserInput | MealUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MealUpdateManyWithWhereWithoutUserInput | MealUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MealScalarWhereInput | MealScalarWhereInput[]
+  }
+
+  export type WaterLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput> | WaterLogCreateWithoutUserInput[] | WaterLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WaterLogCreateOrConnectWithoutUserInput | WaterLogCreateOrConnectWithoutUserInput[]
+    upsert?: WaterLogUpsertWithWhereUniqueWithoutUserInput | WaterLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: WaterLogCreateManyUserInputEnvelope
+    set?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    disconnect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    delete?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    connect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    update?: WaterLogUpdateWithWhereUniqueWithoutUserInput | WaterLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: WaterLogUpdateManyWithWhereWithoutUserInput | WaterLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: WaterLogScalarWhereInput | WaterLogScalarWhereInput[]
+  }
+
+  export type SupplementLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SupplementLogCreateWithoutUserInput, SupplementLogUncheckedCreateWithoutUserInput> | SupplementLogCreateWithoutUserInput[] | SupplementLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SupplementLogCreateOrConnectWithoutUserInput | SupplementLogCreateOrConnectWithoutUserInput[]
+    upsert?: SupplementLogUpsertWithWhereUniqueWithoutUserInput | SupplementLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SupplementLogCreateManyUserInputEnvelope
+    set?: SupplementLogWhereUniqueInput | SupplementLogWhereUniqueInput[]
+    disconnect?: SupplementLogWhereUniqueInput | SupplementLogWhereUniqueInput[]
+    delete?: SupplementLogWhereUniqueInput | SupplementLogWhereUniqueInput[]
+    connect?: SupplementLogWhereUniqueInput | SupplementLogWhereUniqueInput[]
+    update?: SupplementLogUpdateWithWhereUniqueWithoutUserInput | SupplementLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SupplementLogUpdateManyWithWhereWithoutUserInput | SupplementLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SupplementLogScalarWhereInput | SupplementLogScalarWhereInput[]
+  }
+
+  export type ExerciseLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ExerciseLogCreateWithoutUserInput, ExerciseLogUncheckedCreateWithoutUserInput> | ExerciseLogCreateWithoutUserInput[] | ExerciseLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ExerciseLogCreateOrConnectWithoutUserInput | ExerciseLogCreateOrConnectWithoutUserInput[]
+    upsert?: ExerciseLogUpsertWithWhereUniqueWithoutUserInput | ExerciseLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ExerciseLogCreateManyUserInputEnvelope
+    set?: ExerciseLogWhereUniqueInput | ExerciseLogWhereUniqueInput[]
+    disconnect?: ExerciseLogWhereUniqueInput | ExerciseLogWhereUniqueInput[]
+    delete?: ExerciseLogWhereUniqueInput | ExerciseLogWhereUniqueInput[]
+    connect?: ExerciseLogWhereUniqueInput | ExerciseLogWhereUniqueInput[]
+    update?: ExerciseLogUpdateWithWhereUniqueWithoutUserInput | ExerciseLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ExerciseLogUpdateManyWithWhereWithoutUserInput | ExerciseLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ExerciseLogScalarWhereInput | ExerciseLogScalarWhereInput[]
+  }
+
+  export type MealScanUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MealScanCreateWithoutUserInput, MealScanUncheckedCreateWithoutUserInput> | MealScanCreateWithoutUserInput[] | MealScanUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MealScanCreateOrConnectWithoutUserInput | MealScanCreateOrConnectWithoutUserInput[]
+    upsert?: MealScanUpsertWithWhereUniqueWithoutUserInput | MealScanUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MealScanCreateManyUserInputEnvelope
+    set?: MealScanWhereUniqueInput | MealScanWhereUniqueInput[]
+    disconnect?: MealScanWhereUniqueInput | MealScanWhereUniqueInput[]
+    delete?: MealScanWhereUniqueInput | MealScanWhereUniqueInput[]
+    connect?: MealScanWhereUniqueInput | MealScanWhereUniqueInput[]
+    update?: MealScanUpdateWithWhereUniqueWithoutUserInput | MealScanUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MealScanUpdateManyWithWhereWithoutUserInput | MealScanUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MealScanScalarWhereInput | MealScanScalarWhereInput[]
+  }
+
+  export type ConversationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ConversationCreateWithoutUserInput, ConversationUncheckedCreateWithoutUserInput> | ConversationCreateWithoutUserInput[] | ConversationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ConversationCreateOrConnectWithoutUserInput | ConversationCreateOrConnectWithoutUserInput[]
+    upsert?: ConversationUpsertWithWhereUniqueWithoutUserInput | ConversationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ConversationCreateManyUserInputEnvelope
+    set?: ConversationWhereUniqueInput | ConversationWhereUniqueInput[]
+    disconnect?: ConversationWhereUniqueInput | ConversationWhereUniqueInput[]
+    delete?: ConversationWhereUniqueInput | ConversationWhereUniqueInput[]
+    connect?: ConversationWhereUniqueInput | ConversationWhereUniqueInput[]
+    update?: ConversationUpdateWithWhereUniqueWithoutUserInput | ConversationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ConversationUpdateManyWithWhereWithoutUserInput | ConversationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ConversationScalarWhereInput | ConversationScalarWhereInput[]
+  }
+
+  export type TravelSessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TravelSessionCreateWithoutUserInput, TravelSessionUncheckedCreateWithoutUserInput> | TravelSessionCreateWithoutUserInput[] | TravelSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TravelSessionCreateOrConnectWithoutUserInput | TravelSessionCreateOrConnectWithoutUserInput[]
+    upsert?: TravelSessionUpsertWithWhereUniqueWithoutUserInput | TravelSessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TravelSessionCreateManyUserInputEnvelope
+    set?: TravelSessionWhereUniqueInput | TravelSessionWhereUniqueInput[]
+    disconnect?: TravelSessionWhereUniqueInput | TravelSessionWhereUniqueInput[]
+    delete?: TravelSessionWhereUniqueInput | TravelSessionWhereUniqueInput[]
+    connect?: TravelSessionWhereUniqueInput | TravelSessionWhereUniqueInput[]
+    update?: TravelSessionUpdateWithWhereUniqueWithoutUserInput | TravelSessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TravelSessionUpdateManyWithWhereWithoutUserInput | TravelSessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TravelSessionScalarWhereInput | TravelSessionScalarWhereInput[]
+  }
+
+  export type UserProfileUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
+    upsert?: UserProfileUpsertWithoutUserInput
+    disconnect?: UserProfileWhereInput | boolean
+    delete?: UserProfileWhereInput | boolean
+    connect?: UserProfileWhereUniqueInput
+    update?: XOR<XOR<UserProfileUpdateToOneWithWhereWithoutUserInput, UserProfileUpdateWithoutUserInput>, UserProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MealUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MealCreateWithoutUserInput, MealUncheckedCreateWithoutUserInput> | MealCreateWithoutUserInput[] | MealUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MealCreateOrConnectWithoutUserInput | MealCreateOrConnectWithoutUserInput[]
+    upsert?: MealUpsertWithWhereUniqueWithoutUserInput | MealUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MealCreateManyUserInputEnvelope
+    set?: MealWhereUniqueInput | MealWhereUniqueInput[]
+    disconnect?: MealWhereUniqueInput | MealWhereUniqueInput[]
+    delete?: MealWhereUniqueInput | MealWhereUniqueInput[]
+    connect?: MealWhereUniqueInput | MealWhereUniqueInput[]
+    update?: MealUpdateWithWhereUniqueWithoutUserInput | MealUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MealUpdateManyWithWhereWithoutUserInput | MealUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MealScalarWhereInput | MealScalarWhereInput[]
+  }
+
+  export type WaterLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput> | WaterLogCreateWithoutUserInput[] | WaterLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WaterLogCreateOrConnectWithoutUserInput | WaterLogCreateOrConnectWithoutUserInput[]
+    upsert?: WaterLogUpsertWithWhereUniqueWithoutUserInput | WaterLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: WaterLogCreateManyUserInputEnvelope
+    set?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    disconnect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    delete?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    connect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    update?: WaterLogUpdateWithWhereUniqueWithoutUserInput | WaterLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: WaterLogUpdateManyWithWhereWithoutUserInput | WaterLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: WaterLogScalarWhereInput | WaterLogScalarWhereInput[]
+  }
+
+  export type SupplementLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SupplementLogCreateWithoutUserInput, SupplementLogUncheckedCreateWithoutUserInput> | SupplementLogCreateWithoutUserInput[] | SupplementLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SupplementLogCreateOrConnectWithoutUserInput | SupplementLogCreateOrConnectWithoutUserInput[]
+    upsert?: SupplementLogUpsertWithWhereUniqueWithoutUserInput | SupplementLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SupplementLogCreateManyUserInputEnvelope
+    set?: SupplementLogWhereUniqueInput | SupplementLogWhereUniqueInput[]
+    disconnect?: SupplementLogWhereUniqueInput | SupplementLogWhereUniqueInput[]
+    delete?: SupplementLogWhereUniqueInput | SupplementLogWhereUniqueInput[]
+    connect?: SupplementLogWhereUniqueInput | SupplementLogWhereUniqueInput[]
+    update?: SupplementLogUpdateWithWhereUniqueWithoutUserInput | SupplementLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SupplementLogUpdateManyWithWhereWithoutUserInput | SupplementLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SupplementLogScalarWhereInput | SupplementLogScalarWhereInput[]
+  }
+
+  export type ExerciseLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ExerciseLogCreateWithoutUserInput, ExerciseLogUncheckedCreateWithoutUserInput> | ExerciseLogCreateWithoutUserInput[] | ExerciseLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ExerciseLogCreateOrConnectWithoutUserInput | ExerciseLogCreateOrConnectWithoutUserInput[]
+    upsert?: ExerciseLogUpsertWithWhereUniqueWithoutUserInput | ExerciseLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ExerciseLogCreateManyUserInputEnvelope
+    set?: ExerciseLogWhereUniqueInput | ExerciseLogWhereUniqueInput[]
+    disconnect?: ExerciseLogWhereUniqueInput | ExerciseLogWhereUniqueInput[]
+    delete?: ExerciseLogWhereUniqueInput | ExerciseLogWhereUniqueInput[]
+    connect?: ExerciseLogWhereUniqueInput | ExerciseLogWhereUniqueInput[]
+    update?: ExerciseLogUpdateWithWhereUniqueWithoutUserInput | ExerciseLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ExerciseLogUpdateManyWithWhereWithoutUserInput | ExerciseLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ExerciseLogScalarWhereInput | ExerciseLogScalarWhereInput[]
+  }
+
+  export type MealScanUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MealScanCreateWithoutUserInput, MealScanUncheckedCreateWithoutUserInput> | MealScanCreateWithoutUserInput[] | MealScanUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MealScanCreateOrConnectWithoutUserInput | MealScanCreateOrConnectWithoutUserInput[]
+    upsert?: MealScanUpsertWithWhereUniqueWithoutUserInput | MealScanUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MealScanCreateManyUserInputEnvelope
+    set?: MealScanWhereUniqueInput | MealScanWhereUniqueInput[]
+    disconnect?: MealScanWhereUniqueInput | MealScanWhereUniqueInput[]
+    delete?: MealScanWhereUniqueInput | MealScanWhereUniqueInput[]
+    connect?: MealScanWhereUniqueInput | MealScanWhereUniqueInput[]
+    update?: MealScanUpdateWithWhereUniqueWithoutUserInput | MealScanUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MealScanUpdateManyWithWhereWithoutUserInput | MealScanUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MealScanScalarWhereInput | MealScanScalarWhereInput[]
+  }
+
+  export type ConversationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ConversationCreateWithoutUserInput, ConversationUncheckedCreateWithoutUserInput> | ConversationCreateWithoutUserInput[] | ConversationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ConversationCreateOrConnectWithoutUserInput | ConversationCreateOrConnectWithoutUserInput[]
+    upsert?: ConversationUpsertWithWhereUniqueWithoutUserInput | ConversationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ConversationCreateManyUserInputEnvelope
+    set?: ConversationWhereUniqueInput | ConversationWhereUniqueInput[]
+    disconnect?: ConversationWhereUniqueInput | ConversationWhereUniqueInput[]
+    delete?: ConversationWhereUniqueInput | ConversationWhereUniqueInput[]
+    connect?: ConversationWhereUniqueInput | ConversationWhereUniqueInput[]
+    update?: ConversationUpdateWithWhereUniqueWithoutUserInput | ConversationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ConversationUpdateManyWithWhereWithoutUserInput | ConversationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ConversationScalarWhereInput | ConversationScalarWhereInput[]
+  }
+
+  export type TravelSessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TravelSessionCreateWithoutUserInput, TravelSessionUncheckedCreateWithoutUserInput> | TravelSessionCreateWithoutUserInput[] | TravelSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TravelSessionCreateOrConnectWithoutUserInput | TravelSessionCreateOrConnectWithoutUserInput[]
+    upsert?: TravelSessionUpsertWithWhereUniqueWithoutUserInput | TravelSessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TravelSessionCreateManyUserInputEnvelope
+    set?: TravelSessionWhereUniqueInput | TravelSessionWhereUniqueInput[]
+    disconnect?: TravelSessionWhereUniqueInput | TravelSessionWhereUniqueInput[]
+    delete?: TravelSessionWhereUniqueInput | TravelSessionWhereUniqueInput[]
+    connect?: TravelSessionWhereUniqueInput | TravelSessionWhereUniqueInput[]
+    update?: TravelSessionUpdateWithWhereUniqueWithoutUserInput | TravelSessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TravelSessionUpdateManyWithWhereWithoutUserInput | TravelSessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TravelSessionScalarWhereInput | TravelSessionScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutProfileInput = {
+    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProfileInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutProfileNestedInput = {
+    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProfileInput
+    upsert?: UserUpsertWithoutProfileInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProfileInput, UserUpdateWithoutProfileInput>, UserUncheckedUpdateWithoutProfileInput>
+  }
+
+  export type MealItemCreateNestedManyWithoutFoodInput = {
+    create?: XOR<MealItemCreateWithoutFoodInput, MealItemUncheckedCreateWithoutFoodInput> | MealItemCreateWithoutFoodInput[] | MealItemUncheckedCreateWithoutFoodInput[]
+    connectOrCreate?: MealItemCreateOrConnectWithoutFoodInput | MealItemCreateOrConnectWithoutFoodInput[]
+    createMany?: MealItemCreateManyFoodInputEnvelope
+    connect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+  }
+
+  export type MealItemUncheckedCreateNestedManyWithoutFoodInput = {
+    create?: XOR<MealItemCreateWithoutFoodInput, MealItemUncheckedCreateWithoutFoodInput> | MealItemCreateWithoutFoodInput[] | MealItemUncheckedCreateWithoutFoodInput[]
+    connectOrCreate?: MealItemCreateOrConnectWithoutFoodInput | MealItemCreateOrConnectWithoutFoodInput[]
+    createMany?: MealItemCreateManyFoodInputEnvelope
+    connect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+  }
+
+  export type EnumFoodSourceFieldUpdateOperationsInput = {
+    set?: $Enums.FoodSource
+  }
+
+  export type MealItemUpdateManyWithoutFoodNestedInput = {
+    create?: XOR<MealItemCreateWithoutFoodInput, MealItemUncheckedCreateWithoutFoodInput> | MealItemCreateWithoutFoodInput[] | MealItemUncheckedCreateWithoutFoodInput[]
+    connectOrCreate?: MealItemCreateOrConnectWithoutFoodInput | MealItemCreateOrConnectWithoutFoodInput[]
+    upsert?: MealItemUpsertWithWhereUniqueWithoutFoodInput | MealItemUpsertWithWhereUniqueWithoutFoodInput[]
+    createMany?: MealItemCreateManyFoodInputEnvelope
+    set?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    disconnect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    delete?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    connect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    update?: MealItemUpdateWithWhereUniqueWithoutFoodInput | MealItemUpdateWithWhereUniqueWithoutFoodInput[]
+    updateMany?: MealItemUpdateManyWithWhereWithoutFoodInput | MealItemUpdateManyWithWhereWithoutFoodInput[]
+    deleteMany?: MealItemScalarWhereInput | MealItemScalarWhereInput[]
+  }
+
+  export type MealItemUncheckedUpdateManyWithoutFoodNestedInput = {
+    create?: XOR<MealItemCreateWithoutFoodInput, MealItemUncheckedCreateWithoutFoodInput> | MealItemCreateWithoutFoodInput[] | MealItemUncheckedCreateWithoutFoodInput[]
+    connectOrCreate?: MealItemCreateOrConnectWithoutFoodInput | MealItemCreateOrConnectWithoutFoodInput[]
+    upsert?: MealItemUpsertWithWhereUniqueWithoutFoodInput | MealItemUpsertWithWhereUniqueWithoutFoodInput[]
+    createMany?: MealItemCreateManyFoodInputEnvelope
+    set?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    disconnect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    delete?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    connect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    update?: MealItemUpdateWithWhereUniqueWithoutFoodInput | MealItemUpdateWithWhereUniqueWithoutFoodInput[]
+    updateMany?: MealItemUpdateManyWithWhereWithoutFoodInput | MealItemUpdateManyWithWhereWithoutFoodInput[]
+    deleteMany?: MealItemScalarWhereInput | MealItemScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutMealsInput = {
+    create?: XOR<UserCreateWithoutMealsInput, UserUncheckedCreateWithoutMealsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMealsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type MealItemCreateNestedManyWithoutMealInput = {
+    create?: XOR<MealItemCreateWithoutMealInput, MealItemUncheckedCreateWithoutMealInput> | MealItemCreateWithoutMealInput[] | MealItemUncheckedCreateWithoutMealInput[]
+    connectOrCreate?: MealItemCreateOrConnectWithoutMealInput | MealItemCreateOrConnectWithoutMealInput[]
+    createMany?: MealItemCreateManyMealInputEnvelope
+    connect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+  }
+
+  export type MealScanCreateNestedOneWithoutMealInput = {
+    create?: XOR<MealScanCreateWithoutMealInput, MealScanUncheckedCreateWithoutMealInput>
+    connectOrCreate?: MealScanCreateOrConnectWithoutMealInput
+    connect?: MealScanWhereUniqueInput
+  }
+
+  export type MealItemUncheckedCreateNestedManyWithoutMealInput = {
+    create?: XOR<MealItemCreateWithoutMealInput, MealItemUncheckedCreateWithoutMealInput> | MealItemCreateWithoutMealInput[] | MealItemUncheckedCreateWithoutMealInput[]
+    connectOrCreate?: MealItemCreateOrConnectWithoutMealInput | MealItemCreateOrConnectWithoutMealInput[]
+    createMany?: MealItemCreateManyMealInputEnvelope
+    connect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+  }
+
+  export type MealScanUncheckedCreateNestedOneWithoutMealInput = {
+    create?: XOR<MealScanCreateWithoutMealInput, MealScanUncheckedCreateWithoutMealInput>
+    connectOrCreate?: MealScanCreateOrConnectWithoutMealInput
+    connect?: MealScanWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutMealsNestedInput = {
+    create?: XOR<UserCreateWithoutMealsInput, UserUncheckedCreateWithoutMealsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMealsInput
+    upsert?: UserUpsertWithoutMealsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMealsInput, UserUpdateWithoutMealsInput>, UserUncheckedUpdateWithoutMealsInput>
+  }
+
+  export type MealItemUpdateManyWithoutMealNestedInput = {
+    create?: XOR<MealItemCreateWithoutMealInput, MealItemUncheckedCreateWithoutMealInput> | MealItemCreateWithoutMealInput[] | MealItemUncheckedCreateWithoutMealInput[]
+    connectOrCreate?: MealItemCreateOrConnectWithoutMealInput | MealItemCreateOrConnectWithoutMealInput[]
+    upsert?: MealItemUpsertWithWhereUniqueWithoutMealInput | MealItemUpsertWithWhereUniqueWithoutMealInput[]
+    createMany?: MealItemCreateManyMealInputEnvelope
+    set?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    disconnect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    delete?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    connect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    update?: MealItemUpdateWithWhereUniqueWithoutMealInput | MealItemUpdateWithWhereUniqueWithoutMealInput[]
+    updateMany?: MealItemUpdateManyWithWhereWithoutMealInput | MealItemUpdateManyWithWhereWithoutMealInput[]
+    deleteMany?: MealItemScalarWhereInput | MealItemScalarWhereInput[]
+  }
+
+  export type MealScanUpdateOneWithoutMealNestedInput = {
+    create?: XOR<MealScanCreateWithoutMealInput, MealScanUncheckedCreateWithoutMealInput>
+    connectOrCreate?: MealScanCreateOrConnectWithoutMealInput
+    upsert?: MealScanUpsertWithoutMealInput
+    disconnect?: MealScanWhereInput | boolean
+    delete?: MealScanWhereInput | boolean
+    connect?: MealScanWhereUniqueInput
+    update?: XOR<XOR<MealScanUpdateToOneWithWhereWithoutMealInput, MealScanUpdateWithoutMealInput>, MealScanUncheckedUpdateWithoutMealInput>
+  }
+
+  export type MealItemUncheckedUpdateManyWithoutMealNestedInput = {
+    create?: XOR<MealItemCreateWithoutMealInput, MealItemUncheckedCreateWithoutMealInput> | MealItemCreateWithoutMealInput[] | MealItemUncheckedCreateWithoutMealInput[]
+    connectOrCreate?: MealItemCreateOrConnectWithoutMealInput | MealItemCreateOrConnectWithoutMealInput[]
+    upsert?: MealItemUpsertWithWhereUniqueWithoutMealInput | MealItemUpsertWithWhereUniqueWithoutMealInput[]
+    createMany?: MealItemCreateManyMealInputEnvelope
+    set?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    disconnect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    delete?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    connect?: MealItemWhereUniqueInput | MealItemWhereUniqueInput[]
+    update?: MealItemUpdateWithWhereUniqueWithoutMealInput | MealItemUpdateWithWhereUniqueWithoutMealInput[]
+    updateMany?: MealItemUpdateManyWithWhereWithoutMealInput | MealItemUpdateManyWithWhereWithoutMealInput[]
+    deleteMany?: MealItemScalarWhereInput | MealItemScalarWhereInput[]
+  }
+
+  export type MealScanUncheckedUpdateOneWithoutMealNestedInput = {
+    create?: XOR<MealScanCreateWithoutMealInput, MealScanUncheckedCreateWithoutMealInput>
+    connectOrCreate?: MealScanCreateOrConnectWithoutMealInput
+    upsert?: MealScanUpsertWithoutMealInput
+    disconnect?: MealScanWhereInput | boolean
+    delete?: MealScanWhereInput | boolean
+    connect?: MealScanWhereUniqueInput
+    update?: XOR<XOR<MealScanUpdateToOneWithWhereWithoutMealInput, MealScanUpdateWithoutMealInput>, MealScanUncheckedUpdateWithoutMealInput>
+  }
+
+  export type MealCreateNestedOneWithoutItemsInput = {
+    create?: XOR<MealCreateWithoutItemsInput, MealUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: MealCreateOrConnectWithoutItemsInput
+    connect?: MealWhereUniqueInput
+  }
+
+  export type FoodCreateNestedOneWithoutMealItemsInput = {
+    create?: XOR<FoodCreateWithoutMealItemsInput, FoodUncheckedCreateWithoutMealItemsInput>
+    connectOrCreate?: FoodCreateOrConnectWithoutMealItemsInput
+    connect?: FoodWhereUniqueInput
+  }
+
+  export type MealUpdateOneRequiredWithoutItemsNestedInput = {
+    create?: XOR<MealCreateWithoutItemsInput, MealUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: MealCreateOrConnectWithoutItemsInput
+    upsert?: MealUpsertWithoutItemsInput
+    connect?: MealWhereUniqueInput
+    update?: XOR<XOR<MealUpdateToOneWithWhereWithoutItemsInput, MealUpdateWithoutItemsInput>, MealUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type FoodUpdateOneWithoutMealItemsNestedInput = {
+    create?: XOR<FoodCreateWithoutMealItemsInput, FoodUncheckedCreateWithoutMealItemsInput>
+    connectOrCreate?: FoodCreateOrConnectWithoutMealItemsInput
+    upsert?: FoodUpsertWithoutMealItemsInput
+    disconnect?: FoodWhereInput | boolean
+    delete?: FoodWhereInput | boolean
+    connect?: FoodWhereUniqueInput
+    update?: XOR<XOR<FoodUpdateToOneWithWhereWithoutMealItemsInput, FoodUpdateWithoutMealItemsInput>, FoodUncheckedUpdateWithoutMealItemsInput>
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type UserCreateNestedOneWithoutWaterLogsInput = {
+    create?: XOR<UserCreateWithoutWaterLogsInput, UserUncheckedCreateWithoutWaterLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWaterLogsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutWaterLogsNestedInput = {
+    create?: XOR<UserCreateWithoutWaterLogsInput, UserUncheckedCreateWithoutWaterLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWaterLogsInput
+    upsert?: UserUpsertWithoutWaterLogsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWaterLogsInput, UserUpdateWithoutWaterLogsInput>, UserUncheckedUpdateWithoutWaterLogsInput>
+  }
+
+  export type UserCreateNestedOneWithoutSupplementLogsInput = {
+    create?: XOR<UserCreateWithoutSupplementLogsInput, UserUncheckedCreateWithoutSupplementLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSupplementLogsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutSupplementLogsNestedInput = {
+    create?: XOR<UserCreateWithoutSupplementLogsInput, UserUncheckedCreateWithoutSupplementLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSupplementLogsInput
+    upsert?: UserUpsertWithoutSupplementLogsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSupplementLogsInput, UserUpdateWithoutSupplementLogsInput>, UserUncheckedUpdateWithoutSupplementLogsInput>
+  }
+
+  export type UserCreateNestedOneWithoutExerciseLogsInput = {
+    create?: XOR<UserCreateWithoutExerciseLogsInput, UserUncheckedCreateWithoutExerciseLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutExerciseLogsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutExerciseLogsNestedInput = {
+    create?: XOR<UserCreateWithoutExerciseLogsInput, UserUncheckedCreateWithoutExerciseLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutExerciseLogsInput
+    upsert?: UserUpsertWithoutExerciseLogsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutExerciseLogsInput, UserUpdateWithoutExerciseLogsInput>, UserUncheckedUpdateWithoutExerciseLogsInput>
+  }
+
+  export type UserCreateNestedOneWithoutMealScansInput = {
+    create?: XOR<UserCreateWithoutMealScansInput, UserUncheckedCreateWithoutMealScansInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMealScansInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type MealCreateNestedOneWithoutMealScanInput = {
+    create?: XOR<MealCreateWithoutMealScanInput, MealUncheckedCreateWithoutMealScanInput>
+    connectOrCreate?: MealCreateOrConnectWithoutMealScanInput
+    connect?: MealWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutMealScansNestedInput = {
+    create?: XOR<UserCreateWithoutMealScansInput, UserUncheckedCreateWithoutMealScansInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMealScansInput
+    upsert?: UserUpsertWithoutMealScansInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMealScansInput, UserUpdateWithoutMealScansInput>, UserUncheckedUpdateWithoutMealScansInput>
+  }
+
+  export type MealUpdateOneWithoutMealScanNestedInput = {
+    create?: XOR<MealCreateWithoutMealScanInput, MealUncheckedCreateWithoutMealScanInput>
+    connectOrCreate?: MealCreateOrConnectWithoutMealScanInput
+    upsert?: MealUpsertWithoutMealScanInput
+    disconnect?: MealWhereInput | boolean
+    delete?: MealWhereInput | boolean
+    connect?: MealWhereUniqueInput
+    update?: XOR<XOR<MealUpdateToOneWithWhereWithoutMealScanInput, MealUpdateWithoutMealScanInput>, MealUncheckedUpdateWithoutMealScanInput>
+  }
+
+  export type UserCreateNestedOneWithoutConversationsInput = {
+    create?: XOR<UserCreateWithoutConversationsInput, UserUncheckedCreateWithoutConversationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutConversationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ConversationMessageCreateNestedManyWithoutConversationInput = {
+    create?: XOR<ConversationMessageCreateWithoutConversationInput, ConversationMessageUncheckedCreateWithoutConversationInput> | ConversationMessageCreateWithoutConversationInput[] | ConversationMessageUncheckedCreateWithoutConversationInput[]
+    connectOrCreate?: ConversationMessageCreateOrConnectWithoutConversationInput | ConversationMessageCreateOrConnectWithoutConversationInput[]
+    createMany?: ConversationMessageCreateManyConversationInputEnvelope
+    connect?: ConversationMessageWhereUniqueInput | ConversationMessageWhereUniqueInput[]
+  }
+
+  export type ConversationMessageUncheckedCreateNestedManyWithoutConversationInput = {
+    create?: XOR<ConversationMessageCreateWithoutConversationInput, ConversationMessageUncheckedCreateWithoutConversationInput> | ConversationMessageCreateWithoutConversationInput[] | ConversationMessageUncheckedCreateWithoutConversationInput[]
+    connectOrCreate?: ConversationMessageCreateOrConnectWithoutConversationInput | ConversationMessageCreateOrConnectWithoutConversationInput[]
+    createMany?: ConversationMessageCreateManyConversationInputEnvelope
+    connect?: ConversationMessageWhereUniqueInput | ConversationMessageWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutConversationsNestedInput = {
+    create?: XOR<UserCreateWithoutConversationsInput, UserUncheckedCreateWithoutConversationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutConversationsInput
+    upsert?: UserUpsertWithoutConversationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutConversationsInput, UserUpdateWithoutConversationsInput>, UserUncheckedUpdateWithoutConversationsInput>
+  }
+
+  export type ConversationMessageUpdateManyWithoutConversationNestedInput = {
+    create?: XOR<ConversationMessageCreateWithoutConversationInput, ConversationMessageUncheckedCreateWithoutConversationInput> | ConversationMessageCreateWithoutConversationInput[] | ConversationMessageUncheckedCreateWithoutConversationInput[]
+    connectOrCreate?: ConversationMessageCreateOrConnectWithoutConversationInput | ConversationMessageCreateOrConnectWithoutConversationInput[]
+    upsert?: ConversationMessageUpsertWithWhereUniqueWithoutConversationInput | ConversationMessageUpsertWithWhereUniqueWithoutConversationInput[]
+    createMany?: ConversationMessageCreateManyConversationInputEnvelope
+    set?: ConversationMessageWhereUniqueInput | ConversationMessageWhereUniqueInput[]
+    disconnect?: ConversationMessageWhereUniqueInput | ConversationMessageWhereUniqueInput[]
+    delete?: ConversationMessageWhereUniqueInput | ConversationMessageWhereUniqueInput[]
+    connect?: ConversationMessageWhereUniqueInput | ConversationMessageWhereUniqueInput[]
+    update?: ConversationMessageUpdateWithWhereUniqueWithoutConversationInput | ConversationMessageUpdateWithWhereUniqueWithoutConversationInput[]
+    updateMany?: ConversationMessageUpdateManyWithWhereWithoutConversationInput | ConversationMessageUpdateManyWithWhereWithoutConversationInput[]
+    deleteMany?: ConversationMessageScalarWhereInput | ConversationMessageScalarWhereInput[]
+  }
+
+  export type ConversationMessageUncheckedUpdateManyWithoutConversationNestedInput = {
+    create?: XOR<ConversationMessageCreateWithoutConversationInput, ConversationMessageUncheckedCreateWithoutConversationInput> | ConversationMessageCreateWithoutConversationInput[] | ConversationMessageUncheckedCreateWithoutConversationInput[]
+    connectOrCreate?: ConversationMessageCreateOrConnectWithoutConversationInput | ConversationMessageCreateOrConnectWithoutConversationInput[]
+    upsert?: ConversationMessageUpsertWithWhereUniqueWithoutConversationInput | ConversationMessageUpsertWithWhereUniqueWithoutConversationInput[]
+    createMany?: ConversationMessageCreateManyConversationInputEnvelope
+    set?: ConversationMessageWhereUniqueInput | ConversationMessageWhereUniqueInput[]
+    disconnect?: ConversationMessageWhereUniqueInput | ConversationMessageWhereUniqueInput[]
+    delete?: ConversationMessageWhereUniqueInput | ConversationMessageWhereUniqueInput[]
+    connect?: ConversationMessageWhereUniqueInput | ConversationMessageWhereUniqueInput[]
+    update?: ConversationMessageUpdateWithWhereUniqueWithoutConversationInput | ConversationMessageUpdateWithWhereUniqueWithoutConversationInput[]
+    updateMany?: ConversationMessageUpdateManyWithWhereWithoutConversationInput | ConversationMessageUpdateManyWithWhereWithoutConversationInput[]
+    deleteMany?: ConversationMessageScalarWhereInput | ConversationMessageScalarWhereInput[]
+  }
+
+  export type ConversationCreateNestedOneWithoutMessagesInput = {
+    create?: XOR<ConversationCreateWithoutMessagesInput, ConversationUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: ConversationCreateOrConnectWithoutMessagesInput
+    connect?: ConversationWhereUniqueInput
+  }
+
+  export type ConversationFeedbackCreateNestedOneWithoutMessageInput = {
+    create?: XOR<ConversationFeedbackCreateWithoutMessageInput, ConversationFeedbackUncheckedCreateWithoutMessageInput>
+    connectOrCreate?: ConversationFeedbackCreateOrConnectWithoutMessageInput
+    connect?: ConversationFeedbackWhereUniqueInput
+  }
+
+  export type ConversationFeedbackUncheckedCreateNestedOneWithoutMessageInput = {
+    create?: XOR<ConversationFeedbackCreateWithoutMessageInput, ConversationFeedbackUncheckedCreateWithoutMessageInput>
+    connectOrCreate?: ConversationFeedbackCreateOrConnectWithoutMessageInput
+    connect?: ConversationFeedbackWhereUniqueInput
+  }
+
+  export type ConversationUpdateOneRequiredWithoutMessagesNestedInput = {
+    create?: XOR<ConversationCreateWithoutMessagesInput, ConversationUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: ConversationCreateOrConnectWithoutMessagesInput
+    upsert?: ConversationUpsertWithoutMessagesInput
+    connect?: ConversationWhereUniqueInput
+    update?: XOR<XOR<ConversationUpdateToOneWithWhereWithoutMessagesInput, ConversationUpdateWithoutMessagesInput>, ConversationUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type ConversationFeedbackUpdateOneWithoutMessageNestedInput = {
+    create?: XOR<ConversationFeedbackCreateWithoutMessageInput, ConversationFeedbackUncheckedCreateWithoutMessageInput>
+    connectOrCreate?: ConversationFeedbackCreateOrConnectWithoutMessageInput
+    upsert?: ConversationFeedbackUpsertWithoutMessageInput
+    disconnect?: ConversationFeedbackWhereInput | boolean
+    delete?: ConversationFeedbackWhereInput | boolean
+    connect?: ConversationFeedbackWhereUniqueInput
+    update?: XOR<XOR<ConversationFeedbackUpdateToOneWithWhereWithoutMessageInput, ConversationFeedbackUpdateWithoutMessageInput>, ConversationFeedbackUncheckedUpdateWithoutMessageInput>
+  }
+
+  export type ConversationFeedbackUncheckedUpdateOneWithoutMessageNestedInput = {
+    create?: XOR<ConversationFeedbackCreateWithoutMessageInput, ConversationFeedbackUncheckedCreateWithoutMessageInput>
+    connectOrCreate?: ConversationFeedbackCreateOrConnectWithoutMessageInput
+    upsert?: ConversationFeedbackUpsertWithoutMessageInput
+    disconnect?: ConversationFeedbackWhereInput | boolean
+    delete?: ConversationFeedbackWhereInput | boolean
+    connect?: ConversationFeedbackWhereUniqueInput
+    update?: XOR<XOR<ConversationFeedbackUpdateToOneWithWhereWithoutMessageInput, ConversationFeedbackUpdateWithoutMessageInput>, ConversationFeedbackUncheckedUpdateWithoutMessageInput>
+  }
+
+  export type ConversationMessageCreateNestedOneWithoutFeedbackInput = {
+    create?: XOR<ConversationMessageCreateWithoutFeedbackInput, ConversationMessageUncheckedCreateWithoutFeedbackInput>
+    connectOrCreate?: ConversationMessageCreateOrConnectWithoutFeedbackInput
+    connect?: ConversationMessageWhereUniqueInput
+  }
+
+  export type ConversationMessageUpdateOneRequiredWithoutFeedbackNestedInput = {
+    create?: XOR<ConversationMessageCreateWithoutFeedbackInput, ConversationMessageUncheckedCreateWithoutFeedbackInput>
+    connectOrCreate?: ConversationMessageCreateOrConnectWithoutFeedbackInput
+    upsert?: ConversationMessageUpsertWithoutFeedbackInput
+    connect?: ConversationMessageWhereUniqueInput
+    update?: XOR<XOR<ConversationMessageUpdateToOneWithWhereWithoutFeedbackInput, ConversationMessageUpdateWithoutFeedbackInput>, ConversationMessageUncheckedUpdateWithoutFeedbackInput>
+  }
+
+  export type UserCreateNestedOneWithoutTravelSessionsInput = {
+    create?: XOR<UserCreateWithoutTravelSessionsInput, UserUncheckedCreateWithoutTravelSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTravelSessionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type UserUpdateOneRequiredWithoutTravelSessionsNestedInput = {
+    create?: XOR<UserCreateWithoutTravelSessionsInput, UserUncheckedCreateWithoutTravelSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTravelSessionsInput
+    upsert?: UserUpsertWithoutTravelSessionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTravelSessionsInput, UserUpdateWithoutTravelSessionsInput>, UserUncheckedUpdateWithoutTravelSessionsInput>
+  }
+
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFoodSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.FoodSource | EnumFoodSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.FoodSource[] | ListEnumFoodSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FoodSource[] | ListEnumFoodSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumFoodSourceFilter<$PrismaModel> | $Enums.FoodSource
+  }
+
+  export type NestedEnumFoodSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FoodSource | EnumFoodSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.FoodSource[] | ListEnumFoodSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FoodSource[] | ListEnumFoodSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumFoodSourceWithAggregatesFilter<$PrismaModel> | $Enums.FoodSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFoodSourceFilter<$PrismaModel>
+    _max?: NestedEnumFoodSourceFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type UserProfileCreateWithoutUserInput = {
+    id?: string
+    fullName: string
+    age: number
+    gender: string
+    weight: number
+    height: number
+    activityLevel: string
+    goal: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserProfileUncheckedCreateWithoutUserInput = {
+    id?: string
+    fullName: string
+    age: number
+    gender: string
+    weight: number
+    height: number
+    activityLevel: string
+    goal: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserProfileCreateOrConnectWithoutUserInput = {
+    where: UserProfileWhereUniqueInput
+    create: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+  }
+
+  export type MealCreateWithoutUserInput = {
+    id?: string
+    mealType: string
+    source: string
+    createdAt?: Date | string
+    items?: MealItemCreateNestedManyWithoutMealInput
+    mealScan?: MealScanCreateNestedOneWithoutMealInput
+  }
+
+  export type MealUncheckedCreateWithoutUserInput = {
+    id?: string
+    mealType: string
+    source: string
+    createdAt?: Date | string
+    items?: MealItemUncheckedCreateNestedManyWithoutMealInput
+    mealScan?: MealScanUncheckedCreateNestedOneWithoutMealInput
+  }
+
+  export type MealCreateOrConnectWithoutUserInput = {
+    where: MealWhereUniqueInput
+    create: XOR<MealCreateWithoutUserInput, MealUncheckedCreateWithoutUserInput>
+  }
+
+  export type MealCreateManyUserInputEnvelope = {
+    data: MealCreateManyUserInput | MealCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type WaterLogCreateWithoutUserInput = {
+    id?: string
+    amount: number
+    unit: string
+    createdAt?: Date | string
+  }
+
+  export type WaterLogUncheckedCreateWithoutUserInput = {
+    id?: string
+    amount: number
+    unit: string
+    createdAt?: Date | string
+  }
+
+  export type WaterLogCreateOrConnectWithoutUserInput = {
+    where: WaterLogWhereUniqueInput
+    create: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type WaterLogCreateManyUserInputEnvelope = {
+    data: WaterLogCreateManyUserInput | WaterLogCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SupplementLogCreateWithoutUserInput = {
+    id?: string
+    name: string
+    dosage: number
+    unit: string
+    createdAt?: Date | string
+  }
+
+  export type SupplementLogUncheckedCreateWithoutUserInput = {
+    id?: string
+    name: string
+    dosage: number
+    unit: string
+    createdAt?: Date | string
+  }
+
+  export type SupplementLogCreateOrConnectWithoutUserInput = {
+    where: SupplementLogWhereUniqueInput
+    create: XOR<SupplementLogCreateWithoutUserInput, SupplementLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type SupplementLogCreateManyUserInputEnvelope = {
+    data: SupplementLogCreateManyUserInput | SupplementLogCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ExerciseLogCreateWithoutUserInput = {
+    id?: string
+    activityName: string
+    durationMinutes: number
+    caloriesBurned: number
+    createdAt?: Date | string
+  }
+
+  export type ExerciseLogUncheckedCreateWithoutUserInput = {
+    id?: string
+    activityName: string
+    durationMinutes: number
+    caloriesBurned: number
+    createdAt?: Date | string
+  }
+
+  export type ExerciseLogCreateOrConnectWithoutUserInput = {
+    where: ExerciseLogWhereUniqueInput
+    create: XOR<ExerciseLogCreateWithoutUserInput, ExerciseLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type ExerciseLogCreateManyUserInputEnvelope = {
+    data: ExerciseLogCreateManyUserInput | ExerciseLogCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MealScanCreateWithoutUserInput = {
+    id?: string
+    imageUrl: string
+    model: string
+    confidence: number
+    rawResponse: string
+    processedMatches: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meal?: MealCreateNestedOneWithoutMealScanInput
+  }
+
+  export type MealScanUncheckedCreateWithoutUserInput = {
+    id?: string
+    mealId?: string | null
+    imageUrl: string
+    model: string
+    confidence: number
+    rawResponse: string
+    processedMatches: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MealScanCreateOrConnectWithoutUserInput = {
+    where: MealScanWhereUniqueInput
+    create: XOR<MealScanCreateWithoutUserInput, MealScanUncheckedCreateWithoutUserInput>
+  }
+
+  export type MealScanCreateManyUserInputEnvelope = {
+    data: MealScanCreateManyUserInput | MealScanCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ConversationCreateWithoutUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    messages?: ConversationMessageCreateNestedManyWithoutConversationInput
+  }
+
+  export type ConversationUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    messages?: ConversationMessageUncheckedCreateNestedManyWithoutConversationInput
+  }
+
+  export type ConversationCreateOrConnectWithoutUserInput = {
+    where: ConversationWhereUniqueInput
+    create: XOR<ConversationCreateWithoutUserInput, ConversationUncheckedCreateWithoutUserInput>
+  }
+
+  export type ConversationCreateManyUserInputEnvelope = {
+    data: ConversationCreateManyUserInput | ConversationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TravelSessionCreateWithoutUserInput = {
+    id?: string
+    active?: boolean
+    startDate?: Date | string
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TravelSessionUncheckedCreateWithoutUserInput = {
+    id?: string
+    active?: boolean
+    startDate?: Date | string
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TravelSessionCreateOrConnectWithoutUserInput = {
+    where: TravelSessionWhereUniqueInput
+    create: XOR<TravelSessionCreateWithoutUserInput, TravelSessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type TravelSessionCreateManyUserInputEnvelope = {
+    data: TravelSessionCreateManyUserInput | TravelSessionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserProfileUpsertWithoutUserInput = {
+    update: XOR<UserProfileUpdateWithoutUserInput, UserProfileUncheckedUpdateWithoutUserInput>
+    create: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+    where?: UserProfileWhereInput
+  }
+
+  export type UserProfileUpdateToOneWithWhereWithoutUserInput = {
+    where?: UserProfileWhereInput
+    data: XOR<UserProfileUpdateWithoutUserInput, UserProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserProfileUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    gender?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    height?: FloatFieldUpdateOperationsInput | number
+    activityLevel?: StringFieldUpdateOperationsInput | string
+    goal?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserProfileUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    gender?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    height?: FloatFieldUpdateOperationsInput | number
+    activityLevel?: StringFieldUpdateOperationsInput | string
+    goal?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealUpsertWithWhereUniqueWithoutUserInput = {
+    where: MealWhereUniqueInput
+    update: XOR<MealUpdateWithoutUserInput, MealUncheckedUpdateWithoutUserInput>
+    create: XOR<MealCreateWithoutUserInput, MealUncheckedCreateWithoutUserInput>
+  }
+
+  export type MealUpdateWithWhereUniqueWithoutUserInput = {
+    where: MealWhereUniqueInput
+    data: XOR<MealUpdateWithoutUserInput, MealUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MealUpdateManyWithWhereWithoutUserInput = {
+    where: MealScalarWhereInput
+    data: XOR<MealUpdateManyMutationInput, MealUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MealScalarWhereInput = {
+    AND?: MealScalarWhereInput | MealScalarWhereInput[]
+    OR?: MealScalarWhereInput[]
+    NOT?: MealScalarWhereInput | MealScalarWhereInput[]
+    id?: StringFilter<"Meal"> | string
+    userId?: StringFilter<"Meal"> | string
+    mealType?: StringFilter<"Meal"> | string
+    source?: StringFilter<"Meal"> | string
+    createdAt?: DateTimeFilter<"Meal"> | Date | string
+  }
+
+  export type WaterLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: WaterLogWhereUniqueInput
+    update: XOR<WaterLogUpdateWithoutUserInput, WaterLogUncheckedUpdateWithoutUserInput>
+    create: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type WaterLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: WaterLogWhereUniqueInput
+    data: XOR<WaterLogUpdateWithoutUserInput, WaterLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type WaterLogUpdateManyWithWhereWithoutUserInput = {
+    where: WaterLogScalarWhereInput
+    data: XOR<WaterLogUpdateManyMutationInput, WaterLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type WaterLogScalarWhereInput = {
+    AND?: WaterLogScalarWhereInput | WaterLogScalarWhereInput[]
+    OR?: WaterLogScalarWhereInput[]
+    NOT?: WaterLogScalarWhereInput | WaterLogScalarWhereInput[]
+    id?: StringFilter<"WaterLog"> | string
+    userId?: StringFilter<"WaterLog"> | string
+    amount?: FloatFilter<"WaterLog"> | number
+    unit?: StringFilter<"WaterLog"> | string
+    createdAt?: DateTimeFilter<"WaterLog"> | Date | string
+  }
+
+  export type SupplementLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: SupplementLogWhereUniqueInput
+    update: XOR<SupplementLogUpdateWithoutUserInput, SupplementLogUncheckedUpdateWithoutUserInput>
+    create: XOR<SupplementLogCreateWithoutUserInput, SupplementLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type SupplementLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: SupplementLogWhereUniqueInput
+    data: XOR<SupplementLogUpdateWithoutUserInput, SupplementLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SupplementLogUpdateManyWithWhereWithoutUserInput = {
+    where: SupplementLogScalarWhereInput
+    data: XOR<SupplementLogUpdateManyMutationInput, SupplementLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SupplementLogScalarWhereInput = {
+    AND?: SupplementLogScalarWhereInput | SupplementLogScalarWhereInput[]
+    OR?: SupplementLogScalarWhereInput[]
+    NOT?: SupplementLogScalarWhereInput | SupplementLogScalarWhereInput[]
+    id?: StringFilter<"SupplementLog"> | string
+    userId?: StringFilter<"SupplementLog"> | string
+    name?: StringFilter<"SupplementLog"> | string
+    dosage?: FloatFilter<"SupplementLog"> | number
+    unit?: StringFilter<"SupplementLog"> | string
+    createdAt?: DateTimeFilter<"SupplementLog"> | Date | string
+  }
+
+  export type ExerciseLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: ExerciseLogWhereUniqueInput
+    update: XOR<ExerciseLogUpdateWithoutUserInput, ExerciseLogUncheckedUpdateWithoutUserInput>
+    create: XOR<ExerciseLogCreateWithoutUserInput, ExerciseLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type ExerciseLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: ExerciseLogWhereUniqueInput
+    data: XOR<ExerciseLogUpdateWithoutUserInput, ExerciseLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ExerciseLogUpdateManyWithWhereWithoutUserInput = {
+    where: ExerciseLogScalarWhereInput
+    data: XOR<ExerciseLogUpdateManyMutationInput, ExerciseLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ExerciseLogScalarWhereInput = {
+    AND?: ExerciseLogScalarWhereInput | ExerciseLogScalarWhereInput[]
+    OR?: ExerciseLogScalarWhereInput[]
+    NOT?: ExerciseLogScalarWhereInput | ExerciseLogScalarWhereInput[]
+    id?: StringFilter<"ExerciseLog"> | string
+    userId?: StringFilter<"ExerciseLog"> | string
+    activityName?: StringFilter<"ExerciseLog"> | string
+    durationMinutes?: FloatFilter<"ExerciseLog"> | number
+    caloriesBurned?: FloatFilter<"ExerciseLog"> | number
+    createdAt?: DateTimeFilter<"ExerciseLog"> | Date | string
+  }
+
+  export type MealScanUpsertWithWhereUniqueWithoutUserInput = {
+    where: MealScanWhereUniqueInput
+    update: XOR<MealScanUpdateWithoutUserInput, MealScanUncheckedUpdateWithoutUserInput>
+    create: XOR<MealScanCreateWithoutUserInput, MealScanUncheckedCreateWithoutUserInput>
+  }
+
+  export type MealScanUpdateWithWhereUniqueWithoutUserInput = {
+    where: MealScanWhereUniqueInput
+    data: XOR<MealScanUpdateWithoutUserInput, MealScanUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MealScanUpdateManyWithWhereWithoutUserInput = {
+    where: MealScanScalarWhereInput
+    data: XOR<MealScanUpdateManyMutationInput, MealScanUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MealScanScalarWhereInput = {
+    AND?: MealScanScalarWhereInput | MealScanScalarWhereInput[]
+    OR?: MealScanScalarWhereInput[]
+    NOT?: MealScanScalarWhereInput | MealScanScalarWhereInput[]
+    id?: StringFilter<"MealScan"> | string
+    userId?: StringFilter<"MealScan"> | string
+    mealId?: StringNullableFilter<"MealScan"> | string | null
+    imageUrl?: StringFilter<"MealScan"> | string
+    model?: StringFilter<"MealScan"> | string
+    confidence?: FloatFilter<"MealScan"> | number
+    rawResponse?: StringFilter<"MealScan"> | string
+    processedMatches?: StringFilter<"MealScan"> | string
+    status?: StringFilter<"MealScan"> | string
+    createdAt?: DateTimeFilter<"MealScan"> | Date | string
+    updatedAt?: DateTimeFilter<"MealScan"> | Date | string
+  }
+
+  export type ConversationUpsertWithWhereUniqueWithoutUserInput = {
+    where: ConversationWhereUniqueInput
+    update: XOR<ConversationUpdateWithoutUserInput, ConversationUncheckedUpdateWithoutUserInput>
+    create: XOR<ConversationCreateWithoutUserInput, ConversationUncheckedCreateWithoutUserInput>
+  }
+
+  export type ConversationUpdateWithWhereUniqueWithoutUserInput = {
+    where: ConversationWhereUniqueInput
+    data: XOR<ConversationUpdateWithoutUserInput, ConversationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ConversationUpdateManyWithWhereWithoutUserInput = {
+    where: ConversationScalarWhereInput
+    data: XOR<ConversationUpdateManyMutationInput, ConversationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ConversationScalarWhereInput = {
+    AND?: ConversationScalarWhereInput | ConversationScalarWhereInput[]
+    OR?: ConversationScalarWhereInput[]
+    NOT?: ConversationScalarWhereInput | ConversationScalarWhereInput[]
+    id?: StringFilter<"Conversation"> | string
+    userId?: StringFilter<"Conversation"> | string
+    title?: StringFilter<"Conversation"> | string
+    createdAt?: DateTimeFilter<"Conversation"> | Date | string
+    updatedAt?: DateTimeFilter<"Conversation"> | Date | string
+  }
+
+  export type TravelSessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: TravelSessionWhereUniqueInput
+    update: XOR<TravelSessionUpdateWithoutUserInput, TravelSessionUncheckedUpdateWithoutUserInput>
+    create: XOR<TravelSessionCreateWithoutUserInput, TravelSessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type TravelSessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: TravelSessionWhereUniqueInput
+    data: XOR<TravelSessionUpdateWithoutUserInput, TravelSessionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TravelSessionUpdateManyWithWhereWithoutUserInput = {
+    where: TravelSessionScalarWhereInput
+    data: XOR<TravelSessionUpdateManyMutationInput, TravelSessionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type TravelSessionScalarWhereInput = {
+    AND?: TravelSessionScalarWhereInput | TravelSessionScalarWhereInput[]
+    OR?: TravelSessionScalarWhereInput[]
+    NOT?: TravelSessionScalarWhereInput | TravelSessionScalarWhereInput[]
+    id?: StringFilter<"TravelSession"> | string
+    userId?: StringFilter<"TravelSession"> | string
+    active?: BoolFilter<"TravelSession"> | boolean
+    startDate?: DateTimeFilter<"TravelSession"> | Date | string
+    endDate?: DateTimeNullableFilter<"TravelSession"> | Date | string | null
+    createdAt?: DateTimeFilter<"TravelSession"> | Date | string
+    updatedAt?: DateTimeFilter<"TravelSession"> | Date | string
+  }
+
+  export type UserCreateWithoutProfileInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meals?: MealCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogCreateNestedManyWithoutUserInput
+    mealScans?: MealScanCreateNestedManyWithoutUserInput
+    conversations?: ConversationCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutProfileInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meals?: MealUncheckedCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogUncheckedCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogUncheckedCreateNestedManyWithoutUserInput
+    mealScans?: MealScanUncheckedCreateNestedManyWithoutUserInput
+    conversations?: ConversationUncheckedCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutProfileInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
+  }
+
+  export type UserUpsertWithoutProfileInput = {
+    update: XOR<UserUpdateWithoutProfileInput, UserUncheckedUpdateWithoutProfileInput>
+    create: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutProfileInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProfileInput, UserUncheckedUpdateWithoutProfileInput>
+  }
+
+  export type UserUpdateWithoutProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meals?: MealUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meals?: MealUncheckedUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUncheckedUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUncheckedUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUncheckedUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUncheckedUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type MealItemCreateWithoutFoodInput = {
+    id?: string
+    foodName: string
+    quantity: number
+    unit: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    meal: MealCreateNestedOneWithoutItemsInput
+  }
+
+  export type MealItemUncheckedCreateWithoutFoodInput = {
+    id?: string
+    mealId: string
+    foodName: string
+    quantity: number
+    unit: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+  }
+
+  export type MealItemCreateOrConnectWithoutFoodInput = {
+    where: MealItemWhereUniqueInput
+    create: XOR<MealItemCreateWithoutFoodInput, MealItemUncheckedCreateWithoutFoodInput>
+  }
+
+  export type MealItemCreateManyFoodInputEnvelope = {
+    data: MealItemCreateManyFoodInput | MealItemCreateManyFoodInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MealItemUpsertWithWhereUniqueWithoutFoodInput = {
+    where: MealItemWhereUniqueInput
+    update: XOR<MealItemUpdateWithoutFoodInput, MealItemUncheckedUpdateWithoutFoodInput>
+    create: XOR<MealItemCreateWithoutFoodInput, MealItemUncheckedCreateWithoutFoodInput>
+  }
+
+  export type MealItemUpdateWithWhereUniqueWithoutFoodInput = {
+    where: MealItemWhereUniqueInput
+    data: XOR<MealItemUpdateWithoutFoodInput, MealItemUncheckedUpdateWithoutFoodInput>
+  }
+
+  export type MealItemUpdateManyWithWhereWithoutFoodInput = {
+    where: MealItemScalarWhereInput
+    data: XOR<MealItemUpdateManyMutationInput, MealItemUncheckedUpdateManyWithoutFoodInput>
+  }
+
+  export type MealItemScalarWhereInput = {
+    AND?: MealItemScalarWhereInput | MealItemScalarWhereInput[]
+    OR?: MealItemScalarWhereInput[]
+    NOT?: MealItemScalarWhereInput | MealItemScalarWhereInput[]
+    id?: StringFilter<"MealItem"> | string
+    mealId?: StringFilter<"MealItem"> | string
+    foodId?: StringNullableFilter<"MealItem"> | string | null
+    foodName?: StringFilter<"MealItem"> | string
+    quantity?: FloatFilter<"MealItem"> | number
+    unit?: StringFilter<"MealItem"> | string
+    calories?: FloatFilter<"MealItem"> | number
+    protein?: FloatFilter<"MealItem"> | number
+    carbohydrates?: FloatFilter<"MealItem"> | number
+    fats?: FloatFilter<"MealItem"> | number
+    fiber?: FloatFilter<"MealItem"> | number
+    sugar?: FloatFilter<"MealItem"> | number
+  }
+
+  export type UserCreateWithoutMealsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogCreateNestedManyWithoutUserInput
+    mealScans?: MealScanCreateNestedManyWithoutUserInput
+    conversations?: ConversationCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutMealsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogUncheckedCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogUncheckedCreateNestedManyWithoutUserInput
+    mealScans?: MealScanUncheckedCreateNestedManyWithoutUserInput
+    conversations?: ConversationUncheckedCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutMealsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMealsInput, UserUncheckedCreateWithoutMealsInput>
+  }
+
+  export type MealItemCreateWithoutMealInput = {
+    id?: string
+    foodName: string
+    quantity: number
+    unit: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    food?: FoodCreateNestedOneWithoutMealItemsInput
+  }
+
+  export type MealItemUncheckedCreateWithoutMealInput = {
+    id?: string
+    foodId?: string | null
+    foodName: string
+    quantity: number
+    unit: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+  }
+
+  export type MealItemCreateOrConnectWithoutMealInput = {
+    where: MealItemWhereUniqueInput
+    create: XOR<MealItemCreateWithoutMealInput, MealItemUncheckedCreateWithoutMealInput>
+  }
+
+  export type MealItemCreateManyMealInputEnvelope = {
+    data: MealItemCreateManyMealInput | MealItemCreateManyMealInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MealScanCreateWithoutMealInput = {
+    id?: string
+    imageUrl: string
+    model: string
+    confidence: number
+    rawResponse: string
+    processedMatches: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutMealScansInput
+  }
+
+  export type MealScanUncheckedCreateWithoutMealInput = {
+    id?: string
+    userId: string
+    imageUrl: string
+    model: string
+    confidence: number
+    rawResponse: string
+    processedMatches: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MealScanCreateOrConnectWithoutMealInput = {
+    where: MealScanWhereUniqueInput
+    create: XOR<MealScanCreateWithoutMealInput, MealScanUncheckedCreateWithoutMealInput>
+  }
+
+  export type UserUpsertWithoutMealsInput = {
+    update: XOR<UserUpdateWithoutMealsInput, UserUncheckedUpdateWithoutMealsInput>
+    create: XOR<UserCreateWithoutMealsInput, UserUncheckedCreateWithoutMealsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMealsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMealsInput, UserUncheckedUpdateWithoutMealsInput>
+  }
+
+  export type UserUpdateWithoutMealsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMealsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUncheckedUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUncheckedUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUncheckedUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUncheckedUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type MealItemUpsertWithWhereUniqueWithoutMealInput = {
+    where: MealItemWhereUniqueInput
+    update: XOR<MealItemUpdateWithoutMealInput, MealItemUncheckedUpdateWithoutMealInput>
+    create: XOR<MealItemCreateWithoutMealInput, MealItemUncheckedCreateWithoutMealInput>
+  }
+
+  export type MealItemUpdateWithWhereUniqueWithoutMealInput = {
+    where: MealItemWhereUniqueInput
+    data: XOR<MealItemUpdateWithoutMealInput, MealItemUncheckedUpdateWithoutMealInput>
+  }
+
+  export type MealItemUpdateManyWithWhereWithoutMealInput = {
+    where: MealItemScalarWhereInput
+    data: XOR<MealItemUpdateManyMutationInput, MealItemUncheckedUpdateManyWithoutMealInput>
+  }
+
+  export type MealScanUpsertWithoutMealInput = {
+    update: XOR<MealScanUpdateWithoutMealInput, MealScanUncheckedUpdateWithoutMealInput>
+    create: XOR<MealScanCreateWithoutMealInput, MealScanUncheckedCreateWithoutMealInput>
+    where?: MealScanWhereInput
+  }
+
+  export type MealScanUpdateToOneWithWhereWithoutMealInput = {
+    where?: MealScanWhereInput
+    data: XOR<MealScanUpdateWithoutMealInput, MealScanUncheckedUpdateWithoutMealInput>
+  }
+
+  export type MealScanUpdateWithoutMealInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    confidence?: FloatFieldUpdateOperationsInput | number
+    rawResponse?: StringFieldUpdateOperationsInput | string
+    processedMatches?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMealScansNestedInput
+  }
+
+  export type MealScanUncheckedUpdateWithoutMealInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    confidence?: FloatFieldUpdateOperationsInput | number
+    rawResponse?: StringFieldUpdateOperationsInput | string
+    processedMatches?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealCreateWithoutItemsInput = {
+    id?: string
+    mealType: string
+    source: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutMealsInput
+    mealScan?: MealScanCreateNestedOneWithoutMealInput
+  }
+
+  export type MealUncheckedCreateWithoutItemsInput = {
+    id?: string
+    userId: string
+    mealType: string
+    source: string
+    createdAt?: Date | string
+    mealScan?: MealScanUncheckedCreateNestedOneWithoutMealInput
+  }
+
+  export type MealCreateOrConnectWithoutItemsInput = {
+    where: MealWhereUniqueInput
+    create: XOR<MealCreateWithoutItemsInput, MealUncheckedCreateWithoutItemsInput>
+  }
+
+  export type FoodCreateWithoutMealItemsInput = {
+    id?: string
+    name: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    defaultUnit?: string
+    servingSize?: number
+    source?: $Enums.FoodSource
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FoodUncheckedCreateWithoutMealItemsInput = {
+    id?: string
+    name: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+    defaultUnit?: string
+    servingSize?: number
+    source?: $Enums.FoodSource
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FoodCreateOrConnectWithoutMealItemsInput = {
+    where: FoodWhereUniqueInput
+    create: XOR<FoodCreateWithoutMealItemsInput, FoodUncheckedCreateWithoutMealItemsInput>
+  }
+
+  export type MealUpsertWithoutItemsInput = {
+    update: XOR<MealUpdateWithoutItemsInput, MealUncheckedUpdateWithoutItemsInput>
+    create: XOR<MealCreateWithoutItemsInput, MealUncheckedCreateWithoutItemsInput>
+    where?: MealWhereInput
+  }
+
+  export type MealUpdateToOneWithWhereWithoutItemsInput = {
+    where?: MealWhereInput
+    data: XOR<MealUpdateWithoutItemsInput, MealUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type MealUpdateWithoutItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMealsNestedInput
+    mealScan?: MealScanUpdateOneWithoutMealNestedInput
+  }
+
+  export type MealUncheckedUpdateWithoutItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mealScan?: MealScanUncheckedUpdateOneWithoutMealNestedInput
+  }
+
+  export type FoodUpsertWithoutMealItemsInput = {
+    update: XOR<FoodUpdateWithoutMealItemsInput, FoodUncheckedUpdateWithoutMealItemsInput>
+    create: XOR<FoodCreateWithoutMealItemsInput, FoodUncheckedCreateWithoutMealItemsInput>
+    where?: FoodWhereInput
+  }
+
+  export type FoodUpdateToOneWithWhereWithoutMealItemsInput = {
+    where?: FoodWhereInput
+    data: XOR<FoodUpdateWithoutMealItemsInput, FoodUncheckedUpdateWithoutMealItemsInput>
+  }
+
+  export type FoodUpdateWithoutMealItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+    defaultUnit?: StringFieldUpdateOperationsInput | string
+    servingSize?: FloatFieldUpdateOperationsInput | number
+    source?: EnumFoodSourceFieldUpdateOperationsInput | $Enums.FoodSource
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FoodUncheckedUpdateWithoutMealItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+    defaultUnit?: StringFieldUpdateOperationsInput | string
+    servingSize?: FloatFieldUpdateOperationsInput | number
+    source?: EnumFoodSourceFieldUpdateOperationsInput | $Enums.FoodSource
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateWithoutWaterLogsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    meals?: MealCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogCreateNestedManyWithoutUserInput
+    mealScans?: MealScanCreateNestedManyWithoutUserInput
+    conversations?: ConversationCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutWaterLogsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    meals?: MealUncheckedCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogUncheckedCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogUncheckedCreateNestedManyWithoutUserInput
+    mealScans?: MealScanUncheckedCreateNestedManyWithoutUserInput
+    conversations?: ConversationUncheckedCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutWaterLogsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutWaterLogsInput, UserUncheckedCreateWithoutWaterLogsInput>
+  }
+
+  export type UserUpsertWithoutWaterLogsInput = {
+    update: XOR<UserUpdateWithoutWaterLogsInput, UserUncheckedUpdateWithoutWaterLogsInput>
+    create: XOR<UserCreateWithoutWaterLogsInput, UserUncheckedCreateWithoutWaterLogsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutWaterLogsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutWaterLogsInput, UserUncheckedUpdateWithoutWaterLogsInput>
+  }
+
+  export type UserUpdateWithoutWaterLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    meals?: MealUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutWaterLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    meals?: MealUncheckedUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUncheckedUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUncheckedUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUncheckedUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUncheckedUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutSupplementLogsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    meals?: MealCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogCreateNestedManyWithoutUserInput
+    mealScans?: MealScanCreateNestedManyWithoutUserInput
+    conversations?: ConversationCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSupplementLogsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    meals?: MealUncheckedCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogUncheckedCreateNestedManyWithoutUserInput
+    mealScans?: MealScanUncheckedCreateNestedManyWithoutUserInput
+    conversations?: ConversationUncheckedCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSupplementLogsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSupplementLogsInput, UserUncheckedCreateWithoutSupplementLogsInput>
+  }
+
+  export type UserUpsertWithoutSupplementLogsInput = {
+    update: XOR<UserUpdateWithoutSupplementLogsInput, UserUncheckedUpdateWithoutSupplementLogsInput>
+    create: XOR<UserCreateWithoutSupplementLogsInput, UserUncheckedCreateWithoutSupplementLogsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSupplementLogsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSupplementLogsInput, UserUncheckedUpdateWithoutSupplementLogsInput>
+  }
+
+  export type UserUpdateWithoutSupplementLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    meals?: MealUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSupplementLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    meals?: MealUncheckedUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUncheckedUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUncheckedUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUncheckedUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutExerciseLogsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    meals?: MealCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogCreateNestedManyWithoutUserInput
+    mealScans?: MealScanCreateNestedManyWithoutUserInput
+    conversations?: ConversationCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutExerciseLogsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    meals?: MealUncheckedCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogUncheckedCreateNestedManyWithoutUserInput
+    mealScans?: MealScanUncheckedCreateNestedManyWithoutUserInput
+    conversations?: ConversationUncheckedCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutExerciseLogsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutExerciseLogsInput, UserUncheckedCreateWithoutExerciseLogsInput>
+  }
+
+  export type UserUpsertWithoutExerciseLogsInput = {
+    update: XOR<UserUpdateWithoutExerciseLogsInput, UserUncheckedUpdateWithoutExerciseLogsInput>
+    create: XOR<UserCreateWithoutExerciseLogsInput, UserUncheckedCreateWithoutExerciseLogsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutExerciseLogsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutExerciseLogsInput, UserUncheckedUpdateWithoutExerciseLogsInput>
+  }
+
+  export type UserUpdateWithoutExerciseLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    meals?: MealUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutExerciseLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    meals?: MealUncheckedUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUncheckedUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUncheckedUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUncheckedUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutMealScansInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    meals?: MealCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogCreateNestedManyWithoutUserInput
+    conversations?: ConversationCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutMealScansInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    meals?: MealUncheckedCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogUncheckedCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogUncheckedCreateNestedManyWithoutUserInput
+    conversations?: ConversationUncheckedCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutMealScansInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMealScansInput, UserUncheckedCreateWithoutMealScansInput>
+  }
+
+  export type MealCreateWithoutMealScanInput = {
+    id?: string
+    mealType: string
+    source: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutMealsInput
+    items?: MealItemCreateNestedManyWithoutMealInput
+  }
+
+  export type MealUncheckedCreateWithoutMealScanInput = {
+    id?: string
+    userId: string
+    mealType: string
+    source: string
+    createdAt?: Date | string
+    items?: MealItemUncheckedCreateNestedManyWithoutMealInput
+  }
+
+  export type MealCreateOrConnectWithoutMealScanInput = {
+    where: MealWhereUniqueInput
+    create: XOR<MealCreateWithoutMealScanInput, MealUncheckedCreateWithoutMealScanInput>
+  }
+
+  export type UserUpsertWithoutMealScansInput = {
+    update: XOR<UserUpdateWithoutMealScansInput, UserUncheckedUpdateWithoutMealScansInput>
+    create: XOR<UserCreateWithoutMealScansInput, UserUncheckedCreateWithoutMealScansInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMealScansInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMealScansInput, UserUncheckedUpdateWithoutMealScansInput>
+  }
+
+  export type UserUpdateWithoutMealScansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    meals?: MealUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMealScansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    meals?: MealUncheckedUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUncheckedUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUncheckedUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUncheckedUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type MealUpsertWithoutMealScanInput = {
+    update: XOR<MealUpdateWithoutMealScanInput, MealUncheckedUpdateWithoutMealScanInput>
+    create: XOR<MealCreateWithoutMealScanInput, MealUncheckedCreateWithoutMealScanInput>
+    where?: MealWhereInput
+  }
+
+  export type MealUpdateToOneWithWhereWithoutMealScanInput = {
+    where?: MealWhereInput
+    data: XOR<MealUpdateWithoutMealScanInput, MealUncheckedUpdateWithoutMealScanInput>
+  }
+
+  export type MealUpdateWithoutMealScanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMealsNestedInput
+    items?: MealItemUpdateManyWithoutMealNestedInput
+  }
+
+  export type MealUncheckedUpdateWithoutMealScanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: MealItemUncheckedUpdateManyWithoutMealNestedInput
+  }
+
+  export type UserCreateWithoutConversationsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    meals?: MealCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogCreateNestedManyWithoutUserInput
+    mealScans?: MealScanCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutConversationsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    meals?: MealUncheckedCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogUncheckedCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogUncheckedCreateNestedManyWithoutUserInput
+    mealScans?: MealScanUncheckedCreateNestedManyWithoutUserInput
+    travelSessions?: TravelSessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutConversationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutConversationsInput, UserUncheckedCreateWithoutConversationsInput>
+  }
+
+  export type ConversationMessageCreateWithoutConversationInput = {
+    id?: string
+    role: string
+    content: string
+    metadata?: string | null
+    tokens?: number
+    createdAt?: Date | string
+    feedback?: ConversationFeedbackCreateNestedOneWithoutMessageInput
+  }
+
+  export type ConversationMessageUncheckedCreateWithoutConversationInput = {
+    id?: string
+    role: string
+    content: string
+    metadata?: string | null
+    tokens?: number
+    createdAt?: Date | string
+    feedback?: ConversationFeedbackUncheckedCreateNestedOneWithoutMessageInput
+  }
+
+  export type ConversationMessageCreateOrConnectWithoutConversationInput = {
+    where: ConversationMessageWhereUniqueInput
+    create: XOR<ConversationMessageCreateWithoutConversationInput, ConversationMessageUncheckedCreateWithoutConversationInput>
+  }
+
+  export type ConversationMessageCreateManyConversationInputEnvelope = {
+    data: ConversationMessageCreateManyConversationInput | ConversationMessageCreateManyConversationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutConversationsInput = {
+    update: XOR<UserUpdateWithoutConversationsInput, UserUncheckedUpdateWithoutConversationsInput>
+    create: XOR<UserCreateWithoutConversationsInput, UserUncheckedCreateWithoutConversationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutConversationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutConversationsInput, UserUncheckedUpdateWithoutConversationsInput>
+  }
+
+  export type UserUpdateWithoutConversationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    meals?: MealUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutConversationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    meals?: MealUncheckedUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUncheckedUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUncheckedUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUncheckedUpdateManyWithoutUserNestedInput
+    travelSessions?: TravelSessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ConversationMessageUpsertWithWhereUniqueWithoutConversationInput = {
+    where: ConversationMessageWhereUniqueInput
+    update: XOR<ConversationMessageUpdateWithoutConversationInput, ConversationMessageUncheckedUpdateWithoutConversationInput>
+    create: XOR<ConversationMessageCreateWithoutConversationInput, ConversationMessageUncheckedCreateWithoutConversationInput>
+  }
+
+  export type ConversationMessageUpdateWithWhereUniqueWithoutConversationInput = {
+    where: ConversationMessageWhereUniqueInput
+    data: XOR<ConversationMessageUpdateWithoutConversationInput, ConversationMessageUncheckedUpdateWithoutConversationInput>
+  }
+
+  export type ConversationMessageUpdateManyWithWhereWithoutConversationInput = {
+    where: ConversationMessageScalarWhereInput
+    data: XOR<ConversationMessageUpdateManyMutationInput, ConversationMessageUncheckedUpdateManyWithoutConversationInput>
+  }
+
+  export type ConversationMessageScalarWhereInput = {
+    AND?: ConversationMessageScalarWhereInput | ConversationMessageScalarWhereInput[]
+    OR?: ConversationMessageScalarWhereInput[]
+    NOT?: ConversationMessageScalarWhereInput | ConversationMessageScalarWhereInput[]
+    id?: StringFilter<"ConversationMessage"> | string
+    conversationId?: StringFilter<"ConversationMessage"> | string
+    role?: StringFilter<"ConversationMessage"> | string
+    content?: StringFilter<"ConversationMessage"> | string
+    metadata?: StringNullableFilter<"ConversationMessage"> | string | null
+    tokens?: IntFilter<"ConversationMessage"> | number
+    createdAt?: DateTimeFilter<"ConversationMessage"> | Date | string
+  }
+
+  export type ConversationCreateWithoutMessagesInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutConversationsInput
+  }
+
+  export type ConversationUncheckedCreateWithoutMessagesInput = {
+    id?: string
+    userId: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConversationCreateOrConnectWithoutMessagesInput = {
+    where: ConversationWhereUniqueInput
+    create: XOR<ConversationCreateWithoutMessagesInput, ConversationUncheckedCreateWithoutMessagesInput>
+  }
+
+  export type ConversationFeedbackCreateWithoutMessageInput = {
+    id?: string
+    rating: number
+    comment?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ConversationFeedbackUncheckedCreateWithoutMessageInput = {
+    id?: string
+    rating: number
+    comment?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ConversationFeedbackCreateOrConnectWithoutMessageInput = {
+    where: ConversationFeedbackWhereUniqueInput
+    create: XOR<ConversationFeedbackCreateWithoutMessageInput, ConversationFeedbackUncheckedCreateWithoutMessageInput>
+  }
+
+  export type ConversationUpsertWithoutMessagesInput = {
+    update: XOR<ConversationUpdateWithoutMessagesInput, ConversationUncheckedUpdateWithoutMessagesInput>
+    create: XOR<ConversationCreateWithoutMessagesInput, ConversationUncheckedCreateWithoutMessagesInput>
+    where?: ConversationWhereInput
+  }
+
+  export type ConversationUpdateToOneWithWhereWithoutMessagesInput = {
+    where?: ConversationWhereInput
+    data: XOR<ConversationUpdateWithoutMessagesInput, ConversationUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type ConversationUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutConversationsNestedInput
+  }
+
+  export type ConversationUncheckedUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationFeedbackUpsertWithoutMessageInput = {
+    update: XOR<ConversationFeedbackUpdateWithoutMessageInput, ConversationFeedbackUncheckedUpdateWithoutMessageInput>
+    create: XOR<ConversationFeedbackCreateWithoutMessageInput, ConversationFeedbackUncheckedCreateWithoutMessageInput>
+    where?: ConversationFeedbackWhereInput
+  }
+
+  export type ConversationFeedbackUpdateToOneWithWhereWithoutMessageInput = {
+    where?: ConversationFeedbackWhereInput
+    data: XOR<ConversationFeedbackUpdateWithoutMessageInput, ConversationFeedbackUncheckedUpdateWithoutMessageInput>
+  }
+
+  export type ConversationFeedbackUpdateWithoutMessageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationFeedbackUncheckedUpdateWithoutMessageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationMessageCreateWithoutFeedbackInput = {
+    id?: string
+    role: string
+    content: string
+    metadata?: string | null
+    tokens?: number
+    createdAt?: Date | string
+    conversation: ConversationCreateNestedOneWithoutMessagesInput
+  }
+
+  export type ConversationMessageUncheckedCreateWithoutFeedbackInput = {
+    id?: string
+    conversationId: string
+    role: string
+    content: string
+    metadata?: string | null
+    tokens?: number
+    createdAt?: Date | string
+  }
+
+  export type ConversationMessageCreateOrConnectWithoutFeedbackInput = {
+    where: ConversationMessageWhereUniqueInput
+    create: XOR<ConversationMessageCreateWithoutFeedbackInput, ConversationMessageUncheckedCreateWithoutFeedbackInput>
+  }
+
+  export type ConversationMessageUpsertWithoutFeedbackInput = {
+    update: XOR<ConversationMessageUpdateWithoutFeedbackInput, ConversationMessageUncheckedUpdateWithoutFeedbackInput>
+    create: XOR<ConversationMessageCreateWithoutFeedbackInput, ConversationMessageUncheckedCreateWithoutFeedbackInput>
+    where?: ConversationMessageWhereInput
+  }
+
+  export type ConversationMessageUpdateToOneWithWhereWithoutFeedbackInput = {
+    where?: ConversationMessageWhereInput
+    data: XOR<ConversationMessageUpdateWithoutFeedbackInput, ConversationMessageUncheckedUpdateWithoutFeedbackInput>
+  }
+
+  export type ConversationMessageUpdateWithoutFeedbackInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    tokens?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    conversation?: ConversationUpdateOneRequiredWithoutMessagesNestedInput
+  }
+
+  export type ConversationMessageUncheckedUpdateWithoutFeedbackInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversationId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    tokens?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateWithoutTravelSessionsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    meals?: MealCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogCreateNestedManyWithoutUserInput
+    mealScans?: MealScanCreateNestedManyWithoutUserInput
+    conversations?: ConversationCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTravelSessionsInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    meals?: MealUncheckedCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    supplementLogs?: SupplementLogUncheckedCreateNestedManyWithoutUserInput
+    exerciseLogs?: ExerciseLogUncheckedCreateNestedManyWithoutUserInput
+    mealScans?: MealScanUncheckedCreateNestedManyWithoutUserInput
+    conversations?: ConversationUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTravelSessionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTravelSessionsInput, UserUncheckedCreateWithoutTravelSessionsInput>
+  }
+
+  export type UserUpsertWithoutTravelSessionsInput = {
+    update: XOR<UserUpdateWithoutTravelSessionsInput, UserUncheckedUpdateWithoutTravelSessionsInput>
+    create: XOR<UserCreateWithoutTravelSessionsInput, UserUncheckedCreateWithoutTravelSessionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTravelSessionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTravelSessionsInput, UserUncheckedUpdateWithoutTravelSessionsInput>
+  }
+
+  export type UserUpdateWithoutTravelSessionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    meals?: MealUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTravelSessionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    meals?: MealUncheckedUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    supplementLogs?: SupplementLogUncheckedUpdateManyWithoutUserNestedInput
+    exerciseLogs?: ExerciseLogUncheckedUpdateManyWithoutUserNestedInput
+    mealScans?: MealScanUncheckedUpdateManyWithoutUserNestedInput
+    conversations?: ConversationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type MealCreateManyUserInput = {
+    id?: string
+    mealType: string
+    source: string
+    createdAt?: Date | string
+  }
+
+  export type WaterLogCreateManyUserInput = {
+    id?: string
+    amount: number
+    unit: string
+    createdAt?: Date | string
+  }
+
+  export type SupplementLogCreateManyUserInput = {
+    id?: string
+    name: string
+    dosage: number
+    unit: string
+    createdAt?: Date | string
+  }
+
+  export type ExerciseLogCreateManyUserInput = {
+    id?: string
+    activityName: string
+    durationMinutes: number
+    caloriesBurned: number
+    createdAt?: Date | string
+  }
+
+  export type MealScanCreateManyUserInput = {
+    id?: string
+    mealId?: string | null
+    imageUrl: string
+    model: string
+    confidence: number
+    rawResponse: string
+    processedMatches: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConversationCreateManyUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TravelSessionCreateManyUserInput = {
+    id?: string
+    active?: boolean
+    startDate?: Date | string
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MealUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: MealItemUpdateManyWithoutMealNestedInput
+    mealScan?: MealScanUpdateOneWithoutMealNestedInput
+  }
+
+  export type MealUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: MealItemUncheckedUpdateManyWithoutMealNestedInput
+    mealScan?: MealScanUncheckedUpdateOneWithoutMealNestedInput
+  }
+
+  export type MealUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealType?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WaterLogUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WaterLogUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WaterLogUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SupplementLogUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dosage?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SupplementLogUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dosage?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SupplementLogUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dosage?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExerciseLogUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    activityName?: StringFieldUpdateOperationsInput | string
+    durationMinutes?: FloatFieldUpdateOperationsInput | number
+    caloriesBurned?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExerciseLogUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    activityName?: StringFieldUpdateOperationsInput | string
+    durationMinutes?: FloatFieldUpdateOperationsInput | number
+    caloriesBurned?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExerciseLogUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    activityName?: StringFieldUpdateOperationsInput | string
+    durationMinutes?: FloatFieldUpdateOperationsInput | number
+    caloriesBurned?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealScanUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    confidence?: FloatFieldUpdateOperationsInput | number
+    rawResponse?: StringFieldUpdateOperationsInput | string
+    processedMatches?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meal?: MealUpdateOneWithoutMealScanNestedInput
+  }
+
+  export type MealScanUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealId?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    confidence?: FloatFieldUpdateOperationsInput | number
+    rawResponse?: StringFieldUpdateOperationsInput | string
+    processedMatches?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealScanUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealId?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    confidence?: FloatFieldUpdateOperationsInput | number
+    rawResponse?: StringFieldUpdateOperationsInput | string
+    processedMatches?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: ConversationMessageUpdateManyWithoutConversationNestedInput
+  }
+
+  export type ConversationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: ConversationMessageUncheckedUpdateManyWithoutConversationNestedInput
+  }
+
+  export type ConversationUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TravelSessionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TravelSessionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TravelSessionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MealItemCreateManyFoodInput = {
+    id?: string
+    mealId: string
+    foodName: string
+    quantity: number
+    unit: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+  }
+
+  export type MealItemUpdateWithoutFoodInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    foodName?: StringFieldUpdateOperationsInput | string
+    quantity?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+    meal?: MealUpdateOneRequiredWithoutItemsNestedInput
+  }
+
+  export type MealItemUncheckedUpdateWithoutFoodInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealId?: StringFieldUpdateOperationsInput | string
+    foodName?: StringFieldUpdateOperationsInput | string
+    quantity?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type MealItemUncheckedUpdateManyWithoutFoodInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mealId?: StringFieldUpdateOperationsInput | string
+    foodName?: StringFieldUpdateOperationsInput | string
+    quantity?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type MealItemCreateManyMealInput = {
+    id?: string
+    foodId?: string | null
+    foodName: string
+    quantity: number
+    unit: string
+    calories: number
+    protein: number
+    carbohydrates: number
+    fats: number
+    fiber: number
+    sugar: number
+  }
+
+  export type MealItemUpdateWithoutMealInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    foodName?: StringFieldUpdateOperationsInput | string
+    quantity?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+    food?: FoodUpdateOneWithoutMealItemsNestedInput
+  }
+
+  export type MealItemUncheckedUpdateWithoutMealInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
+    foodName?: StringFieldUpdateOperationsInput | string
+    quantity?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type MealItemUncheckedUpdateManyWithoutMealInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
+    foodName?: StringFieldUpdateOperationsInput | string
+    quantity?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    calories?: FloatFieldUpdateOperationsInput | number
+    protein?: FloatFieldUpdateOperationsInput | number
+    carbohydrates?: FloatFieldUpdateOperationsInput | number
+    fats?: FloatFieldUpdateOperationsInput | number
+    fiber?: FloatFieldUpdateOperationsInput | number
+    sugar?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type ConversationMessageCreateManyConversationInput = {
+    id?: string
+    role: string
+    content: string
+    metadata?: string | null
+    tokens?: number
+    createdAt?: Date | string
+  }
+
+  export type ConversationMessageUpdateWithoutConversationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    tokens?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedback?: ConversationFeedbackUpdateOneWithoutMessageNestedInput
+  }
+
+  export type ConversationMessageUncheckedUpdateWithoutConversationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    tokens?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedback?: ConversationFeedbackUncheckedUpdateOneWithoutMessageNestedInput
+  }
+
+  export type ConversationMessageUncheckedUpdateManyWithoutConversationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    tokens?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+
+
+  /**
+   * Batch Payload for updateMany & deleteMany & createMany
+   */
+
+  export type BatchPayload = {
+    count: number
+  }
+
+  /**
+   * DMMF
+   */
+  export const dmmf: runtime.BaseDMMF
+}

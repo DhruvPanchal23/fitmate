@@ -1,0 +1,193 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./src/generated/prisma"
+}
+
+enum FoodSource {
+  SYSTEM
+  USER_CREATED
+  AI_GENERATED
+  ADMIN_VERIFIED
+  EXTERNAL_IMPORT
+}
+
+model User {
+  id             String          @id @default(uuid())
+  email          String          @unique
+  passwordHash   String
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  profile        UserProfile?
+  meals          Meal[]
+  waterLogs      WaterLog[]
+  supplementLogs SupplementLog[]
+  exerciseLogs   ExerciseLog[]
+  mealScans      MealScan[]
+  conversations  Conversation[]
+  travelSessions TravelSession[]
+}
+
+model UserProfile {
+  id            String   @id @default(uuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName      String
+  age           Int
+  gender        String
+  weight        Float // in kg
+  height        Float // in cm
+  activityLevel String // sedentary, lightly_active, moderately_active, very_active
+  goal          String // fat_loss, muscle_gain, maintenance
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Food {
+  id            String     @id @default(uuid())
+  name          String     @unique
+  calories      Float
+  protein       Float
+  carbohydrates Float
+  fats          Float
+  fiber         Float
+  sugar         Float
+  defaultUnit   String     @default("g")
+  servingSize   Float      @default(100)
+  source        FoodSource @default(SYSTEM)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  mealItems     MealItem[]
+}
+
+model Meal {
+  id        String     @id @default(uuid())
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mealType  String // Breakfast, Lunch, Dinner, Snack
+  source    String // manual, scanner, ai_coach
+  createdAt DateTime   @default(now())
+  items     MealItem[]
+  mealScan  MealScan?
+}
+
+model MealItem {
+  id            String  @id @default(uuid())
+  mealId        String
+  meal          Meal    @relation(fields: [mealId], references: [id], onDelete: Cascade)
+  foodId        String?
+  food          Food?   @relation(fields: [foodId], references: [id], onDelete: SetNull)
+  foodName      String
+  quantity      Float
+  unit          String // g, piece, cup, serving, etc.
+  calories      Float
+  protein       Float
+  carbohydrates Float
+  fats          Float
+  fiber         Float
+  sugar         Float
+}
+
+model WaterLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount    Float // e.g. 250
+  unit      String // ml, oz
+  createdAt DateTime @default(now())
+}
+
+model SupplementLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String // Creatine, Vitamins, etc.
+  dosage    Float // e.g. 5
+  unit      String // g, tablet, capsule, scoop
+  createdAt DateTime @default(now())
+}
+
+model ExerciseLog {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activityName    String // Running, Weightlifting, etc.
+  durationMinutes Float
+  caloriesBurned  Float
+  createdAt       DateTime @default(now())
+}
+
+model MealScan {
+  id               String   @id @default(uuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mealId           String?  @unique
+  meal             Meal?    @relation(fields: [mealId], references: [id], onDelete: SetNull)
+  imageUrl         String
+  model            String
+  confidence       Float
+  rawResponse      String
+  processedMatches String // Serialized JSON of matches
+  status           String // DRAFT, CONFIRMED, FAILED
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Conversation {
+  id        String                @id @default(uuid())
+  userId    String
+  user      User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  createdAt DateTime              @default(now())
+  updatedAt DateTime              @updatedAt
+  messages  ConversationMessage[]
+
+  @@index([userId])
+}
+
+model ConversationMessage {
+  id             String                @id @default(uuid())
+  conversationId String
+  conversation   Conversation          @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           String // user, assistant, system
+  content        String // plain text only
+  metadata       String? // JSON string of structured AI payloads
+  tokens         Int                   @default(0)
+  createdAt      DateTime              @default(now())
+  feedback       ConversationFeedback?
+
+  @@index([conversationId])
+}
+
+model ConversationFeedback {
+  id        String              @id @default(uuid())
+  messageId String              @unique
+  message   ConversationMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  rating    Int // 1 for thumbs up, -1 for thumbs down
+  comment   String?
+  createdAt DateTime            @default(now())
+}
+
+model TravelSession {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  active    Boolean   @default(true)
+  startDate DateTime  @default(now())
+  endDate   DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model CacheEntry {
+  key       String   @id
+  value     String // cached response string
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}

@@ -1,0 +1,211 @@
+{
+  "app_name": "FitMate",
+  "personality": "1 iOS-Native structure with 6 Glass / Luxe surfaces",
+  "personality_one_liner": "A sleek, dark-first fitness tracker that feels like a premium iOS native experience—pairing Apple Health's clarity with deep charcoal surfaces, glowing emerald accents, and elegant glassmorphism.",
+  "color": {
+    "surface": "#0F1115",
+    "onSurface": "#F3F4F6",
+    "surfaceSecondary": "#1A1D24",
+    "onSurfaceSecondary": "#E5E7EB",
+    "surfaceTertiary": "#252A33",
+    "onSurfaceTertiary": "#D1D5DB",
+    "surfaceInverse": "#F9FAFB",
+    "onSurfaceInverse": "#111827",
+    "brand": "#10B981",
+    "brandPrimary": "#10B981",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#3B82F6",
+    "onBrandSecondary": "#FFFFFF",
+    "brandTertiary": "#064E3B",
+    "onBrandTertiary": "#34D399",
+    "success": "#22C55E",
+    "onSuccess": "#FFFFFF",
+    "warning": "#F97316",
+    "onWarning": "#FFFFFF",
+    "error": "#EF4444",
+    "onError": "#FFFFFF",
+    "info": "#3B82F6",
+    "onInfo": "#FFFFFF",
+    "border": "#2A2F3A",
+    "borderStrong": "#374151",
+    "divider": "#1F242D"
+  },
+  "typography": {
+    "displayFontFamily": "Plus Jakarta Sans",
+    "textFontFamily": "Geist",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Generous padding around content, clear grouping. Use bottom safe area for floating CTAs.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": "1",
+  "navigation": "bottom_tabs",
+  "icon_set": "Ionicons",
+  "glassmorphism": {
+    "enabled": "true",
+    "do's": [
+      "Use frosted glass on Bottom Tabs, Sticky Headers over scrolling content, Bottom Sheet headers, and floating CTA container bottoms.",
+      "Apply translucent tinted base underneath the foreground content for readability (≥75% of surface opacity in dark mode)."
+    ],
+    "dont's": [
+      "Never blur body text regions, form fields, or dense list items.",
+      "Do not use transparent bars where scrolling content underneath competes with button labels."
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Splash",
+      "purpose": "Brand introduction with logo animation and immersive dark emerald gradient.",
+      "states": { "loading": "Logo pulse", "empty": "", "error": "" },
+      "layout": "Full bleed layout using the splash_bg abstract emerald gradient image with an overlaying linear-gradient (transparent to surface). Centered logo and minimal text."
+    },
+    {
+      "name": "Onboarding",
+      "purpose": "Educate users about AI Food Recognition, Macros, AI Coach, and Travel Mode.",
+      "states": { "loading": "", "empty": "", "error": "" },
+      "layout": "Full-bleed immersive scenes per step. Layer 0: Image (onboard_scan, onboard_macros, etc). Layer 1: Vertical gradient scrim (transparent -> 80% surface at bottom). Layer 2: Text + Paging dots + Sticky 'Continue' CTA button pinned at the bottom."
+    },
+    {
+      "name": "Auth",
+      "purpose": "Allow user login/registration or skipping to dashboard.",
+      "states": { "loading": "Spinner on CTA", "empty": "", "error": "Inline red text above input" },
+      "layout": "Centered form elements with large tap targets. Clean inputs (label above, surfaceTertiary bg). Social buttons in pills. 'Continue as Guest' clearly visible."
+    },
+    {
+      "name": "Home Dashboard",
+      "purpose": "Command center for daily health: calories, macros, quick actions, and meals.",
+      "states": { "loading": "Skeleton UI for rings and cards", "empty": "", "error": "Retry data fetch" },
+      "layout": "Header: Title with profile avatar (home_header_avatar). Top Section: Large circular progress ring for Calories, with 3 nested rings (Protein/Carbs/Fat) Apple Health style. Middle Section: Horizontal scroll of glass pill 'Quick Actions' (Scan, Water, Workout). Bottom Section: 'Recent Meals' vertical list. Ensure safe area at bottom for Tab Bar."
+    },
+    {
+      "name": "AI Food Scanner",
+      "purpose": "Frictionless AI camera for meal logging.",
+      "states": { "loading": "Scanning animation (radar overlay)", "empty": "", "error": "Camera permission prompt" },
+      "layout": "Full-screen camera view. Top bar: Flash & Gallery icons. Bottom area: Large floating capture button on a translucent glass panel. After capture: Bottom Sheet slides up showing 'Recognition Result' chips (e.g., 'Salmon', 'Avocado'), macros, and a primary Save button."
+    },
+    {
+      "name": "Macro Tracker",
+      "purpose": "Detailed daily macro progress and food logs.",
+      "states": { "loading": "Skeleton bars", "empty": "Illustration + 'No meals logged'", "error": "" },
+      "layout": "Top: Animated linear progress bars for Protein, Carbs, Fat, Fiber, Water. Bottom: Segmented list of consumed items grouped by meal type."
+    },
+    {
+      "name": "AI Diet Assistant Chat",
+      "purpose": "Conversational interface with AI Coach for tailored advice.",
+      "states": { "loading": "Typing indicator...", "empty": "Welcome message", "error": "Failed to send" },
+      "layout": "Standard chat layout. AI messages on left (ai_coach_avatar), User right. Embed custom 'Macro Plan Cards' directly inside the chat flow instead of just plain text. Input field pinned to bottom with keyboard avoiding view."
+    },
+    {
+      "name": "Meal Planner",
+      "purpose": "Browse recommended meals and track them.",
+      "states": { "loading": "Skeleton cards", "empty": "", "error": "" },
+      "layout": "Top: Scrollable segmented control (Breakfast, Lunch, Snacks, Dinner). Body: 2-column grid or single-column wide cards showing food imagery (meal_breakfast, etc) + scrim + title/macros overlaid at bottom."
+    },
+    {
+      "name": "Travel Mode",
+      "purpose": "Pause strict diet rules and focus on maintenance/recovery.",
+      "states": { "loading": "", "empty": "", "error": "" },
+      "layout": "Hero banner indicating 'Travel Mode' active. Large toggle switch. Cards explaining adjusted surplus calories and recovery tracking instead of rigid deficit."
+    },
+    {
+      "name": "Analytics",
+      "purpose": "Review weekly trends and streaks.",
+      "states": { "loading": "Skeleton charts", "empty": "No data yet", "error": "Error loading charts" },
+      "layout": "Weekly bar charts (Calories, Protein) using brandPrimary and brandSecondary colors. Streak indicators in rounded surfaceSecondary cards. Horizontal scroll for different weeks."
+    },
+    {
+      "name": "Profile & Settings",
+      "purpose": "Manage account, goals, and app preferences.",
+      "states": { "loading": "", "empty": "", "error": "" },
+      "layout": "Header: Large Avatar + Name. Body: List rows for settings. Every row uses a 'brandTertiary' tinted rounded square containing the row icon, title, and chevron right."
+    }
+  ],
+  "images": {
+    "splash_bg": {
+      "url": "https://images.unsplash.com/photo-1634976276568-9ea10353a8cd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRhcmslMjBncmVlbiUyMGVtZXJhbGQlMjBncmFkaWVudCUyMGNpbmVtYXRpYyUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzgxMTg3Mzg3fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "abstract dark green emerald gradient cinematic background"
+    },
+    "onboard_scan": {
+      "url": "https://images.unsplash.com/photo-1541696500-8de3a3063c9b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHwxfHxzbWFydHBob25lJTIwY2FtZXJhJTIwc2Nhbm5pbmclMjBoZWFsdGh5JTIwZm9vZCUyMG1pbmltYWwlMjBkYXJrfGVufDB8fHx8MTc4MTE4NzM4N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "smartphone camera scanning healthy food"
+    },
+    "onboard_macros": {
+      "url": "https://images.unsplash.com/photo-1685871286419-58e4fc0de8e1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwxfHxkYXRhJTIwdHJhY2tpbmclMjByaW5ncyUyMGFic3RyYWN0JTIwbWluaW1hbCUyMGRhcmslMjBncmVlbnxlbnwwfHx8fDE3ODExODczODd8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "data tracking rings abstract minimal dark green"
+    },
+    "home_header_avatar": {
+      "url": "https://images.unsplash.com/photo-1598735064309-86f7f4ba875b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwxfHxhdGhsZXRpYyUyMG1hbiUyMHByb2ZpbGUlMjBwb3J0cmFpdCUyMGRhcmslMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc4MTE4NzM4N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "athletic man profile portrait"
+    },
+    "ai_coach_avatar": {
+      "url": "https://images.unsplash.com/photo-1557683316-973673baf926?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODh8MHwxfHNlYXJjaHwxfHxjYWxtJTIwZ2xvd2luZyUyMGFpJTIwYXZhdGFyJTIwbWluaW1hbCUyMGdyYWRpZW50fGVufDB8fHx8MTc4MTE4NzM4N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "calm glowing ai avatar minimal gradient"
+    },
+    "meal_breakfast": {
+      "url": "https://images.unsplash.com/photo-1603046891726-36bfd957e0bf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwxfHxoZWFsdGh5JTIwYXZvY2FkbyUyMHRvYXN0JTIwYnJlYWtmYXN0JTIwb3ZlcmhlYWQlMjBzaG90fGVufDB8fHx8MTc4MTE4NzM4N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "healthy avocado toast breakfast overhead shot"
+    },
+    "meal_lunch": {
+      "url": "https://images.unsplash.com/photo-1546793665-c74683f339c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwxfHxncmlsbGVkJTIwc2FsbW9uJTIwc2FsYWQlMjBsdW5jaCUyMGhlYWx0aHklMjBtZWFsfGVufDB8fHx8MTc4MTE4NzM4N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "grilled salmon salad lunch healthy meal"
+    },
+    "meal_dinner": {
+      "url": "https://images.unsplash.com/photo-1666819691822-29a09f0992e5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwxfHxzdGVhayUyMHN3ZWV0JTIwcG90YXRvJTIwaGVhbHRoeSUyMGRpbm5lciUyMGJvd2x8ZW58MHx8fHwxNzgxMTg3Mzg3fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "steak sweet potato healthy dinner bowl"
+    },
+    "meal_snack": {
+      "url": "https://images.unsplash.com/photo-1615478503562-ec2d8aa0e24e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwxfHxwcm90ZWluJTIwc2hha2UlMjBiZXJyaWVzJTIwYWxtb25kcyUyMHNuYWNrfGVufDB8fHx8MTc4MTE4NzM4N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "protein shake berries almonds snack"
+    }
+  },
+  "haptics": {
+    "tab_press": "light",
+    "primary_cta": "medium",
+    "food_scan_success": "success",
+    "travel_mode_toggle": "light",
+    "goal_reached": "success"
+  },
+  "instructions_to_main_agent": [
+    "Build 'FitMate' using a dark-first iOS-native Glass Luxe theme. Apply the `surface` (#0F1115) to root backgrounds and `surfaceSecondary` to cards.",
+    "Implement the circular progress rings for macros on the Home screen. Consider `react-native-svg` to draw nested Apple Health style rings (Calories, Protein, Carbs, Fat).",
+    "Ensure 'Continue as Guest' navigates correctly to the bottom-tabs dashboard.",
+    "Onboarding and Hero cards MUST use the mandatory gradient-to-dark scrim pattern (transparent to >=70% surfaceInverse vertically) behind text overlaid on imagery.",
+    "Use glassmorphism (via expo-blur) heavily for Bottom Tabs, the AI Camera bottom controls, and the Sticky primary CTA across scrolling views.",
+    "Include 'Profile' via header avatar navigation on the Home Dashboard as requested by user.",
+    "For the AI Chat, do not use basic text bubbles for complex plans—render a custom 'Macro Plan Card' natively inside the chat flow.",
+    "Use Phosphor or Ionicons consistently. Ensure all icons are either filled or outlined, keeping weight unified across the app.",
+    "Implement the 'Travel Mode' screen as a distinct feature with a beautiful hero banner and clear toggle settings for surplus calories.",
+    "Use the exact requested theme palette: Emerald Green primary, Blue secondary, Success Green, Warning Orange, Error Red. Do not deviate."
+  ]
+}

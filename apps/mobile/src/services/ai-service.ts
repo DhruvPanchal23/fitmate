@@ -1,0 +1,62 @@
+import { apiClient } from './api-client';
+import {
+  MealScanResponse,
+  ConfirmScanRequest,
+  ConfirmScanResponse,
+  ChatResponse,
+  SuggestionsResponse,
+  ConversationResponse,
+  ConversationDetailsResponse,
+  FeedbackRequest,
+  FeedbackResponse,
+} from '../../../../shared/contracts';
+
+export const aiService = {
+  // --- Image Scan Endpoints ---
+  scanImage: async (imageUrl: string): Promise<MealScanResponse> => {
+    return apiClient.post<MealScanResponse>('/ai/scan', { imageUrl });
+  },
+
+  confirmScan: async (dto: ConfirmScanRequest): Promise<ConfirmScanResponse> => {
+    return apiClient.post<ConfirmScanResponse>('/ai/confirm', dto);
+  },
+
+  retryScan: async (scanId: string): Promise<MealScanResponse> => {
+    return apiClient.post<MealScanResponse>('/ai/retry', { scanId });
+  },
+
+  // --- Diet Coach Chat Endpoints ---
+  sendChat: async (message: string, conversationId?: string): Promise<ChatResponse> => {
+    return apiClient.post<ChatResponse>('/ai/chat', { message, conversationId });
+  },
+
+  getSuggestions: async (): Promise<SuggestionsResponse> => {
+    return apiClient.post<SuggestionsResponse>('/ai/suggestions');
+  },
+
+  getConversations: async (): Promise<ConversationResponse[]> => {
+    return apiClient.get<ConversationResponse[]>('/ai/conversations');
+  },
+
+  getConversation: async (id: string): Promise<ConversationDetailsResponse> => {
+    return apiClient.get<ConversationDetailsResponse>(`/ai/conversation/${id}`);
+  },
+
+  updateTitle: async (id: string, title: string): Promise<{ success: boolean }> => {
+    return apiClient.patch<{ success: boolean }>(`/ai/conversation/${id}/title`, { title });
+  },
+
+  deleteConversation: async (id: string): Promise<{ success: boolean }> => {
+    return apiClient.delete<{ success: boolean }>(`/ai/conversation/${id}`);
+  },
+
+  regenerateChat: async (conversationId: string): Promise<ChatResponse> => {
+    return apiClient.post<ChatResponse>('/ai/regenerate', { conversationId });
+  },
+
+  submitFeedback: async (dto: FeedbackRequest): Promise<FeedbackResponse> => {
+    return apiClient.post<FeedbackResponse>('/ai/feedback', dto);
+  },
+};
+
+export default aiService;
