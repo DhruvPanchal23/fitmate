@@ -20,6 +20,7 @@ export interface MealResponse {
     items: MealItemResponse[];
 }
 export interface CreateMealItemRequest {
+    foodId?: string;
     foodName: string;
     quantity: number;
     unit: string;

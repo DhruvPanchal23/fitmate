@@ -16,6 +16,8 @@ export declare class FoodsRepository {
         sugar: number;
         defaultUnit: string;
         servingSize: number;
+        averagePrice: number | null;
+        currency: string | null;
     }[]>;
     create(data: any): Promise<{
         id: string;
@@ -31,6 +33,8 @@ export declare class FoodsRepository {
         sugar: number;
         defaultUnit: string;
         servingSize: number;
+        averagePrice: number | null;
+        currency: string | null;
     }>;
     findByName(name: string): Promise<{
         id: string;
@@ -46,5 +50,7 @@ export declare class FoodsRepository {
         sugar: number;
         defaultUnit: string;
         servingSize: number;
+        averagePrice: number | null;
+        currency: string | null;
     }>;
 }

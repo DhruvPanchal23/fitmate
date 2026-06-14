@@ -10,6 +10,7 @@ export declare class MealsRepository {
         source: string;
         createdAt: Date;
         items: {
+            foodId?: string;
             foodName: string;
             quantity: number;
             unit: string;

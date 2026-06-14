@@ -12,3 +12,4 @@ export * from './vision';
 export * from './food-match';
 export * from './ai';
 export * from './travel';
+export * from './meal-planner';

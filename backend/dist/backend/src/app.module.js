@@ -20,6 +20,7 @@ const exercise_module_1 = require("./exercise/exercise.module");
 const nutrition_module_1 = require("./nutrition/nutrition.module");
 const ai_module_1 = require("./ai/ai.module");
 const travel_module_1 = require("./travel/travel.module");
+const meal_planner_module_1 = require("./meal-planner/meal-planner.module");
 const request_id_middleware_1 = require("./middleware/request-id.middleware");
 const configuration_1 = require("./config/configuration");
 let AppModule = class AppModule {
@@ -49,6 +50,7 @@ exports.AppModule = AppModule = __decorate([
             nutrition_module_1.NutritionModule,
             ai_module_1.AiModule,
             travel_module_1.TravelModule,
+            meal_planner_module_1.MealPlannerModule,
         ],
     })
 ], AppModule);

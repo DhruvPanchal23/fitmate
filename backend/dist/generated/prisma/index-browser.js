@@ -155,6 +155,8 @@ exports.Prisma.FoodScalarFieldEnum = {
   defaultUnit: 'defaultUnit',
   servingSize: 'servingSize',
   source: 'source',
+  averagePrice: 'averagePrice',
+  currency: 'currency',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -265,6 +267,85 @@ exports.Prisma.CacheEntryScalarFieldEnum = {
   expiresAt: 'expiresAt'
 };
 
+exports.Prisma.MealPlanScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  type: 'type',
+  goal: 'goal',
+  caloriesTarget: 'caloriesTarget',
+  proteinTarget: 'proteinTarget',
+  carbsTarget: 'carbsTarget',
+  fatTarget: 'fatTarget',
+  status: 'status',
+  version: 'version',
+  parentPlanId: 'parentPlanId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  timezone: 'timezone',
+  regenerationsCount: 'regenerationsCount',
+  replacementsCount: 'replacementsCount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MealPlanDayScalarFieldEnum = {
+  id: 'id',
+  mealPlanId: 'mealPlanId',
+  dayOfWeek: 'dayOfWeek',
+  calories: 'calories',
+  protein: 'protein',
+  carbs: 'carbs',
+  fats: 'fats'
+};
+
+exports.Prisma.MealPlanMealScalarFieldEnum = {
+  id: 'id',
+  mealPlanDayId: 'mealPlanDayId',
+  mealType: 'mealType',
+  foodId: 'foodId',
+  quantity: 'quantity',
+  unit: 'unit',
+  calories: 'calories',
+  protein: 'protein',
+  carbs: 'carbs',
+  fats: 'fats',
+  notes: 'notes',
+  status: 'status',
+  completedAt: 'completedAt',
+  loggedMealId: 'loggedMealId'
+};
+
+exports.Prisma.SavedTemplateScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  description: 'description',
+  planData: 'planData',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PantryItemScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  foodId: 'foodId',
+  quantity: 'quantity',
+  unit: 'unit',
+  expiryDate: 'expiryDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PlannerInteractionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  planId: 'planId',
+  mealId: 'mealId',
+  foodId: 'foodId',
+  interactionType: 'interactionType',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -301,7 +382,13 @@ exports.Prisma.ModelName = {
   ConversationMessage: 'ConversationMessage',
   ConversationFeedback: 'ConversationFeedback',
   TravelSession: 'TravelSession',
-  CacheEntry: 'CacheEntry'
+  CacheEntry: 'CacheEntry',
+  MealPlan: 'MealPlan',
+  MealPlanDay: 'MealPlanDay',
+  MealPlanMeal: 'MealPlanMeal',
+  SavedTemplate: 'SavedTemplate',
+  PantryItem: 'PantryItem',
+  PlannerInteraction: 'PlannerInteraction'
 };
 
 /**

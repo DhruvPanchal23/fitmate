@@ -17,19 +17,23 @@ enum FoodSource {
 }
 
 model User {
-  id             String          @id @default(uuid())
-  email          String          @unique
-  passwordHash   String
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  profile        UserProfile?
-  meals          Meal[]
-  waterLogs      WaterLog[]
-  supplementLogs SupplementLog[]
-  exerciseLogs   ExerciseLog[]
-  mealScans      MealScan[]
-  conversations  Conversation[]
-  travelSessions TravelSession[]
+  id                  String               @id @default(uuid())
+  email               String               @unique
+  passwordHash        String
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  profile             UserProfile?
+  meals               Meal[]
+  waterLogs           WaterLog[]
+  supplementLogs      SupplementLog[]
+  exerciseLogs        ExerciseLog[]
+  mealScans           MealScan[]
+  conversations       Conversation[]
+  travelSessions      TravelSession[]
+  mealPlans           MealPlan[]
+  savedTemplates      SavedTemplate[]
+  pantryItems         PantryItem[]
+  plannerInteractions PlannerInteraction[]
 }
 
 model UserProfile {
@@ -48,31 +52,36 @@ model UserProfile {
 }
 
 model Food {
-  id            String     @id @default(uuid())
-  name          String     @unique
+  id            String         @id @default(uuid())
+  name          String         @unique
   calories      Float
   protein       Float
   carbohydrates Float
   fats          Float
   fiber         Float
   sugar         Float
-  defaultUnit   String     @default("g")
-  servingSize   Float      @default(100)
-  source        FoodSource @default(SYSTEM)
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  defaultUnit   String         @default("g")
+  servingSize   Float          @default(100)
+  source        FoodSource     @default(SYSTEM)
+  averagePrice  Float?
+  currency      String?        @default("USD")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   mealItems     MealItem[]
+  mealPlanMeals MealPlanMeal[]
+  pantryItems   PantryItem[]
 }
 
 model Meal {
-  id        String     @id @default(uuid())
-  userId    String
-  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  mealType  String // Breakfast, Lunch, Dinner, Snack
-  source    String // manual, scanner, ai_coach
-  createdAt DateTime   @default(now())
-  items     MealItem[]
-  mealScan  MealScan?
+  id           String        @id @default(uuid())
+  userId       String
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mealType     String // Breakfast, Lunch, Dinner, Snack
+  source       String // manual, scanner, ai_coach
+  createdAt    DateTime      @default(now())
+  items        MealItem[]
+  mealScan     MealScan?
+  mealPlanMeal MealPlanMeal?
 }
 
 model MealItem {
@@ -190,4 +199,108 @@ model CacheEntry {
   value     String // cached response string
   createdAt DateTime @default(now())
   expiresAt DateTime
+}
+
+model MealPlan {
+  id                 String        @id @default(uuid())
+  userId             String
+  user               User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title              String
+  type               String // daily, weekly
+  goal               String // fat_loss, muscle_gain, maintenance
+  caloriesTarget     Float
+  proteinTarget      Float
+  carbsTarget        Float
+  fatTarget          Float
+  status             String // draft, active, archived
+  version            Int           @default(1)
+  parentPlanId       String?
+  parentPlan         MealPlan?     @relation("PlanVersions", fields: [parentPlanId], references: [id], onDelete: SetNull)
+  childPlans         MealPlan[]    @relation("PlanVersions")
+  startDate          DateTime?
+  endDate            DateTime?
+  timezone           String?
+  regenerationsCount Int           @default(0)
+  replacementsCount  Int           @default(0)
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  days               MealPlanDay[]
+
+  @@index([userId])
+}
+
+model MealPlanDay {
+  id         String         @id @default(uuid())
+  mealPlanId String
+  mealPlan   MealPlan       @relation(fields: [mealPlanId], references: [id], onDelete: Cascade)
+  dayOfWeek  String // Monday, Tuesday, etc.
+  calories   Float
+  protein    Float
+  carbs      Float
+  fats       Float
+  meals      MealPlanMeal[]
+
+  @@index([mealPlanId])
+}
+
+model MealPlanMeal {
+  id            String      @id @default(uuid())
+  mealPlanDayId String
+  mealPlanDay   MealPlanDay @relation(fields: [mealPlanDayId], references: [id], onDelete: Cascade)
+  mealType      String // Breakfast, Lunch, Dinner, Snack
+  foodId        String?
+  food          Food?       @relation(fields: [foodId], references: [id], onDelete: SetNull)
+  quantity      Float
+  unit          String
+  calories      Float
+  protein       Float
+  carbs         Float
+  fats          Float
+  notes         String?
+  status        String      @default("planned") // planned, completed, skipped, replaced
+  completedAt   DateTime?
+  loggedMealId  String?     @unique
+  loggedMeal    Meal?       @relation(fields: [loggedMealId], references: [id], onDelete: SetNull)
+
+  @@index([mealPlanDayId])
+}
+
+model SavedTemplate {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  planData    String // Store serialized JSON string representing the meal plan templates
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+}
+
+model PantryItem {
+  id         String    @id @default(uuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  foodId     String
+  food       Food      @relation(fields: [foodId], references: [id], onDelete: Cascade)
+  quantity   Float
+  unit       String
+  expiryDate DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model PlannerInteraction {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planId          String?
+  mealId          String?
+  foodId          String?
+  interactionType String // accepted_meal, skipped_meal, replaced_meal, regenerated_meal, completed_meal
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
 }

@@ -172,26 +172,22 @@ export function useMealPlanner() {
     },
   });
 
+  const activePlan = (plans || []).find((p) => p.status === 'active') || null;
+
   return {
-    plans,
+    allPlans: plans || [],
+    activePlan,
     analytics,
     loading,
     isRefetching,
-    generatePlan: generatePlanMutation.mutate,
-    isGenerating: generatePlanMutation.isPending,
-    activatePlan: activatePlanMutation.mutate,
-    isActivating: activatePlanMutation.isPending,
-    deletePlan: deletePlanMutation.mutate,
-    isDeleting: deletePlanMutation.isPending,
-    completeMeal: completeMealMutation.mutate,
-    isCompletingMeal: completeMealMutation.isPending,
-    skipMeal: skipMealMutation.mutate,
-    isSkippingMeal: skipMealMutation.isPending,
-    regenerate: regenerateMutation.mutate,
-    isRegenerating: regenerateMutation.isPending,
-    saveTemplate: saveTemplateMutation.mutate,
-    isSavingTemplate: saveTemplateMutation.isPending,
-    refetchAll,
+    generatePlan: generatePlanMutation,
+    activatePlan: activatePlanMutation,
+    deletePlan: deletePlanMutation,
+    completeMeal: completeMealMutation,
+    skipMeal: skipMealMutation,
+    regenerate: regenerateMutation,
+    saveTemplate: saveTemplateMutation,
+    reloadData: refetchAll,
   };
 }
 export default useMealPlanner;

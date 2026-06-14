@@ -28,4 +28,5 @@ __exportStar(require("./vision"), exports);
 __exportStar(require("./food-match"), exports);
 __exportStar(require("./ai"), exports);
 __exportStar(require("./travel"), exports);
+__exportStar(require("./meal-planner"), exports);
 //# sourceMappingURL=index.js.map

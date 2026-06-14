@@ -19,6 +19,8 @@ export declare class FoodsService implements OnModuleInit {
         sugar: number;
         defaultUnit: string;
         servingSize: number;
+        averagePrice: number | null;
+        currency: string | null;
     }[] | ({
         readonly name: "Oatmeal";
         readonly calories: 150;

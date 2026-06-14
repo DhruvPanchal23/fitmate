@@ -38,6 +38,16 @@ export default function TabsLayout() {
       />
 
       <Tabs.Screen
+        name="planner"
+        options={{
+          title: 'Planner',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'calendar' : 'calendar-outline'} size={22} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
         name="chat"
         options={{
           title: 'AI Coach',

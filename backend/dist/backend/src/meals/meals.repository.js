@@ -25,6 +25,7 @@ let MealsRepository = class MealsRepository {
                     source: dto.source,
                     items: {
                         create: dto.items.map((item) => ({
+                            foodId: item.foodId || undefined,
                             foodName: item.foodName,
                             quantity: item.quantity,
                             unit: item.unit,
