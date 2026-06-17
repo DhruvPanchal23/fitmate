@@ -1,9 +1,9 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { LLMProvider } from '../ai/llm/llm-provider.interface';
+import { Injectable } from '@nestjs/common';
 import { FoodSelectionEngine, SelectionPreferences } from './food-selection.engine';
 import { MacroValidationEngine } from './macro-validation.engine';
 import { PrismaService } from '../prisma/prisma.service';
 import { Food } from '../generated/prisma';
+import { AIPipelineService } from '../ai/core/ai-pipeline.service';
 
 export interface PlanGenerationContext {
   userId: string;
@@ -19,12 +19,13 @@ export interface PlanGenerationContext {
   favoriteFoods?: string[];
   recentMeals?: string[];
   pantryItems?: Array<{ foodId: string; quantity: number }>;
+  recoveryActive?: boolean;
 }
 
 @Injectable()
 export class MealPlanPlanGenerator {
   constructor(
-    @Inject('LLMProvider') private readonly llmProvider: LLMProvider,
+    private readonly pipeline: AIPipelineService,
     private readonly foodSelectionEngine: FoodSelectionEngine,
     private readonly macroValidationEngine: MacroValidationEngine,
     private readonly prisma: PrismaService,
@@ -46,6 +47,7 @@ export class MealPlanPlanGenerator {
       favoriteFoods: ctx.favoriteFoods,
       recentMeals: ctx.recentMeals,
       pantryItems: ctx.pantryItems,
+      recoveryActive: ctx.recoveryActive,
     };
 
     // Rank candidate breakfast, main meals, and snacks
@@ -117,10 +119,17 @@ export class MealPlanPlanGenerator {
       `=== REQUEST ===\nGenerate a ${ctx.type} meal plan matching the user goals.`,
     ].join('\n\n');
 
-    // 3. Call Injected LLM Provider
+    // 3. Call Consolidated AI Pipeline Service
     let parsedPlan: any;
     try {
-      const rawResponse = await this.llmProvider.generateResponse(prompt);
+      const pipelineRes = await this.pipeline.execute({
+        userId: ctx.userId,
+        promptKey: 'meal-planner',
+        userMessage: `Generate a ${ctx.type} meal plan matching the user goals.`,
+        additionalContext: `=== CANDIDATE TOP FOODS ===\n${contextStr}`,
+        skipCache: true,
+      });
+      const rawResponse = pipelineRes.text;
       
       // Clean markdown code blocks if present
       let cleaned = rawResponse.trim();

@@ -12,7 +12,12 @@ import { NutritionModule } from './nutrition/nutrition.module';
 import { AiModule } from './ai/ai.module';
 import { TravelModule } from './travel/travel.module';
 import { MealPlannerModule } from './meal-planner/meal-planner.module';
+import { ProfileModule } from './profile/profile.module';
+import { AnalyticsModule } from './analytics/analytics.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { AdminModule } from './admin/admin.module';
 import { RequestIdMiddleware } from './middleware/request-id.middleware';
+import { CommonModule } from './common/common.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -34,6 +39,11 @@ import configuration from './config/configuration';
     AiModule,
     TravelModule,
     MealPlannerModule,
+    ProfileModule,
+    AnalyticsModule,
+    NotificationsModule,
+    AdminModule,
+    CommonModule,
   ],
 })
 export class AppModule implements NestModule {

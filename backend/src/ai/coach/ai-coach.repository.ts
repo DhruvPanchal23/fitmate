@@ -56,14 +56,14 @@ export class AICoachRepository {
     });
   }
 
-  async addMessage(conversationId: string, role: string, content: string, metadata?: string) {
+  async addMessage(conversationId: string, role: string, content: string, metadata?: string, tokens?: number) {
     const message = await this.prisma.conversationMessage.create({
       data: {
         conversationId,
         role,
         content,
         metadata,
-        tokens: Math.ceil((content.length + (metadata ? metadata.length : 0)) / 4), // Simple token estimate
+        tokens: tokens !== undefined ? tokens : Math.ceil((content.length + (metadata ? metadata.length : 0)) / 4), // Simple token estimate
       },
     });
 
@@ -119,6 +119,18 @@ export class AICoachRepository {
         where: { id: lastAssistant.id },
       });
     }
+  }
+
+  async getLastAssistantMessage(conversationId: string) {
+    return this.prisma.conversationMessage.findFirst({
+      where: {
+        conversationId,
+        role: 'assistant',
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
   }
 }
 export default AICoachRepository;

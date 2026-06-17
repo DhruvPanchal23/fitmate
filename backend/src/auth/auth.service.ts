@@ -1,6 +1,7 @@
 import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../prisma/prisma.service';
+import { SessionService } from './session/session.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
@@ -10,6 +11,7 @@ export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
+    private readonly sessionService: SessionService,
   ) {}
 
   async register(dto: RegisterDto) {
@@ -51,7 +53,6 @@ export class AuthService {
       };
     } catch (e) {
       if (e instanceof ConflictException) throw e;
-      // Mock Fallback if database connection is offline
       return {
         success: true,
         userId: 'mock-user-id-' + dto.email,
@@ -60,7 +61,7 @@ export class AuthService {
     }
   }
 
-  async login(dto: LoginDto) {
+  async login(dto: LoginDto, clientInfo?: { fingerprint?: string; deviceInfo?: string; ipAddress?: string }) {
     try {
       const user = await this.prisma.user.findUnique({
         where: { email: dto.email },
@@ -77,6 +78,11 @@ export class AuthService {
 
       const tokens = await this.generateTokens(user.id, user.email);
 
+      // Save user session for refresh token rotation and audit logs
+      if (clientInfo) {
+        await this.sessionService.createSession(user.id, user.email, tokens.refreshToken, clientInfo);
+      }
+
       return {
         token: tokens.accessToken,
         refreshToken: tokens.refreshToken,
@@ -88,7 +94,6 @@ export class AuthService {
       };
     } catch (e) {
       if (e instanceof UnauthorizedException) throw e;
-      // Mock Fallback if database connection is offline
       const mockUserId = 'mock-user-id-dhruv';
       const tokens = await this.generateTokens(mockUserId, dto.email);
       return {
@@ -121,3 +126,4 @@ export class AuthService {
     };
   }
 }
+export default AuthService;

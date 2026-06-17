@@ -108,6 +108,19 @@ export function SettingsContainer() {
           />
         </Card>
 
+        <Text style={styles.groupTitle}>AI Engine</Text>
+        <Card variant="solid" style={styles.groupCard}>
+          <Pressable onPress={() => router.push('/ai-settings' as any)} style={styles.listRow}>
+            <Text style={styles.rowText}>AI Settings</Text>
+            <Ionicons name="chevron-forward" size={16} color={colors.onSurfaceTertiary} />
+          </Pressable>
+          <View style={styles.rowDivider} />
+          <Pressable onPress={() => router.push('/memories' as any)} style={styles.listRow}>
+            <Text style={styles.rowText}>AI Memory Vault</Text>
+            <Ionicons name="chevron-forward" size={16} color={colors.onSurfaceTertiary} />
+          </Pressable>
+        </Card>
+
         <Text style={styles.groupTitle}>Support</Text>
         <Card variant="solid" style={styles.groupCard}>
           <Pressable onPress={() => handleAction('Help Center')} style={styles.listRow}>
@@ -122,6 +135,11 @@ export function SettingsContainer() {
           <View style={styles.rowDivider} />
           <Pressable onPress={() => handleAction('Terms of Service')} style={styles.listRow}>
             <Text style={styles.rowText}>Terms of Service</Text>
+            <Ionicons name="chevron-forward" size={16} color={colors.onSurfaceTertiary} />
+          </Pressable>
+          <View style={styles.rowDivider} />
+          <Pressable onPress={() => router.push('/diagnostics' as any)} style={styles.listRow}>
+            <Text style={styles.rowText}>System Diagnostics</Text>
             <Ionicons name="chevron-forward" size={16} color={colors.onSurfaceTertiary} />
           </Pressable>
         </Card>

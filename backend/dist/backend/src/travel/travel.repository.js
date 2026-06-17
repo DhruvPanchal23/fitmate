@@ -22,19 +22,38 @@ let TravelRepository = class TravelRepository {
                 userId,
                 active: true,
             },
+            include: {
+                dailySummaries: true,
+                compensationPlan: true,
+            },
         });
     }
-    async createSession(userId) {
+    async findSessionById(sessionId) {
+        return this.prisma.travelSession.findUnique({
+            where: { id: sessionId },
+            include: {
+                dailySummaries: true,
+                compensationPlan: true,
+            },
+        });
+    }
+    async createSession(userId, destination, timezone, purpose) {
         return this.prisma.travelSession.create({
             data: {
                 userId,
                 active: true,
                 startDate: new Date(),
+                destination,
+                timezone,
+                purpose,
             },
         });
     }
     async deactivateSessions(userId) {
-        return this.prisma.travelSession.updateMany({
+        const active = await this.findActiveSession(userId);
+        if (!active)
+            return null;
+        await this.prisma.travelSession.updateMany({
             where: {
                 userId,
                 active: true,
@@ -44,15 +63,66 @@ let TravelRepository = class TravelRepository {
                 endDate: new Date(),
             },
         });
+        return this.findSessionById(active.id);
     }
     async findMany(userId) {
         return this.prisma.travelSession.findMany({
             where: {
                 userId,
             },
+            include: {
+                dailySummaries: true,
+                compensationPlan: true,
+            },
             orderBy: {
                 startDate: 'desc',
             },
+        });
+    }
+    async saveDailySummary(data) {
+        const existing = await this.prisma.travelDailySummary.findFirst({
+            where: {
+                travelSessionId: data.travelSessionId,
+                date: {
+                    equals: data.date,
+                },
+            },
+        });
+        if (existing) {
+            return this.prisma.travelDailySummary.update({
+                where: { id: existing.id },
+                data,
+            });
+        }
+        return this.prisma.travelDailySummary.create({
+            data,
+        });
+    }
+    async saveCompensationPlan(data) {
+        return this.prisma.compensationPlan.upsert({
+            where: { travelSessionId: data.travelSessionId },
+            update: data,
+            create: data,
+        });
+    }
+    async findActiveCompensationPlan(userId) {
+        return this.prisma.compensationPlan.findFirst({
+            where: {
+                userId,
+                status: 'active',
+            },
+            include: {
+                travelSession: true,
+            },
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
+    }
+    async updateCompensationPlanStatus(planId, status) {
+        return this.prisma.compensationPlan.update({
+            where: { id: planId },
+            data: { status },
         });
     }
 };
@@ -61,4 +131,5 @@ exports.TravelRepository = TravelRepository = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], TravelRepository);
+exports.default = TravelRepository;
 //# sourceMappingURL=travel.repository.js.map

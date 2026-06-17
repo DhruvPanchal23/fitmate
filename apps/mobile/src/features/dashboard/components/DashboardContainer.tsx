@@ -1,15 +1,27 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Pressable, Platform, RefreshControl } from 'react-native';
+import React, { useCallback } from 'react';
+import { StyleSheet, Text, View, ScrollView, Pressable, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRouter } from 'expo-router';
 import { colors } from '../../../theme/colors';
 import { spacing, radius } from '../../../theme/spacing';
 import { ScreenHeader } from '../../../components/ScreenHeader';
 import { Card } from '../../../components/Card';
-import { MacroProgress } from '../../../components/MacroProgress';
 import { useDashboard } from '../../../hooks/use-dashboard';
+import { useTravel } from '../../../hooks/use-travel';
+import { useAnalytics } from '../../../hooks/use-analytics';
+import { useNotifications } from '../../../hooks/use-notifications';
 import { SkeletonDashboard } from '../../../components/LoadingState';
 import Toast from 'react-native-toast-message';
+
+// Subcomponents
+import RiskAlertsBanner from './RiskAlertsBanner';
+import MacroProgressCard from './MacroProgressCard';
+import QuickActionsGrid from './QuickActionsGrid';
+import AIRecommendationsList from './AIRecommendationsList';
+import HabitStreaksList from './HabitStreaksList';
+import TodayRemindersList from './TodayRemindersList';
+import LoggedMealsList from './LoggedMealsList';
 
 export function DashboardContainer() {
   const {
@@ -25,6 +37,31 @@ export function DashboardContainer() {
     QUICK_ACTIONS,
     reloadData,
   } = useDashboard();
+
+  const router = useRouter();
+  const { recovery } = useTravel();
+  const { dashboard } = useAnalytics();
+  const { notifications, habits } = useNotifications();
+
+  const handleAction = useCallback((id: string) => {
+    handleQuickAction(id);
+  }, [handleQuickAction]);
+
+  const navigateToHabits = useCallback(() => {
+    router.push('/habits' as any);
+  }, [router]);
+
+  const navigateToNotifications = useCallback(() => {
+    router.push('/notifications' as any);
+  }, [router]);
+
+  const handleAddFoodPress = useCallback(() => {
+    Toast.show({
+      type: 'info',
+      text1: 'Custom Logging',
+      text2: 'Use Scanner or AI Coach for quick logging.',
+    });
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
@@ -49,103 +86,110 @@ export function DashboardContainer() {
             />
           }
         >
-          {/* Macro Progress Ring Card */}
-          <Card variant="glass" style={styles.macroCard}>
-            <Text style={styles.sectionHeader}>Daily Summary</Text>
-            <MacroProgress
-              calories={calories}
-              protein={protein}
-              carbs={carbs}
-              fat={fat}
-              water={water}
-            />
-          </Card>
+          {/* Risk Alerts Notice Banners */}
+          {dashboard && dashboard.riskAlerts && (
+            <RiskAlertsBanner alerts={dashboard.riskAlerts} />
+          )}
 
-          {/* Quick Actions Title */}
-          <Text style={styles.sectionTitle}>Quick Actions</Text>
-          
-          {/* Quick Actions Scroll Grid */}
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.quickActionsContainer}
-          >
-            {QUICK_ACTIONS.map((action) => (
-              <Card
-                key={action.id}
-                variant="solid"
-                onPress={() => handleQuickAction(action.id)}
-                style={styles.actionCard}
-              >
-                <View style={[styles.iconBox, { backgroundColor: `${action.color}20` }]}>
-                  <Ionicons name={action.icon as any} size={22} color={action.color} />
-                </View>
-                <Text style={styles.actionLabel}>{action.label}</Text>
+          {/* Macro Progress Ring Card */}
+          <MacroProgressCard
+            calories={calories}
+            protein={protein}
+            carbs={carbs}
+            fat={fat}
+            water={water}
+          />
+
+          {/* Intelligence Score Overview Row */}
+          {dashboard && (
+            <View style={styles.dashboardScoresRow}>
+              <Card variant="solid" style={styles.scoreBadgeItem}>
+                <Text style={styles.scoreBadgeNum}>{dashboard.healthScore}</Text>
+                <Text style={styles.scoreBadgeLbl}>Health</Text>
               </Card>
-            ))}
-          </ScrollView>
+              <Card variant="solid" style={styles.scoreBadgeItem}>
+                <Text style={styles.scoreBadgeNum}>{dashboard.consistencyScore}%</Text>
+                <Text style={styles.scoreBadgeLbl}>Consistency</Text>
+              </Card>
+              <Card variant="solid" style={styles.scoreBadgeItem}>
+                <Text style={styles.scoreBadgeNum}>{dashboard.adherenceScore}%</Text>
+                <Text style={styles.scoreBadgeLbl}>Adherence</Text>
+              </Card>
+            </View>
+          )}
+
+          {/* Quick Metrics (Streak and Forecast) */}
+          {dashboard && (
+            <Card variant="solid" style={styles.quickMetricsCard}>
+              <View style={styles.quickMetricsRow}>
+                <View style={styles.quickMetricBox}>
+                  <Ionicons name="flame" size={18} color={colors.warning} />
+                  <Text style={styles.quickMetricVal}> {dashboard.currentStreak} Days</Text>
+                  <Text style={styles.quickMetricLbl}>Streak</Text>
+                </View>
+                <View style={styles.quickMetricDivider} />
+                <View style={styles.quickMetricBox}>
+                  <Ionicons name="trending-down" size={18} color={colors.brandSecondary} />
+                  <Text style={styles.quickMetricVal}> {dashboard.weightPrediction} kg</Text>
+                  <Text style={styles.quickMetricLbl}>Weight (30d)</Text>
+                </View>
+              </View>
+            </Card>
+          )}
+
+          {/* AI Recommendations */}
+          {dashboard && dashboard.recommendations && (
+            <AIRecommendationsList recommendations={dashboard.recommendations} />
+          )}
+
+          {/* Habit Streaks widget */}
+          {habits && (
+            <HabitStreaksList habits={habits} onViewAllPress={navigateToHabits} />
+          )}
+
+          {/* Today's Reminders notifications widget */}
+          {notifications && (
+            <TodayRemindersList notifications={notifications} onManagePress={navigateToNotifications} />
+          )}
+
+          {/* Travel Recovery Plan Card */}
+          {recovery && recovery.plan.status === 'active' && (
+            <Card
+              variant="solid"
+              style={styles.recoveryCard}
+              onPress={() => router.push('/travel/recovery' as any)}
+            >
+              <View style={styles.recoveryHeaderRow}>
+                <Ionicons name="fitness" size={22} color={colors.warning} />
+                <Text style={styles.recoveryCardTitle}>Travel Recovery Plan</Text>
+                <View style={styles.recoveryBadge}>
+                  <Text style={styles.recoveryBadgeText}>Active</Text>
+                </View>
+              </View>
+              <Text style={styles.recoveryCardSurplus}>
+                Remaining surplus:{' '}
+                <Text style={{ color: colors.warning, fontWeight: '700' }}>
+                  {recovery.plan.totalSurplusCalories} kcal
+                </Text>
+              </Text>
+              <View style={styles.recoveryProgressWrapper}>
+                <Text style={styles.recoveryProgressText}>
+                  Day {recovery.currentDayNumber} of {recovery.plan.recoveryDays} ({recovery.percentage}%)
+                </Text>
+                <View style={styles.recoveryProgressBg}>
+                  <View
+                    style={[styles.recoveryProgressFill, { width: `${recovery.percentage}%` }]}
+                  />
+                </View>
+              </View>
+            </Card>
+          )}
+
+          {/* Quick Actions Scroll Grid */}
+          <QuickActionsGrid actions={QUICK_ACTIONS} onActionPress={handleAction} />
 
           {/* Logged Meals List */}
-          <View style={styles.mealsHeaderRow}>
-            <Text style={styles.sectionTitle}>Logged Meals</Text>
-            <Pressable onPress={() => {
-              Toast.show({
-                type: 'info',
-                text1: 'Custom Logging',
-                text2: 'Use Scanner or AI Coach for quick logging.',
-              });
-            }}>
-              <Text style={styles.viewAllLink}>Add Food</Text>
-            </Pressable>
-          </View>
-
-          {meals.length === 0 ? (
-            <Card variant="solid" style={styles.emptyCard}>
-              <Ionicons name="restaurant-outline" size={32} color={colors.onSurfaceSecondary} />
-              <Text style={styles.emptyText}>No meals logged yet today.</Text>
-              <Text style={styles.emptySubtext}>Use the Scan Meal action or chat with your AI Coach to log your first entry!</Text>
-            </Card>
-          ) : (
-            meals.map((item) => (
-              <Card key={item.id} variant="solid" style={styles.mealCard}>
-                <View style={styles.mealRow}>
-                  <View style={styles.mealLeft}>
-                    <View style={styles.mealIconContainer}>
-                      <Ionicons
-                        name={
-                          item.mealType === 'Breakfast'
-                            ? 'cafe'
-                            : item.mealType === 'Lunch'
-                            ? 'nutrition'
-                            : 'fast-food'
-                        }
-                        size={20}
-                        color={colors.brand}
-                      />
-                    </View>
-                    <View style={styles.mealInfo}>
-                      <Text style={styles.mealName}>
-                        {item.items && item.items.length > 0
-                          ? item.items.map((i: any) => i.foodName).join(', ')
-                          : 'Unknown Meal'}
-                      </Text>
-                      <Text style={styles.mealTime}>
-                        {item.mealType} • {new Date(item.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.mealRight}>
-                    <Text style={styles.mealCalories}>
-                      {item.items ? Math.round(item.items.reduce((sum: number, i: any) => sum + i.calories, 0)) : 0} kcal
-                    </Text>
-                    <Text style={styles.mealMacros}>
-                      P: {item.items ? Math.round(item.items.reduce((sum: number, i: any) => sum + i.protein, 0)) : 0}g • C: {item.items ? Math.round(item.items.reduce((sum: number, i: any) => sum + i.carbohydrates, 0)) : 0}g • F: {item.items ? Math.round(item.items.reduce((sum: number, i: any) => sum + i.fats, 0)) : 0}g
-                    </Text>
-                  </View>
-                </View>
-              </Card>
-            ))
-          )}
+          <LoggedMealsList meals={meals} onAddFoodPress={handleAddFoodPress} />
 
           <View style={styles.bottomSpacer} />
         </ScrollView>
@@ -163,132 +207,118 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.md,
   },
-  macroCard: {
-    marginBottom: spacing.lg,
-  },
-  sectionHeader: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: colors.onSurface,
-    marginBottom: spacing.md,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: colors.onSurface,
-    marginBottom: spacing.md,
-  },
-  quickActionsContainer: {
-    paddingRight: spacing.lg,
-    marginBottom: spacing.lg,
+  dashboardScoresRow: {
+    flexDirection: 'row',
     gap: spacing.md,
+    marginBottom: spacing.lg,
   },
-  actionCard: {
-    width: 104,
-    height: 100,
+  scoreBadgeItem: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: spacing.md,
+    paddingVertical: spacing.md,
     borderRadius: radius.md,
     marginBottom: 0,
   },
-  iconBox: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: spacing.sm,
-  },
-  actionLabel: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: colors.onSurface,
-    textAlign: 'center',
-  },
-  mealsHeaderRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: spacing.sm,
-  },
-  viewAllLink: {
+  scoreBadgeNum: {
+    fontSize: 20,
+    fontWeight: '700',
     color: colors.brand,
-    fontSize: 14,
-    fontWeight: '600',
   },
-  mealCard: {
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.md,
-    marginBottom: spacing.sm,
-  },
-  mealRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  mealLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  mealIconContainer: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    backgroundColor: colors.brandTertiary,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: spacing.md,
-  },
-  mealInfo: {
-    flex: 1,
-  },
-  mealName: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: colors.onSurface,
-  },
-  mealTime: {
-    fontSize: 12,
+  scoreBadgeLbl: {
+    fontSize: 10,
     color: colors.onSurfaceSecondary,
+    fontWeight: '600',
     marginTop: 2,
   },
-  mealRight: {
-    alignItems: 'flex-end',
+  quickMetricsCard: {
+    padding: spacing.md,
+    borderRadius: radius.md,
+    marginBottom: spacing.lg,
   },
-  mealCalories: {
-    fontSize: 15,
+  quickMetricsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  quickMetricBox: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  quickMetricVal: {
+    fontSize: 14,
     fontWeight: '700',
     color: colors.onSurface,
   },
-  mealMacros: {
+  quickMetricLbl: {
     fontSize: 11,
     color: colors.onSurfaceSecondary,
-    marginTop: 2,
+    marginLeft: spacing.xs,
   },
-  emptyCard: {
-    padding: spacing.xl,
+  quickMetricDivider: {
+    width: 1,
+    height: 24,
+    backgroundColor: colors.border,
+  },
+  recoveryCard: {
+    padding: spacing.md,
+    borderRadius: radius.md,
+    marginBottom: spacing.lg,
+    borderColor: colors.warning,
+    borderWidth: 1,
+    backgroundColor: `${colors.warning}05`,
+  },
+  recoveryHeaderRow: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: spacing.sm,
-    gap: spacing.sm,
+    marginBottom: spacing.xs,
   },
-  emptyText: {
-    fontSize: 16,
-    fontWeight: '600',
+  recoveryCardTitle: {
+    fontSize: 15,
+    fontWeight: '700',
     color: colors.onSurface,
-    textAlign: 'center',
-    marginTop: spacing.sm,
+    marginLeft: spacing.xs,
+    flex: 1,
   },
-  emptySubtext: {
-    fontSize: 12,
+  recoveryBadge: {
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 2,
+    borderRadius: radius.sm,
+    backgroundColor: colors.warning,
+  },
+  recoveryBadgeText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: colors.surface,
+  },
+  recoveryCardSurplus: {
+    fontSize: 13,
     color: colors.onSurfaceSecondary,
-    textAlign: 'center',
-    paddingHorizontal: spacing.md,
+    marginBottom: spacing.sm,
+  },
+  recoveryProgressWrapper: {
+    gap: spacing.xs,
+  },
+  recoveryProgressText: {
+    fontSize: 11,
+    color: colors.onSurfaceSecondary,
+    fontWeight: '600',
+  },
+  recoveryProgressBg: {
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.border,
+    overflow: 'hidden',
+  },
+  recoveryProgressFill: {
+    height: '100%',
+    backgroundColor: colors.warning,
+    borderRadius: 3,
   },
   bottomSpacer: {
-    height: Platform.OS === 'ios' ? 120 : 100,
+    height: spacing.xl,
   },
 });
+
 export default DashboardContainer;

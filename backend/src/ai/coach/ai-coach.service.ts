@@ -1,16 +1,11 @@
-import { Injectable, NotFoundException, Inject } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { AICoachRepository } from './ai-coach.repository';
-import { ContextBuilderService } from '../context/context-builder.service';
-import { PromptBuilder } from '../prompt/prompt-builder.service';
-import { LLMProvider } from '../llm/llm-provider.interface';
-import { ResponseFormatter } from '../format/response-formatter.service';
-import { AIResponseCacheService } from '../cache/ai-response-cache.service';
+import { AIPipelineService } from '../core/ai-pipeline.service';
 import {
   ChatResponse,
   SuggestionsResponse,
   ConversationResponse,
   ConversationDetailsResponse,
-  ChatMessageResponse,
   FeedbackResponse,
   AiCoachResponse,
 } from '../../../../shared/contracts';
@@ -19,11 +14,7 @@ import {
 export class AICoachService {
   constructor(
     private readonly repository: AICoachRepository,
-    private readonly contextBuilder: ContextBuilderService,
-    private readonly promptBuilder: PromptBuilder,
-    @Inject('LLMProvider') private readonly llmProvider: LLMProvider,
-    private readonly formatter: ResponseFormatter,
-    private readonly cacheService: AIResponseCacheService,
+    private readonly pipeline: AIPipelineService,
   ) {}
 
   async getConversations(userId: string): Promise<ConversationResponse[]> {
@@ -66,55 +57,33 @@ export class AICoachService {
   }
 
   async chat(userId: string, conversationId: string | undefined, messageText: string): Promise<ChatResponse> {
-    let convoId = conversationId;
-    if (!convoId) {
-      const title = messageText.length > 30 ? `${messageText.slice(0, 28)}...` : messageText;
-      const convo = await this.repository.createConversation(userId, title);
-      convoId = convo.id;
-    }
-
-    // 1. Save user query message to database
-    await this.repository.addMessage(convoId, 'user', messageText);
-
-    // 2. Fetch context
-    const context = await this.contextBuilder.buildContext(userId);
-
-    // 3. Compile prompt
-    const prompt = this.promptBuilder.build({
-      systemPrompt: this.promptBuilder.getSystemPrompt(),
-      developerInstructions: this.promptBuilder.getDeveloperInstructions(),
-      contextStr: this.promptBuilder.formatContext(context),
-      userQuestion: messageText,
+    const res = await this.pipeline.execute({
+      userId,
+      promptKey: 'diet-coach',
+      userMessage: messageText,
+      conversationId,
     });
 
-    // 4. Try loading from Cache
-    let rawResponse = await this.cacheService.getCachedResponse(prompt);
-    if (!rawResponse) {
-      // 5. Generate raw LLM response
-      rawResponse = await this.llmProvider.generateResponse(prompt);
-      // Cache response for future requests
-      await this.cacheService.cacheResponse(prompt, rawResponse);
+    const lastAssistantMessage = await this.repository.getLastAssistantMessage(res.conversationId);
+    if (!lastAssistantMessage) {
+      throw new NotFoundException('Failed to retrieve coach response');
     }
 
-    // 6. Format response
-    const formatted = this.formatter.formatResponse(rawResponse);
-
-    // 7. Save assistant response to DB
-    const dbMsg = await this.repository.addMessage(
-      convoId,
-      'assistant',
-      formatted.answer,
-      JSON.stringify(formatted),
-    );
+    let metadata: AiCoachResponse | null = null;
+    if (lastAssistantMessage.metadata) {
+      try {
+        metadata = JSON.parse(lastAssistantMessage.metadata);
+      } catch (e) {}
+    }
 
     return {
-      conversationId: convoId,
+      conversationId: res.conversationId,
       message: {
-        id: dbMsg.id,
+        id: lastAssistantMessage.id,
         role: 'assistant',
-        content: dbMsg.content,
-        metadata: formatted,
-        createdAt: dbMsg.createdAt,
+        content: lastAssistantMessage.content,
+        metadata,
+        createdAt: lastAssistantMessage.createdAt,
       },
     };
   }
@@ -143,7 +112,6 @@ export class AICoachService {
   }
 
   async getSuggestions(userId: string): Promise<SuggestionsResponse> {
-    // Standard suggested prompt list
     return {
       suggestions: [
         'What should I eat after leg day?',

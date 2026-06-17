@@ -1,9 +1,11 @@
 import { NutritionCalculatorService } from './nutrition-calculator.service';
 import { UsersService } from '../users/users.service';
+import { PrismaService } from '../prisma/prisma.service';
 export declare class NutritionService {
     private readonly calculator;
     private readonly usersService;
-    constructor(calculator: NutritionCalculatorService, usersService: UsersService);
+    private readonly prisma;
+    constructor(calculator: NutritionCalculatorService, usersService: UsersService, prisma: PrismaService);
     getTodayLogs(userId: string): Promise<{
         calories: {
             current: number;

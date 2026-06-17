@@ -27,6 +27,27 @@ let TravelController = class TravelController {
     async getStats(req) {
         return this.travelService.getTravelStats(req.user.id);
     }
+    async startTravel(req, body) {
+        return this.travelService.startTravel(req.user.id, body);
+    }
+    async endTravel(req) {
+        return this.travelService.endTravel(req.user.id);
+    }
+    async getCurrentSession(req) {
+        return this.travelService.getActiveSession(req.user.id);
+    }
+    async getHistory(req) {
+        return this.travelService.getHistory(req.user.id);
+    }
+    async getAnalytics(req, sessionId) {
+        return this.travelService.getAnalytics(req.user.id, sessionId);
+    }
+    async getRecovery(req) {
+        return this.travelService.getRecoveryPlan(req.user.id);
+    }
+    async updateRecoveryStatus(req, body) {
+        return this.travelService.updateRecoveryStatus(req.user.id, body.planId, body.status);
+    }
 };
 exports.TravelController = TravelController;
 __decorate([
@@ -49,6 +70,75 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], TravelController.prototype, "getStats", null);
+__decorate([
+    (0, common_1.Post)('start'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
+    (0, swagger_1.ApiOperation)({ summary: 'Start Travel Mode session' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Travel Mode session started successfully.' }),
+    __param(0, (0, common_1.Request)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], TravelController.prototype, "startTravel", null);
+__decorate([
+    (0, common_1.Post)('end'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
+    (0, swagger_1.ApiOperation)({ summary: 'End Travel Mode session' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Travel Mode session ended and compensation plan generated successfully.' }),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], TravelController.prototype, "endTravel", null);
+__decorate([
+    (0, common_1.Get)('current'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get current active travel session' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Active travel session details returned.' }),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], TravelController.prototype, "getCurrentSession", null);
+__decorate([
+    (0, common_1.Get)('history'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get travel session history list' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Travel sessions list returned.' }),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], TravelController.prototype, "getHistory", null);
+__decorate([
+    (0, common_1.Get)('analytics'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get analytics for a travel session' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Travel session analytics returned.' }),
+    __param(0, (0, common_1.Request)()),
+    __param(1, (0, common_1.Query)('sessionId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
+], TravelController.prototype, "getAnalytics", null);
+__decorate([
+    (0, common_1.Get)('recovery'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get active compensation/recovery plan' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Recovery plan schedule returned.' }),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], TravelController.prototype, "getRecovery", null);
+__decorate([
+    (0, common_1.Post)('recovery/status'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
+    (0, swagger_1.ApiOperation)({ summary: 'Update recovery plan status' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Recovery plan status updated.' }),
+    __param(0, (0, common_1.Request)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], TravelController.prototype, "updateRecoveryStatus", null);
 exports.TravelController = TravelController = __decorate([
     (0, swagger_1.ApiTags)('Travel Mode'),
     (0, swagger_1.ApiBearerAuth)(),

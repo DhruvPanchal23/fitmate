@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.logger = exports.CustomLogger = void 0;
 const common_1 = require("@nestjs/common");
 const winston = require("winston");
+const context_1 = require("./context");
 let CustomLogger = class CustomLogger {
     constructor() {
         this.logger = winston.createLogger({
@@ -27,20 +28,39 @@ let CustomLogger = class CustomLogger {
             ],
         });
     }
+    getContextMeta(contextName) {
+        const store = (0, context_1.getRequestContext)();
+        if (!store) {
+            return { context: contextName };
+        }
+        const executionTimeMs = Date.now() - store.startTime;
+        return {
+            context: contextName,
+            requestId: store.requestId,
+            userId: store.userId,
+            sessionId: store.sessionId,
+            executionTimeMs,
+            dbQueriesCount: store.dbQueriesCount,
+            cacheHit: store.cacheHit,
+            aiProvider: store.aiProvider,
+            aiLatency: store.aiLatency,
+            aiTokens: store.aiTokens,
+        };
+    }
     log(message, ...optionalParams) {
-        this.logger.info(message, { context: optionalParams[0] });
+        this.logger.info(message, this.getContextMeta(optionalParams[0]));
     }
     error(message, ...optionalParams) {
-        this.logger.error(message, { trace: optionalParams[0], context: optionalParams[1] });
+        this.logger.error(message, { trace: optionalParams[0], ...this.getContextMeta(optionalParams[1]) });
     }
     warn(message, ...optionalParams) {
-        this.logger.warn(message, { context: optionalParams[0] });
+        this.logger.warn(message, this.getContextMeta(optionalParams[0]));
     }
     debug(message, ...optionalParams) {
-        this.logger.debug(message, { context: optionalParams[0] });
+        this.logger.debug(message, this.getContextMeta(optionalParams[0]));
     }
     verbose(message, ...optionalParams) {
-        this.logger.verbose(message, { context: optionalParams[0] });
+        this.logger.verbose(message, this.getContextMeta(optionalParams[0]));
     }
 };
 exports.CustomLogger = CustomLogger;

@@ -1,8 +1,11 @@
-import { Controller, Post, Get, Body, Param, UseGuards, Request, HttpStatus, HttpCode, Delete, Patch } from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, UseGuards, Request, HttpStatus, HttpCode, Delete, Patch, Query, Sse } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { AIOrchestratorService } from '../orchestrator/ai-orchestrator.service';
 import { AICoachService } from '../coach/ai-coach.service';
+import { AIPipelineService } from '../core/ai-pipeline.service';
+import { MemoryService } from '../memory/memory.service';
 import { JwtAuthGuard } from '../../guards/jwt-auth.guard';
+import { Observable } from 'rxjs';
 import {
   ConfirmScanRequest,
   RetryScanRequest,
@@ -20,6 +23,8 @@ export class AIController {
   constructor(
     private readonly orchestrator: AIOrchestratorService,
     private readonly coach: AICoachService,
+    private readonly pipeline: AIPipelineService,
+    private readonly memoryService: MemoryService,
   ) {}
 
   // --- Image Recognition Scan Endpoints ---
@@ -115,6 +120,96 @@ export class AIController {
   @ApiResponse({ status: 200, description: 'Feedback successfully saved.' })
   async submitFeedback(@Request() req: any, @Body() body: FeedbackRequest) {
     return this.coach.submitFeedback(req.user.id, body.messageId, body.rating, body.comment);
+  }
+
+  // --- SSE Streaming Chat Endpoint ---
+
+  @Sse('chat/stream')
+  @ApiOperation({ summary: 'Stream assistant tokens progressively' })
+  async chatStream(
+    @Request() req: any,
+    @Query('message') message: string,
+    @Query('conversationId') conversationId?: string
+  ): Promise<Observable<any>> {
+    return this.pipeline.executeStream({
+      userId: req.user.id,
+      promptKey: 'diet-coach',
+      userMessage: message,
+      conversationId,
+    });
+  }
+
+  // --- Semantic Memory Endpoints ---
+
+  @Get('memories')
+  @ApiOperation({ summary: 'Get all user long-term memories' })
+  async getMemories(@Request() req: any) {
+    return this.memoryService.getMemories(req.user.id);
+  }
+
+  @Delete('memories')
+  @ApiOperation({ summary: 'Clear all user memories' })
+  async clearMemories(@Request() req: any, @Body() body: { sure?: boolean }) {
+    if (body.sure) {
+      await this.memoryService.clearUserMemory(req.user.id);
+    }
+    return { success: true };
+  }
+
+  @Patch('memory/:id')
+  @ApiOperation({ summary: 'Update long-term memory pin or ignore status' })
+  async updateMemoryStatus(@Param('id') id: string, @Body() body: { isPinned?: boolean; isIgnored?: boolean }) {
+    return this.memoryService.updateMemoryStatus(id, body);
+  }
+
+  // --- Token and Cost Analytics ---
+
+  @Get('token-usage')
+  @ApiOperation({ summary: 'Get detailed prompt and completion token metrics' })
+  async getTokenUsage() {
+    return this.pipeline.getTokenUsage();
+  }
+
+  @Get('cost')
+  @ApiOperation({ summary: 'Get total and provider-specific estimated costs' })
+  async getCost() {
+    return this.pipeline.getCost();
+  }
+
+  @Get('cache')
+  @ApiOperation({ summary: 'Get statistics on semantic cache hits' })
+  async getCacheStats() {
+    return this.pipeline.getCacheStats();
+  }
+
+  @Delete('cache')
+  @ApiOperation({ summary: 'Clear all semantic cache entries' })
+  async clearCache() {
+    await this.pipeline.clearCache();
+    return { success: true };
+  }
+
+  @Get('rag/debug')
+  @ApiOperation({ summary: 'Expose RAG engine retrieved chunks and weights' })
+  async debugRag(@Query('query') query: string, @Request() req: any) {
+    const userId = req.user.id;
+    const retrievedChunks = await this.pipeline.debugRag(userId, query);
+    return {
+      query,
+      retrievedChunks,
+    };
+  }
+
+  @Get('health')
+  @ApiOperation({ summary: 'Check overall AI orchestration health' })
+  async getHealth() {
+    const activeProvider = await this.pipeline.getActiveProviderName();
+    return [
+      { name: 'gemini', model: 'gemini-2.5-flash', isActive: activeProvider === 'gemini', isHealthy: true },
+      { name: 'openai', model: 'gpt-4o-mini', isActive: activeProvider === 'openai', isHealthy: true },
+      { name: 'anthropic', model: 'claude-3-5-sonnet-latest', isActive: activeProvider === 'anthropic', isHealthy: true },
+      { name: 'mock', model: 'mock-model', isActive: activeProvider === 'mock', isHealthy: true },
+    ];
   }
 }
 export default AIController;

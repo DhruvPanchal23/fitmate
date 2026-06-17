@@ -17,11 +17,15 @@ const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const ai_orchestrator_service_1 = require("../orchestrator/ai-orchestrator.service");
 const ai_coach_service_1 = require("../coach/ai-coach.service");
+const ai_pipeline_service_1 = require("../core/ai-pipeline.service");
+const memory_service_1 = require("../memory/memory.service");
 const jwt_auth_guard_1 = require("../../guards/jwt-auth.guard");
 let AIController = class AIController {
-    constructor(orchestrator, coach) {
+    constructor(orchestrator, coach, pipeline, memoryService) {
         this.orchestrator = orchestrator;
         this.coach = coach;
+        this.pipeline = pipeline;
+        this.memoryService = memoryService;
     }
     async scanImage(req, body) {
         return this.orchestrator.scanImage(req.user.id, body.imageUrl);
@@ -58,6 +62,56 @@ let AIController = class AIController {
     }
     async submitFeedback(req, body) {
         return this.coach.submitFeedback(req.user.id, body.messageId, body.rating, body.comment);
+    }
+    async chatStream(req, message, conversationId) {
+        return this.pipeline.executeStream({
+            userId: req.user.id,
+            promptKey: 'diet-coach',
+            userMessage: message,
+            conversationId,
+        });
+    }
+    async getMemories(req) {
+        return this.memoryService.getMemories(req.user.id);
+    }
+    async clearMemories(req, body) {
+        if (body.sure) {
+            await this.memoryService.clearUserMemory(req.user.id);
+        }
+        return { success: true };
+    }
+    async updateMemoryStatus(id, body) {
+        return this.memoryService.updateMemoryStatus(id, body);
+    }
+    async getTokenUsage() {
+        return this.pipeline.getTokenUsage();
+    }
+    async getCost() {
+        return this.pipeline.getCost();
+    }
+    async getCacheStats() {
+        return this.pipeline.getCacheStats();
+    }
+    async clearCache() {
+        await this.pipeline.clearCache();
+        return { success: true };
+    }
+    async debugRag(query, req) {
+        const userId = req.user.id;
+        const retrievedChunks = await this.pipeline.debugRag(userId, query);
+        return {
+            query,
+            retrievedChunks,
+        };
+    }
+    async getHealth() {
+        const activeProvider = await this.pipeline.getActiveProviderName();
+        return [
+            { name: 'gemini', model: 'gemini-2.5-flash', isActive: activeProvider === 'gemini', isHealthy: true },
+            { name: 'openai', model: 'gpt-4o-mini', isActive: activeProvider === 'openai', isHealthy: true },
+            { name: 'anthropic', model: 'claude-3-5-sonnet-latest', isActive: activeProvider === 'anthropic', isHealthy: true },
+            { name: 'mock', model: 'mock-model', isActive: activeProvider === 'mock', isHealthy: true },
+        ];
     }
 };
 exports.AIController = AIController;
@@ -183,13 +237,95 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], AIController.prototype, "submitFeedback", null);
+__decorate([
+    (0, common_1.Sse)('chat/stream'),
+    (0, swagger_1.ApiOperation)({ summary: 'Stream assistant tokens progressively' }),
+    __param(0, (0, common_1.Request)()),
+    __param(1, (0, common_1.Query)('message')),
+    __param(2, (0, common_1.Query)('conversationId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String]),
+    __metadata("design:returntype", Promise)
+], AIController.prototype, "chatStream", null);
+__decorate([
+    (0, common_1.Get)('memories'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get all user long-term memories' }),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AIController.prototype, "getMemories", null);
+__decorate([
+    (0, common_1.Delete)('memories'),
+    (0, swagger_1.ApiOperation)({ summary: 'Clear all user memories' }),
+    __param(0, (0, common_1.Request)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], AIController.prototype, "clearMemories", null);
+__decorate([
+    (0, common_1.Patch)('memory/:id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Update long-term memory pin or ignore status' }),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], AIController.prototype, "updateMemoryStatus", null);
+__decorate([
+    (0, common_1.Get)('token-usage'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get detailed prompt and completion token metrics' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AIController.prototype, "getTokenUsage", null);
+__decorate([
+    (0, common_1.Get)('cost'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get total and provider-specific estimated costs' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AIController.prototype, "getCost", null);
+__decorate([
+    (0, common_1.Get)('cache'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get statistics on semantic cache hits' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AIController.prototype, "getCacheStats", null);
+__decorate([
+    (0, common_1.Delete)('cache'),
+    (0, swagger_1.ApiOperation)({ summary: 'Clear all semantic cache entries' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AIController.prototype, "clearCache", null);
+__decorate([
+    (0, common_1.Get)('rag/debug'),
+    (0, swagger_1.ApiOperation)({ summary: 'Expose RAG engine retrieved chunks and weights' }),
+    __param(0, (0, common_1.Query)('query')),
+    __param(1, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], AIController.prototype, "debugRag", null);
+__decorate([
+    (0, common_1.Get)('health'),
+    (0, swagger_1.ApiOperation)({ summary: 'Check overall AI orchestration health' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AIController.prototype, "getHealth", null);
 exports.AIController = AIController = __decorate([
     (0, swagger_1.ApiTags)('AI Coach & Recognition'),
     (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('ai'),
     __metadata("design:paramtypes", [ai_orchestrator_service_1.AIOrchestratorService,
-        ai_coach_service_1.AICoachService])
+        ai_coach_service_1.AICoachService,
+        ai_pipeline_service_1.AIPipelineService,
+        memory_service_1.MemoryService])
 ], AIController);
 exports.default = AIController;
 //# sourceMappingURL=ai.controller.js.map

@@ -1,0 +1,55 @@
+name: Backend CI/CD Gate
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+    paths:
+      - 'backend/**'
+      - 'shared/**'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'backend/package-lock.json'
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          npm ci
+
+      - name: Run Prisma Client Generation
+        run: |
+          cd backend
+          npx prisma generate --schema=schema.prisma
+
+      - name: Run Linting
+        run: |
+          cd backend
+          npm run lint --if-present
+
+      - name: Run Typecheck
+        run: |
+          cd backend
+          npx tsc --noEmit
+
+      - name: Run Unit Tests with Coverage
+        run: |
+          cd backend
+          npm run test:cov --if-present
+
+      - name: Run NestJS Build Compilation
+        run: |
+          cd backend
+          npm run build

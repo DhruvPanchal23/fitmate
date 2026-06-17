@@ -13,10 +13,12 @@ exports.NutritionService = void 0;
 const common_1 = require("@nestjs/common");
 const nutrition_calculator_service_1 = require("./nutrition-calculator.service");
 const users_service_1 = require("../users/users.service");
+const prisma_service_1 = require("../prisma/prisma.service");
 let NutritionService = class NutritionService {
-    constructor(calculator, usersService) {
+    constructor(calculator, usersService, prisma) {
         this.calculator = calculator;
         this.usersService = usersService;
+        this.prisma = prisma;
     }
     async getTodayLogs(userId) {
         const todayStr = new Date().toISOString().split('T')[0];
@@ -29,14 +31,19 @@ let NutritionService = class NutritionService {
             water: 2500,
         };
         try {
-            const profile = await this.usersService.getProfile(userId);
-            if (profile) {
-                if (profile.goal === 'fat_loss') {
-                    goals = { calories: 1800, protein: 160, carbohydrates: 170, fats: 60, water: 3000 };
-                }
-                else if (profile.goal === 'muscle_gain') {
-                    goals = { calories: 2700, protein: 180, carbohydrates: 280, fats: 80, water: 3000 };
-                }
+            const latestSnapshot = await this.prisma.goalHistory.findFirst({
+                where: { userId },
+                orderBy: { createdAt: 'desc' },
+            });
+            if (latestSnapshot && latestSnapshot.goalSnapshot) {
+                const decoded = JSON.parse(latestSnapshot.goalSnapshot);
+                goals = {
+                    calories: decoded.targetCalories ?? decoded.calories,
+                    protein: decoded.protein,
+                    carbohydrates: decoded.carbs,
+                    fats: decoded.fats,
+                    water: Math.round((decoded.water || 2.5) * 1000),
+                };
             }
         }
         catch (e) {
@@ -65,6 +72,7 @@ exports.NutritionService = NutritionService;
 exports.NutritionService = NutritionService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [nutrition_calculator_service_1.NutritionCalculatorService,
-        users_service_1.UsersService])
+        users_service_1.UsersService,
+        prisma_service_1.PrismaService])
 ], NutritionService);
 //# sourceMappingURL=nutrition.service.js.map

@@ -1,4 +1,5 @@
 export const spacing = {
+  xxs: 2,
   xs: 4,
   sm: 8,
   md: 12,
@@ -7,6 +8,7 @@ export const spacing = {
   '2xl': 32,
   '3xl': 48,
 } as const;
+
 
 export const radius = {
   sm: 6,

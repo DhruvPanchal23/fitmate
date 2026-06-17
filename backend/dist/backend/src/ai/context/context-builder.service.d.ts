@@ -3,6 +3,8 @@ import { NutritionRetriever } from '../retrievers/nutrition.retriever';
 import { MealHistoryRetriever } from '../retrievers/meal-history.retriever';
 import { ExerciseRetriever } from '../retrievers/exercise.retriever';
 import { TravelRetriever } from '../retrievers/travel.retriever';
+import { AnalyticsRetriever } from '../retrievers/analytics.retriever';
+import { NotificationsRetriever } from '../retrievers/notifications.retriever';
 import { PrismaService } from '../../prisma/prisma.service';
 export declare class ContextBuilderService {
     private readonly profileRetriever;
@@ -10,8 +12,10 @@ export declare class ContextBuilderService {
     private readonly mealHistoryRetriever;
     private readonly exerciseRetriever;
     private readonly travelRetriever;
+    private readonly analyticsRetriever;
+    private readonly notificationsRetriever;
     private readonly prisma;
-    constructor(profileRetriever: ProfileRetriever, nutritionRetriever: NutritionRetriever, mealHistoryRetriever: MealHistoryRetriever, exerciseRetriever: ExerciseRetriever, travelRetriever: TravelRetriever, prisma: PrismaService);
+    constructor(profileRetriever: ProfileRetriever, nutritionRetriever: NutritionRetriever, mealHistoryRetriever: MealHistoryRetriever, exerciseRetriever: ExerciseRetriever, travelRetriever: TravelRetriever, analyticsRetriever: AnalyticsRetriever, notificationsRetriever: NotificationsRetriever, prisma: PrismaService);
     buildContext(userId: string): Promise<{
         profile: {
             fullName: string;
@@ -74,10 +78,46 @@ export declare class ContextBuilderService {
         };
         travel: {
             active: boolean;
-            streak: number;
-            activeDays: number;
-            waterTotal: number;
-            scannedMealsCount: number;
+            destination: string;
+            timezone: string;
+            purpose: string;
+            startDate: Date;
+            liveSurplus: any;
+            hasRecoveryPlan: boolean;
+            recoveryPlan: {
+                totalSurplusCalories: number;
+                dailyReductionCalories: number;
+                recoveryDays: number;
+                currentDayNumber: number;
+                percentage: number;
+                status: string;
+                todayTarget: import("../../../../shared/contracts").RecoveryDayResponse;
+            };
+        };
+        analytics: {
+            healthScore: number;
+            consistencyScore: number;
+            adherenceScore: number;
+            currentStreak: number;
+            weightPrediction30Days: number;
+            recommendations: string[];
+            insights: string[];
+            riskAlerts: string[];
+            weightTrend: string;
+        };
+        notifications: {
+            habitWeeklyScore: number;
+            habitMonthlyScore: number;
+            habitInsights: string[];
+            activeReminders: string[];
+            strongestHabit: {
+                name: string;
+                streak: number;
+            };
+            weakestHabit: {
+                name: string;
+                rate: number;
+            };
         };
         recentScans: {
             id: string;

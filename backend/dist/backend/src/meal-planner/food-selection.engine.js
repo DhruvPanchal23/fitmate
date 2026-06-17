@@ -64,10 +64,16 @@ let FoodSelectionEngine = class FoodSelectionEngine {
                 if (isPremium)
                     score += 20;
             }
-            if (prefs.dietaryPreference === 'high_protein') {
-                const proteinRatio = (food.protein * 4) / food.calories;
+            if (prefs.dietaryPreference === 'high_protein' || prefs.recoveryActive) {
+                const proteinRatio = (food.protein * 4) / (food.calories || 1);
                 if (proteinRatio > 0.3) {
-                    score += 30;
+                    score += prefs.recoveryActive ? 50 : 30;
+                }
+            }
+            if (prefs.recoveryActive) {
+                const isHighSatiety = ['salad', 'vegetable', 'oat', 'chicken', 'egg', 'fish', 'salmon', 'tofu', 'dal', 'paneer', 'lentil', 'broccoli', 'spinach'].some((satietyFood) => nameLower.includes(satietyFood));
+                if (isHighSatiety) {
+                    score += 40;
                 }
             }
             if (context.mealType === 'Breakfast') {

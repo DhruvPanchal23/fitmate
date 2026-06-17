@@ -21,7 +21,12 @@ const nutrition_module_1 = require("./nutrition/nutrition.module");
 const ai_module_1 = require("./ai/ai.module");
 const travel_module_1 = require("./travel/travel.module");
 const meal_planner_module_1 = require("./meal-planner/meal-planner.module");
+const profile_module_1 = require("./profile/profile.module");
+const analytics_module_1 = require("./analytics/analytics.module");
+const notifications_module_1 = require("./notifications/notifications.module");
+const admin_module_1 = require("./admin/admin.module");
 const request_id_middleware_1 = require("./middleware/request-id.middleware");
+const common_module_1 = require("./common/common.module");
 const configuration_1 = require("./config/configuration");
 let AppModule = class AppModule {
     configure(consumer) {
@@ -51,6 +56,11 @@ exports.AppModule = AppModule = __decorate([
             ai_module_1.AiModule,
             travel_module_1.TravelModule,
             meal_planner_module_1.MealPlannerModule,
+            profile_module_1.ProfileModule,
+            analytics_module_1.AnalyticsModule,
+            notifications_module_1.NotificationsModule,
+            admin_module_1.AdminModule,
+            common_module_1.CommonModule,
         ],
     })
 ], AppModule);

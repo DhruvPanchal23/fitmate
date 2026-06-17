@@ -20,12 +20,16 @@ const prisma_module_1 = require("../prisma/prisma.module");
 const users_module_1 = require("../users/users.module");
 const meals_module_1 = require("../meals/meals.module");
 const ai_module_1 = require("../ai/ai.module");
+const travel_module_1 = require("../travel/travel.module");
+const meal_plan_templates_service_1 = require("./meal-plan-templates.service");
+const meal_plan_shopping_service_1 = require("./meal-plan-shopping.service");
+const meal_plan_analytics_service_1 = require("./meal-plan-analytics.service");
 let MealPlannerModule = class MealPlannerModule {
 };
 exports.MealPlannerModule = MealPlannerModule;
 exports.MealPlannerModule = MealPlannerModule = __decorate([
     (0, common_1.Module)({
-        imports: [prisma_module_1.PrismaModule, users_module_1.UsersModule, meals_module_1.MealsModule, ai_module_1.AiModule],
+        imports: [prisma_module_1.PrismaModule, users_module_1.UsersModule, meals_module_1.MealsModule, ai_module_1.AiModule, travel_module_1.TravelModule],
         controllers: [meal_planner_controller_1.MealPlannerController],
         providers: [
             meal_planner_service_1.MealPlannerService,
@@ -35,8 +39,18 @@ exports.MealPlannerModule = MealPlannerModule = __decorate([
             food_selection_engine_1.FoodSelectionEngine,
             macro_validation_engine_1.MacroValidationEngine,
             meal_diversity_score_service_1.MealDiversityScoreService,
+            meal_plan_templates_service_1.MealPlanTemplatesService,
+            meal_plan_shopping_service_1.MealPlanShoppingService,
+            meal_plan_analytics_service_1.MealPlanAnalyticsService,
         ],
-        exports: [meal_planner_service_1.MealPlannerService, meal_plan_repository_1.MealPlanRepository, pantry_repository_1.PantryRepository],
+        exports: [
+            meal_planner_service_1.MealPlannerService,
+            meal_plan_repository_1.MealPlanRepository,
+            pantry_repository_1.PantryRepository,
+            meal_plan_templates_service_1.MealPlanTemplatesService,
+            meal_plan_shopping_service_1.MealPlanShoppingService,
+            meal_plan_analytics_service_1.MealPlanAnalyticsService,
+        ],
     })
 ], MealPlannerModule);
 exports.default = MealPlannerModule;

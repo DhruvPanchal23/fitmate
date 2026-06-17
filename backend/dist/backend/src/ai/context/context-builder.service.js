@@ -16,23 +16,29 @@ const nutrition_retriever_1 = require("../retrievers/nutrition.retriever");
 const meal_history_retriever_1 = require("../retrievers/meal-history.retriever");
 const exercise_retriever_1 = require("../retrievers/exercise.retriever");
 const travel_retriever_1 = require("../retrievers/travel.retriever");
+const analytics_retriever_1 = require("../retrievers/analytics.retriever");
+const notifications_retriever_1 = require("../retrievers/notifications.retriever");
 const prisma_service_1 = require("../../prisma/prisma.service");
 let ContextBuilderService = class ContextBuilderService {
-    constructor(profileRetriever, nutritionRetriever, mealHistoryRetriever, exerciseRetriever, travelRetriever, prisma) {
+    constructor(profileRetriever, nutritionRetriever, mealHistoryRetriever, exerciseRetriever, travelRetriever, analyticsRetriever, notificationsRetriever, prisma) {
         this.profileRetriever = profileRetriever;
         this.nutritionRetriever = nutritionRetriever;
         this.mealHistoryRetriever = mealHistoryRetriever;
         this.exerciseRetriever = exerciseRetriever;
         this.travelRetriever = travelRetriever;
+        this.analyticsRetriever = analyticsRetriever;
+        this.notificationsRetriever = notificationsRetriever;
         this.prisma = prisma;
     }
     async buildContext(userId) {
-        const [profile, nutrition, meals, exercise, travel, scansRaw,] = await Promise.all([
+        const [profile, nutrition, meals, exercise, travel, analytics, notifications, scansRaw,] = await Promise.all([
             this.profileRetriever.retrieve(userId),
             this.nutritionRetriever.retrieve(userId),
             this.mealHistoryRetriever.retrieve(userId),
             this.exerciseRetriever.retrieve(userId),
             this.travelRetriever.retrieve(userId),
+            this.analyticsRetriever.retrieve(userId),
+            this.notificationsRetriever.retrieve(userId),
             this.prisma.mealScan.findMany({
                 where: { userId },
                 orderBy: { createdAt: 'desc' },
@@ -52,6 +58,8 @@ let ContextBuilderService = class ContextBuilderService {
             meals,
             exercise,
             travel,
+            analytics,
+            notifications,
             recentScans,
         };
     }
@@ -64,6 +72,8 @@ exports.ContextBuilderService = ContextBuilderService = __decorate([
         meal_history_retriever_1.MealHistoryRetriever,
         exercise_retriever_1.ExerciseRetriever,
         travel_retriever_1.TravelRetriever,
+        analytics_retriever_1.AnalyticsRetriever,
+        notifications_retriever_1.NotificationsRetriever,
         prisma_service_1.PrismaService])
 ], ContextBuilderService);
 exports.default = ContextBuilderService;

@@ -1,0 +1,40 @@
+name: Admin Portal CI/CD Gate
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+    paths:
+      - 'apps/admin/**'
+      - 'shared/**'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'apps/admin/package-lock.json'
+
+      - name: Install Admin Dependencies
+        run: |
+          cd apps/admin
+          npm ci
+
+      - name: Run Typecheck
+        run: |
+          cd apps/admin
+          npx tsc --noEmit
+
+      - name: Run Vite Build Compilation
+        run: |
+          cd apps/admin
+          npm run build

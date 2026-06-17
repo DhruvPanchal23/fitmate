@@ -8,25 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AICoachService = void 0;
 const common_1 = require("@nestjs/common");
 const ai_coach_repository_1 = require("./ai-coach.repository");
-const context_builder_service_1 = require("../context/context-builder.service");
-const prompt_builder_service_1 = require("../prompt/prompt-builder.service");
-const response_formatter_service_1 = require("../format/response-formatter.service");
-const ai_response_cache_service_1 = require("../cache/ai-response-cache.service");
+const ai_pipeline_service_1 = require("../core/ai-pipeline.service");
 let AICoachService = class AICoachService {
-    constructor(repository, contextBuilder, promptBuilder, llmProvider, formatter, cacheService) {
+    constructor(repository, pipeline) {
         this.repository = repository;
-        this.contextBuilder = contextBuilder;
-        this.promptBuilder = promptBuilder;
-        this.llmProvider = llmProvider;
-        this.formatter = formatter;
-        this.cacheService = cacheService;
+        this.pipeline = pipeline;
     }
     async getConversations(userId) {
         const list = await this.repository.findUserConversations(userId);
@@ -66,35 +56,31 @@ let AICoachService = class AICoachService {
         };
     }
     async chat(userId, conversationId, messageText) {
-        let convoId = conversationId;
-        if (!convoId) {
-            const title = messageText.length > 30 ? `${messageText.slice(0, 28)}...` : messageText;
-            const convo = await this.repository.createConversation(userId, title);
-            convoId = convo.id;
-        }
-        await this.repository.addMessage(convoId, 'user', messageText);
-        const context = await this.contextBuilder.buildContext(userId);
-        const prompt = this.promptBuilder.build({
-            systemPrompt: this.promptBuilder.getSystemPrompt(),
-            developerInstructions: this.promptBuilder.getDeveloperInstructions(),
-            contextStr: this.promptBuilder.formatContext(context),
-            userQuestion: messageText,
+        const res = await this.pipeline.execute({
+            userId,
+            promptKey: 'diet-coach',
+            userMessage: messageText,
+            conversationId,
         });
-        let rawResponse = await this.cacheService.getCachedResponse(prompt);
-        if (!rawResponse) {
-            rawResponse = await this.llmProvider.generateResponse(prompt);
-            await this.cacheService.cacheResponse(prompt, rawResponse);
+        const lastAssistantMessage = await this.repository.getLastAssistantMessage(res.conversationId);
+        if (!lastAssistantMessage) {
+            throw new common_1.NotFoundException('Failed to retrieve coach response');
         }
-        const formatted = this.formatter.formatResponse(rawResponse);
-        const dbMsg = await this.repository.addMessage(convoId, 'assistant', formatted.answer, JSON.stringify(formatted));
+        let metadata = null;
+        if (lastAssistantMessage.metadata) {
+            try {
+                metadata = JSON.parse(lastAssistantMessage.metadata);
+            }
+            catch (e) { }
+        }
         return {
-            conversationId: convoId,
+            conversationId: res.conversationId,
             message: {
-                id: dbMsg.id,
+                id: lastAssistantMessage.id,
                 role: 'assistant',
-                content: dbMsg.content,
-                metadata: formatted,
-                createdAt: dbMsg.createdAt,
+                content: lastAssistantMessage.content,
+                metadata,
+                createdAt: lastAssistantMessage.createdAt,
             },
         };
     }
@@ -137,11 +123,8 @@ let AICoachService = class AICoachService {
 exports.AICoachService = AICoachService;
 exports.AICoachService = AICoachService = __decorate([
     (0, common_1.Injectable)(),
-    __param(3, (0, common_1.Inject)('LLMProvider')),
     __metadata("design:paramtypes", [ai_coach_repository_1.AICoachRepository,
-        context_builder_service_1.ContextBuilderService,
-        prompt_builder_service_1.PromptBuilder, Object, response_formatter_service_1.ResponseFormatter,
-        ai_response_cache_service_1.AIResponseCacheService])
+        ai_pipeline_service_1.AIPipelineService])
 ], AICoachService);
 exports.default = AICoachService;
 //# sourceMappingURL=ai-coach.service.js.map

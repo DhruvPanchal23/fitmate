@@ -4,6 +4,8 @@ import { NutritionRetriever } from '../retrievers/nutrition.retriever';
 import { MealHistoryRetriever } from '../retrievers/meal-history.retriever';
 import { ExerciseRetriever } from '../retrievers/exercise.retriever';
 import { TravelRetriever } from '../retrievers/travel.retriever';
+import { AnalyticsRetriever } from '../retrievers/analytics.retriever';
+import { NotificationsRetriever } from '../retrievers/notifications.retriever';
 import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
@@ -14,6 +16,8 @@ export class ContextBuilderService {
     private readonly mealHistoryRetriever: MealHistoryRetriever,
     private readonly exerciseRetriever: ExerciseRetriever,
     private readonly travelRetriever: TravelRetriever,
+    private readonly analyticsRetriever: AnalyticsRetriever,
+    private readonly notificationsRetriever: NotificationsRetriever,
     private readonly prisma: PrismaService,
   ) {}
 
@@ -24,6 +28,8 @@ export class ContextBuilderService {
       meals,
       exercise,
       travel,
+      analytics,
+      notifications,
       scansRaw,
     ] = await Promise.all([
       this.profileRetriever.retrieve(userId),
@@ -31,6 +37,8 @@ export class ContextBuilderService {
       this.mealHistoryRetriever.retrieve(userId),
       this.exerciseRetriever.retrieve(userId),
       this.travelRetriever.retrieve(userId),
+      this.analyticsRetriever.retrieve(userId),
+      this.notificationsRetriever.retrieve(userId),
       this.prisma.mealScan.findMany({
         where: { userId },
         orderBy: { createdAt: 'desc' },
@@ -52,6 +60,8 @@ export class ContextBuilderService {
       meals,
       exercise,
       travel,
+      analytics,
+      notifications,
       recentScans,
     };
   }

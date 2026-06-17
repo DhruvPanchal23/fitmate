@@ -1,29 +1,51 @@
-import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus, Res } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { PrismaService } from '../prisma/prisma.service';
+import { MetricsEngineService } from './metrics-engine.service';
+import { HealthService } from './health.service';
+import { Response } from 'express';
 
 @ApiTags('Health')
-@Controller('health')
+@Controller()
 export class HealthController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly healthService: HealthService,
+    private readonly metrics: MetricsEngineService,
+  ) {}
 
-  @Get()
+  @Get('live')
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Check health status of application and database connection' })
-  @ApiResponse({ status: 200, description: 'Application is healthy.' })
+  @ApiOperation({ summary: 'Liveness probe' })
+  @ApiResponse({ status: 200, description: 'Application is running.' })
+  checkLive() {
+    return {
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+    };
+  }
+
+  @Get('ready')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Readiness probe' })
+  @ApiResponse({ status: 200, description: 'Application is ready to accept traffic.' })
+  async checkReady() {
+    return this.healthService.checkReady();
+  }
+
+  @Get('health')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Detailed system health' })
+  @ApiResponse({ status: 200, description: 'Application health status details.' })
   async checkHealth() {
-    try {
-      // Run a simple query to verify database connection
-      await this.prisma.$executeRaw`SELECT 1`;
-      return {
-        status: 'ok',
-        database: 'connected',
-      };
-    } catch (error) {
-      return {
-        status: 'degraded',
-        database: 'disconnected',
-      };
-    }
+    return this.healthService.checkHealth();
+  }
+
+  @Get('metrics')
+  @ApiOperation({ summary: 'Prometheus metrics endpoint' })
+  @ApiResponse({ status: 200, description: 'Prometheus formatted metrics text.' })
+  getMetrics(@Res() res: Response) {
+    const formatted = this.metrics.getPrometheusFormat();
+    res.setHeader('Content-Type', 'text/plain; version=0.0.4; charset=utf-8');
+    return res.status(HttpStatus.OK).send(formatted);
   }
 }

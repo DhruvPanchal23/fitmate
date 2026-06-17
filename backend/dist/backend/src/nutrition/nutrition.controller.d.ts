@@ -37,10 +37,10 @@ export declare class NutritionController {
         source: import("src/generated/prisma").$Enums.FoodSource;
         calories: number;
         protein: number;
-        carbohydrates: number;
         fats: number;
         fiber: number;
         sugar: number;
+        carbohydrates: number;
         defaultUnit: string;
         servingSize: number;
         averagePrice: number | null;

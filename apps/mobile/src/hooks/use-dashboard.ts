@@ -16,6 +16,9 @@ export function useDashboard() {
   } = useQuery({
     queryKey: ['todayLogs'],
     queryFn: nutritionService.getTodayLogs,
+    staleTime: 300000,
+    gcTime: 900000,
+    retry: 2,
   });
 
   const {
@@ -26,6 +29,9 @@ export function useDashboard() {
   } = useQuery({
     queryKey: ['todayMeals'],
     queryFn: nutritionService.getRecentMeals,
+    staleTime: 300000,
+    gcTime: 900000,
+    retry: 2,
   });
 
   const loading = isLogsLoading || isMealsLoading;

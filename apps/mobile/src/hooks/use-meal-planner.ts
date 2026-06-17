@@ -19,6 +19,9 @@ export function useMealPlanner() {
   } = useQuery({
     queryKey: ['mealPlans'],
     queryFn: mealPlannerService.getPlans,
+    staleTime: 300000,
+    gcTime: 900000,
+    retry: 2,
   });
 
   const {
@@ -29,6 +32,9 @@ export function useMealPlanner() {
   } = useQuery({
     queryKey: ['plannerAnalytics'],
     queryFn: mealPlannerService.getAnalytics,
+    staleTime: 300000,
+    gcTime: 900000,
+    retry: 2,
   });
 
   const loading = isPlansLoading || isAnalyticsLoading;

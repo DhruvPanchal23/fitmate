@@ -7,6 +7,9 @@ import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy';
 import { UsersModule } from '../users/users.module';
 
+import { UserSessionRepository } from './session/user-session.repository';
+import { SessionService } from './session/session.service';
+
 @Module({
   imports: [
     UsersModule,
@@ -23,7 +26,7 @@ import { UsersModule } from '../users/users.module';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
-  exports: [PassportModule, JwtStrategy, AuthService],
+  providers: [AuthService, JwtStrategy, UserSessionRepository, SessionService],
+  exports: [PassportModule, JwtStrategy, AuthService, SessionService],
 })
 export class AuthModule {}

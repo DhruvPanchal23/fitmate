@@ -125,6 +125,8 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   passwordHash: 'passwordHash',
+  isSuspended: 'isSuspended',
+  isBanned: 'isBanned',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -133,12 +135,29 @@ exports.Prisma.UserProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   fullName: 'fullName',
-  age: 'age',
   gender: 'gender',
-  weight: 'weight',
+  birthDate: 'birthDate',
+  age: 'age',
   height: 'height',
+  weight: 'weight',
+  targetWeight: 'targetWeight',
+  bodyFatPercentage: 'bodyFatPercentage',
   activityLevel: 'activityLevel',
   goal: 'goal',
+  dietPreference: 'dietPreference',
+  allergies: 'allergies',
+  dislikedFoods: 'dislikedFoods',
+  preferredFoods: 'preferredFoods',
+  gymExperience: 'gymExperience',
+  workoutDays: 'workoutDays',
+  sleepHours: 'sleepHours',
+  wakeUpTime: 'wakeUpTime',
+  mealFrequency: 'mealFrequency',
+  measurementSystem: 'measurementSystem',
+  medicalNotes: 'medicalNotes',
+  version: 'version',
+  updatedBy: 'updatedBy',
+  lastCalculatedAt: 'lastCalculatedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -256,8 +275,40 @@ exports.Prisma.TravelSessionScalarFieldEnum = {
   active: 'active',
   startDate: 'startDate',
   endDate: 'endDate',
+  destination: 'destination',
+  timezone: 'timezone',
+  purpose: 'purpose',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TravelDailySummaryScalarFieldEnum = {
+  id: 'id',
+  travelSessionId: 'travelSessionId',
+  date: 'date',
+  caloriesConsumed: 'caloriesConsumed',
+  caloriesTarget: 'caloriesTarget',
+  surplus: 'surplus',
+  protein: 'protein',
+  carbs: 'carbs',
+  fats: 'fats',
+  water: 'water',
+  exerciseCalories: 'exerciseCalories',
+  steps: 'steps'
+};
+
+exports.Prisma.CompensationPlanScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  travelSessionId: 'travelSessionId',
+  totalSurplusCalories: 'totalSurplusCalories',
+  dailyReductionCalories: 'dailyReductionCalories',
+  recoveryDays: 'recoveryDays',
+  recommendedWalkingMinutes: 'recommendedWalkingMinutes',
+  recommendedCardioMinutes: 'recommendedCardioMinutes',
+  recommendedStrengthSessions: 'recommendedStrengthSessions',
+  status: 'status',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.CacheEntryScalarFieldEnum = {
@@ -346,6 +397,268 @@ exports.Prisma.PlannerInteractionScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.BodyMeasurementScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weight: 'weight',
+  bodyFat: 'bodyFat',
+  waist: 'waist',
+  chest: 'chest',
+  arms: 'arms',
+  thighs: 'thighs',
+  neck: 'neck',
+  hips: 'hips',
+  shoulders: 'shoulders',
+  forearms: 'forearms',
+  calves: 'calves',
+  notes: 'notes',
+  source: 'source',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.GoalHistoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  calories: 'calories',
+  protein: 'protein',
+  carbs: 'carbs',
+  fats: 'fats',
+  water: 'water',
+  creatine: 'creatine',
+  fiber: 'fiber',
+  sugar: 'sugar',
+  maintenanceCalories: 'maintenanceCalories',
+  tdee: 'tdee',
+  bmr: 'bmr',
+  calculationFormula: 'calculationFormula',
+  profileVersion: 'profileVersion',
+  engineVersion: 'engineVersion',
+  goalSnapshot: 'goalSnapshot',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AnalyticsSnapshotScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  date: 'date',
+  healthScore: 'healthScore',
+  consistencyScore: 'consistencyScore',
+  adherenceScore: 'adherenceScore',
+  weight: 'weight',
+  bodyFat: 'bodyFat',
+  caloriesConsumed: 'caloriesConsumed',
+  caloriesTarget: 'caloriesTarget',
+  proteinConsumed: 'proteinConsumed',
+  proteinTarget: 'proteinTarget',
+  carbsConsumed: 'carbsConsumed',
+  carbsTarget: 'carbsTarget',
+  fatsConsumed: 'fatsConsumed',
+  fatsTarget: 'fatsTarget',
+  waterConsumed: 'waterConsumed',
+  waterTarget: 'waterTarget',
+  steps: 'steps',
+  workoutCalories: 'workoutCalories',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.HealthScoreHistoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  score: 'score',
+  date: 'date',
+  breakdown: 'breakdown',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.InsightScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  value: 'value',
+  dismissed: 'dismissed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RecommendationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  description: 'description',
+  type: 'type',
+  actionUrl: 'actionUrl',
+  implemented: 'implemented',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  body: 'body',
+  type: 'type',
+  read: 'read',
+  scheduledFor: 'scheduledFor',
+  deliveredAt: 'deliveredAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ReminderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  enabled: 'enabled',
+  time: 'time',
+  days: 'days',
+  smart: 'smart',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HabitScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  streak: 'streak',
+  completionRate: 'completionRate',
+  targetFrequency: 'targetFrequency',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationHistoryScalarFieldEnum = {
+  id: 'id',
+  notificationId: 'notificationId',
+  delivered: 'delivered',
+  opened: 'opened',
+  actionTaken: 'actionTaken',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AdminUserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  passwordHash: 'passwordHash',
+  fullName: 'fullName',
+  roleId: 'roleId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RoleScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.PermissionScalarFieldEnum = {
+  id: 'id',
+  action: 'action'
+};
+
+exports.Prisma.AuditLogScalarFieldEnum = {
+  id: 'id',
+  adminUserId: 'adminUserId',
+  action: 'action',
+  target: 'target',
+  beforeValue: 'beforeValue',
+  afterValue: 'afterValue',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FeatureFlagScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  description: 'description',
+  enabled: 'enabled',
+  rules: 'rules',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RemoteConfigScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  value: 'value',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SystemAnnouncementScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  body: 'body',
+  targetGroup: 'targetGroup',
+  scheduledFor: 'scheduledFor',
+  expiresAt: 'expiresAt',
+  sent: 'sent',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PromptTemplateScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  description: 'description',
+  activeId: 'activeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ContentVersionScalarFieldEnum = {
+  id: 'id',
+  promptTemplateId: 'promptTemplateId',
+  version: 'version',
+  content: 'content',
+  createdBy: 'createdBy',
+  isActive: 'isActive',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UserMemoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  category: 'category',
+  content: 'content',
+  isPinned: 'isPinned',
+  isIgnored: 'isIgnored',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AIInvocationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  provider: 'provider',
+  model: 'model',
+  promptTokens: 'promptTokens',
+  completionTokens: 'completionTokens',
+  totalTokens: 'totalTokens',
+  estimatedCost: 'estimatedCost',
+  latencyMs: 'latencyMs',
+  cacheHit: 'cacheHit',
+  promptVersion: 'promptVersion',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UserSessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  refreshToken: 'refreshToken',
+  deviceFingerprint: 'deviceFingerprint',
+  deviceInfo: 'deviceInfo',
+  ipAddress: 'ipAddress',
+  lastLoginAt: 'lastLoginAt',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -382,13 +695,37 @@ exports.Prisma.ModelName = {
   ConversationMessage: 'ConversationMessage',
   ConversationFeedback: 'ConversationFeedback',
   TravelSession: 'TravelSession',
+  TravelDailySummary: 'TravelDailySummary',
+  CompensationPlan: 'CompensationPlan',
   CacheEntry: 'CacheEntry',
   MealPlan: 'MealPlan',
   MealPlanDay: 'MealPlanDay',
   MealPlanMeal: 'MealPlanMeal',
   SavedTemplate: 'SavedTemplate',
   PantryItem: 'PantryItem',
-  PlannerInteraction: 'PlannerInteraction'
+  PlannerInteraction: 'PlannerInteraction',
+  BodyMeasurement: 'BodyMeasurement',
+  GoalHistory: 'GoalHistory',
+  AnalyticsSnapshot: 'AnalyticsSnapshot',
+  HealthScoreHistory: 'HealthScoreHistory',
+  Insight: 'Insight',
+  Recommendation: 'Recommendation',
+  Notification: 'Notification',
+  Reminder: 'Reminder',
+  Habit: 'Habit',
+  NotificationHistory: 'NotificationHistory',
+  AdminUser: 'AdminUser',
+  Role: 'Role',
+  Permission: 'Permission',
+  AuditLog: 'AuditLog',
+  FeatureFlag: 'FeatureFlag',
+  RemoteConfig: 'RemoteConfig',
+  SystemAnnouncement: 'SystemAnnouncement',
+  PromptTemplate: 'PromptTemplate',
+  ContentVersion: 'ContentVersion',
+  UserMemory: 'UserMemory',
+  AIInvocation: 'AIInvocation',
+  UserSession: 'UserSession'
 };
 
 /**

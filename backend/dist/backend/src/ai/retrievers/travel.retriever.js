@@ -18,23 +18,37 @@ let TravelRetriever = class TravelRetriever {
     }
     async retrieve(userId) {
         try {
-            const active = await this.travelService.isTravelModeActive(userId);
-            const stats = await this.travelService.getTravelStats(userId);
+            const activeSession = await this.travelService.getActiveSession(userId);
+            const recoveryPlan = await this.travelService.getRecoveryPlan(userId);
             return {
-                active,
-                streak: stats.streak,
-                activeDays: stats.activeDays,
-                waterTotal: stats.waterTotal,
-                scannedMealsCount: stats.scannedMealsCount,
+                active: !!activeSession,
+                destination: activeSession?.destination || null,
+                timezone: activeSession?.timezone || null,
+                purpose: activeSession?.purpose || null,
+                startDate: activeSession?.startDate || null,
+                liveSurplus: activeSession?.liveSurplus || 0,
+                hasRecoveryPlan: !!recoveryPlan,
+                recoveryPlan: recoveryPlan ? {
+                    totalSurplusCalories: recoveryPlan.plan.totalSurplusCalories,
+                    dailyReductionCalories: recoveryPlan.plan.dailyReductionCalories,
+                    recoveryDays: recoveryPlan.plan.recoveryDays,
+                    currentDayNumber: recoveryPlan.currentDayNumber,
+                    percentage: recoveryPlan.percentage,
+                    status: recoveryPlan.plan.status,
+                    todayTarget: recoveryPlan.todayTarget,
+                } : null,
             };
         }
         catch (e) {
             return {
                 active: false,
-                streak: 0,
-                activeDays: 0,
-                waterTotal: 0,
-                scannedMealsCount: 0,
+                destination: null,
+                timezone: null,
+                purpose: null,
+                startDate: null,
+                liveSurplus: 0,
+                hasRecoveryPlan: false,
+                recoveryPlan: null,
             };
         }
     }

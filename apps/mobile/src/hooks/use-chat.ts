@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { aiService } from '../services/ai-service';
 import { ChatMessageResponse, ConversationResponse } from '../../../../shared/contracts';
 import Toast from 'react-native-toast-message';
+import { CONFIG } from '../config';
+import { tokenStorage } from '../services/token-storage';
 
 export function useChat() {
   const [conversations, setConversations] = useState<ConversationResponse[]>([]);
@@ -85,28 +87,102 @@ export function useChat() {
       createdAt: new Date(),
     };
 
-    setMessages((prev) => [...prev, userMsg]);
+    // Placeholder Assistant Message for progressive streaming
+    const assistantMsg: ChatMessageResponse = {
+      id: 'assistant-temp-' + Date.now(),
+      role: 'assistant',
+      content: '',
+      createdAt: new Date(),
+    };
+
+    setMessages((prev) => [...prev, userMsg, assistantMsg]);
     setInputText('');
     setSending(true);
 
     try {
-      const response = await aiService.sendChat(text, currentConversationId || undefined);
+      const token = await tokenStorage.getToken();
+      const url = `${CONFIG.API_BASE_URL}/ai/chat/stream?message=${encodeURIComponent(text)}${currentConversationId ? `&conversationId=${currentConversationId}` : ''}`;
       
-      // Update active ID if this was a new conversation
-      if (!currentConversationId) {
-        setCurrentConversationId(response.conversationId);
-        loadConversations();
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', url);
+      if (token) {
+        xhr.setRequestHeader('Authorization', `Bearer ${token}`);
       }
 
-      setMessages((prev) => [...prev, response.message]);
-    } catch (e) {
+      let lastLength = 0;
+      let resolvedConvoId = currentConversationId;
+
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 3 || xhr.readyState === 4) {
+          const raw = xhr.responseText;
+          const updates = raw.substring(lastLength);
+          lastLength = raw.length;
+
+          // Parse SSE lines
+          const lines = updates.split('\n');
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              try {
+                const parsed = JSON.parse(line.substring(6));
+                const tokenVal = parsed.token || '';
+                
+                if (parsed.conversationId && !resolvedConvoId) {
+                  resolvedConvoId = parsed.conversationId;
+                  setCurrentConversationId(parsed.conversationId);
+                }
+
+                if (tokenVal) {
+                  setMessages((prev) => {
+                    const copy = [...prev];
+                    const last = copy[copy.length - 1];
+                    if (last && last.role === 'assistant') {
+                      last.content = last.content + tokenVal;
+                    }
+                    return copy;
+                  });
+                }
+              } catch (e) {
+                // ignore syntax error for partial lines
+              }
+            }
+          }
+        }
+
+        if (xhr.readyState === 4) {
+          setSending(false);
+          loadConversations();
+          
+          if (resolvedConvoId) {
+            loadConversation(resolvedConvoId);
+          } else {
+            // reload list fallback
+            aiService.getConversations().then((list) => {
+              setConversations(list);
+              if (list.length > 0) {
+                loadConversation(list[0].id);
+              }
+            }).catch(() => {});
+          }
+        }
+      };
+
+      xhr.onerror = () => {
+        setSending(false);
+        Toast.show({
+          type: 'error',
+          text1: 'Stream Failed',
+          text2: 'Connection to streaming server failed.',
+        });
+      };
+
+      xhr.send();
+    } catch (e: any) {
+      setSending(false);
       Toast.show({
         type: 'error',
         text1: 'Send Failed',
-        text2: 'Could not communicate with AI Coach.',
+        text2: e.message || 'Could not communicate with AI Coach.',
       });
-    } finally {
-      setSending(false);
     }
   };
 

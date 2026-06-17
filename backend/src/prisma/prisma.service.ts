@@ -3,6 +3,14 @@ import { PrismaClient } from '../generated/prisma';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
+  constructor() {
+    super({
+      log: [
+        { emit: 'event', level: 'query' },
+      ],
+    });
+  }
+
   async onModuleInit() {
     try {
       await this.$connect();

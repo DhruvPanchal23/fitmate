@@ -9,6 +9,7 @@ export interface SelectionPreferences {
   favoriteFoods?: string[];
   recentMeals?: string[];
   pantryItems?: Array<{ foodId: string; quantity: number }>;
+  recoveryActive?: boolean;
 }
 
 @Injectable()
@@ -101,11 +102,21 @@ export class FoodSelectionEngine {
           if (isPremium) score += 20;
         }
 
-        // 8. Macro/High Protein preference bonus
-        if (prefs.dietaryPreference === 'high_protein') {
-          const proteinRatio = (food.protein * 4) / food.calories; // % calories from protein
+        // 8. Macro/High Protein preference bonus or recovery plan active
+        if (prefs.dietaryPreference === 'high_protein' || prefs.recoveryActive) {
+          const proteinRatio = (food.protein * 4) / (food.calories || 1); // % calories from protein
           if (proteinRatio > 0.3) {
-            score += 30; // Bonus for high protein density
+            score += prefs.recoveryActive ? 50 : 30; // Extra bonus during recovery
+          }
+        }
+
+        // 8b. Recovery plan high-satiety food prioritization
+        if (prefs.recoveryActive) {
+          const isHighSatiety = ['salad', 'vegetable', 'oat', 'chicken', 'egg', 'fish', 'salmon', 'tofu', 'dal', 'paneer', 'lentil', 'broccoli', 'spinach'].some((satietyFood) =>
+            nameLower.includes(satietyFood)
+          );
+          if (isHighSatiety) {
+            score += 40; // High satiety bonus to help control hunger during deficit
           }
         }
 

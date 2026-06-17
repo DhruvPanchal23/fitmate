@@ -15,7 +15,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./auth"), exports);
-__exportStar(require("./user"), exports);
 __exportStar(require("./nutrition"), exports);
 __exportStar(require("./meal"), exports);
 __exportStar(require("./water"), exports);
@@ -28,5 +27,11 @@ __exportStar(require("./vision"), exports);
 __exportStar(require("./food-match"), exports);
 __exportStar(require("./ai"), exports);
 __exportStar(require("./travel"), exports);
+__exportStar(require("./travel-compensation"), exports);
 __exportStar(require("./meal-planner"), exports);
+__exportStar(require("./profile"), exports);
+__exportStar(require("./goals"), exports);
+__exportStar(require("./analytics"), exports);
+__exportStar(require("./notifications"), exports);
+__exportStar(require("./admin"), exports);
 //# sourceMappingURL=index.js.map

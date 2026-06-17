@@ -9,6 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HttpExceptionFilter = void 0;
 const common_1 = require("@nestjs/common");
 const logger_service_1 = require("../common/logger.service");
+const context_1 = require("../common/context");
+const crypto = require("crypto");
 let HttpExceptionFilter = class HttpExceptionFilter {
     catch(exception, host) {
         const ctx = host.switchToHttp();
@@ -35,14 +37,23 @@ let HttpExceptionFilter = class HttpExceptionFilter {
         else if (exception instanceof Error) {
             message = exception.message;
         }
+        const store = (0, context_1.getRequestContext)();
+        const requestId = store?.requestId || request.headers['x-request-id'] || crypto.randomUUID();
+        const errorId = crypto.randomUUID();
+        const safeClientMessage = status >= 500
+            ? 'An unexpected error occurred. Please try again later.'
+            : (typeof message === 'string' ? message : JSON.stringify(message));
         const errorResponse = {
+            errorId,
             statusCode: status,
             timestamp: new Date().toISOString(),
             path: request.url,
             message,
+            requestId,
+            safeClientMessage,
             ...(errors && { errors }),
         };
-        logger_service_1.logger.error(`${request.method} ${request.url} failed with status code ${status}: ${JSON.stringify(message)}`, exception instanceof Error ? exception.stack : undefined, 'HttpExceptionFilter');
+        logger_service_1.logger.error(`${request.method} ${request.url} failed with status code ${status}: ${JSON.stringify(message)} [ErrorId: ${errorId}]`, exception instanceof Error ? exception.stack : undefined, 'HttpExceptionFilter');
         response.status(status).json(errorResponse);
     }
 };

@@ -3,18 +3,18 @@ export declare class AICoachRepository {
     private readonly prisma;
     constructor(prisma: PrismaService);
     createConversation(userId: string, title: string): Promise<{
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
         userId: string;
+        title: string;
     }>;
     findUserConversations(userId: string): Promise<{
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
         userId: string;
+        title: string;
     }[]>;
     findConversation(id: string): Promise<{
         messages: ({
@@ -28,41 +28,41 @@ export declare class AICoachRepository {
         } & {
             id: string;
             createdAt: Date;
-            content: string;
-            conversationId: string;
             role: string;
+            content: string;
             metadata: string | null;
             tokens: number;
+            conversationId: string;
         })[];
     } & {
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
         userId: string;
+        title: string;
     }>;
     updateConversationTitle(id: string, title: string): Promise<{
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
         userId: string;
+        title: string;
     }>;
     deleteConversation(id: string): Promise<{
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
         userId: string;
+        title: string;
     }>;
-    addMessage(conversationId: string, role: string, content: string, metadata?: string): Promise<{
+    addMessage(conversationId: string, role: string, content: string, metadata?: string, tokens?: number): Promise<{
         id: string;
         createdAt: Date;
-        content: string;
-        conversationId: string;
         role: string;
+        content: string;
         metadata: string | null;
         tokens: number;
+        conversationId: string;
     }>;
     addFeedback(messageId: string, rating: number, comment?: string): Promise<{
         id: string;
@@ -74,12 +74,21 @@ export declare class AICoachRepository {
     getLastUserMessage(conversationId: string): Promise<{
         id: string;
         createdAt: Date;
-        content: string;
-        conversationId: string;
         role: string;
+        content: string;
         metadata: string | null;
         tokens: number;
+        conversationId: string;
     }>;
     deleteLastAssistantMessage(conversationId: string): Promise<void>;
+    getLastAssistantMessage(conversationId: string): Promise<{
+        id: string;
+        createdAt: Date;
+        role: string;
+        content: string;
+        metadata: string | null;
+        tokens: number;
+        conversationId: string;
+    }>;
 }
 export default AICoachRepository;

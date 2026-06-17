@@ -13,6 +13,11 @@ import {
   RegenerateMealRequest,
   SaveTemplateRequest,
 } from '../../../shared/contracts';
+import { TravelService } from '../travel/travel.service';
+import { MemoryService } from '../ai/memory/memory.service';
+import { MealPlanTemplatesService } from './meal-plan-templates.service';
+import { MealPlanShoppingService } from './meal-plan-shopping.service';
+import { MealPlanAnalyticsService } from './meal-plan-analytics.service';
 
 @Injectable()
 export class MealPlannerService {
@@ -24,6 +29,11 @@ export class MealPlannerService {
     private readonly usersService: UsersService,
     private readonly mealsService: MealsService,
     private readonly prisma: PrismaService,
+    private readonly travelService: TravelService,
+    private readonly memoryService: MemoryService,
+    private readonly templatesService: MealPlanTemplatesService,
+    private readonly shoppingService: MealPlanShoppingService,
+    private readonly analyticsService: MealPlanAnalyticsService,
   ) {}
 
   async generatePlan(userId: string, dto: GenerateMealPlanRequest) {
@@ -33,13 +43,22 @@ export class MealPlannerService {
       throw new BadRequestException('User profile must exist to generate plans');
     }
 
+    // Check if recovery plan is active
+    const recovery = await this.travelService.getRecoveryPlan(userId);
+    const hasRecoveryPlan = !!recovery && recovery.plan.status === 'active';
+
     // Determine target calories and macros based on goal
     let calTarget = 2200;
     let protTarget = 150;
     let carbsTarget = 200;
     let fatTarget = 70;
 
-    if (profile.goal === 'fat_loss') {
+    if (hasRecoveryPlan && recovery.todayTarget) {
+      calTarget = recovery.todayTarget.caloriesTarget;
+      protTarget = recovery.todayTarget.proteinTarget;
+      carbsTarget = recovery.todayTarget.carbsTarget;
+      fatTarget = recovery.todayTarget.fatsTarget;
+    } else if (profile.goal === 'fat_loss') {
       calTarget = 1800; protTarget = 160; carbsTarget = 170; fatTarget = 60;
     } else if (profile.goal === 'muscle_gain') {
       calTarget = 2700; protTarget = 180; carbsTarget = 280; fatTarget = 80;
@@ -49,15 +68,22 @@ export class MealPlannerService {
     const pantryItems = await this.pantryRepository.findUserPantry(userId);
     const pantryArgs = pantryItems.map((pi) => ({ foodId: pi.foodId, quantity: pi.quantity }));
 
-    // Compute favorite foods from logged meals
-    const favoriteFoodsRaw = await this.prisma.mealItem.groupBy({
-      by: ['foodName'],
-      where: { meal: { userId } },
-      _count: { id: true },
-      orderBy: { _count: { id: 'desc' } },
-      take: 5,
-    });
-    const favoriteFoods = favoriteFoodsRaw.map(item => item.foodName);
+    // Fetch favorites and allergies from MemoryService
+    const memories = await this.memoryService.getMemories(userId);
+    const activeMemories = memories.filter(m => !m.isIgnored);
+
+    const favoriteFoods = activeMemories
+      .filter(m => m.category === 'favorite_foods')
+      .map(m => m.content.replace(/Prefers\s+/i, ''));
+
+    const memoryAllergies = activeMemories
+      .filter(m => m.category === 'allergies')
+      .map(m => m.content.replace(/Allergic to\s+/i, ''));
+
+    const combinedAllergies = Array.from(new Set([
+      ...(dto.allergies || []),
+      ...memoryAllergies
+    ]));
 
     const genCtx: PlanGenerationContext = {
       userId,
@@ -68,10 +94,11 @@ export class MealPlannerService {
       carbsTarget: carbsTarget,
       fatTarget: fatTarget,
       dietaryPreference: dto.dietaryPreference || 'none',
-      allergies: dto.allergies || [],
+      allergies: combinedAllergies,
       budgetPreference: dto.budgetPreference || 'medium',
       favoriteFoods,
       pantryItems: pantryArgs,
+      recoveryActive: hasRecoveryPlan,
     };
 
     const newPlanData = await this.generator.generate(genCtx);
@@ -379,190 +406,30 @@ export class MealPlannerService {
     return { success: true };
   }
 
-  // --- Saved Templates ---
+  // --- Saved Templates (Delegated) ---
 
   async savePlanAsTemplate(userId: string, dto: SaveTemplateRequest) {
-    const plan = await this.repository.findPlan(dto.planId);
-    if (!plan) throw new NotFoundException('Meal plan not found');
-
-    const planData = JSON.stringify(plan);
-    return this.repository.saveTemplate(userId, dto.title, dto.description, planData);
+    return this.templatesService.savePlanAsTemplate(userId, dto);
   }
 
   async getTemplates(userId: string) {
-    return this.repository.findTemplates(userId);
+    return this.templatesService.getTemplates(userId);
   }
 
   async deleteTemplate(id: string) {
-    await this.repository.deleteTemplate(id);
-    return { success: true };
+    return this.templatesService.deleteTemplate(id);
   }
 
-  // --- Shopping List Generation ---
+  // --- Shopping List Generation (Delegated) ---
 
   async getShoppingList(planId: string) {
-    const plan = await this.repository.findPlan(planId);
-    if (!plan) throw new NotFoundException('Meal plan not found');
-
-    // Aggregate duplicate foods
-    const ingredientsMap: Record<string, {
-      foodId: string | null;
-      name: string;
-      quantity: number;
-      unit: string;
-      estimatedCost: number;
-    }> = {};
-
-    for (const d of plan.days) {
-      for (const m of d.meals) {
-        const key = m.foodId || m.food?.name || m.notes || 'Other';
-        const foodPrice = m.food?.averagePrice || 1.5; // Mock price fallback if missing
-
-        if (ingredientsMap[key]) {
-          ingredientsMap[key].quantity += m.quantity;
-          ingredientsMap[key].estimatedCost += Math.round(m.quantity / 100 * foodPrice * 100) / 100;
-        } else {
-          ingredientsMap[key] = {
-            foodId: m.foodId,
-            name: m.food?.name || m.notes || 'Ingredient',
-            quantity: m.quantity,
-            unit: m.unit,
-            estimatedCost: Math.round(m.quantity / 100 * foodPrice * 100) / 100,
-          };
-        }
-      }
-    }
-
-    // Categorize
-    const categories: Record<string, any[]> = {
-      dairy: [],
-      vegetables: [],
-      fruits: [],
-      grains: [],
-      meat: [],
-      spices: [],
-      supplements: [],
-      other: [],
-    };
-
-    let totalCost = 0;
-
-    for (const key of Object.keys(ingredientsMap)) {
-      const ing = ingredientsMap[key];
-      totalCost += ing.estimatedCost;
-
-      const nameLower = ing.name.toLowerCase();
-      let cat = 'other';
-
-      if (['milk', 'cheese', 'paneer', 'yogurt', 'curd', 'butter'].some((x) => nameLower.includes(x))) {
-        cat = 'dairy';
-      } else if (['chicken', 'beef', 'pork', 'turkey', 'shrimp', 'salmon', 'mutton', 'fish', 'tuna'].some((x) => nameLower.includes(x))) {
-        cat = 'meat';
-      } else if (['rice', 'oats', 'wheat', 'bread', 'roti', 'grains', 'quinoa'].some((x) => nameLower.includes(x))) {
-        cat = 'grains';
-      } else if (['broccoli', 'spinach', 'cucumber', 'vegetables', 'carrot', 'onion', 'garlic', 'tomato'].some((x) => nameLower.includes(x))) {
-        cat = 'vegetables';
-      } else if (['apple', 'banana', 'orange', 'fruit', 'berry', 'berries', 'strawberries'].some((x) => nameLower.includes(x))) {
-        cat = 'fruits';
-      } else if (['creatine', 'protein', 'supplement', 'vitamins'].some((x) => nameLower.includes(x))) {
-        cat = 'supplements';
-      } else if (['pepper', 'salt', 'spice', 'turmeric', 'chili', 'cardamom'].some((x) => nameLower.includes(x))) {
-        cat = 'spices';
-      }
-
-      categories[cat].push({
-        id: 'shop-' + Math.random().toString(36).substr(2, 9),
-        foodId: ing.foodId,
-        name: ing.name,
-        quantity: Math.round(ing.quantity),
-        unit: ing.unit,
-        checked: false,
-        purchased: false,
-        estimatedCost: Math.round(ing.estimatedCost * 100) / 100,
-        pantryDeduction: 0,
-      });
-    }
-
-    return {
-      planId,
-      categories,
-      totalCost: Math.round(totalCost * 100) / 100,
-      currency: 'USD',
-    };
+    return this.shoppingService.getShoppingList(planId);
   }
 
-  // --- Analytics Dashboard API ---
+  // --- Analytics Dashboard API (Delegated) ---
 
   async getAdherenceAnalytics(userId: string) {
-    const plans = await this.repository.findUserPlans(userId);
-    const activePlan = plans.find((p) => p.status === 'active');
-
-    if (!activePlan) {
-      return {
-        adherencePercentage: 0,
-        skippedMeals: 0,
-        completedMeals: 0,
-        regeneratedMeals: 0,
-        replacedMeals: 0,
-        averageProteinAchievement: 0,
-        calorieAdherence: 0,
-        weeklyCompletion: 0,
-        monthlyCompletion: 0,
-      };
-    }
-
-    // Query active plan details
-    const fullPlan = await this.repository.findPlan(activePlan.id);
-    if (!fullPlan) throw new NotFoundException('Active plan details missing');
-
-    let plannedCount = 0;
-    let completedCount = 0;
-    let skippedCount = 0;
-
-    for (const d of fullPlan.days) {
-      for (const m of d.meals) {
-        plannedCount++;
-        if (m.status === 'completed') completedCount++;
-        else if (m.status === 'skipped') skippedCount++;
-      }
-    }
-
-    const adherencePercentage = plannedCount > 0 ? Math.round((completedCount / plannedCount) * 100) : 0;
-
-    // Fetch user logs to compare protein/calorie averages
-    const recentMeals = await this.prisma.meal.findMany({
-      where: {
-        userId,
-        createdAt: {
-          gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // Last 7 days
-        },
-      },
-      include: { items: true },
-    });
-
-    let loggedProtein = 0;
-    let loggedCalories = 0;
-    for (const m of recentMeals) {
-      for (const i of m.items) {
-        loggedProtein += i.protein;
-        loggedCalories += i.calories;
-      }
-    }
-
-    const avgDailyProtein = recentMeals.length > 0 ? Math.round(loggedProtein / 7) : 0;
-    const avgDailyCalories = recentMeals.length > 0 ? Math.round(loggedCalories / 7) : 0;
-
-    return {
-      adherencePercentage,
-      skippedMeals: skippedCount,
-      completedMeals: completedCount,
-      regeneratedMeals: fullPlan.regenerationsCount,
-      replacedMeals: fullPlan.replacementsCount,
-      averageProteinAchievement: Math.min(100, Math.round(avgDailyProtein / activePlan.proteinTarget * 100)),
-      calorieAdherence: Math.min(100, Math.round(avgDailyCalories / activePlan.caloriesTarget * 100)),
-      weeklyCompletion: adherencePercentage,
-      monthlyCompletion: Math.min(100, Math.round(adherencePercentage * 0.9)), // Simulated monthly projection
-    };
+    return this.analyticsService.getAdherenceAnalytics(userId);
   }
 }
 export default MealPlannerService;

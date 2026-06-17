@@ -11,9 +11,13 @@ import { PrismaModule } from '../prisma/prisma.module';
 import { UsersModule } from '../users/users.module';
 import { MealsModule } from '../meals/meals.module';
 import { AiModule } from '../ai/ai.module';
+import { TravelModule } from '../travel/travel.module';
+import { MealPlanTemplatesService } from './meal-plan-templates.service';
+import { MealPlanShoppingService } from './meal-plan-shopping.service';
+import { MealPlanAnalyticsService } from './meal-plan-analytics.service';
 
 @Module({
-  imports: [PrismaModule, UsersModule, MealsModule, AiModule],
+  imports: [PrismaModule, UsersModule, MealsModule, AiModule, TravelModule],
   controllers: [MealPlannerController],
   providers: [
     MealPlannerService,
@@ -23,8 +27,19 @@ import { AiModule } from '../ai/ai.module';
     FoodSelectionEngine,
     MacroValidationEngine,
     MealDiversityScoreService,
+    MealPlanTemplatesService,
+    MealPlanShoppingService,
+    MealPlanAnalyticsService,
   ],
-  exports: [MealPlannerService, MealPlanRepository, PantryRepository],
+  exports: [
+    MealPlannerService,
+    MealPlanRepository,
+    PantryRepository,
+    MealPlanTemplatesService,
+    MealPlanShoppingService,
+    MealPlanAnalyticsService,
+  ],
 })
 export class MealPlannerModule {}
 export default MealPlannerModule;
+

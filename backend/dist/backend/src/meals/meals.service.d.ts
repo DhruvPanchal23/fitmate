@@ -27,17 +27,17 @@ export declare class MealsService {
     getMeals(userId: string, dateStr?: string): Promise<({
         items: {
             id: string;
-            foodName: string;
+            mealId: string;
+            foodId: string | null;
             quantity: number;
             unit: string;
             calories: number;
             protein: number;
-            carbohydrates: number;
             fats: number;
             fiber: number;
             sugar: number;
-            foodId: string | null;
-            mealId: string;
+            carbohydrates: number;
+            foodName: string;
         }[];
     } & {
         id: string;

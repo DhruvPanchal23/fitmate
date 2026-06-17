@@ -1,6 +1,8 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { logger } from '../common/logger.service';
+import { getRequestContext } from '../common/context';
+import * as crypto from 'crypto';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -32,16 +34,27 @@ export class HttpExceptionFilter implements ExceptionFilter {
       message = exception.message;
     }
 
+    const store = getRequestContext();
+    const requestId = store?.requestId || (request.headers['x-request-id'] as string) || crypto.randomUUID();
+    const errorId = crypto.randomUUID();
+
+    const safeClientMessage = status >= 500 
+      ? 'An unexpected error occurred. Please try again later.'
+      : (typeof message === 'string' ? message : JSON.stringify(message));
+
     const errorResponse = {
+      errorId,
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
       message,
+      requestId,
+      safeClientMessage,
       ...(errors && { errors }),
     };
 
     logger.error(
-      `${request.method} ${request.url} failed with status code ${status}: ${JSON.stringify(message)}`,
+      `${request.method} ${request.url} failed with status code ${status}: ${JSON.stringify(message)} [ErrorId: ${errorId}]`,
       exception instanceof Error ? exception.stack : undefined,
       'HttpExceptionFilter'
     );

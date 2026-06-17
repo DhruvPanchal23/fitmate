@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { NutritionCalculatorService } from './nutrition-calculator.service';
 import { UsersService } from '../users/users.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class NutritionService {
   constructor(
     private readonly calculator: NutritionCalculatorService,
     private readonly usersService: UsersService,
+    private readonly prisma: PrismaService,
   ) {}
 
   async getTodayLogs(userId: string) {
@@ -23,13 +25,19 @@ export class NutritionService {
     };
 
     try {
-      const profile = await this.usersService.getProfile(userId);
-      if (profile) {
-        if (profile.goal === 'fat_loss') {
-          goals = { calories: 1800, protein: 160, carbohydrates: 170, fats: 60, water: 3000 };
-        } else if (profile.goal === 'muscle_gain') {
-          goals = { calories: 2700, protein: 180, carbohydrates: 280, fats: 80, water: 3000 };
-        }
+      const latestSnapshot = await this.prisma.goalHistory.findFirst({
+        where: { userId },
+        orderBy: { createdAt: 'desc' },
+      });
+      if (latestSnapshot && latestSnapshot.goalSnapshot) {
+        const decoded = JSON.parse(latestSnapshot.goalSnapshot);
+        goals = {
+          calories: decoded.targetCalories ?? decoded.calories,
+          protein: decoded.protein,
+          carbohydrates: decoded.carbs,
+          fats: decoded.fats,
+          water: Math.round((decoded.water || 2.5) * 1000), // convert L to ml
+        };
       }
     } catch (e) {
       // Keep default goals

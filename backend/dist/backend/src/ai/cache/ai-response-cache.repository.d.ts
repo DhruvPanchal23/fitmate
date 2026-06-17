@@ -4,15 +4,22 @@ export declare class AIResponseCacheRepository {
     constructor(prisma: PrismaService);
     get(key: string): Promise<{
         createdAt: Date;
+        expiresAt: Date;
         key: string;
         value: string;
-        expiresAt: Date;
     }>;
     set(key: string, value: string, ttlSeconds: number): Promise<{
         createdAt: Date;
+        expiresAt: Date;
         key: string;
         value: string;
-        expiresAt: Date;
     }>;
     clearExpired(): Promise<import("src/generated/prisma").Prisma.BatchPayload>;
+    getAll(): Promise<{
+        createdAt: Date;
+        expiresAt: Date;
+        key: string;
+        value: string;
+    }[]>;
+    deleteAll(): Promise<import("src/generated/prisma").Prisma.BatchPayload>;
 }

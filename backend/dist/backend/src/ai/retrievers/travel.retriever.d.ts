@@ -4,10 +4,21 @@ export declare class TravelRetriever {
     constructor(travelService: TravelService);
     retrieve(userId: string): Promise<{
         active: boolean;
-        streak: number;
-        activeDays: number;
-        waterTotal: number;
-        scannedMealsCount: number;
+        destination: string;
+        timezone: string;
+        purpose: string;
+        startDate: Date;
+        liveSurplus: any;
+        hasRecoveryPlan: boolean;
+        recoveryPlan: {
+            totalSurplusCalories: number;
+            dailyReductionCalories: number;
+            recoveryDays: number;
+            currentDayNumber: number;
+            percentage: number;
+            status: string;
+            todayTarget: import("../../../../shared/contracts").RecoveryDayResponse;
+        };
     }>;
 }
 export default TravelRetriever;

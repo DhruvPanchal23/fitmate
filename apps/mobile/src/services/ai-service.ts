@@ -9,6 +9,12 @@ import {
   ConversationDetailsResponse,
   FeedbackRequest,
   FeedbackResponse,
+  AIProviderConfig,
+  AIMemoryItem,
+  AITokenUsageStats,
+  AICostStats,
+  AICacheStats,
+  RAGDebugResult,
 } from '../../../../shared/contracts';
 
 export const aiService = {
@@ -56,6 +62,54 @@ export const aiService = {
 
   submitFeedback: async (dto: FeedbackRequest): Promise<FeedbackResponse> => {
     return apiClient.post<FeedbackResponse>('/ai/feedback', dto);
+  },
+
+  getProviders: async (): Promise<AIProviderConfig[]> => {
+    return apiClient.get<AIProviderConfig[]>('/ai/providers');
+  },
+
+  setActiveProvider: async (provider: string): Promise<any> => {
+    return apiClient.patch<any>('/ai/provider', { provider });
+  },
+
+  getPrompts: async (): Promise<any[]> => {
+    return apiClient.get<any[]>('/ai/prompts');
+  },
+
+  getMemories: async (): Promise<AIMemoryItem[]> => {
+    return apiClient.get<AIMemoryItem[]>('/ai/memory');
+  },
+
+  deleteMemory: async (id?: string): Promise<any> => {
+    return apiClient.delete<any>('/ai/memory', { id });
+  },
+
+  updateMemoryStatus: async (id: string, status: { isPinned?: boolean; isIgnored?: boolean }): Promise<any> => {
+    return apiClient.patch<any>(`/ai/memory/${id}`, status);
+  },
+
+  getTokenUsage: async (): Promise<AITokenUsageStats> => {
+    return apiClient.get<AITokenUsageStats>('/ai/token-usage');
+  },
+
+  getCost: async (): Promise<AICostStats> => {
+    return apiClient.get<AICostStats>('/ai/cost');
+  },
+
+  getCacheStats: async (): Promise<AICacheStats> => {
+    return apiClient.get<AICacheStats>('/ai/cache');
+  },
+
+  clearCache: async (): Promise<any> => {
+    return apiClient.delete<any>('/ai/cache');
+  },
+
+  debugRag: async (query: string): Promise<RAGDebugResult> => {
+    return apiClient.get<RAGDebugResult>(`/ai/rag/debug?query=${encodeURIComponent(query)}`);
+  },
+
+  getHealth: async (): Promise<any[]> => {
+    return apiClient.get<any[]>('/ai/health');
   },
 };
 

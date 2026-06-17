@@ -8,18 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MealPlanPlanGenerator = void 0;
 const common_1 = require("@nestjs/common");
 const food_selection_engine_1 = require("./food-selection.engine");
 const macro_validation_engine_1 = require("./macro-validation.engine");
 const prisma_service_1 = require("../prisma/prisma.service");
+const ai_pipeline_service_1 = require("../ai/core/ai-pipeline.service");
 let MealPlanPlanGenerator = class MealPlanPlanGenerator {
-    constructor(llmProvider, foodSelectionEngine, macroValidationEngine, prisma) {
-        this.llmProvider = llmProvider;
+    constructor(pipeline, foodSelectionEngine, macroValidationEngine, prisma) {
+        this.pipeline = pipeline;
         this.foodSelectionEngine = foodSelectionEngine;
         this.macroValidationEngine = macroValidationEngine;
         this.prisma = prisma;
@@ -36,6 +34,7 @@ let MealPlanPlanGenerator = class MealPlanPlanGenerator {
             favoriteFoods: ctx.favoriteFoods,
             recentMeals: ctx.recentMeals,
             pantryItems: ctx.pantryItems,
+            recoveryActive: ctx.recoveryActive,
         };
         const rankedBreakfast = this.foodSelectionEngine.rankFoods(catalogFoods, prefArgs, {
             mealType: 'Breakfast',
@@ -99,7 +98,14 @@ let MealPlanPlanGenerator = class MealPlanPlanGenerator {
         ].join('\n\n');
         let parsedPlan;
         try {
-            const rawResponse = await this.llmProvider.generateResponse(prompt);
+            const pipelineRes = await this.pipeline.execute({
+                userId: ctx.userId,
+                promptKey: 'meal-planner',
+                userMessage: `Generate a ${ctx.type} meal plan matching the user goals.`,
+                additionalContext: `=== CANDIDATE TOP FOODS ===\n${contextStr}`,
+                skipCache: true,
+            });
+            const rawResponse = pipelineRes.text;
             let cleaned = rawResponse.trim();
             if (cleaned.includes('```json')) {
                 cleaned = cleaned.split('```json')[1].split('```')[0].trim();
@@ -202,8 +208,8 @@ let MealPlanPlanGenerator = class MealPlanPlanGenerator {
 exports.MealPlanPlanGenerator = MealPlanPlanGenerator;
 exports.MealPlanPlanGenerator = MealPlanPlanGenerator = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, common_1.Inject)('LLMProvider')),
-    __metadata("design:paramtypes", [Object, food_selection_engine_1.FoodSelectionEngine,
+    __metadata("design:paramtypes", [ai_pipeline_service_1.AIPipelineService,
+        food_selection_engine_1.FoodSelectionEngine,
         macro_validation_engine_1.MacroValidationEngine,
         prisma_service_1.PrismaService])
 ], MealPlanPlanGenerator);

@@ -11,10 +11,10 @@ export declare class PantryRepository {
             source: import("src/generated/prisma").$Enums.FoodSource;
             calories: number;
             protein: number;
-            carbohydrates: number;
             fats: number;
             fiber: number;
             sugar: number;
+            carbohydrates: number;
             defaultUnit: string;
             servingSize: number;
             averagePrice: number | null;
@@ -25,9 +25,9 @@ export declare class PantryRepository {
         createdAt: Date;
         updatedAt: Date;
         userId: string;
+        foodId: string;
         quantity: number;
         unit: string;
-        foodId: string;
         expiryDate: Date | null;
     })[]>;
     upsertItem(userId: string, data: {
@@ -40,9 +40,9 @@ export declare class PantryRepository {
         createdAt: Date;
         updatedAt: Date;
         userId: string;
+        foodId: string;
         quantity: number;
         unit: string;
-        foodId: string;
         expiryDate: Date | null;
     }>;
     deleteItem(id: string): Promise<{
@@ -50,9 +50,9 @@ export declare class PantryRepository {
         createdAt: Date;
         updatedAt: Date;
         userId: string;
+        foodId: string;
         quantity: number;
         unit: string;
-        foodId: string;
         expiryDate: Date | null;
     }>;
     updateQuantity(id: string, qty: number): Promise<{
@@ -60,9 +60,9 @@ export declare class PantryRepository {
         createdAt: Date;
         updatedAt: Date;
         userId: string;
+        foodId: string;
         quantity: number;
         unit: string;
-        foodId: string;
         expiryDate: Date | null;
     }>;
 }

@@ -54,4 +54,75 @@ export class UsersService {
       };
     }
   }
+
+  async exportUserData(userId: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      include: {
+        profile: true,
+        meals: { include: { items: true } },
+        waterLogs: true,
+        supplementLogs: true,
+        exerciseLogs: true,
+        conversations: { include: { messages: true } },
+        travelSessions: true,
+        analyticsSnapshots: true,
+        memories: true,
+        notifications: true,
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    const { passwordHash, ...safeUserData } = user;
+    return safeUserData;
+  }
+
+  async deleteMemory(userId: string) {
+    const result = await this.prisma.userMemory.deleteMany({
+      where: { userId },
+    });
+    return { success: true, count: result.count };
+  }
+
+  async deleteAnalytics(userId: string) {
+    const result = await this.prisma.analyticsSnapshot.deleteMany({
+      where: { userId },
+    });
+    return { success: true, count: result.count };
+  }
+
+  async deleteConversations(userId: string) {
+    const result = await this.prisma.conversation.deleteMany({
+      where: { userId },
+    });
+    return { success: true, count: result.count };
+  }
+
+  async deleteTravelData(userId: string) {
+    const result = await this.prisma.travelSession.deleteMany({
+      where: { userId },
+    });
+    return { success: true, count: result.count };
+  }
+
+  async softDeleteAccount(userId: string) {
+    await this.prisma.user.update({
+      where: { id: userId },
+      data: { isSuspended: true },
+    });
+    await this.prisma.userSession.deleteMany({
+      where: { userId },
+    });
+    return { success: true, message: 'Account soft-deleted/suspended.' };
+  }
+
+  async permanentlyDeleteAccount(userId: string) {
+    await this.prisma.user.delete({
+      where: { id: userId },
+    });
+    return { success: true, message: 'Account permanently deleted.' };
+  }
 }

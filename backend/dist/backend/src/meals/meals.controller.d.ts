@@ -27,17 +27,17 @@ export declare class MealsController {
     getMeals(req: any): Promise<({
         items: {
             id: string;
-            foodName: string;
+            mealId: string;
+            foodId: string | null;
             quantity: number;
             unit: string;
             calories: number;
             protein: number;
-            carbohydrates: number;
             fats: number;
             fiber: number;
             sugar: number;
-            foodId: string | null;
-            mealId: string;
+            carbohydrates: number;
+            foodName: string;
         }[];
     } & {
         id: string;

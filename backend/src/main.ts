@@ -5,30 +5,57 @@ import { AppModule } from './app.module';
 import { logger } from './common/logger.service';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
+import { SanitizationPipe } from './common/sanitization.pipe';
+import { json, urlencoded } from 'express';
+import { ConfigurationValidator } from './config/configuration-validator';
+import { MetricsEngineService } from './health/metrics-engine.service';
 
 async function bootstrap() {
-  // Use our custom Winston logger for application startup and execution logs
+  // Validate secrets at start
+  const validator = new ConfigurationValidator();
+  if (!validator.validate()) {
+    process.exit(1);
+  }
+
   const app = await NestFactory.create(AppModule, {
     logger,
   });
 
-  // Expose REST endpoints only under '/api'
+  // 1. HTTP Security Headers Middleware
+  app.use((req, res, next) => {
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Referrer-Policy', 'no-referrer');
+    res.setHeader('Content-Security-Policy', "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'");
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    next();
+  });
+
+  // 2. Body Payload Size Limits
+  app.use(json({ limit: '10mb' }));
+  app.use(urlencoded({ extended: true, limit: '10mb' }));
+
   app.setGlobalPrefix('api');
 
-  // CORS support
-  app.enableCors();
+  // 3. CORS Configuration
+  app.enableCors({
+    origin: '*', // in production, replace with whitelist or environment variable
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
 
-  // DTO validation & serialization
+  // 4. Global Pipes (Validation & Custom Sanitization)
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       transform: true,
       forbidNonWhitelisted: true,
     }),
+    new SanitizationPipe(),
   );
 
-  // Global Interceptors & Filters
-  app.useGlobalInterceptors(new LoggingInterceptor());
+  const metrics = app.get(MetricsEngineService);
+  app.useGlobalInterceptors(new LoggingInterceptor(metrics));
   app.useGlobalFilters(new HttpExceptionFilter());
 
   // Swagger Documentation Setup

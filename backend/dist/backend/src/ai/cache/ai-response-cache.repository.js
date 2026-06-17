@@ -51,6 +51,12 @@ let AIResponseCacheRepository = class AIResponseCacheRepository {
             },
         });
     }
+    async getAll() {
+        return this.prisma.cacheEntry.findMany();
+    }
+    async deleteAll() {
+        return this.prisma.cacheEntry.deleteMany({});
+    }
 };
 exports.AIResponseCacheRepository = AIResponseCacheRepository;
 exports.AIResponseCacheRepository = AIResponseCacheRepository = __decorate([

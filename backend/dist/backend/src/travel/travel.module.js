@@ -12,6 +12,10 @@ const travel_controller_1 = require("./travel.controller");
 const travel_service_1 = require("./travel.service");
 const travel_repository_1 = require("./travel.repository");
 const prisma_module_1 = require("../prisma/prisma.module");
+const surplus_calculator_1 = require("./engines/surplus-calculator");
+const compensation_engine_1 = require("./engines/compensation-engine");
+const recovery_planner_1 = require("./engines/recovery-planner");
+const travel_analytics_service_1 = require("./travel-analytics.service");
 let TravelModule = class TravelModule {
 };
 exports.TravelModule = TravelModule;
@@ -19,8 +23,22 @@ exports.TravelModule = TravelModule = __decorate([
     (0, common_1.Module)({
         imports: [prisma_module_1.PrismaModule],
         controllers: [travel_controller_1.TravelController],
-        providers: [travel_service_1.TravelService, travel_repository_1.TravelRepository],
-        exports: [travel_service_1.TravelService, travel_repository_1.TravelRepository],
+        providers: [
+            travel_service_1.TravelService,
+            travel_repository_1.TravelRepository,
+            surplus_calculator_1.SurplusCalculator,
+            compensation_engine_1.CompensationEngine,
+            recovery_planner_1.RecoveryPlanner,
+            travel_analytics_service_1.TravelAnalyticsService,
+        ],
+        exports: [
+            travel_service_1.TravelService,
+            travel_repository_1.TravelRepository,
+            surplus_calculator_1.SurplusCalculator,
+            compensation_engine_1.CompensationEngine,
+            recovery_planner_1.RecoveryPlanner,
+            travel_analytics_service_1.TravelAnalyticsService,
+        ],
     })
 ], TravelModule);
 exports.default = TravelModule;

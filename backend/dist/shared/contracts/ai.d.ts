@@ -56,3 +56,42 @@ export interface FeedbackResponse {
 export interface ApprovePlanResponse {
     success: boolean;
 }
+export interface AIProviderConfig {
+    name: string;
+    model: string;
+    isActive: boolean;
+    isHealthy: boolean;
+}
+export interface AIMemoryItem {
+    id: string;
+    category: string;
+    content: string;
+    isPinned: boolean;
+    isIgnored: boolean;
+    createdAt: string;
+}
+export interface AITokenUsageStats {
+    totalTokens: number;
+    promptTokens: number;
+    completionTokens: number;
+    invocationsCount: number;
+    providerUsage: Record<string, number>;
+}
+export interface AICostStats {
+    totalCost: number;
+    currency: string;
+    providerCosts: Record<string, number>;
+}
+export interface AICacheStats {
+    totalEntries: number;
+    cacheHits: number;
+    cacheMisses: number;
+}
+export interface RAGDebugResult {
+    query: string;
+    retrievedChunks: {
+        source: string;
+        content: string;
+        score: number;
+    }[];
+}

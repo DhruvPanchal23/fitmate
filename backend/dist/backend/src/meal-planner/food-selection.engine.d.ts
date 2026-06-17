@@ -10,6 +10,7 @@ export interface SelectionPreferences {
         foodId: string;
         quantity: number;
     }>;
+    recoveryActive?: boolean;
 }
 export declare class FoodSelectionEngine {
     rankFoods(candidates: Food[], prefs: SelectionPreferences, context: {

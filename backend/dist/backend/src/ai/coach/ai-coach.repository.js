@@ -62,14 +62,14 @@ let AICoachRepository = class AICoachRepository {
             where: { id },
         });
     }
-    async addMessage(conversationId, role, content, metadata) {
+    async addMessage(conversationId, role, content, metadata, tokens) {
         const message = await this.prisma.conversationMessage.create({
             data: {
                 conversationId,
                 role,
                 content,
                 metadata,
-                tokens: Math.ceil((content.length + (metadata ? metadata.length : 0)) / 4),
+                tokens: tokens !== undefined ? tokens : Math.ceil((content.length + (metadata ? metadata.length : 0)) / 4),
             },
         });
         await this.prisma.conversation.update({
@@ -118,6 +118,17 @@ let AICoachRepository = class AICoachRepository {
                 where: { id: lastAssistant.id },
             });
         }
+    }
+    async getLastAssistantMessage(conversationId) {
+        return this.prisma.conversationMessage.findFirst({
+            where: {
+                conversationId,
+                role: 'assistant',
+            },
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
     }
 };
 exports.AICoachRepository = AICoachRepository;
